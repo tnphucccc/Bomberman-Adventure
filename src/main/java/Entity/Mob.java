@@ -27,7 +27,8 @@ public class Mob extends Entity{
         speed = 1;
         direction = "down";
     }
-    public void mobMove() {
+    @Override
+    public void update() {
         collisionOn = false;
         gamepanel.cCheck.checkTile(this);
 
@@ -54,8 +55,6 @@ public class Mob extends Entity{
                 spriteNum = 1;
             spriteCounter = 0;
         }
-
-        // chua doi huong
     }
     public void getMobImage() {
         try {
