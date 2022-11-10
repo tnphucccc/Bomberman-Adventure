@@ -16,14 +16,15 @@ public class Player extends Entity {
         this.gamepanel = gp;
         this.keyH = keyH;
         solidArea = new Rectangle();
-        solidArea.x = 8;
+        solidArea.x = 4;
         solidArea.y = 16;
-        solidArea.width = 32;
+        solidArea.width = 36;
         solidArea.height = 32;
         setDefault();
         getPlayerImage();
     }
 
+    @Override
     public void setDefault() {
         x = 48;
         y = 32;
@@ -61,6 +62,7 @@ public class Player extends Entity {
         }
     }
 
+    @Override
     public void update() {
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             if (keyH.upPressed) {
@@ -96,6 +98,7 @@ public class Player extends Entity {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         /*
          * g2.setColor(Color.WHITE);
