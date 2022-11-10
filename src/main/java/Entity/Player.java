@@ -107,32 +107,31 @@ public class Player extends Entity {
 
         BufferedImage img = null;
         switch (direction) {
-            case "up" -> img = getBufferedImage(img, up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(img, down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(img, left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(img, right1, right2, right3, right4);
+            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
+            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
+            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
+            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
         g2.drawImage(img, x, y, gamepanel.original_tile_size * gamePanel.scale,
                 gamepanel.original_tile_size * gamePanel.scale, null);
     }
 
-    private BufferedImage getBufferedImage(BufferedImage img,
-                                           BufferedImage img1,
+    private BufferedImage getBufferedImage(BufferedImage img1,
                                            BufferedImage img2,
                                            BufferedImage img3,
                                            BufferedImage img4) {
         if (spriteNum == 1) {
-            img = img1;
+            return img1;
         }
         if (spriteNum == 2) {
-            img = img2;
+            return img2;
         }
         if (spriteNum == 3) {
-            img = img3;
+            return img3;
         }
         if (spriteNum == 4) {
-            img = img4;
+            return img4;
         }
-        return img;
+        return null;
     }
 }
