@@ -3,7 +3,7 @@ package Entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Entity {
+public abstract class Entity {
     public int x, y, speed, state;
     public BufferedImage up1, up2, up3, up4,
             down1, down2, down3, down4,
@@ -14,4 +14,7 @@ public class Entity {
     public int spriteCounter = 0, spriteNum = 1;
     public Rectangle solidArea;
     public boolean collisionOn = false;
+    public abstract void setDefault();
+    public abstract void update();
+    public abstract void draw(Graphics2D g2);
 }
