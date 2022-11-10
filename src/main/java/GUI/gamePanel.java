@@ -2,6 +2,7 @@ package GUI;
 
 import Controls.collisionCheck;
 import Controls.keyHandler;
+import Entity.Mob;
 import Entity.Player;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class gamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public collisionCheck cCheck = new collisionCheck(this);
     Player player = new Player(this, keyH);
+    Mob mob = new Mob(this);
 
     public gamePanel() {
         this.setPreferredSize(new Dimension(WIDTH*scale, HEIGHT*scale));
@@ -65,6 +67,7 @@ public class gamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
+        mob.mobMove();
     }
 
     public void paintComponent(Graphics g) {
@@ -72,6 +75,7 @@ public class gamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileM.draw(g2);
         player.draw(g2);
+        mob.draw(g2);
         g2.dispose();
     }
 }
