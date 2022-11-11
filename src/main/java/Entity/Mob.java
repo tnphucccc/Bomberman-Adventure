@@ -123,12 +123,16 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
 public class Mob extends Entity{
     gamePanel gamepanel;
-
-    public Mob(gamePanel gamepanel){
+    String[] dir = {"down", "up","right","left"};
+    private Random rand = new Random();
+    public Mob(gamePanel gamepanel,int x,int y){
         this.gamepanel=gamepanel;
+        this.x =x;
+        this.y =y;
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
@@ -138,10 +142,8 @@ public class Mob extends Entity{
         getMobImage();
     }
     public void setDefault() {
-        this.x = 192;
-        this.y = 224;
         speed = 1;
-        direction = "down";
+        this.direction = "down";
     }
     @Override
     public void update() {
@@ -156,12 +158,13 @@ public class Mob extends Entity{
                 case "right" -> x += speed;
             }
         } else{
-            switch (direction) {
+            this.direction = dir[rand.nextInt(4)];
+            /*switch (direction) {
                 case "up" -> direction = "down";
                 case "down" -> direction = "up";
                 case "left" -> direction = "right";
                 case "right" -> direction = "left";
-            }
+            }*/
         }
         spriteCounter++;
         if (spriteCounter > 8) {
