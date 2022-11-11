@@ -14,4 +14,10 @@ public class Entity {
     public int spriteCounter = 0, spriteNum = 1;
     public Rectangle solidArea;
     public boolean collisionOn = false;
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
 }
