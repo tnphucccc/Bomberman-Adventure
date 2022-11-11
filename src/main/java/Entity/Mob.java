@@ -61,10 +61,10 @@ public class Mob extends Entity{
     }
     public void getMobImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up2.png")));
-            up3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up3.png")));
-            up4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up4.png")));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-2.png")));
+            up3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-3.png")));
+            up4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-4.png")));
             down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-1.png")));
             down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-2.png")));
             down3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-3.png")));
