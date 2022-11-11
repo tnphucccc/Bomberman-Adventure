@@ -2,6 +2,8 @@ package GUI;
 
 import Controls.collisionCheck;
 import Controls.keyHandler;
+import Entity.Entity;
+import Entity.Mob;
 import Entity.Player;
 
 import javax.swing.*;
@@ -20,7 +22,9 @@ public class gamePanel extends JPanel implements Runnable {
     keyHandler keyH = new keyHandler();
     Thread gameThread;
     public collisionCheck cCheck = new collisionCheck(this);
+    public AssetSetter aSetter = new AssetSetter(this);
     Player player = new Player(this, keyH);
+    Entity[] mob = new Entity[3];
 
     public gamePanel() {
         this.setPreferredSize(new Dimension(WIDTH*scale, HEIGHT*scale));
@@ -29,12 +33,13 @@ public class gamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
     }
-
+    public void setupMap(){
+        aSetter.setMob();
+    }
     public void start_gameThread() {
         gameThread = new Thread(this);
         gameThread.start();
     }
-
     @Override
     public void run() {
         double drawInterval = 1000000000 / FPS, delta = 0;
@@ -62,15 +67,27 @@ public class gamePanel extends JPanel implements Runnable {
             }
         }
     }
-
     public void update() {
         player.update();
+        //MOB
+        for(int i=0;i<mob.length;i++){
+            if(mob[i]!=null){
+                mob[i].update();
+            }
+        }
     }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        //TILE
         tileM.draw(g2);
+        //MOB
+        for(int i=0;i< mob.length;i++){
+            if(mob[i]!=null){
+                mob[i].draw(g2);
+            }
+        }
+        //PLAYER
         player.draw(g2);
         g2.dispose();
     }

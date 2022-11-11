@@ -2,6 +2,7 @@ package GUI;
 
 import javax.swing.*;
 
+
 public class gameFrame extends JFrame {
     public gameFrame() {
         this.setTitle("Bomberman Adventure");
@@ -13,6 +14,8 @@ public class gameFrame extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        //Set up map attributes
+        game.setupMap();
         game.start_gameThread();
     }
 }
