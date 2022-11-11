@@ -22,12 +22,26 @@ public class gamePanel extends JPanel implements Runnable {
     public collisionCheck cCheck = new collisionCheck(this);
     Player player = new Player(this, keyH);
 
+    //0 is the first layer, 1 is the second layer
+    int currentstate = 0;
+    Scence currentScence;
+
     public gamePanel() {
         this.setPreferredSize(new Dimension(WIDTH*scale, HEIGHT*scale));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        changeState(0);
+    }
+
+    public void changeState(int newState) {
+        currentstate = newState;
+        switch(currentstate){
+            case 0:
+                currentScence = new MenuScence();
+                break;
+        }
     }
 
     public void start_gameThread() {
@@ -72,6 +86,7 @@ public class gamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileM.draw(g2);
         player.draw(g2);
+        currentScence.draw(g2);
         g2.dispose();
     }
 }
