@@ -17,4 +17,11 @@ public abstract class Entity {
     public abstract void setDefault();
     public abstract void update();
     public abstract void draw(Graphics2D g2);
+
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
 }
