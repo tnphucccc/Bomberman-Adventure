@@ -100,11 +100,6 @@ public class Player extends Entity {
 
     @Override
     public void draw(Graphics2D g2) {
-        /*
-         * g2.setColor(Color.WHITE);
-         * g2.fillRect(x,y,gamepanel.original_tile_size,gamepanel.original_tile_size);
-         */
-
         BufferedImage img = null;
         switch (direction) {
             case "up" -> img = getBufferedImage(up1, up2, up3, up4);
