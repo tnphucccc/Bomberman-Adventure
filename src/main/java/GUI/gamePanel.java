@@ -22,7 +22,8 @@ public class gamePanel extends JPanel implements Runnable {
     Thread gameThread;
     public collisionCheck cCheck = new collisionCheck(this);
     Player player = new Player(this, keyH);
-    Mob mob = new Mob(this);
+    Mob mob1 = new Mob(this,240,224);
+    Mob mob2 = new Mob(this,624,32);
 
     public gamePanel() {
         this.setPreferredSize(new Dimension(WIDTH*scale, HEIGHT*scale));
@@ -67,7 +68,8 @@ public class gamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
-        mob.mobMove();
+        mob1.update();
+        mob2.update();
     }
 
     public void paintComponent(Graphics g) {
@@ -75,7 +77,8 @@ public class gamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         tileM.draw(g2);
         player.draw(g2);
-        mob.draw(g2);
+        mob1.draw(g2);
+        mob2.draw(g2);
         g2.dispose();
     }
 }
