@@ -24,9 +24,7 @@ public class gamePanel extends JPanel implements Runnable {
     public collisionCheck cCheck = new collisionCheck(this);
     public AssetSetter aSetter = new AssetSetter(this);
     Player player = new Player(this, keyH);
-
     Bomb bomb = new Bomb(this, keyH);
-
     Entity[] mob = new Entity[3];
 
 
@@ -73,9 +71,7 @@ public class gamePanel extends JPanel implements Runnable {
     }
     public void update() {
         player.update();
-
         bomb.update(player.getX(),player.getY());
-
         //MOB
         for(int i=0;i<mob.length;i++){
             if(mob[i]!=null){
