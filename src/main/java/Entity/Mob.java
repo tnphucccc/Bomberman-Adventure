@@ -11,16 +11,16 @@ import java.util.Random;
 
 public class Mob extends Entity{
     gamePanel gamepanel;
-    String[] dir = {"down", "up","right","left"};
+    String[] dir = {"down","up","right","left"};
     private Random rand = new Random();
     public Mob(gamePanel gamepanel,int x,int y){
         this.gamepanel=gamepanel;
         this.x =x;
         this.y =y;
         solidArea = new Rectangle();
-        solidArea.x = 8;
+        solidArea.x = 4;
         solidArea.y = 16;
-        solidArea.width = 32;
+        solidArea.width = 36;
         solidArea.height = 32;
         setDefault();
         getMobImage();
@@ -93,7 +93,7 @@ public class Mob extends Entity{
          g2.fillRect(x,y,gamepanel.original_tile_size,gamepanel.original_tile_size);
         */
 
-        BufferedImage img=null;
+        BufferedImage img = null;
         switch (direction) {
             case "up" -> img = getBufferedImage(null, up1, up2, up3, up4);
             case "down" -> img = getBufferedImage(null, down1, down2, down3, down4);
