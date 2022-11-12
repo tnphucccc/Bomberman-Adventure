@@ -12,7 +12,7 @@ import java.util.Random;
 public class Mob extends Entity{
     gamePanel gamepanel;
     String[] dir = {"down","up","right","left"};
-    private Random rand = new Random();
+    private final Random rand = new Random();
     public Mob(gamePanel gamepanel,int x,int y){
         this.gamepanel=gamepanel;
         this.x =x;
@@ -43,12 +43,6 @@ public class Mob extends Entity{
             }
         } else{
             this.direction = dir[rand.nextInt(4)];
-            /*switch (direction) {
-                case "up" -> direction = "down";
-                case "down" -> direction = "up";
-                case "left" -> direction = "right";
-                case "right" -> direction = "left";
-            }*/
         }
         spriteCounter++;
         if (spriteCounter > 8) {
@@ -88,11 +82,6 @@ public class Mob extends Entity{
         }
     }
     public void draw(Graphics2D g2) {
-        /*
-         g2.setColor(Color.WHITE);
-         g2.fillRect(x,y,gamepanel.original_tile_size,gamepanel.original_tile_size);
-        */
-
         BufferedImage img = null;
         switch (direction) {
             case "up" -> img = getBufferedImage(up1, up2, up3, up4);
