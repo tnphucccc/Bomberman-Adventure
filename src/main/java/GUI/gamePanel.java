@@ -8,7 +8,7 @@ import Entity.Player;
 
 import javax.swing.*;
 import java.awt.*;
-
+import Entity.Bomb;
 public class gamePanel extends JPanel implements Runnable {
     public static final int scale = 3;
     public final int original_tile_size = 16,
@@ -24,7 +24,11 @@ public class gamePanel extends JPanel implements Runnable {
     public collisionCheck cCheck = new collisionCheck(this);
     public AssetSetter aSetter = new AssetSetter(this);
     Player player = new Player(this, keyH);
+
+    Bomb bomb = new Bomb(this, keyH);
+
     Entity[] mob = new Entity[3];
+
 
     public gamePanel() {
         this.setPreferredSize(new Dimension(WIDTH*scale, HEIGHT*scale));
@@ -69,12 +73,16 @@ public class gamePanel extends JPanel implements Runnable {
     }
     public void update() {
         player.update();
+
+        bomb.update(player.getX(),player.getY());
+
         //MOB
         for(int i=0;i<mob.length;i++){
             if(mob[i]!=null){
                 mob[i].update();
             }
         }
+
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -89,6 +97,7 @@ public class gamePanel extends JPanel implements Runnable {
         }
         //PLAYER
         player.draw(g2);
+        bomb.draw(g2);
         g2.dispose();
     }
 }
