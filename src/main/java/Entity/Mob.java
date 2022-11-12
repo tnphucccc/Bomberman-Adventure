@@ -69,10 +69,10 @@ public class Mob extends Entity{
             down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-2.png")));
             down3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-3.png")));
             down4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-4.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left2.png")));
-            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left3.png")));
-            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left4.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-2.png")));
+            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-1.png")));
+            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-2.png")));
             right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-1.png")));
             right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-2.png")));
             right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-1.png")));
@@ -95,33 +95,32 @@ public class Mob extends Entity{
 
         BufferedImage img = null;
         switch (direction) {
-            case "up" -> img = getBufferedImage(null, up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(null, down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(null, left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(null, right1, right2, right3, right4);
+            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
+            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
+            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
+            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
         g2.drawImage(img, x, y, gamepanel.original_tile_size * gamePanel.scale,
                 gamepanel.original_tile_size * gamePanel.scale, null);
     }
 
-    private BufferedImage getBufferedImage(BufferedImage img,
-                                           BufferedImage img1,
+    private BufferedImage getBufferedImage(BufferedImage img1,
                                            BufferedImage img2,
                                            BufferedImage img3,
                                            BufferedImage img4) {
         if (spriteNum == 1) {
-            img = img1;
+            return img1;
         }
         else if (spriteNum == 2) {
-            img = img2;
+            return img2;
         }
         else if (spriteNum == 3) {
-            img = img3;
+            return img3;
         }
         else if (spriteNum == 4) {
-            img = img4;
+            return img4;
         }
-        return img;
+        return null;
     }
 }
 
