@@ -1,7 +1,9 @@
 package Entity;
 
 import Controls.keyHandler;
-import GUI.gamePanel;
+import GUI.Window;
+import Variables.Constant;
+
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,11 +11,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Player extends Entity {
-    gamePanel gamepanel;
     keyHandler keyH;
 
-    public Player(gamePanel gp, keyHandler keyH) {
-        this.gamepanel = gp;
+    public Player(keyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
         solidArea.x = 4;
@@ -63,7 +63,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public void update() {
+    public void update(double dt) {
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -76,7 +76,7 @@ public class Player extends Entity {
             }
 
             collisionOn = false;
-            gamepanel.cCheck.checkTile(this);
+            Window.getWindow().cCheck.checkTile(this);
 
             if (!collisionOn) {
                 switch (direction) {
@@ -100,10 +100,6 @@ public class Player extends Entity {
 
     @Override
     public void draw(Graphics2D g2) {
-        /*
-         * g2.setColor(Color.WHITE);
-         * g2.fillRect(x,y,gamepanel.original_tile_size,gamepanel.original_tile_size);
-         */
 
         BufferedImage img = null;
         switch (direction) {
@@ -112,8 +108,8 @@ public class Player extends Entity {
             case "left" -> img = getBufferedImage(img, left1, left2, left3, left4);
             case "right" -> img = getBufferedImage(img, right1, right2, right3, right4);
         }
-        g2.drawImage(img, x, y, gamepanel.original_tile_size * gamePanel.scale,
-                gamepanel.original_tile_size * gamePanel.scale, null);
+        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale, null);
     }
 
     private BufferedImage getBufferedImage(BufferedImage img,

@@ -1,5 +1,7 @@
 package GUI;
 
+import Variables.Constant;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -8,14 +10,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class tileManager {
-    gamePanel gamepanel;
     public Tile[] tiles;
     public int[][] mapTileNum;
 
-    public tileManager(gamePanel gamepanel) {
-        this.gamepanel = gamepanel;
+    public tileManager() {
         tiles = new Tile[10];
-        mapTileNum = new int[gamepanel.maxScreenRow][gamepanel.maxScreenCol];
+        mapTileNum = new int[Constant.maxScreenRow][Constant.maxScreenCol];
         getTileImage();
         loadMap("/Maps/Map01.txt");
     }
@@ -46,15 +46,15 @@ public class tileManager {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0, row = 0;
-            while (col < gamepanel.maxScreenCol && row < gamepanel.maxScreenRow) {
+            while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
                 String line = br.readLine();
-                while (col < gamepanel.maxScreenCol) {
+                while (col < Constant.maxScreenCol) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[row][col] = num;
                     col++;
                 }
-                if (col == gamepanel.maxScreenCol) {
+                if (col == Constant.maxScreenCol) {
                     col = 0;
                     row++;
                 }
@@ -67,19 +67,19 @@ public class tileManager {
 
     public void draw(Graphics2D g2) {
         int col = 0, row = 0, x = 0, y = 0;
-        while (col < gamepanel.maxScreenCol && row < gamepanel.maxScreenRow) {
+        while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
             int tileNum = mapTileNum[row][col];
             g2.drawImage(tiles[tileNum].image, x, y,
-                    gamepanel.original_tile_size * gamePanel.scale,
-                    gamepanel.original_tile_size * gamePanel.scale, null);
+                    Constant.original_tile_size * Constant.scale,
+                    Constant.original_tile_size * Constant.scale, null);
             col++;
-            x += gamepanel.original_tile_size * gamePanel.scale;
+            x += Constant.original_tile_size * Constant.scale;
 
-            if (col == gamepanel.maxScreenCol) {
+            if (col == Constant.maxScreenCol) {
                 col = 0;
                 row++;
                 x = 0;
-                y += gamepanel.original_tile_size * gamePanel.scale;
+                y += Constant.original_tile_size * Constant.scale;
             }
         }
     }

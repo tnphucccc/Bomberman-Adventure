@@ -15,6 +15,6 @@ public abstract class Entity {
     public Rectangle solidArea;
     public boolean collisionOn = false;
     public abstract void setDefault();
-    public abstract void update();
+    public abstract void update(double dt);
     public abstract void draw(Graphics2D g2);
 }
