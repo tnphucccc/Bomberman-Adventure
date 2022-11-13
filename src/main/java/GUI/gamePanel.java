@@ -8,6 +8,8 @@ import Entity.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+
 import Entity.Bomb;
 public class gamePanel extends JPanel implements Runnable {
     public static final int scale = 3;
@@ -24,7 +26,12 @@ public class gamePanel extends JPanel implements Runnable {
     public collisionCheck cCheck = new collisionCheck(this);
     public AssetSetter aSetter = new AssetSetter(this);
     Player player = new Player(this, keyH);
+    // bomb 
     Bomb bomb = new Bomb(this, keyH);
+    ArrayList<Bomb> bombList;
+    private int bombCounter = 0;
+    private boolean spaceSpressed = false;
+    
     Entity[] mob = new Entity[3];
 
 
@@ -34,6 +41,7 @@ public class gamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+        bombList = new ArrayList<>();
     }
     public void setupMap(){
         aSetter.setMob();
@@ -71,7 +79,21 @@ public class gamePanel extends JPanel implements Runnable {
     }
     public void update() {
         player.update();
-        bomb.update(player.getX(),player.getY());
+        if(keyH.spacePressed){
+            spaceSpressed = true;
+        }
+        if(!keyH.spacePressed && spaceSpressed){
+            spaceSpressed = false;
+            bombList.add(bombCounter,new Bomb(this, keyH));
+            
+            bombList.get(bombCounter).update(player.getX(), player.getY());
+            
+            bombCounter++;
+         //   bomb.update(player.getX(),player.getY());
+    
+            System.out.println("From update:"+bombCounter);
+        }
+        
         //MOB
         for(int i=0;i<mob.length;i++){
             if(mob[i]!=null){
@@ -93,7 +115,11 @@ public class gamePanel extends JPanel implements Runnable {
         }
         //PLAYER
         player.draw(g2);
-        bomb.draw(g2);
+        for(Bomb b : bombList){
+            b.draw(g2);
+            
+        }
+        //bomb.draw(g2);
         g2.dispose();
     }
 }
