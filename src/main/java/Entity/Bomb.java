@@ -20,13 +20,11 @@ public class Bomb {
     }
 
     public void update(int x,int y){
-        if(keyH.spacePressed) {
+        
             key = "space";
             this.x = x;
             this.y = y;
-        } else {
-            key ="";
-        }
+        
     }
 
     public void draw(Graphics2D g2){

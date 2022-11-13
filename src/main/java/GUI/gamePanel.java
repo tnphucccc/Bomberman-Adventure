@@ -27,7 +27,7 @@ public class gamePanel extends JPanel implements Runnable {
     public AssetSetter aSetter = new AssetSetter(this);
     Player player = new Player(this, keyH);
     // bomb 
-    
+    Bomb bomb = new Bomb(this, keyH);
     ArrayList<Bomb> bombList;
     private int bombCounter = 0;
     private boolean spaceSpressed = false;
@@ -83,15 +83,14 @@ public class gamePanel extends JPanel implements Runnable {
             spaceSpressed = true;
         }
         if(!keyH.spacePressed && spaceSpressed){
-            bombCounter++;
-            bombList.add(new Bomb(this, keyH));
-            for(int i=0; i<bombCounter; i++){
-                
-                
-                bombList.get(i).update(player.getX(), player.getY());
-            }
-         //   bomb.update(player.getX(),player.getY());
             spaceSpressed = false;
+            bombList.add(bombCounter,new Bomb(this, keyH));
+            
+            bombList.get(bombCounter).update(player.getX(), player.getY());
+            
+            bombCounter++;
+         //   bomb.update(player.getX(),player.getY());
+    
             System.out.println("From update:"+bombCounter);
         }
         
@@ -116,8 +115,8 @@ public class gamePanel extends JPanel implements Runnable {
         }
         //PLAYER
         player.draw(g2);
-        for(int i=0; i<bombCounter; i++){
-            bombList.get(i).draw(g2);
+        for(Bomb b : bombList){
+            b.draw(g2);
             
         }
         //bomb.draw(g2);
