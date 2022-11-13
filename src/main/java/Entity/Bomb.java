@@ -22,6 +22,8 @@ public class Bomb {
     public void update(int x,int y){
         
             key = "space";
+            //x = (int) Math.ceil(((double)(x / 48) )* 48);
+            //y = (int) Math.ceil(((double)(y / 48) )* 48);
             this.x = x;
             this.y = y;
         

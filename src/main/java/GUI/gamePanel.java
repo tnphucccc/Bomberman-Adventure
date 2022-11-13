@@ -85,15 +85,11 @@ public class gamePanel extends JPanel implements Runnable {
         if(!keyH.spacePressed && spaceSpressed){
             spaceSpressed = false;
             bombList.add(bombCounter,new Bomb(this, keyH));
-            
             bombList.get(bombCounter).update(player.getX(), player.getY());
-            
-            bombCounter++;
-         //   bomb.update(player.getX(),player.getY());
-    
+            bombCounter++; 
             System.out.println("From update:"+bombCounter);
         }
-        
+       // System.out.println(player.getX()+" "+player.getY());
         //MOB
         for(int i=0;i<mob.length;i++){
             if(mob[i]!=null){
