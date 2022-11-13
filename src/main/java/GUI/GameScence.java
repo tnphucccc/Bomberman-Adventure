@@ -24,14 +24,15 @@ public class GameScence extends Scence {
         player = new Player(keyH);
         cCheck = new collisionCheck();
         tileM = new tileManager();
-        bombList = new ArrayList<>();
         bomb = new Bomb(keyH);
+        bombList = bomb.getBombList();
     }
 
     @Override
     public void update(double dt) {
         player.update(dt);
         bomb.update(player.x, player.y);
+        bombList = bomb.getBombList();
     }
 
     @Override
@@ -40,9 +41,12 @@ public class GameScence extends Scence {
 
         tileM.draw(g2);
         player.draw(g2);
-        for(Bomb b : bombList){
-            b.draw(g2);
+        if(bombList != null){
+            for(Bomb b : bombList){
+                b.draw(g2);
+            }
         }
+        
     }
 }
 

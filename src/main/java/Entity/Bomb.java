@@ -22,7 +22,7 @@ public class Bomb {
     public Bomb(keyHandler keyH){
         this.keyH = keyH;
     }
-
+    //ArrayList<Bomb> bombList
     public void update(int x,int y){
 
         key = "space";
@@ -45,12 +45,12 @@ public class Bomb {
     }
 
     public void draw(Graphics2D g2){
-
-        BufferedImage img = null;
+        if(bombList != null){
+            BufferedImage img = null;
 
         if(key.equals("space")){
             try {
-                img = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/Bomb.gif")));
+                img = ImageIO.read((getClass().getResourceAsStream("/Bomb/bomb1.png")));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -58,7 +58,12 @@ public class Bomb {
                         Constant.original_tile_size * Constant.scale, null);
             }
         }
+        
     }
+    public ArrayList<Bomb> getBombList(){
+        return bombList;
+    }
+}
 
 
 
