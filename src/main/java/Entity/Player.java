@@ -1,9 +1,8 @@
 package Entity;
 
 import Controls.keyHandler;
-import GUI.Window;
 import Variables.Constant;
-
+import Controls.collisionCheck;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,6 +11,7 @@ import java.io.IOException;
 
 public class Player extends Entity {
     keyHandler keyH;
+    collisionCheck cCheck = new collisionCheck();
 
     public Player(keyHandler keyH) {
         this.keyH = keyH;
@@ -76,7 +76,7 @@ public class Player extends Entity {
             }
 
             collisionOn = false;
-            Window.getWindow().cCheck.checkTile(this);
+            cCheck.checkTile(this);
 
             if (!collisionOn) {
                 switch (direction) {

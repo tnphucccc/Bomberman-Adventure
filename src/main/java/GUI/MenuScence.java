@@ -2,7 +2,6 @@ package GUI;
 
 import Controls.mouseHandler;
 
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +12,6 @@ public class MenuScence extends Scence {
     public BufferedImage playCurrentImage, exitCurrentImage;
 
     public Rect playRect, exitRect, titleRect;
-
 
     public mouseHandler mouseH;
 

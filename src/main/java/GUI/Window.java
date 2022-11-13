@@ -78,7 +78,7 @@ public class Window extends JFrame implements Runnable {
 
     public void draw(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        currentScence.draw(g);
+        currentScence.draw(g2);
     }
 
     public void run(){
@@ -101,11 +101,10 @@ public class Window extends JFrame implements Runnable {
 
             if (timer >= 1000000000) {
                 System.out.println("FPS: " + Count);
-                System.out.println(currentstate);
                 Count = 0;
                 timer = 0;
             }
         }
-
+        this.dispose();
     }
 }

@@ -2,12 +2,10 @@ package GUI;
 
 import Controls.*;
 import Entity.*;
-import Variables.Constant;
 
 import java.awt.*;
 
 public class GameScence extends Scence {
-    Rect background;
     keyHandler keyH;
     mouseHandler mouseH;
 
@@ -16,7 +14,6 @@ public class GameScence extends Scence {
     tileManager tileM;
 
     public GameScence(keyHandler keyH, mouseHandler mouseH) {
-        background = new Rect(0, 0, Constant.WIDTH, Constant.HEIGHT);
         this.keyH = keyH;
         this.mouseH = mouseH;
 
