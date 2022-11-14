@@ -16,9 +16,9 @@ public class Player extends Entity {
     public Player(keyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
-        solidArea.x = 4;
+        solidArea.x = 8;
         solidArea.y = 16;
-        solidArea.width = 36;
+        solidArea.width = 32;
         solidArea.height = 32;
         setDefault();
         getPlayerImage();
