@@ -23,7 +23,7 @@ public class Bomb {
         this.keyH = keyH;
     }
     public void update(int x,int y){
-
+        
         key = "space";
         this.x = x;
         this.y = y;
@@ -40,7 +40,7 @@ public class Bomb {
             bombCounter++;
             System.out.println("From update:"+bombCounter);
         }
-
+        
     }
 
     public void draw(Graphics2D g2){
