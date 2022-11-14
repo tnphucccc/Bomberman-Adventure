@@ -13,23 +13,25 @@ public class GameScence extends Scence {
     Player player;
     Mob[] mob;
     Bomb bomb;
-
-    public collisionCheck cCheck;
-    public AssetSetter aSetter = new AssetSetter(this);
-    tileManager tileM;
     ArrayList<Bomb> bombList;
+
+    collisionCheck cCheck;
+    AssetSetter aSetter = new AssetSetter(this);
+    tileManager tileM;
 
     public GameScence(keyHandler keyH, mouseHandler mouseH) {
         this.keyH = keyH;
         this.mouseH = mouseH;
 
         player = new Player(keyH);
-        cCheck= new collisionCheck();
+        cCheck = new collisionCheck();
+        tileM = new tileManager();
+
         mob = new Mob[3];
         aSetter.setMob();
-        tileM = new tileManager();
-        bombList = new ArrayList<>();
+
         bomb = new Bomb(keyH);
+        bombList = bomb.getBombList();
     }
 
     @Override
@@ -41,6 +43,7 @@ public class GameScence extends Scence {
             }
         }
         bomb.update(player.x, player.y);
+        bombList = bomb.getBombList();
     }
 
     @Override
@@ -54,9 +57,10 @@ public class GameScence extends Scence {
                 mob[i].draw(g2);
             }
         }
-        for(Bomb b : bombList){
-            b.draw(g2);
+        if(bombList != null){
+            for(Bomb b : bombList){
+                b.draw(g2);
+            }
         }
     }
 }
-

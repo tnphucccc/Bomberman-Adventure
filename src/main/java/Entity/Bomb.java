@@ -22,7 +22,6 @@ public class Bomb {
     public Bomb(keyHandler keyH){
         this.keyH = keyH;
     }
-    //ArrayList<Bomb> bombList
     public void update(int x,int y){
 
         key = "space";
@@ -48,22 +47,21 @@ public class Bomb {
         if(bombList != null){
             BufferedImage img = null;
 
-        if(key.equals("space")){
-            try {
-                img = ImageIO.read((getClass().getResourceAsStream("/Bomb/bomb1.png")));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            g2.drawImage(img, this.x, this.y, Constant.original_tile_size * Constant.scale,
+            if(key.equals("space")){
+                try {
+                    img = ImageIO.read((getClass().getResourceAsStream("/Bomb/bomb1.png")));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                g2.drawImage(img, this.x, this.y, Constant.original_tile_size * Constant.scale,
                         Constant.original_tile_size * Constant.scale, null);
             }
         }
-        
+
     }
     public ArrayList<Bomb> getBombList(){
         return bombList;
     }
 }
-
 
 

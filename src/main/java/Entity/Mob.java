@@ -1,5 +1,6 @@
 package Entity;
 
+import Controls.collisionCheck;
 import GUI.GameScence;
 import Variables.Constant;
 
@@ -12,6 +13,8 @@ import java.util.Random;
 
 public class Mob extends Entity{
     GameScence gameScence;
+    collisionCheck cCheck = new collisionCheck();
+
     String[] dir = {"down","up","right","left"};
     private final Random rand = new Random();
     public Mob( GameScence gameScence,int x,int y){
@@ -33,7 +36,7 @@ public class Mob extends Entity{
     @Override
     public void update(double dt) {
         collisionOn = false;
-        gameScence.cCheck.checkTile(this);
+        cCheck.checkTile(this);
 
         if (!collisionOn) {
             switch (direction) {
