@@ -1,7 +1,8 @@
 package Entity;
 
 import Controls.keyHandler;
-import GUI.gamePanel;
+import Variables.Constant;
+import Controls.collisionCheck;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,21 +10,21 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Player extends Entity {
-    gamePanel gamepanel;
     keyHandler keyH;
+    collisionCheck cCheck = new collisionCheck();
 
-    public Player(gamePanel gp, keyHandler keyH) {
-        this.gamepanel = gp;
+    public Player(keyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
-        solidArea.x = 8;
+        solidArea.x = 4;
         solidArea.y = 16;
-        solidArea.width = 32;
+        solidArea.width = 36;
         solidArea.height = 32;
         setDefault();
         getPlayerImage();
     }
 
+    @Override
     public void setDefault() {
         x = 48;
         y = 32;
@@ -61,7 +62,8 @@ public class Player extends Entity {
         }
     }
 
-    public void update() {
+    @Override
+    public void update(double dt) {
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -69,14 +71,12 @@ public class Player extends Entity {
                 direction = "down";
             } else if (keyH.leftPressed) {
                 direction = "left";
-            } else if(keyH.spacePressed){
-                direction = "space";
             } else {
                 direction = "right";
             }
 
             collisionOn = false;
-            gamepanel.cCheck.checkTile(this);
+            cCheck.checkTile(this);
 
             if (!collisionOn) {
                 switch (direction) {
@@ -84,7 +84,6 @@ public class Player extends Entity {
                     case "down" -> y += speed;
                     case "left" -> x -= speed;
                     case "right" -> x += speed;
-
                 }
             }
 
@@ -99,35 +98,36 @@ public class Player extends Entity {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
+
         BufferedImage img = null;
         switch (direction) {
-            case "up" -> img = getBufferedImage(img, up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(img, down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(img, left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(img, right1, right2, right3, right4);
+            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
+            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
+            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
+            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
-        g2.drawImage(img, x, y, gamepanel.original_tile_size * gamePanel.scale,
-                gamepanel.original_tile_size * gamePanel.scale, null);
+        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale, null);
     }
 
-    private BufferedImage getBufferedImage(BufferedImage img,
-                                           BufferedImage img1,
+    private BufferedImage getBufferedImage(BufferedImage img1,
                                            BufferedImage img2,
                                            BufferedImage img3,
                                            BufferedImage img4) {
         if (spriteNum == 1) {
-            img = img1;
+            return img1;
         }
         if (spriteNum == 2) {
-            img = img2;
+            return img2;
         }
         if (spriteNum == 3) {
-            img = img3;
+            return img3;
         }
         if (spriteNum == 4) {
-            img = img4;
+            return img4;
         }
-        return img;
+        return null;
     }
 }

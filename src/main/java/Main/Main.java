@@ -1,9 +1,12 @@
 package Main;
 
-import GUI.gameFrame;
+import GUI.Window;
 
 public class Main {
     public static void main(String[] args) {
-        new gameFrame();
+        Window window = Window.getWindow();
+
+        Thread thread = new Thread(window);
+        thread.start();
     }
 }

@@ -1,6 +1,8 @@
 package Entity;
 
-import GUI.gamePanel;
+import Controls.collisionCheck;
+import GUI.GameScence;
+import Variables.Constant;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,11 +12,13 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Mob extends Entity{
-    gamePanel gamepanel;
+    GameScence gameScence;
+    collisionCheck cCheck = new collisionCheck();
+
     String[] dir = {"down","up","right","left"};
     private final Random rand = new Random();
-    public Mob(gamePanel gamepanel,int x,int y){
-        this.gamepanel=gamepanel;
+    public Mob( GameScence gameScence,int x,int y){
+        this.gameScence=gameScence;
         this.x =x;
         this.y =y;
         solidArea = new Rectangle();
@@ -30,9 +34,9 @@ public class Mob extends Entity{
         this.direction = "down";
     }
     @Override
-    public void update() {
+    public void update(double dt) {
         collisionOn = false;
-        gamepanel.cCheck.checkTile(this);
+        cCheck.checkTile(this);
 
         if (!collisionOn) {
             switch (direction) {
@@ -89,8 +93,8 @@ public class Mob extends Entity{
             case "left" -> img = getBufferedImage(left1, left2, left3, left4);
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
-        g2.drawImage(img, x, y, gamepanel.original_tile_size * gamePanel.scale,
-                gamepanel.original_tile_size * gamePanel.scale, null);
+        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale, null);
     }
 
     private BufferedImage getBufferedImage(BufferedImage img1,
@@ -112,4 +116,3 @@ public class Mob extends Entity{
         return null;
     }
 }
-

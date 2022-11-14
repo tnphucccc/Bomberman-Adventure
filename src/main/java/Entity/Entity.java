@@ -14,14 +14,7 @@ public abstract class Entity {
     public int spriteCounter = 0, spriteNum = 1;
     public Rectangle solidArea;
     public boolean collisionOn = false;
-    public int getX(){
-        return x;
-    }
-    public int getY(){
-        return y;
-    }
-
     public abstract void setDefault();
-    public abstract void update();
+    public abstract void update(double dt);
     public abstract void draw(Graphics2D g2);
 }
