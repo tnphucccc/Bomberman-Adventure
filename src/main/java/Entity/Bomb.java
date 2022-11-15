@@ -52,8 +52,8 @@ public class Bomb {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                g2.drawImage(img, this.x, this.y, Constant.ORGINAL_TILE_SIZE * Constant.SCALE,
-                        Constant.ORGINAL_TILE_SIZE * Constant.SCALE, null);
+                g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             }
         }
 

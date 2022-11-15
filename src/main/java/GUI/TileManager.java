@@ -73,16 +73,16 @@ public class TileManager {
         while (col < Constant.MAX_SCREEN_COL && row < Constant.MAX_SCREEN_ROW) {
             int tileNum = mapTileNum[row][col];
             g2.drawImage(tiles[tileNum].image, x, y,
-                    Constant.ORGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORGINAL_TILE_SIZE * Constant.SCALE, null);
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             col++;
-            x += Constant.ORGINAL_TILE_SIZE * Constant.SCALE;
+            x += Constant.ORIGINAL_TILE_SIZE * Constant.SCALE;
 
             if (col == Constant.MAX_SCREEN_COL) {
                 col = 0;
                 row++;
                 x = 0;
-                y += Constant.ORGINAL_TILE_SIZE * Constant.SCALE;
+                y += Constant.ORIGINAL_TILE_SIZE * Constant.SCALE;
             }
         }
     }

@@ -17,16 +17,16 @@ public class CollisionCheck {
         int entityTopY = entity.y + entity.solidArea.y;
         int entityBottomY = entity.y + entity.solidArea.y + entity.solidArea.height;
 
-        int entityLeftCol = entityLeftX / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
-        int entityRightCol = entityRightX / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
-        int entityTopRow = entityTopY / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
-        int entityBottomRow = entityBottomY / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+        int entityLeftCol = entityLeftX / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+        int entityRightCol = entityRightX / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+        int entityTopRow = entityTopY / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+        int entityBottomRow = entityBottomY / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
         int tileNum1, tileNum2;
 
         switch (entity.direction) {
             case "up" -> {
-                entityTopRow = (entityTopY - entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+                entityTopRow = (entityTopY - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -35,7 +35,7 @@ public class CollisionCheck {
                 }
             }
             case "down" -> {
-                entityBottomRow = (entityBottomY + entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+                entityBottomRow = (entityBottomY + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -44,7 +44,7 @@ public class CollisionCheck {
                 }
             }
             case "left" -> {
-                entityLeftCol = (entityLeftX - entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+                entityLeftCol = (entityLeftX - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 if (tileM.tiles[tileNum1].collision
@@ -53,7 +53,7 @@ public class CollisionCheck {
                 }
             }
             case "right" -> {
-                entityRightCol = (entityRightX + entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+                entityRightCol = (entityRightX + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (Window.getWindow().tileM.tiles[tileNum1].collision
