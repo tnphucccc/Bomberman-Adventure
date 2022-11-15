@@ -1,6 +1,6 @@
 package GUI;
 
-import Controls.mouseHandler;
+import Controls.MouseHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -8,14 +8,14 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class MenuScence extends Scence {
-    public BufferedImage title, play, playPressed, exit, exitPressed;
+    public BufferedImage TITLE, play, playPressed, exit, exitPressed;
     public BufferedImage playCurrentImage, exitCurrentImage;
 
     public Rect playRect, exitRect, titleRect;
 
-    public mouseHandler mouseH;
+    public MouseHandler mouseH;
 
-    public MenuScence(mouseHandler mouseH) {
+    public MenuScence(MouseHandler mouseH) {
         this.mouseH = mouseH;
         try {
             BufferedImage spritesheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));
@@ -25,8 +25,7 @@ public class MenuScence extends Scence {
             exitPressed = spritesheet1.getSubimage(208, 69, 175, 53);
 
             BufferedImage spritesheet2 = ImageIO.read(new File("src/main/resources/Menu/Game_Title.png"));
-            title = spritesheet2.getSubimage(0, 0, 463, 55);
-
+            TITLE = spritesheet2.getSubimage(0, 0, 463, 55);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,7 +64,7 @@ public class MenuScence extends Scence {
         g.setColor(new Color(240, 235, 227));
         g.fillRect(0, 0, 720, 432);
 
-        g.drawImage(title, (int) titleRect.x, (int) titleRect.y, (int) titleRect.width ,(int) titleRect.height, null);
+        g.drawImage(TITLE, (int) titleRect.x, (int) titleRect.y, (int) titleRect.width ,(int) titleRect.height, null);
         g.drawImage(playCurrentImage, (int) playRect.x, (int) playRect.y, (int) playRect.width, (int) playRect.height, null);
         g.drawImage(exitCurrentImage, (int) exitRect.x, (int) exitRect.y, (int) exitRect.width, (int) exitRect.height, null);
     }

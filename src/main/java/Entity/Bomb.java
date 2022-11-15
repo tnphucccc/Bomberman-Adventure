@@ -1,6 +1,6 @@
 package Entity;
 
-import Controls.keyHandler;
+import Controls.KeyHandler;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -8,18 +8,17 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Bomb {
     private int x, y;
     private String key = "";
-    keyHandler keyH;
+    KeyHandler keyH;
 
     boolean spaceSpressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>();
     int bombCounter;
 
-    public Bomb(keyHandler keyH){
+    public Bomb(KeyHandler keyH){
         this.keyH = keyH;
     }
     public void update(int x,int y){
@@ -53,8 +52,8 @@ public class Bomb {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                g2.drawImage(img, this.x, this.y, Constant.original_tile_size * Constant.scale,
-                        Constant.original_tile_size * Constant.scale, null);
+                g2.drawImage(img, this.x, this.y, Constant.ORGINAL_TILE_SIZE * Constant.SCALE,
+                        Constant.ORGINAL_TILE_SIZE * Constant.SCALE, null);
             }
         }
 

@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseAdapter;
 
-public class mouseHandler extends MouseAdapter implements MouseMotionListener {
+public class MouseHandler extends MouseAdapter implements MouseMotionListener {
     public boolean isPressed = false;
     public double x = 0.0, y = 0.0;
 

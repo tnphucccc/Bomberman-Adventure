@@ -1,8 +1,8 @@
 package Entity;
 
-import Controls.keyHandler;
+import Controls.KeyHandler;
 import Variables.Constant;
-import Controls.collisionCheck;
+import Controls.CollisionCheck;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,10 +10,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Player extends Entity {
-    keyHandler keyH;
-    collisionCheck cCheck = new collisionCheck();
+    KeyHandler keyH;
+    CollisionCheck cCheck = new CollisionCheck();
 
-    public Player(keyHandler keyH) {
+    public Player(KeyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
         solidArea.x = 4;
@@ -108,8 +108,8 @@ public class Player extends Entity {
             case "left" -> img = getBufferedImage(left1, left2, left3, left4);
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
-        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale, null);
+        g2.drawImage(img, x, y, Constant.ORGINAL_TILE_SIZE * Constant.SCALE,
+                Constant.ORGINAL_TILE_SIZE * Constant.SCALE, null);
     }
 
     private BufferedImage getBufferedImage(BufferedImage img1,

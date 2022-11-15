@@ -1,14 +1,13 @@
 package Controls;
 
 import Entity.Entity;
-import GUI.tileManager;
+import GUI.TileManager;
 import Variables.Constant;
-import Controls.collisionCheck;
 import GUI.Window;
 
-public class collisionCheck {
-    tileManager tileM = new tileManager();
-    public collisionCheck() {
+public class CollisionCheck {
+    TileManager tileM = new TileManager();
+    public CollisionCheck() {
 
     }
 
@@ -18,16 +17,16 @@ public class collisionCheck {
         int entityTopY = entity.y + entity.solidArea.y;
         int entityBottomY = entity.y + entity.solidArea.y + entity.solidArea.height;
 
-        int entityLeftCol = entityLeftX / (Constant.original_tile_size * Constant.scale);
-        int entityRightCol = entityRightX / (Constant.original_tile_size * Constant.scale);
-        int entityTopRow = entityTopY / (Constant.original_tile_size * Constant.scale);
-        int entityBottomRow = entityBottomY / (Constant.original_tile_size * Constant.scale);
+        int entityLeftCol = entityLeftX / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+        int entityRightCol = entityRightX / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+        int entityTopRow = entityTopY / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
+        int entityBottomRow = entityBottomY / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
 
         int tileNum1, tileNum2;
 
         switch (entity.direction) {
             case "up" -> {
-                entityTopRow = (entityTopY - entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityTopRow = (entityTopY - entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -36,7 +35,7 @@ public class collisionCheck {
                 }
             }
             case "down" -> {
-                entityBottomRow = (entityBottomY + entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityBottomRow = (entityBottomY + entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -45,7 +44,7 @@ public class collisionCheck {
                 }
             }
             case "left" -> {
-                entityLeftCol = (entityLeftX - entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityLeftCol = (entityLeftX - entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 if (tileM.tiles[tileNum1].collision
@@ -54,7 +53,7 @@ public class collisionCheck {
                 }
             }
             case "right" -> {
-                entityRightCol = (entityRightX + entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityRightCol = (entityRightX + entity.speed) / (Constant.ORGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (Window.getWindow().tileM.tiles[tileNum1].collision
