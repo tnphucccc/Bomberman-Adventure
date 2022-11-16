@@ -1,6 +1,6 @@
 package Entity;
 
-import Controls.collisionCheck;
+import Controls.CollisionCheck;
 import GUI.GameScence;
 import Variables.Constant;
 
@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class Mob extends Entity{
     GameScence gameScence;
-    collisionCheck cCheck = new collisionCheck();
+    CollisionCheck cCheck = new CollisionCheck();
 
     String[] dir = {"down","up","right","left"};
     private final Random rand = new Random();

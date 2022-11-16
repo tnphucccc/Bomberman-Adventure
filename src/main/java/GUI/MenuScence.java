@@ -1,6 +1,6 @@
 package GUI;
 
-import Controls.mouseHandler;
+import Controls.MouseHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,9 +13,9 @@ public class MenuScence extends Scence {
 
     public Rect playRect, exitRect, titleRect;
 
-    public mouseHandler mouseH;
+    public MouseHandler mouseH;
 
-    public MenuScence(mouseHandler mouseH) {
+    public MenuScence(MouseHandler mouseH) {
         this.mouseH = mouseH;
         try {
             BufferedImage spritesheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));

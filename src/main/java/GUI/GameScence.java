@@ -7,25 +7,25 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GameScence extends Scence {
-    keyHandler keyH;
-    mouseHandler mouseH;
+    KeyHandler keyH;
+    MouseHandler mouseH;
 
     Player player;
     Mob[] mob;
     Bomb bomb;
     ArrayList<Bomb> bombList;
 
-    collisionCheck cCheck;
+    CollisionCheck cCheck;
     AssetSetter aSetter = new AssetSetter(this);
-    tileManager tileM;
+    TileManager tileM;
 
-    public GameScence(keyHandler keyH, mouseHandler mouseH) {
+    public GameScence(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
         this.mouseH = mouseH;
 
         player = new Player(keyH);
-        cCheck = new collisionCheck();
-        tileM = new tileManager();
+        cCheck = new CollisionCheck();
+        tileM = new TileManager();
 
         mob = new Mob[3];
         aSetter.setMob();

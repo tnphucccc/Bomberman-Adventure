@@ -1,8 +1,8 @@
 package Entity;
 
-import Controls.keyHandler;
+import Controls.KeyHandler;
 import Variables.Constant;
-import Controls.collisionCheck;
+import Controls.CollisionCheck;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,10 +10,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Player extends Entity {
-    keyHandler keyH;
-    collisionCheck cCheck = new collisionCheck();
+    KeyHandler keyH;
+    CollisionCheck cCheck = new CollisionCheck();
 
-    public Player(keyHandler keyH) {
+    public Player(KeyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
         solidArea.x = 8;
