@@ -14,7 +14,7 @@ public class Bomb {
     private int x, y;
     private String key = "";
     keyHandler keyH;
-    private final int bombSize = 5;
+    private int bombSize = 5;
     
     boolean spaceSpressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
@@ -66,6 +66,13 @@ public class Bomb {
     public ArrayList<Bomb> getBombList(){
         return bombList;
     }
+    public int getBombCounter(){
+        return bombCounter;
+    }
+    public void setBombCounter(int bombCounter){
+        this.bombCounter = bombCounter;
+    }
+    
 }
 
 
