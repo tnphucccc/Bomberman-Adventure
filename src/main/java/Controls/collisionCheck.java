@@ -1,16 +1,13 @@
 package Controls;
 
-import Entity.Entity;
+import Entity.*;
 import GUI.tileManager;
 import Variables.Constant;
-import Controls.collisionCheck;
 import GUI.Window;
+
 
 public class collisionCheck {
     tileManager tileM = new tileManager();
-    public collisionCheck() {
-
-    }
 
     public void checkTile(Entity entity) {
         int entityLeftX = entity.x + entity.solidArea.x;
@@ -18,10 +15,11 @@ public class collisionCheck {
         int entityTopY = entity.y + entity.solidArea.y;
         int entityBottomY = entity.y + entity.solidArea.y + entity.solidArea.height;
 
+
         int entityLeftCol = entityLeftX / (Constant.original_tile_size * Constant.scale);
-        int entityRightCol = entityRightX / (Constant.original_tile_size * Constant.scale);
-        int entityTopRow = entityTopY / (Constant.original_tile_size * Constant.scale);
-        int entityBottomRow = entityBottomY / (Constant.original_tile_size * Constant.scale);
+        int entityRightCol = entityRightX/ (Constant.original_tile_size * Constant.scale);
+        int entityTopRow = entityTopY/ (Constant.original_tile_size * Constant.scale);
+        int entityBottomRow = entityBottomY/ (Constant.original_tile_size * Constant.scale);
 
         int tileNum1, tileNum2;
 
@@ -45,7 +43,7 @@ public class collisionCheck {
                 }
             }
             case "left" -> {
-                entityLeftCol = (entityLeftX - entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityLeftCol = (entityLeftX  - entity.speed) / (Constant.original_tile_size * Constant.scale);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 if (tileM.tiles[tileNum1].collision
@@ -54,7 +52,7 @@ public class collisionCheck {
                 }
             }
             case "right" -> {
-                entityRightCol = (entityRightX + entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityRightCol = (entityRightX  + entity.speed) / (Constant.original_tile_size * Constant.scale);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (Window.getWindow().tileM.tiles[tileNum1].collision

@@ -9,8 +9,8 @@ public class AssetSetter {
         this.gameScence=gameScence;
     }
     public void setMob(){
-        gameScence.mob[0]=new Mob(gameScence,144,224);
-        gameScence.mob[1]=new Mob(gameScence,624,32);
+        gameScence.mob[0]=new Mob(144,224);
+        gameScence.mob[1]=new Mob(624,32);
     }
     public void setItems(){}
 }
