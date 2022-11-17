@@ -9,11 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class tileManager {
+public class TileManager {
     public Tile[] tiles;
     public int[][] mapTileNum;
 
-    public tileManager() {
+    public TileManager() {
         tiles = new Tile[10];
         mapTileNum = new int[Constant.maxScreenRow][Constant.maxScreenCol];
         getTileImage();

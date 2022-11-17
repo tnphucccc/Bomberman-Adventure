@@ -1,8 +1,8 @@
 package GUI;
 
-import Controls.collisionCheck;
-import Controls.keyHandler;
-import Controls.mouseHandler;
+import Controls.CollisionCheck;
+import Controls.KeyHandler;
+import Controls.MouseHandler;
 import Variables.Constant;
 
 import javax.swing.*;
@@ -12,11 +12,11 @@ public class Window extends JFrame implements Runnable {
     public static Window window = null;
     public boolean isRunning;
 
-    keyHandler keyH = new keyHandler();
-    mouseHandler mouseH = new mouseHandler();
+    KeyHandler keyH = new KeyHandler();
+    MouseHandler mouseH = new MouseHandler();
 
-    public collisionCheck cCheck = new collisionCheck();
-    public tileManager tileM = new tileManager();
+    public CollisionCheck cCheck = new CollisionCheck();
+    public TileManager tileM = new TileManager();
 
     public int currentstate;
     public Scence currentScence;

@@ -1,13 +1,14 @@
 package Controls;
 
 import Entity.*;
-import GUI.tileManager;
+import GUI.TileManager;
 import Variables.Constant;
 import GUI.Window;
+public class CollisionCheck {
+    TileManager tileM = new TileManager();
+    public CollisionCheck() {
 
-
-public class collisionCheck {
-    tileManager tileM = new tileManager();
+    }
 
     public void checkTile(Entity entity) {
         int entityLeftX = entity.x + entity.solidArea.x;

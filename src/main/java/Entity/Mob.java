@@ -1,6 +1,7 @@
 package Entity;
 
-import Controls.collisionCheck;
+import Controls.CollisionCheck;
+import GUI.GameScence;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -11,11 +12,13 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Mob extends Entity{
-    collisionCheck cCheck = new collisionCheck();
+    GameScence gameScence;
+    CollisionCheck cCheck = new CollisionCheck();
 
     String[] dir = {"down","up","right","left"};
     private final Random rand = new Random();
-    public Mob(int x,int y){
+    public Mob( GameScence gameScence,int x,int y){
+        this.gameScence=gameScence;
         this.x =x;
         this.y =y;
         solidArea = new Rectangle();
