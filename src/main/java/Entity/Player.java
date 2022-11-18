@@ -13,7 +13,6 @@ import java.io.IOException;
 public class Player extends Entity {
     KeyHandler keyH;
     CollisionCheck cCheck = new CollisionCheck();
-    GameScence gameScence;
 
     public Player(KeyHandler keyH) {
         this.keyH = keyH;
