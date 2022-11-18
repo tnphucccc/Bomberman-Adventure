@@ -2,16 +2,11 @@ package Entity;
 
 import Controls.KeyHandler;
 import Variables.Constant;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class Bomb {
     private int x, y;
@@ -29,8 +24,12 @@ public class Bomb {
     public void update(int x,int y){
         
         key = "space";
-        this.x = x;
-        this.y = y;
+        // round x and y so the bomb is placed in the middle of the tile
+        this.x = (x/48)*48;
+        this.y = (y/48)*48;
+
+        //this.x = x;
+        //this.y = y;
         if(bombCounter<bombSize){
             if(keyH.spacePressed){
                 spaceSpressed = true;
