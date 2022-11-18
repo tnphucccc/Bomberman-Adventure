@@ -2,6 +2,7 @@ package GUI;
 
 import Controls.*;
 import Entity.*;
+import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class GameScence extends Scence {
     CollisionCheck cCheck;
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
+    SuperObject[] Object = new SuperObject[10];
 
     public GameScence(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
@@ -52,6 +54,11 @@ public class GameScence extends Scence {
 
         tileM.draw(g2);
         player.draw(g2);
+        for (int i = 0; i < Object.length; i++){
+            if (Object[i] != null){
+                Object[i].draw(g2, this);
+            }
+        }
         for(int i=0;i< mob.length;i++){
             if(mob[i]!=null){
                 mob[i].draw(g2);
