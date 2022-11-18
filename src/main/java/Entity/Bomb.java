@@ -4,9 +4,12 @@ import Controls.KeyHandler;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -49,20 +52,24 @@ public class Bomb {
 
     public void draw(Graphics2D g2){
         if(bombList != null){
-            BufferedImage img = null;
-
+            //Image img = null;
+            
             if(key.equals("space")){
-                try {
-                    img = ImageIO.read((getClass().getResourceAsStream("/Bomb/Bomb.gif")));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                //load Bomb.gif from resources
+                URL url = getClass().getResource("/Bomb/Bomb.gif");
+                ImageIcon icon = new ImageIcon(url);
+                Image img = icon.getImage();
+
+                
+                
+                
                 g2.drawImage(img, this.x, this.y, Constant.original_tile_size * Constant.scale,
                         Constant.original_tile_size * Constant.scale, null);
             }
         }
 
     }
+    
     public ArrayList<Bomb> getBombList(){
         return bombList;
     }
