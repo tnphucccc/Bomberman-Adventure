@@ -11,9 +11,7 @@ import java.awt.geom.Rectangle2D.*;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
     public CollisionCheck() {
-
     }
-
     public void checkTile(Entity entity) {
         entity.setEntityInteractionBox(entity);
         int entityLeftCol = entity.InteractionBox.get(3) / (Constant.original_tile_size * Constant.scale);
@@ -78,6 +76,5 @@ public class CollisionCheck {
             entity.collisionOn=true;
             entity.state=0;
         }
-
     }
 }
