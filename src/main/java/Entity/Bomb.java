@@ -53,7 +53,7 @@ public class Bomb {
 
             if(key.equals("space")){
                 try {
-                    img = ImageIO.read((getClass().getResourceAsStream("/Bomb/bomb1.png")));
+                    img = ImageIO.read((getClass().getResourceAsStream("/Bomb/Bomb.gif")));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
