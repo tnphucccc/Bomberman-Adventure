@@ -12,7 +12,6 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Mob extends Entity{
-    GameScence gameScence;
     CollisionCheck cCheck = new CollisionCheck();
 
     String[] dir = {"down","up","right","left"};

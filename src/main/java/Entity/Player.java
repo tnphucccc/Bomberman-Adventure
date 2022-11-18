@@ -1,6 +1,7 @@
 package Entity;
 
 import Controls.KeyHandler;
+import GUI.GameScence;
 import Variables.Constant;
 import Controls.CollisionCheck;
 
@@ -106,6 +107,10 @@ public class Player extends Entity {
             case "down" -> img = getBufferedImage(down1, down2, down3, down4);
             case "left" -> img = getBufferedImage(left1, left2, left3, left4);
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
+        }
+        if (state==0){
+            img = getBufferedImage(die1, die2, die3, die4);
+            speed=0;
         }
         g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
                 Constant.original_tile_size * Constant.scale, null);
