@@ -77,7 +77,6 @@ public class CollisionCheck {
         if(intersects==true){
             entity.collisionOn=true;
             entity.state=0;
-            System.out.println("Collision");
         }
 
     }
