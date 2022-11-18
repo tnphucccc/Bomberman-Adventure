@@ -17,8 +17,7 @@ public class Mob extends Entity{
 
     String[] dir = {"down","up","right","left"};
     private final Random rand = new Random();
-    public Mob( GameScence gameScence,int x,int y){
-        this.gameScence=gameScence;
+    public Mob(int x,int y){
         this.x =x;
         this.y =y;
         solidArea = new Rectangle();
