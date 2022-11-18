@@ -14,8 +14,6 @@ public class Window extends JFrame implements Runnable {
 
     KeyHandler keyH = new KeyHandler();
     MouseHandler mouseH = new MouseHandler();
-
-    public CollisionCheck cCheck = new CollisionCheck();
     public TileManager tileM = new TileManager();
 
     public int currentstate;
