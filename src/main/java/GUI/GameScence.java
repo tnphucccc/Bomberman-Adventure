@@ -11,7 +11,7 @@ public class GameScence extends Scence {
     MouseHandler mouseH;
 
     Player player;
-    Mob[] mob;
+    public Mob[] mob;
     Bomb bomb;
     ArrayList<Bomb> bombList;
 
@@ -40,6 +40,7 @@ public class GameScence extends Scence {
         for(int i=0;i<mob.length;i++){
             if(mob[i]!=null){
                 mob[i].update(dt);
+                cCheck.checkMob(player,mob[i]);
             }
         }
         bomb.update(player.x, player.y);
