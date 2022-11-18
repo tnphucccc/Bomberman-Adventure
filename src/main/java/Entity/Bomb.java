@@ -1,6 +1,6 @@
 package Entity;
 
-import Controls.KeyHandler;
+import Controls.keyHandler;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -8,18 +8,19 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Bomb {
     private int x, y;
     private String key = "";
-    KeyHandler keyH;
+    keyHandler keyH;
     private int bombSize = 5;
     
     boolean spaceSpressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
     private int bombCounter = 0;
 
-    public Bomb(KeyHandler keyH){
+    public Bomb(keyHandler keyH){
         this.keyH = keyH;
     }
     public void update(int x,int y){
@@ -38,7 +39,7 @@ public class Bomb {
                 bombList.get(bombCounter).update(this.x,this.y);
     
                 bombCounter++;
-                System.out.println("Bomb planted:" + bombCounter);
+                System.out.println("From update:"+bombCounter);
     
             }
         }
