@@ -1,14 +1,13 @@
 package Controls;
 
 import Entity.Entity;
-import GUI.tileManager;
+import GUI.TileManager;
 import Variables.Constant;
-import Controls.collisionCheck;
 import GUI.Window;
 
-public class collisionCheck {
-    tileManager tileM = new tileManager();
-    public collisionCheck() {
+public class CollisionCheck {
+    TileManager tileM = new TileManager();
+    public CollisionCheck() {
 
     }
 
