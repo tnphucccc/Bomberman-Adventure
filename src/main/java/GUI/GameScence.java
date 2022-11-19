@@ -1,18 +1,21 @@
 package GUI;
 
-import Controls.*;
-import Entity.*;
+import Controls.CollisionCheck;
+import Controls.KeyHandler;
+import Controls.MouseHandler;
+import Entity.Bomb;
+import Entity.Mob;
+import Entity.Player;
 import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class GameScence extends Scence {
+    public Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
-
     Player player;
-    public Mob[] mob;
     Bomb bomb;
     ArrayList<Bomb> bombList;
 
@@ -39,10 +42,10 @@ public class GameScence extends Scence {
     @Override
     public void update(double dt) {
         player.update(dt);
-        for(int i=0;i<mob.length;i++){
-            if(mob[i]!=null){
+        for (int i = 0; i < mob.length; i++) {
+            if (mob[i] != null) {
                 mob[i].update(dt);
-                cCheck.checkMob(player,mob[i]);
+                cCheck.checkMob(player, mob[i]);
             }
         }
         bomb.update(player.x, player.y);
@@ -51,22 +54,22 @@ public class GameScence extends Scence {
 
     @Override
     public void draw(Graphics g) {
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
         tileM.draw(g2);
         player.draw(g2);
-        for (int i = 0; i < Object.length; i++){
-            if (Object[i] != null){
+        for (int i = 0; i < Object.length; i++) {
+            if (Object[i] != null) {
                 Object[i].draw(g2, this);
             }
         }
-        for(int i=0;i< mob.length;i++){
-            if(mob[i]!=null){
+        for (int i = 0; i < mob.length; i++) {
+            if (mob[i] != null) {
                 mob[i].draw(g2);
             }
         }
-        if(bombList != null){
-            for(Bomb b : bombList){
+        if (bombList != null) {
+            for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }
