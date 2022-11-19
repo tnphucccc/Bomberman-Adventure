@@ -1,21 +1,24 @@
 package Controls;
 
-import Entity.*;
+import Entity.Entity;
 import GUI.TileManager;
-import Variables.Constant;
 import GUI.Window;
+import Variables.Constant;
+
+import java.awt.*;
+
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-    public CollisionCheck() {
 
+    public CollisionCheck() {
     }
 
     public void checkTile(Entity entity) {
         entity.setEntityInteractionBox(entity);
         int entityLeftCol = entity.InteractionBox.get(3) / (Constant.original_tile_size * Constant.scale);
-        int entityRightCol = entity.InteractionBox.get(1)/ (Constant.original_tile_size * Constant.scale);
-        int entityTopRow = entity.InteractionBox.get(0)/ (Constant.original_tile_size * Constant.scale);
-        int entityBottomRow = entity.InteractionBox.get(2)/ (Constant.original_tile_size * Constant.scale);
+        int entityRightCol = entity.InteractionBox.get(1) / (Constant.original_tile_size * Constant.scale);
+        int entityTopRow = entity.InteractionBox.get(0) / (Constant.original_tile_size * Constant.scale);
+        int entityBottomRow = entity.InteractionBox.get(2) / (Constant.original_tile_size * Constant.scale);
 
         int tileNum1, tileNum2;
 
@@ -59,4 +62,21 @@ public class CollisionCheck {
         }
     }
 
+    public void checkMob(Entity entity, Entity entity1) {
+        entity.setEntityInteractionBox(entity);
+        entity1.setEntityInteractionBox(entity1);
+        Rectangle entitySolidBox = new Rectangle(entity.InteractionBox.get(3),
+                entity.InteractionBox.get(0),
+                entity.solidArea.width,
+                entity.solidArea.height);
+        Rectangle entity1SolidBox = new Rectangle(entity1.InteractionBox.get(3),
+                entity1.InteractionBox.get(0),
+                entity1.solidArea.width,
+                entity1.solidArea.height);
+        boolean intersects = entitySolidBox.intersects(entity1SolidBox);
+        if (intersects) {
+            entity.collisionOn = true;
+            entity.state = 0;
+        }
+    }
 }

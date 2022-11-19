@@ -15,15 +15,19 @@ public abstract class Entity {
     public int spriteCounter = 0, spriteNum = 1;
     public Rectangle solidArea;
     public boolean collisionOn = false;
+    public ArrayList<Integer> InteractionBox = new ArrayList<>();
+
     public abstract void setDefault();
+
     public abstract void update(double dt);
+
     public abstract void draw(Graphics2D g2);
-    public ArrayList<Integer> InteractionBox= new ArrayList<>();
-    public void setEntityInteractionBox(Entity entity){
-        this.InteractionBox.add(0,entity.y + entity.solidArea.y);//TopY
-        this.InteractionBox.add(1,entity.x + entity.solidArea.x + entity.solidArea.width);//RightX
-        this.InteractionBox.add(2,entity.y + entity.solidArea.y + entity.solidArea.height);//BottomY
-        this.InteractionBox.add(3,entity.x + entity.solidArea.x);//Left
+
+    public void setEntityInteractionBox(Entity entity) {
+        this.InteractionBox.add(0, entity.y + entity.solidArea.y);//TopY
+        this.InteractionBox.add(1, entity.x + entity.solidArea.x + entity.solidArea.width);//RightX
+        this.InteractionBox.add(2, entity.y + entity.solidArea.y + entity.solidArea.height);//BottomY
+        this.InteractionBox.add(3, entity.x + entity.solidArea.x);//Left
     }
 
 }

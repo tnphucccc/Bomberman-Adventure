@@ -1,6 +1,5 @@
 package GUI;
 
-import Controls.CollisionCheck;
 import Controls.KeyHandler;
 import Controls.MouseHandler;
 import Variables.Constant;
@@ -11,17 +10,13 @@ import java.awt.*;
 public class Window extends JFrame implements Runnable {
     public static Window window = null;
     public boolean isRunning;
-
+    public TileManager tileM = new TileManager();
+    public int currentstate;
+    public Scence currentScence;
     KeyHandler keyH = new KeyHandler();
     MouseHandler mouseH = new MouseHandler();
 
-    public CollisionCheck cCheck = new CollisionCheck();
-    public TileManager tileM = new TileManager();
-
-    public int currentstate;
-    public Scence currentScence;
-
-    public Window(int width, int height, String title){
+    public Window(int width, int height, String title) {
         //Window handler
         setSize(width, height);
         setTitle(title);
@@ -41,9 +36,17 @@ public class Window extends JFrame implements Runnable {
 
         isRunning = true;
     }
-    public void changeState(int newState){
+
+    public static Window getWindow() {
+        if (Window.window == null) {
+            Window.window = new Window(Constant.WIDTH, Constant.HEIGHT, Constant.title);
+        }
+        return Window.window;
+    }
+
+    public void changeState(int newState) {
         currentstate = newState;
-        switch(currentstate){
+        switch (currentstate) {
             case 0:
                 currentScence = new MenuScence(mouseH);
                 break;
@@ -56,18 +59,12 @@ public class Window extends JFrame implements Runnable {
                 break;
         }
     }
-    public void close(){
+
+    public void close() {
         isRunning = false;
     }
 
-    public static Window getWindow(){
-        if (Window.window == null){
-            Window.window = new Window(Constant.WIDTH, Constant.HEIGHT, Constant.title);
-        }
-        return Window.window;
-    }
-
-    public void update(double dt){
+    public void update(double dt) {
         Image dbImage = createImage(getWidth(), getHeight());
         Graphics dbg = dbImage.getGraphics();
         this.draw(dbg);
@@ -76,13 +73,13 @@ public class Window extends JFrame implements Runnable {
         currentScence.update(dt);
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
         currentScence.draw(g2);
     }
 
-    public void run(){
+    public void run() {
         double drawInterval = 1000000000 / Constant.FPS, delta = 0;
         long lastTime = System.nanoTime(), currentTime, timer = 0;
         int Count = 0;

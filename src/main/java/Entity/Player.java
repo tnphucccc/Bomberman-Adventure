@@ -1,13 +1,17 @@
 package Entity;
 
 import Controls.KeyHandler;
+//import GUI.Window;
 import Variables.Constant;
 import Controls.CollisionCheck;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -35,28 +39,28 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/Player/player_up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/Player/player_up2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/Player/player_up3.png"));
-            up4 = ImageIO.read(getClass().getResourceAsStream("/Player/player_up4.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/Player/player_down1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/Player/player_down2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/Player/player_down3.png"));
-            down4 = ImageIO.read(getClass().getResourceAsStream("/Player/player_down4.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/Player/player_left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/Player/player_left2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/Player/player_left3.png"));
-            left4 = ImageIO.read(getClass().getResourceAsStream("/Player/player_left4.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/Player/player_right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/Player/player_right2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/Player/player_right3.png"));
-            right4 = ImageIO.read(getClass().getResourceAsStream("/Player/player_right4.png"));
-            die1 = ImageIO.read(getClass().getResourceAsStream("/Player/player_die1.png"));
-            die2 = ImageIO.read(getClass().getResourceAsStream("/Player/player_die2.png"));
-            die3 = ImageIO.read(getClass().getResourceAsStream("/Player/player_die3.png"));
-            die4 = ImageIO.read(getClass().getResourceAsStream("/Player/player_die4.png"));
-            die5 = ImageIO.read(getClass().getResourceAsStream("/Player/player_die5.png"));
-            die6 = ImageIO.read(getClass().getResourceAsStream("/Player/player_die6.png"));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up2.png")));
+            up3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up3.png")));
+            up4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up4.png")));
+            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down1.png")));
+            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down2.png")));
+            down3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down3.png")));
+            down4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down4.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left2.png")));
+            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left3.png")));
+            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left4.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right2.png")));
+            right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right3.png")));
+            right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right4.png")));
+            //die1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die1.png")));
+            //die2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die2.png")));
+            //die3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die3.png")));
+            //die4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die4.png")));
+            //die5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die5.png")));
+            //die6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die6.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,16 +103,30 @@ public class Player extends Entity {
     }
     @Override
     public void draw(Graphics2D g2) {
-
         BufferedImage img = null;
+        Image img1 =null;
         switch (direction) {
             case "up" -> img = getBufferedImage(up1, up2, up3, up4);
             case "down" -> img = getBufferedImage(down1, down2, down3, down4);
             case "left" -> img = getBufferedImage(left1, left2, left3, left4);
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
-        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale, null);
+        if (state==0){
+            URL url =Objects.requireNonNull(getClass().getResource("/Player/player_die.gif"));
+            ImageIcon icon =new ImageIcon(url);
+            img1=icon.getImage();
+            //img = getBufferedImage(die1, die2, die3, die4);
+            speed=0;
+        }
+        if(img1==null){
+            g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                    Constant.original_tile_size * Constant.scale, null);
+        }
+        else {
+            g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale,null);
+            //Window.getWindow().changeState(0);
+           }
     }
 
     private BufferedImage getBufferedImage(BufferedImage img1,
