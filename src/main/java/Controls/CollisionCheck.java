@@ -74,7 +74,7 @@ public class CollisionCheck {
                 entity1.solidArea.width,
                 entity1.solidArea.height);
         boolean intersects = entitySolidBox.intersects(entity1SolidBox);
-        if (intersects == true) {
+        if (intersects) {
             entity.collisionOn = true;
             entity.state = 0;
         }

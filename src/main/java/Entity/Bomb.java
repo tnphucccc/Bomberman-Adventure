@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class Bomb {
@@ -55,7 +56,7 @@ public class Bomb {
 
             if (key.equals("space")) {
                 //load Bomb.gif from resources
-                URL url = getClass().getResource("/Bomb/Bomb.gif");
+                URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
                 ImageIcon icon = new ImageIcon(url);
                 Image img = icon.getImage();
 
