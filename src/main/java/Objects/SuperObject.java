@@ -1,6 +1,5 @@
 package Objects;
 
-import GUI.GameScence;
 import Variables.Constant;
 
 import java.awt.*;
