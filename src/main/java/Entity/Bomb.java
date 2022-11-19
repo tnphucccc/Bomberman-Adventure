@@ -2,12 +2,11 @@ package Entity;
 
 import Controls.KeyHandler;
 import Variables.Constant;
-
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+
 
 public class Bomb {
     private int x, y;
@@ -18,15 +17,19 @@ public class Bomb {
     boolean spaceSpressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
     private int bombCounter = 0;
-
+    //KeyHandler 
     public Bomb(KeyHandler keyH){
         this.keyH = keyH;
     }
     public void update(int x,int y){
         
         key = "space";
-        this.x = x;
-        this.y = y;
+        // round x and y so the bomb is placed in the middle of the tile
+        this.x = (x/48)*48;
+        this.y = (y/48)*48;
+
+        //this.x = x;
+        //this.y = y;
         if(bombCounter<bombSize){
             if(keyH.spacePressed){
                 spaceSpressed = true;
@@ -38,7 +41,7 @@ public class Bomb {
                 bombList.get(bombCounter).update(this.x,this.y);
     
                 bombCounter++;
-                System.out.println("Bomb planted:" + bombCounter);
+                System.out.println("From update:"+bombCounter);
     
             }
         }
@@ -46,20 +49,24 @@ public class Bomb {
 
     public void draw(Graphics2D g2){
         if(bombList != null){
-            BufferedImage img = null;
-
+            //Image img = null;
+            
             if(key.equals("space")){
-                try {
-                    img = ImageIO.read((getClass().getResourceAsStream("/Bomb/bomb1.png")));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                //load Bomb.gif from resources
+                URL url = getClass().getResource("/Bomb/Bomb.gif");
+                ImageIcon icon = new ImageIcon(url);
+                Image img = icon.getImage();
+
+                
+                
+                
                 g2.drawImage(img, this.x, this.y, Constant.original_tile_size * Constant.scale,
                         Constant.original_tile_size * Constant.scale, null);
             }
         }
 
     }
+    
     public ArrayList<Bomb> getBombList(){
         return bombList;
     }
