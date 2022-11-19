@@ -31,6 +31,7 @@ public class GameScence extends Scence {
 
         mob = new Mob[3];
         aSetter.setMob();
+        aSetter.setItems();
 
         bomb = new Bomb(keyH);
         bombList = bomb.getBombList();
@@ -39,6 +40,7 @@ public class GameScence extends Scence {
     @Override
     public void update(double dt) {
         player.update(dt);
+
         for(int i=0;i<mob.length;i++){
             if(mob[i]!=null){
                 mob[i].update(dt);

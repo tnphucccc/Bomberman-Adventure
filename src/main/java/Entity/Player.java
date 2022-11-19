@@ -1,6 +1,7 @@
 package Entity;
 
 import Controls.KeyHandler;
+import GUI.Window;
 import Variables.Constant;
 import Controls.CollisionCheck;
 
@@ -120,8 +121,11 @@ public class Player extends Entity {
             g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
         }
-        else g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale, null);
+        else {
+            g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale,null);
+            //Window.getWindow().changeState(0);
+           }
     }
 
     private BufferedImage getBufferedImage(BufferedImage img1,

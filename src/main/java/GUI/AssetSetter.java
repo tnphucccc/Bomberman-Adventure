@@ -14,6 +14,9 @@ public class AssetSetter {
     public void setMob(){
         gameScence.mob[0]=new Mob(144,224);
         gameScence.mob[1]=new Mob(624,32);
+
+    }
+    public void setItems(){
         gameScence.Object[0] = new OBJ_BlastRadius();
         gameScence.Object[0].x = 5 * Constant.tileSize;
         gameScence.Object[0].y = 5 * Constant.tileSize;
@@ -21,5 +24,4 @@ public class AssetSetter {
         gameScence.Object[1].x = 7 * Constant.tileSize;
         gameScence.Object[1].y = 1 * Constant.tileSize;
     }
-    public void setItems(){}
 }
