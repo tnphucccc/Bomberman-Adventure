@@ -47,16 +47,12 @@ public class Window extends JFrame implements Runnable {
     public void changeState(int newState) {
         currentstate = newState;
         switch (currentstate) {
-            case 0:
-                currentScence = new MenuScence(mouseH);
-                break;
-            case 1:
-                currentScence = new GameScence(keyH, mouseH);
-                break;
-            default:
+            case 0 -> currentScence = new MenuScence(mouseH);
+            case 1 -> currentScence = new GameScence(keyH, mouseH);
+            default -> {
                 System.out.println("Error: Invalid state");
                 currentScence = null;
-                break;
+            }
         }
     }
 
@@ -80,7 +76,7 @@ public class Window extends JFrame implements Runnable {
     }
 
     public void run() {
-        double drawInterval = 1000000000 / Constant.FPS, delta = 0;
+        double drawInterval = 1000000000.0 / Constant.FPS, delta = 0;
         long lastTime = System.nanoTime(), currentTime, timer = 0;
         int Count = 0;
 
