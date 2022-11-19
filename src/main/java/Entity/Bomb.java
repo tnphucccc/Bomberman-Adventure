@@ -27,7 +27,7 @@ public class Bomb {
 
         key = "space";
         // round x and y so the bomb is placed in the middle of the tile
-        this.x = (x / 48) * 48;
+        this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
 
         //this.x = x;
