@@ -6,9 +6,9 @@ import Objects.OBJ_SpeedIncrease;
 import Variables.Constant;
 
 public class AssetSetter {
-    GameScence gameScence;
+    GameScene gameScence;
 
-    public AssetSetter(GameScence gameScence) {
+    public AssetSetter(GameScene gameScence) {
         this.gameScence = gameScence;
     }
 

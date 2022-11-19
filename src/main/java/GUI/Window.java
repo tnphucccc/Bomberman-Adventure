@@ -11,8 +11,8 @@ public class Window extends JFrame implements Runnable {
     public static Window window = null;
     public boolean isRunning;
     public TileManager tileM = new TileManager();
-    public int currentstate;
-    public Scence currentScence;
+    public int currentState;
+    public Scene currentScene;
     KeyHandler keyH = new KeyHandler();
     MouseHandler mouseH = new MouseHandler();
 
@@ -45,17 +45,17 @@ public class Window extends JFrame implements Runnable {
     }
 
     public void changeState(int newState) {
-        currentstate = newState;
-        switch (currentstate) {
+        currentState = newState;
+        switch (currentState) {
             case 0:
-                currentScence = new MenuScence(mouseH);
+                currentScene = new MenuScene(mouseH);
                 break;
             case 1:
-                currentScence = new GameScence(keyH, mouseH);
+                currentScene = new GameScene(keyH, mouseH);
                 break;
             default:
                 System.out.println("Error: Invalid state");
-                currentScence = null;
+                currentScene = null;
                 break;
         }
     }
@@ -70,13 +70,13 @@ public class Window extends JFrame implements Runnable {
         this.draw(dbg);
         getGraphics().drawImage(dbImage, 0, 0, this);
 
-        currentScence.update(dt);
+        currentScene.update(dt);
     }
 
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        currentScence.draw(g2);
+        currentScene.draw(g2);
     }
 
     public void run() {

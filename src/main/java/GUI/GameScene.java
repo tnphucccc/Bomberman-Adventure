@@ -11,7 +11,7 @@ import Objects.SuperObject;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GameScence extends Scence {
+public class GameScene extends Scene {
     public Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
@@ -24,7 +24,7 @@ public class GameScence extends Scence {
     TileManager tileM;
     SuperObject[] Object = new SuperObject[10];
 
-    public GameScence(KeyHandler keyH, MouseHandler mouseH) {
+    public GameScene(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
         this.mouseH = mouseH;
 
@@ -60,7 +60,7 @@ public class GameScence extends Scence {
         player.draw(g2);
         for (int i = 0; i < Object.length; i++) {
             if (Object[i] != null) {
-                Object[i].draw(g2, this);
+                Object[i].draw(g2);
             }
         }
         for (int i = 0; i < mob.length; i++) {
