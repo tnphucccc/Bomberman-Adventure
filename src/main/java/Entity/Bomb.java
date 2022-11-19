@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Bomb {
     private final int bombSize = 5;
     KeyHandler keyH;
-    boolean spaceSpressed = false;
+    boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
     private int x, y;
     private String key = "";
@@ -28,17 +28,17 @@ public class Bomb {
 
         key = "space";
         // round x and y so the bomb is placed in the middle of the tile
-        this.x = (x / 48) * 48;
+        this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
 
         //this.x = x;
         //this.y = y;
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
-                spaceSpressed = true;
+                spacePressed = true;
             }
-            if (!keyH.spacePressed && spaceSpressed) {
-                spaceSpressed = false;
+            if (!keyH.spacePressed && spacePressed) {
+                spacePressed = false;
                 bombList.add(bombCounter, new Bomb(keyH));
 
                 bombList.get(bombCounter).update(this.x, this.y);
