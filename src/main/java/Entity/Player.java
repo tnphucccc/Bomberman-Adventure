@@ -110,7 +110,7 @@ public class Player extends Entity {
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
         if (state==0){
-            URL url =getClass().getResource("/Player/player_die.gif");
+            URL url = getClass().getResource("/Player/player_die.gif");
             ImageIcon icon =new ImageIcon(url);
             img1=icon.getImage();
             //img = getBufferedImage(die1, die2, die3, die4);
