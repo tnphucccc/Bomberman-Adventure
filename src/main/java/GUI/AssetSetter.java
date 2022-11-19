@@ -22,6 +22,6 @@ public class AssetSetter {
         gameScence.Object[0].y = 5 * Constant.tileSize;
         gameScence.Object[1] = new OBJ_SpeedIncrease();
         gameScence.Object[1].x = 7 * Constant.tileSize;
-        gameScence.Object[1].y = 1 * Constant.tileSize;
+        gameScence.Object[1].y = Constant.tileSize;
     }
 }

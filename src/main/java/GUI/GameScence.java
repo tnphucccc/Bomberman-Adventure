@@ -41,10 +41,10 @@ public class GameScence extends Scence {
     public void update(double dt) {
         player.update(dt);
 
-        for(int i=0;i<mob.length;i++){
-            if(mob[i]!=null){
-                mob[i].update(dt);
-                cCheck.checkMob(player,mob[i]);
+        for (Mob value : mob) {
+            if (value != null) {
+                value.update(dt);
+                cCheck.checkMob(player, value);
             }
         }
         bomb.update(player.x, player.y);
@@ -57,14 +57,14 @@ public class GameScence extends Scence {
 
         tileM.draw(g2);
         player.draw(g2);
-        for (int i = 0; i < Object.length; i++){
-            if (Object[i] != null){
-                Object[i].draw(g2, this);
+        for (SuperObject superObject : Object) {
+            if (superObject != null) {
+                superObject.draw(g2);
             }
         }
-        for(int i=0;i< mob.length;i++){
-            if(mob[i]!=null){
-                mob[i].draw(g2);
+        for (Mob value : mob) {
+            if (value != null) {
+                value.draw(g2);
             }
         }
         if(bombList != null){

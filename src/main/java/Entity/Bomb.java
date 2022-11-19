@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Bomb {
     private int x, y;
@@ -50,7 +51,7 @@ public class Bomb {
 
             if(key.equals("space")){
                 try {
-                    img = ImageIO.read((getClass().getResourceAsStream("/Bomb/bomb1.png")));
+                    img = ImageIO.read((Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/bomb1.png"))));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

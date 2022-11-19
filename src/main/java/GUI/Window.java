@@ -1,6 +1,5 @@
 package GUI;
 
-import Controls.CollisionCheck;
 import Controls.KeyHandler;
 import Controls.MouseHandler;
 import Variables.Constant;
@@ -16,7 +15,7 @@ public class Window extends JFrame implements Runnable {
     MouseHandler mouseH = new MouseHandler();
     public TileManager tileM = new TileManager();
 
-    public int currentstate;
+    public int currentState;
     public Scence currentScence;
 
     public Window(int width, int height, String title){
@@ -40,18 +39,14 @@ public class Window extends JFrame implements Runnable {
         isRunning = true;
     }
     public void changeState(int newState){
-        currentstate = newState;
-        switch(currentstate){
-            case 0:
-                currentScence = new MenuScence(mouseH);
-                break;
-            case 1:
-                currentScence = new GameScence(keyH, mouseH);
-                break;
-            default:
+        currentState = newState;
+        switch (currentState) {
+            case 0 -> currentScence = new MenuScence(mouseH);
+            case 1 -> currentScence = new GameScence(keyH, mouseH);
+            default -> {
                 System.out.println("Error: Invalid state");
                 currentScence = null;
-                break;
+            }
         }
     }
     public void close(){
