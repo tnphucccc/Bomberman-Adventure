@@ -1,14 +1,15 @@
 package Entity;
 
 import Controls.KeyHandler;
-import GUI.GameScence;
 import Variables.Constant;
 import Controls.CollisionCheck;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.URL;
 
 public class Player extends Entity {
     KeyHandler keyH;
@@ -100,8 +101,8 @@ public class Player extends Entity {
     }
     @Override
     public void draw(Graphics2D g2) {
-
         BufferedImage img = null;
+        Image img1 =null;
         switch (direction) {
             case "up" -> img = getBufferedImage(up1, up2, up3, up4);
             case "down" -> img = getBufferedImage(down1, down2, down3, down4);
@@ -109,10 +110,17 @@ public class Player extends Entity {
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
         if (state==0){
-            img = getBufferedImage(die1, die2, die3, die4);
+            URL url =getClass().getResource("/Player/player_die.gif");
+            ImageIcon icon =new ImageIcon(url);
+            img1=icon.getImage();
+            //img = getBufferedImage(die1, die2, die3, die4);
             speed=0;
         }
-        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+        if(img1==null){
+            g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                    Constant.original_tile_size * Constant.scale, null);
+        }
+        else g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
                 Constant.original_tile_size * Constant.scale, null);
     }
 
