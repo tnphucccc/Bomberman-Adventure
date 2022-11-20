@@ -1,18 +1,21 @@
 package GUI;
 
-import Controls.*;
-import Entity.*;
+import Controls.CollisionCheck;
+import Controls.KeyHandler;
+import Controls.MouseHandler;
+import Entity.Bomb;
+import Entity.Mob;
+import Entity.Player;
 import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
 
 public class GameScene extends Scene {
+    public Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
-
     Player player;
-    public Mob[] mob;
     Bomb bomb;
     ArrayList<Bomb> bombList;
 
@@ -53,7 +56,7 @@ public class GameScene extends Scene {
 
     @Override
     public void draw(Graphics g) {
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
         tileM.draw(g2);
         player.draw(g2);
@@ -67,8 +70,8 @@ public class GameScene extends Scene {
                 value.draw(g2);
             }
         }
-        if(bombList != null){
-            for(Bomb b : bombList){
+        if (bombList != null) {
+            for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }

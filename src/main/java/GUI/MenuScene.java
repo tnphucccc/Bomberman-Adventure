@@ -19,14 +19,14 @@ public class MenuScene extends Scene {
     public MenuScene(MouseHandler mouseH) {
         this.mouseH = mouseH;
         try {
-            BufferedImage spritesheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));
-            play = spritesheet1.getSubimage(0, 0, 197, 57);
-            playPressed = spritesheet1.getSubimage(208, 0, 197, 57);
-            exit = spritesheet1.getSubimage(0, 70, 175, 53);
-            exitPressed = spritesheet1.getSubimage(208, 69, 175, 53);
+            BufferedImage spriteSheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));
+            play = spriteSheet1.getSubimage(0, 0, 197, 57);
+            playPressed = spriteSheet1.getSubimage(208, 0, 197, 57);
+            exit = spriteSheet1.getSubimage(0, 70, 175, 53);
+            exitPressed = spriteSheet1.getSubimage(208, 69, 175, 53);
 
-            BufferedImage spritesheet2 = ImageIO.read(new File("src/main/resources/Menu/Game_Title.png"));
-            title = spritesheet2.getSubimage(0, 0, 463, 55);
+            BufferedImage spriteSheet2 = ImageIO.read(new File("src/main/resources/Menu/Game_Title.png"));
+            title = spriteSheet2.getSubimage(0, 0, 463, 55);
 
         } catch (Exception e) {
             e.printStackTrace();
