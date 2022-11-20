@@ -68,6 +68,7 @@ public class TileManager {
 
     public void draw(Graphics2D g2) {
         int col = 0, row = 0, x = 0, y = 0;
+
         while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
             int tileNum = mapTileNum[row][col];
             g2.drawImage(tiles[tileNum].image, x, y,
