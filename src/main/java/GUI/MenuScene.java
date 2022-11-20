@@ -1,6 +1,7 @@
 package GUI;
 
 import Controls.MouseHandler;
+import Variables.Constant;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -63,7 +64,7 @@ public class MenuScene extends Scene {
     @Override
     public void draw(Graphics g) {
         g.setColor(new Color(240, 235, 227));
-        g.fillRect(0, 0, 720, 432);
+        g.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
 
         g.drawImage(title, (int) titleRect.x, (int) titleRect.y, (int) titleRect.width, (int) titleRect.height, null);
         g.drawImage(playCurrentImage, (int) playRect.x, (int) playRect.y, (int) playRect.width, (int) playRect.height, null);
