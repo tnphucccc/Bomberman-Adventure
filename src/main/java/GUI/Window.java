@@ -1,8 +1,8 @@
 package GUI;
 
-import Controls.CollisionCheck;
-import Controls.KeyHandler;
-import Controls.MouseHandler;
+import Controls.collisionCheck;
+import Controls.keyHandler;
+import Controls.mouseHandler;
 import Variables.Constant;
 
 import javax.swing.*;
@@ -12,19 +12,19 @@ public class Window extends JFrame implements Runnable {
     public static Window window = null;
     public boolean isRunning;
 
-    KeyHandler keyH = new KeyHandler();
-    MouseHandler mouseH = new MouseHandler();
+    keyHandler keyH = new keyHandler();
+    mouseHandler mouseH = new mouseHandler();
 
-    public CollisionCheck cCheck = new CollisionCheck();
-    public TileManager tileM = new TileManager();
+    public collisionCheck cCheck = new collisionCheck();
+    public tileManager tileM = new tileManager();
 
     public int currentstate;
     public Scence currentScence;
 
-    public Window(int width, int height, String TITLE){
+    public Window(int width, int height, String title){
         //Window handler
         setSize(width, height);
-        setTitle(TITLE);
+        setTitle(title);
         setIconImage(new ImageIcon("src\\main\\resources\\Logo-1.png").getImage());
 
         setResizable(false);
@@ -62,7 +62,7 @@ public class Window extends JFrame implements Runnable {
 
     public static Window getWindow(){
         if (Window.window == null){
-            Window.window = new Window(Constant.WIDTH, Constant.HEIGHT, Constant.TITLE);
+            Window.window = new Window(Constant.WIDTH, Constant.HEIGHT, Constant.title);
         }
         return Window.window;
     }

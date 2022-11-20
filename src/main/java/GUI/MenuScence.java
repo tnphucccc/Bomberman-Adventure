@@ -58,7 +58,6 @@ public class MenuScence extends Scence {
         } else exitCurrentImage = exit;
 
     }
-
     @Override
     public void draw(Graphics g) {
         g.setColor(new Color(240, 235, 227));

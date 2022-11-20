@@ -1,6 +1,6 @@
 package Entity;
 
-import Controls.CollisionCheck;
+import Controls.collisionCheck;
 import GUI.GameScence;
 import Variables.Constant;
 
@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class Mob extends Entity{
     GameScence gameScence;
-    CollisionCheck cCheck = new CollisionCheck();
+    collisionCheck cCheck = new collisionCheck();
 
     String[] dir = {"down","up","right","left"};
     private final Random rand = new Random();
@@ -93,8 +93,8 @@ public class Mob extends Entity{
             case "left" -> img = getBufferedImage(left1, left2, left3, left4);
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
-        g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale, null);
     }
 
     private BufferedImage getBufferedImage(BufferedImage img1,
