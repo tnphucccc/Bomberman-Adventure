@@ -7,12 +7,12 @@ import Objects.SuperObject;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GameScence extends Scence {
+public class GameScene extends Scene {
     KeyHandler keyH;
     MouseHandler mouseH;
 
     Player player;
-    Mob[] mob;
+    public Mob[] mob;
     Bomb bomb;
     ArrayList<Bomb> bombList;
 
@@ -21,7 +21,7 @@ public class GameScence extends Scence {
     TileManager tileM;
     SuperObject[] Object = new SuperObject[10];
 
-    public GameScence(KeyHandler keyH, MouseHandler mouseH) {
+    public GameScene(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
         this.mouseH = mouseH;
 
@@ -31,6 +31,7 @@ public class GameScence extends Scence {
 
         mob = new Mob[3];
         aSetter.setMob();
+        aSetter.setItems();
 
         bomb = new Bomb(keyH);
         bombList = bomb.getBombList();
@@ -39,9 +40,11 @@ public class GameScence extends Scence {
     @Override
     public void update(double dt) {
         player.update(dt);
-        for(int i=0;i<mob.length;i++){
-            if(mob[i]!=null){
-                mob[i].update(dt);
+
+        for (Mob value : mob) {
+            if (value != null) {
+                value.update(dt);
+                cCheck.checkMob(player, value);
             }
         }
         bomb.update(player.x, player.y);
@@ -54,14 +57,14 @@ public class GameScence extends Scence {
 
         tileM.draw(g2);
         player.draw(g2);
-        for (int i = 0; i < Object.length; i++){
-            if (Object[i] != null){
-                Object[i].draw(g2, this);
+        for (SuperObject superObject : Object) {
+            if (superObject != null) {
+                superObject.draw(g2);
             }
         }
-        for(int i=0;i< mob.length;i++){
-            if(mob[i]!=null){
-                mob[i].draw(g2);
+        for (Mob value : mob) {
+            if (value != null) {
+                value.draw(g2);
             }
         }
         if(bombList != null){
