@@ -7,7 +7,7 @@ import Objects.SuperObject;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class GameScence extends Scence {
+public class GameScene extends Scene {
     KeyHandler keyH;
     MouseHandler mouseH;
 
@@ -21,7 +21,7 @@ public class GameScence extends Scence {
     TileManager tileM;
     SuperObject[] Object = new SuperObject[10];
 
-    public GameScence(KeyHandler keyH, MouseHandler mouseH) {
+    public GameScene(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
         this.mouseH = mouseH;
 
