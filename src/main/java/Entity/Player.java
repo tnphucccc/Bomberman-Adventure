@@ -29,8 +29,8 @@ public class Player extends Entity {
 
     @Override
     public void setDefault() {
-        x = 48;
-        y = 32;
+        x = 48 + Constant.tileSize;
+        y = 32 + Constant.tileSize;
         speed = 2;
         direction = "down";
         state = 1;
