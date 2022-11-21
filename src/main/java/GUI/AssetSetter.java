@@ -14,7 +14,6 @@ public class AssetSetter {
     public void setMob(){
         gameScene.mob[0]=new Mob(144,224);
         gameScene.mob[1]=new Mob(624,32);
-
     }
     public void setItems(){
         gameScene.Object[0] = new OBJ_BlastRadius();
