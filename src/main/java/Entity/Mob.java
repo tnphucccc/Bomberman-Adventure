@@ -1,7 +1,6 @@
 package Entity;
 
-import Controls.collisionCheck;
-import GUI.GameScence;
+import Controls.CollisionCheck;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -11,16 +10,14 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class Mob extends Entity{
-    GameScence gameScence;
-    collisionCheck cCheck = new collisionCheck();
-
-    String[] dir = {"down","up","right","left"};
+public class Mob extends Entity {
     private final Random rand = new Random();
-    public Mob( GameScence gameScence,int x,int y){
-        this.gameScence=gameScence;
-        this.x =x;
-        this.y =y;
+    CollisionCheck cCheck = new CollisionCheck();
+    String[] dir = {"down", "up", "right", "left"};
+
+    public Mob(int x, int y) {
+        this.x = x;
+        this.y = y;
         solidArea = new Rectangle();
         solidArea.x = 4;
         solidArea.y = 16;
@@ -29,10 +26,12 @@ public class Mob extends Entity{
         setDefault();
         getMobImage();
     }
+
     public void setDefault() {
         speed = 1;
         this.direction = "down";
     }
+
     @Override
     public void update(double dt) {
         collisionOn = false;
@@ -45,7 +44,7 @@ public class Mob extends Entity{
                 case "left" -> x -= speed;
                 case "right" -> x += speed;
             }
-        } else{
+        } else {
             this.direction = dir[rand.nextInt(4)];
         }
         spriteCounter++;
@@ -57,6 +56,7 @@ public class Mob extends Entity{
             spriteCounter = 0;
         }
     }
+
     public void getMobImage() {
         try {
             up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-1.png")));
@@ -85,6 +85,7 @@ public class Mob extends Entity{
             e.printStackTrace();
         }
     }
+
     public void draw(Graphics2D g2) {
         BufferedImage img = null;
         switch (direction) {
@@ -103,14 +104,11 @@ public class Mob extends Entity{
                                            BufferedImage img4) {
         if (spriteNum == 1) {
             return img1;
-        }
-        else if (spriteNum == 2) {
+        } else if (spriteNum == 2) {
             return img2;
-        }
-        else if (spriteNum == 3) {
+        } else if (spriteNum == 3) {
             return img3;
-        }
-        else if (spriteNum == 4) {
+        } else if (spriteNum == 4) {
             return img4;
         }
         return null;

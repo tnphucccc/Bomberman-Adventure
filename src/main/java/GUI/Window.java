@@ -1,8 +1,7 @@
 package GUI;
 
-import Controls.collisionCheck;
-import Controls.keyHandler;
-import Controls.mouseHandler;
+import Controls.KeyHandler;
+import Controls.MouseHandler;
 import Variables.Constant;
 
 import javax.swing.*;
@@ -11,17 +10,13 @@ import java.awt.*;
 public class Window extends JFrame implements Runnable {
     public static Window window = null;
     public boolean isRunning;
+    public TileManager tileM = new TileManager();
+    public int currentState;
+    public Scene currentScene;
+    KeyHandler keyH = new KeyHandler();
+    MouseHandler mouseH = new MouseHandler();
 
-    keyHandler keyH = new keyHandler();
-    mouseHandler mouseH = new mouseHandler();
-
-    public collisionCheck cCheck = new collisionCheck();
-    public tileManager tileM = new tileManager();
-
-    public int currentstate;
-    public Scence currentScence;
-
-    public Window(int width, int height, String title){
+    public Window(int width, int height, String title) {
         //Window handler
         setSize(width, height);
         setTitle(title);
@@ -41,49 +36,47 @@ public class Window extends JFrame implements Runnable {
 
         isRunning = true;
     }
-    public void changeState(int newState){
-        currentstate = newState;
-        switch(currentstate){
-            case 0:
-                currentScence = new MenuScence(mouseH);
-                break;
-            case 1:
-                currentScence = new GameScence(keyH, mouseH);
-                break;
-            default:
-                System.out.println("Error: Invalid state");
-                currentScence = null;
-                break;
-        }
-    }
-    public void close(){
-        isRunning = false;
-    }
 
-    public static Window getWindow(){
-        if (Window.window == null){
+    public static Window getWindow() {
+        if (Window.window == null) {
             Window.window = new Window(Constant.WIDTH, Constant.HEIGHT, Constant.title);
         }
         return Window.window;
     }
 
-    public void update(double dt){
+    public void changeState(int newState) {
+        currentState = newState;
+        switch (currentState) {
+            case 0 -> currentScene = new MenuScene(mouseH);
+            case 1 -> currentScene = new GameScene(keyH, mouseH);
+            default -> {
+                System.out.println("Error: Invalid state");
+                currentScene = null;
+            }
+        }
+    }
+
+    public void close() {
+        isRunning = false;
+    }
+
+    public void update(double dt) {
         Image dbImage = createImage(getWidth(), getHeight());
         Graphics dbg = dbImage.getGraphics();
         this.draw(dbg);
         getGraphics().drawImage(dbImage, 0, 0, this);
 
-        currentScence.update(dt);
+        currentScene.update(dt);
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        currentScence.draw(g2);
+        currentScene.draw(g2);
     }
 
-    public void run(){
-        double drawInterval = 1000000000 / Constant.FPS, delta = 0;
+    public void run() {
+        double drawInterval = 1000000000.0 / Constant.FPS, delta = 0;
         long lastTime = System.nanoTime(), currentTime, timer = 0;
         int Count = 0;
 
