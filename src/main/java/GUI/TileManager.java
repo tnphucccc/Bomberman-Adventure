@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class TileManager {
     public Tile[] tiles;
@@ -15,27 +16,29 @@ public class TileManager {
 
     public TileManager() {
         tiles = new Tile[10];
-        mapTileNum = new int[Constant.MAX_SCREEN_ROW][Constant.MAX_SCREEN_COL];
+        mapTileNum = new int[Constant.maxScreenRow][Constant.maxScreenCol];
         getTileImage();
         loadMap("/Maps/Map01.txt");
     }
 
     public void getTileImage() {
-        // Get tile image
         try {
             tiles[0] = new Tile();
-            tiles[0].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Ground.png"));
+            tiles[0].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/Ground.png")));
 
             tiles[1] = new Tile();
-            tiles[1].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Block.png"));
+            tiles[1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/Block.png")));
             tiles[1].collision = true;
 
             tiles[2] = new Tile();
-            tiles[2].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/Brick.png"));
+            tiles[2].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/Brick.png")));
             tiles[2].collision = true;
 
             tiles[3] = new Tile();
-            tiles[3].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/GroundShadow.png"));
+            tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/GroundShadow.png")));
+
+            tiles[4] = new Tile();
+            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/Sand.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -43,20 +46,19 @@ public class TileManager {
 
     public void loadMap(String filePath) {
         try {
-            InputStream is = getClass().getResourceAsStream(filePath);
+            InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(filePath));
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0, row = 0;
-
-            while (col < Constant.MAX_SCREEN_COL && row < Constant.MAX_SCREEN_ROW) {
+            while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
                 String line = br.readLine();
-                while (col < Constant.MAX_SCREEN_COL) {
+                while (col < Constant.maxScreenCol) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[row][col] = num;
                     col++;
                 }
-                if (col == Constant.MAX_SCREEN_COL) {
+                if (col == Constant.maxScreenCol) {
                     col = 0;
                     row++;
                 }
@@ -70,19 +72,18 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int col = 0, row = 0, x = 0, y = 0;
 
-        while (col < Constant.MAX_SCREEN_COL && row < Constant.MAX_SCREEN_ROW) {
+        while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
             int tileNum = mapTileNum[row][col];
             g2.drawImage(tiles[tileNum].image, x, y,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                    Constant.tileSize, Constant.tileSize, null);
             col++;
-            x += Constant.ORIGINAL_TILE_SIZE * Constant.SCALE;
+            x += Constant.tileSize;
 
-            if (col == Constant.MAX_SCREEN_COL) {
+            if (col == Constant.maxScreenCol) {
                 col = 0;
                 row++;
                 x = 0;
-                y += Constant.ORIGINAL_TILE_SIZE * Constant.SCALE;
+                y += Constant.tileSize;
             }
         }
     }

@@ -2,31 +2,29 @@ package Controls;
 
 import Entity.Entity;
 import GUI.TileManager;
-import Variables.Constant;
 import GUI.Window;
+import Variables.Constant;
+
+import java.awt.*;
 
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-    public CollisionCheck() {
 
+    public CollisionCheck() {
     }
 
     public void checkTile(Entity entity) {
-        int entityLeftX = entity.x + entity.solidArea.x;
-        int entityRightX = entity.x + entity.solidArea.x + entity.solidArea.width;
-        int entityTopY = entity.y + entity.solidArea.y;
-        int entityBottomY = entity.y + entity.solidArea.y + entity.solidArea.height;
-
-        int entityLeftCol = entityLeftX / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
-        int entityRightCol = entityRightX / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
-        int entityTopRow = entityTopY / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
-        int entityBottomRow = entityBottomY / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+        entity.setEntityInteractionBox(entity);
+        int entityLeftCol = entity.InteractionBox.get(3) / (Constant.original_tile_size * Constant.scale);
+        int entityRightCol = entity.InteractionBox.get(1) / (Constant.original_tile_size * Constant.scale);
+        int entityTopRow = entity.InteractionBox.get(0) / (Constant.original_tile_size * Constant.scale);
+        int entityBottomRow = entity.InteractionBox.get(2) / (Constant.original_tile_size * Constant.scale);
 
         int tileNum1, tileNum2;
 
         switch (entity.direction) {
             case "up" -> {
-                entityTopRow = (entityTopY - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+                entityTopRow = (entity.InteractionBox.get(0) - entity.speed) / (Constant.original_tile_size * Constant.scale);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -35,7 +33,7 @@ public class CollisionCheck {
                 }
             }
             case "down" -> {
-                entityBottomRow = (entityBottomY + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+                entityBottomRow = (entity.InteractionBox.get(2) + entity.speed) / (Constant.original_tile_size * Constant.scale);
                 tileNum1 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -44,7 +42,7 @@ public class CollisionCheck {
                 }
             }
             case "left" -> {
-                entityLeftCol = (entityLeftX - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+                entityLeftCol = (entity.InteractionBox.get(3) - entity.speed) / (Constant.original_tile_size * Constant.scale);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 if (tileM.tiles[tileNum1].collision
@@ -53,7 +51,7 @@ public class CollisionCheck {
                 }
             }
             case "right" -> {
-                entityRightCol = (entityRightX + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+                entityRightCol = (entity.InteractionBox.get(1) + entity.speed) / (Constant.original_tile_size * Constant.scale);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (Window.getWindow().tileM.tiles[tileNum1].collision
@@ -61,6 +59,24 @@ public class CollisionCheck {
                     entity.collisionOn = true;
                 }
             }
+        }
+    }
+
+    public void checkMob(Entity entity, Entity entity1) {
+        entity.setEntityInteractionBox(entity);
+        entity1.setEntityInteractionBox(entity1);
+        Rectangle entitySolidBox = new Rectangle(entity.InteractionBox.get(3),
+                entity.InteractionBox.get(0),
+                entity.solidArea.width,
+                entity.solidArea.height);
+        Rectangle entity1SolidBox = new Rectangle(entity1.InteractionBox.get(3),
+                entity1.InteractionBox.get(0),
+                entity1.solidArea.width,
+                entity1.solidArea.height);
+        boolean intersects = entitySolidBox.intersects(entity1SolidBox);
+        if (intersects) {
+            entity.collisionOn = true;
+            entity.state = 0;
         }
     }
 }
