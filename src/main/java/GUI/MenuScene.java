@@ -35,9 +35,9 @@ public class MenuScene extends Scene {
         exitCurrentImage = exit;
 
         //Button & Logo coordinates
-        titleRect = new Rect(129, 40, 464, 55);
-        playRect = new Rect(261, 220, 197, 57);
-        exitRect = new Rect(272, 300, 175, 53);
+        titleRect = new Rect(129 + 48, 40 + 48, 464, 55);
+        playRect = new Rect(261 + 48, 220 + 48, 197, 57);
+        exitRect = new Rect(272 + 48, 300 + 48, 175, 53);
     }
 
     @Override
