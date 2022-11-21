@@ -1,8 +1,7 @@
 package Controls;
 
-import javax.swing.*;
 import javax.sound.sampled.*;
-
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 
