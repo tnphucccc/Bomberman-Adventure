@@ -19,10 +19,10 @@ public class GameScene extends Scene {
     Bomb bomb;
     ArrayList<Bomb> bombList;
 
-    CollisionCheck cCheck;
+    public static CollisionCheck cCheck;
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
-    SuperObject[] Object = new SuperObject[10];
+    public static SuperObject[] Object = new SuperObject[10];
 
     public GameScene(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
@@ -38,6 +38,9 @@ public class GameScene extends Scene {
 
         bomb = new Bomb(keyH);
         bombList = bomb.getBombList();
+    }
+
+    public GameScene() {
     }
 
     @Override
