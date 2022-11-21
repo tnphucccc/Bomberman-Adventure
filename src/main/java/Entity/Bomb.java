@@ -11,7 +11,7 @@ import java.util.Objects;
 
 
 public class Bomb {
-    private final int bombSize = 5;
+    public static int bombSize = 5;
     KeyHandler keyH;
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
