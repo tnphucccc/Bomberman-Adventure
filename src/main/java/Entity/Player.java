@@ -2,7 +2,6 @@ package Entity;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
-import GUI.GameScene;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -76,8 +75,6 @@ public class Player extends Entity {
             collisionOn = false;
             cCheck.checkTile(this);
 
-            //int objIndex = GameScene.cCheck.checkObject(this, true);
-            //pickUpObject(objIndex);
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;
@@ -97,21 +94,7 @@ public class Player extends Entity {
             }
         }
     }
-    public void pickUpObject (int i){
-        if (i != 999){
-            String objName = GameScene.Object[i].name;
-            switch (objName){
-                case "BlastRadius":
-                    Bomb.bombSize += 1;
-                    GameScene.Object[i] = null;
-                    break;
-                case "SpeedIncrease":
-                    speed += 1;
-                    GameScene.Object[i] = null;
-                    break;
-            }
-        }
-    }
+
     @Override
     public void draw(Graphics2D g2) {
         BufferedImage img = null;
