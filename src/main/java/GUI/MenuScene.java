@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class MenuScence extends Scence {
+public class MenuScene extends Scene {
     public BufferedImage title, play, playPressed, exit, exitPressed;
     public BufferedImage playCurrentImage, exitCurrentImage;
 
@@ -15,7 +15,7 @@ public class MenuScence extends Scence {
 
     public MouseHandler mouseH;
 
-    public MenuScence(MouseHandler mouseH) {
+    public MenuScene(MouseHandler mouseH) {
         this.mouseH = mouseH;
         try {
             BufferedImage spritesheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));

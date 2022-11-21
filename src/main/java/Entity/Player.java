@@ -55,12 +55,6 @@ public class Player extends Entity {
             right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right2.png")));
             right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right3.png")));
             right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right4.png")));
-            //die1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die1.png")));
-            //die2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die2.png")));
-            //die3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die3.png")));
-            //die4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die4.png")));
-            //die5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die5.png")));
-            //die6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die6.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
