@@ -1,5 +1,7 @@
 package Entity;
 
+import GUI.GameScene;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public abstract class Entity {
     public Rectangle solidArea;
     public boolean collisionOn = false;
     public ArrayList<Integer> InteractionBox = new ArrayList<>();
+    public int solidAreaDefaultX, solidAreaDefaultY;
 
     public abstract void setDefault();
 
