@@ -1,6 +1,5 @@
 package Main;
 
-import GUI.GameScene;
 import GUI.Window;
 
 public class Main {

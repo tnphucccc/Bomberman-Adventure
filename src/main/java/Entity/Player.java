@@ -76,8 +76,8 @@ public class Player extends Entity {
             collisionOn = false;
             cCheck.checkTile(this);
 
-            int objIndex = GameScene.cCheck.checkObject(this, true);
-            pickUpObject(objIndex);
+            //int objIndex = GameScene.cCheck.checkObject(this, true);
+            //pickUpObject(objIndex);
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;

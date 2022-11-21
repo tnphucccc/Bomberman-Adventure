@@ -78,7 +78,7 @@ public class CollisionCheck {
             entity.state = 0;
         }
     }
-    public int checkObject (Entity entity, Boolean player) {
+    /*public int checkObject (Entity entity, Boolean player) {
         int index = 999;
         for (int i = 0; i < GameScene.Object.length; i++){
             if (GameScene.Object[i] != null){
@@ -141,5 +141,5 @@ public class CollisionCheck {
             }
         }
         return index;
-    }
+    }*/
 }
