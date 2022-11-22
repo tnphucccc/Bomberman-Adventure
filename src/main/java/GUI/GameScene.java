@@ -14,8 +14,6 @@ import java.util.ArrayList;
 
 public class GameScene extends Scene {
     Pause pause;
-    GameOver gameOver;
-    OverLay overLay;
 
     Mob[] mob;
     KeyHandler keyH;
@@ -34,7 +32,7 @@ public class GameScene extends Scene {
         this.keyH = keyH;
         this.mouseH = mouseH;
 
-        player = new Player(keyH, 1);
+        player = new Player(keyH);
         cCheck = new CollisionCheck();
         tileM = new TileManager();
 
@@ -46,17 +44,13 @@ public class GameScene extends Scene {
         bombList = bomb.getBombList();
 
         pause = new Pause(false, keyH);
-        gameOver = new GameOver(mouseH);
-        overLay = new OverLay();
     }
 
     @Override
     public void update(double dt) {
         pause.pauseGame();
-        gameOver.checkAlive(player.state);
 
         if (!pause.isPaused){
-            //Game is running
             player.update(dt);
 
             for (Mob value : mob) {
@@ -71,10 +65,6 @@ public class GameScene extends Scene {
 
         } else {
             // Do nothing
-        }
-        if (!gameOver.isAlive){
-            //Game over
-            gameOver.update(dt);
         }
     }
 
@@ -101,14 +91,13 @@ public class GameScene extends Scene {
             }
         }
 
-        //Draw if the game is paused
         if(pause.isPaused){
-            overLay.draw(g2);
-            pause.draw(g2);
-        }
-        if(!gameOver.isAlive){
-            overLay.draw(g2);
-            gameOver.draw(g2);
+            g2.drawImage(pause.pause, 254, 235,308, 57, null);
         }
     }
+
+
+
+
+
 }

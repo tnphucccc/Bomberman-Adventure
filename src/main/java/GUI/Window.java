@@ -34,9 +34,8 @@ public class Window extends JFrame implements Runnable {
         addMouseListener(mouseH);
         addMouseMotionListener(mouseH);
 
-        //0 is original, 1 is game,
+        //0 is original, 1 is game, 2 is pause
         changeState(0);
-
 
         isRunning = true;
     }
@@ -65,7 +64,6 @@ public class Window extends JFrame implements Runnable {
     public void close() {
         isRunning = false;
     }
-
 
     public void update(double dt) {
         Image dbImage = createImage(getWidth(), getHeight());
