@@ -41,17 +41,25 @@ public class Bomb {
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
-                bombList.add(bombCounter, new Bomb(keyH));
-
-                bombList.get(bombCounter).update(this.x, this.y);
-
-                bombCounter++;
-                System.out.println("From update:" + bombCounter);
+                
+                if(checkAvailable(this.x, this.y)){
+                    bombList.add(bombCounter, new Bomb(keyH));
+                    bombList.get(bombCounter).update(this.x, this.y);
+                    bombCounter++;
+                    System.out.println("From update:" + bombCounter);
+                }           
 
             }
         }
     }
-
+    public boolean checkAvailable(int x, int y) {
+        for (int i = 0; i < bombList.size(); i++) {
+            if (bombList.get(i).x == x && bombList.get(i).y == y) {
+                return false;
+            }
+        }
+        return true;
+    }
     public void draw(Graphics2D g2) {
         if (bombList != null) {
             //Image img = null;
@@ -67,7 +75,13 @@ public class Bomb {
             }
         }
     }
-
+    // getter && setter 
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
     public ArrayList<Bomb> getBombList() {
         return bombList;
     }
