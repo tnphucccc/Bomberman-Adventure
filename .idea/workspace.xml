@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="196ce96e-da3c-48ee-a9a4-24ea733fd67d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controls/CollisionCheck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controls/KeyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controls/MouseHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Controls/SoundManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Entity/Bomb.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Entity/Entity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Entity/Mob.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Entity/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/GameScence.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GUI/GameScence.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/Rect.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/Tile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GUI/TileManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Objects/OBJ_BlastRadius.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Objects/OBJ_SpeedIncrease.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Objects/SuperObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Variables/Constant.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
+  <component name="ProjectId" id="2Hod0I8oR761Fgasd8xAnSG19ri" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="196ce96e-da3c-48ee-a9a4-24ea733fd67d" name="Changes" comment="" />
+      <created>1668955148670</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1668955148670</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
