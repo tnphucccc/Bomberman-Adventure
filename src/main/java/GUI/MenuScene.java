@@ -58,7 +58,6 @@ public class MenuScene extends Scene {
                 Window.getWindow().close();
             }
         } else exitCurrentImage = exit;
-
     }
 
     @Override

@@ -16,7 +16,8 @@ public class Player extends Entity {
     KeyHandler keyH;
     CollisionCheck cCheck = new CollisionCheck();
 
-    public Player(KeyHandler keyH) {
+    public Player(KeyHandler keyH, int state) {
+        this.state = state;
         this.keyH = keyH;
         solidArea = new Rectangle();
         solidArea.x = 8;
@@ -25,6 +26,7 @@ public class Player extends Entity {
         solidArea.height = 32;
         setDefault();
         getPlayerImage();
+
     }
 
     @Override
@@ -33,7 +35,6 @@ public class Player extends Entity {
         y = 32 + Constant.tileSize;
         speed = 2;
         direction = "down";
-        state = 1;
     }
 
     public void getPlayerImage() {
@@ -99,6 +100,7 @@ public class Player extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = null;
         Image img1 = null;
+
         switch (direction) {
             case "up" -> img = getBufferedImage(up1, up2, up3, up4);
             case "down" -> img = getBufferedImage(down1, down2, down3, down4);
@@ -113,12 +115,14 @@ public class Player extends Entity {
             speed = 0;
         }
         if (img1 == null) {
+            //PLayer is alive
             g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
         } else {
+            //PLayer die
             g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
-            //Window.getWindow().changeState(0);
+//            Window.getWindow().changeState(0);
         }
     }
 
