@@ -36,6 +36,9 @@ public class TileManager {
 
             tiles[3] = new Tile();
             tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/GroundShadow.png")));
+
+            tiles[4] = new Tile();
+            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/Sand.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,16 +75,15 @@ public class TileManager {
         while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
             int tileNum = mapTileNum[row][col];
             g2.drawImage(tiles[tileNum].image, x, y,
-                    Constant.original_tile_size * Constant.scale,
-                    Constant.original_tile_size * Constant.scale, null);
+                    Constant.tileSize, Constant.tileSize, null);
             col++;
-            x += Constant.original_tile_size * Constant.scale;
+            x += Constant.tileSize;
 
             if (col == Constant.maxScreenCol) {
                 col = 0;
                 row++;
                 x = 0;
-                y += Constant.original_tile_size * Constant.scale;
+                y += Constant.tileSize;
             }
         }
     }

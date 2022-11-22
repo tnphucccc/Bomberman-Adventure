@@ -10,9 +10,12 @@ import java.awt.*;
 public class Window extends JFrame implements Runnable {
     public static Window window = null;
     public boolean isRunning;
+
     public TileManager tileM = new TileManager();
-    public int currentstate;
+
+    public int currentState;
     public Scene currentScene;
+
     KeyHandler keyH = new KeyHandler();
     MouseHandler mouseH = new MouseHandler();
 
@@ -31,11 +34,12 @@ public class Window extends JFrame implements Runnable {
         addMouseListener(mouseH);
         addMouseMotionListener(mouseH);
 
-        //0 is original, 1 is game
+        //0 is original, 1 is game, 2 is pause
         changeState(0);
 
         isRunning = true;
     }
+
 
     public static Window getWindow() {
         if (Window.window == null) {
@@ -45,10 +49,11 @@ public class Window extends JFrame implements Runnable {
     }
 
     public void changeState(int newState) {
-        currentstate = newState;
-        switch (currentstate) {
+        currentState = newState;
+        switch (currentState) {
             case 0 -> currentScene = new MenuScene(mouseH);
             case 1 -> currentScene = new GameScene(keyH, mouseH);
+
             default -> {
                 System.out.println("Error: Invalid state");
                 currentScene = null;

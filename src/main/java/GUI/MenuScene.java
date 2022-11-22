@@ -1,6 +1,7 @@
 package GUI;
 
 import Controls.MouseHandler;
+import Variables.Constant;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -18,14 +19,14 @@ public class MenuScene extends Scene {
     public MenuScene(MouseHandler mouseH) {
         this.mouseH = mouseH;
         try {
-            BufferedImage spritesheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));
-            play = spritesheet1.getSubimage(0, 0, 197, 57);
-            playPressed = spritesheet1.getSubimage(208, 0, 197, 57);
-            exit = spritesheet1.getSubimage(0, 70, 175, 53);
-            exitPressed = spritesheet1.getSubimage(208, 69, 175, 53);
+            BufferedImage spriteSheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));
+            play = spriteSheet1.getSubimage(0, 0, 197, 57);
+            playPressed = spriteSheet1.getSubimage(208, 0, 197, 57);
+            exit = spriteSheet1.getSubimage(0, 70, 175, 53);
+            exitPressed = spriteSheet1.getSubimage(208, 69, 175, 53);
 
-            BufferedImage spritesheet2 = ImageIO.read(new File("src/main/resources/Menu/Game_Title.png"));
-            title = spritesheet2.getSubimage(0, 0, 463, 55);
+            BufferedImage spriteSheet2 = ImageIO.read(new File("src/main/resources/Menu/Game_Title.png"));
+            title = spriteSheet2.getSubimage(0, 0, 463, 55);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,9 +35,9 @@ public class MenuScene extends Scene {
         exitCurrentImage = exit;
 
         //Button & Logo coordinates
-        titleRect = new Rect(129, 40, 464, 55);
-        playRect = new Rect(261, 220, 197, 57);
-        exitRect = new Rect(272, 300, 175, 53);
+        titleRect = new Rect(129 + 48, 40 + 48, 464, 55);
+        playRect = new Rect(261 + 48, 220 + 48, 197, 57);
+        exitRect = new Rect(272 + 48, 300 + 48, 175, 53);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class MenuScene extends Scene {
     @Override
     public void draw(Graphics g) {
         g.setColor(new Color(240, 235, 227));
-        g.fillRect(0, 0, 720, 432);
+        g.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
 
         g.drawImage(title, (int) titleRect.x, (int) titleRect.y, (int) titleRect.width, (int) titleRect.height, null);
         g.drawImage(playCurrentImage, (int) playRect.x, (int) playRect.y, (int) playRect.width, (int) playRect.height, null);

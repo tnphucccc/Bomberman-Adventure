@@ -1,9 +1,8 @@
 package Entity;
 
-import Controls.KeyHandler;
-//import GUI.Window;
-import Variables.Constant;
 import Controls.CollisionCheck;
+import Controls.KeyHandler;
+import Variables.Constant;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -30,8 +29,8 @@ public class Player extends Entity {
 
     @Override
     public void setDefault() {
-        x = 48;
-        y = 32;
+        x = 48 + Constant.tileSize;
+        y = 32 + Constant.tileSize;
         speed = 2;
         direction = "down";
         state = 1;
@@ -95,32 +94,32 @@ public class Player extends Entity {
             }
         }
     }
+
     @Override
     public void draw(Graphics2D g2) {
         BufferedImage img = null;
-        Image img1 =null;
+        Image img1 = null;
         switch (direction) {
             case "up" -> img = getBufferedImage(up1, up2, up3, up4);
             case "down" -> img = getBufferedImage(down1, down2, down3, down4);
             case "left" -> img = getBufferedImage(left1, left2, left3, left4);
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
-        if (state==0){
-            URL url =Objects.requireNonNull(getClass().getResource("/Player/player_die.gif"));
-            ImageIcon icon =new ImageIcon(url);
-            img1=icon.getImage();
+        if (state == 0) {
+            URL url = Objects.requireNonNull(getClass().getResource("/Player/player_die.gif"));
+            ImageIcon icon = new ImageIcon(url);
+            img1 = icon.getImage();
             //img = getBufferedImage(die1, die2, die3, die4);
-            speed=0;
+            speed = 0;
         }
-        if(img1==null){
+        if (img1 == null) {
             g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
-        }
-        else {
+        } else {
             g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale,null);
+                    Constant.original_tile_size * Constant.scale, null);
             //Window.getWindow().changeState(0);
-           }
+        }
     }
 
     private BufferedImage getBufferedImage(BufferedImage img1,
