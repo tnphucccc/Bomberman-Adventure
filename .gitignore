@@ -8,3 +8,7 @@
 /dataSources.local.xml
 # Ignore .class files
 *.class
+.classpath
+.project
+.settings/
+target/
