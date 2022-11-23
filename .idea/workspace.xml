@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17393db1-5792-4a20-8bc4-ae7c7c509cb8" name="Changes" comment="Merge Update From Master">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controls/CollisionCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controls/CollisionCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/GameScene.java" afterDir="false" />
+    <list default="true" id="be8b21fd-9d89-4876-a98e-1079d3efa9a0" name="Changes" comment="Fix bugs">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +19,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -30,9 +27,7 @@
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2Hod0I8oR761Fgasd8xAnSG19ri" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,8 +36,6 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/coding/java/Bomberman",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
@@ -53,19 +46,18 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="17393db1-5792-4a20-8bc4-ae7c7c509cb8" name="Changes" comment="Merge Update From Master" />
+      <changelist id="196ce96e-da3c-48ee-a9a4-24ea733fd67d" name="Changes" comment="" />
       <created>1668955148670</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668955148670</updated>
-      <workItem from="1669172867305" duration="329000" />
     </task>
-    <task id="LOCAL-00001" summary="Merge Update From Master">
-      <created>1669123883696</created>
+    <task id="LOCAL-00001" summary="Fix bugs">
+      <created>1669114490402</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1669123883696</updated>
+      <updated>1669114490402</updated>
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -91,8 +83,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge Update From Master" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge Update From Master" />
+    <MESSAGE value="Fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Bomberman$Main.ic" NAME="Main Coverage Results" MODIFIED="1669113751866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
