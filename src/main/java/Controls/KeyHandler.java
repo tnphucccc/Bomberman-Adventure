@@ -24,7 +24,7 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         } else if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
-        } else if (code == KeyEvent.VK_P){
+        } else if (code == KeyEvent.VK_P) {
             pausePressed = true;
         }
     }
@@ -42,7 +42,7 @@ public class KeyHandler implements KeyListener {
             rightPressed = false;
         } else if (code == KeyEvent.VK_SPACE) {
             spacePressed = false;
-        } else if (code == KeyEvent.VK_P){
+        } else if (code == KeyEvent.VK_P) {
             pausePressed = false;
         }
     }

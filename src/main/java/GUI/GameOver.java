@@ -1,13 +1,9 @@
 package GUI;
 
 import Controls.MouseHandler;
-import Entity.Player;
-import Variables.Constant;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -16,11 +12,11 @@ public class GameOver {
 
     BufferedImage gameOver, playAgain, playAgainPressed, exit, exitPressed;
     BufferedImage playAgainCurrentImage, exitCurrentImage;
-    
+
     Rect gameOverRect, playAgainRect, exitRect;
     MouseHandler mouseH;
 
-    public GameOver(MouseHandler mouseH){
+    public GameOver(MouseHandler mouseH) {
         this.mouseH = mouseH;
 
         try {
@@ -40,22 +36,23 @@ public class GameOver {
         }
         playAgainCurrentImage = playAgain;
         exitCurrentImage = exit;
-        
+
         //Game Over Menu Location
         gameOverRect = new Rect(150, 100, 531, 69);
         playAgainRect = new Rect(195, 275, 440, 55);
         exitRect = new Rect(328, 348, 175, 53);
 
     }
-    public void checkAlive(int state){
-        if (state == 0){
+
+    public void checkAlive(int state) {
+        if (state == 0) {
             isAlive = false;
         } else {
             isAlive = true;
         }
     }
 
-    public void update(double dt){
+    public void update(double dt) {
         //Pressed Play Again
         if (mouseH.getX() >= playAgainRect.x && mouseH.getX() <= playAgainRect.x + playAgainRect.width &&
                 mouseH.getY() >= playAgainRect.y && mouseH.getY() <= playAgainRect.y + playAgainRect.height) {
@@ -74,15 +71,16 @@ public class GameOver {
             }
         } else exitCurrentImage = exit;
     }
-    public void draw(Graphics g2){
+
+    public void draw(Graphics g2) {
 //        JLayeredPane grayLayer = new JLayeredPane();
 //        grayLayer.setBounds(0, 0, Constant.WIDTH - 100, Constant.HEIGHT - 100);
 //        grayLayer.setBackground(new Color(0, 0, 0, 50));
 //
 //        Window.getWindow().addLayer(grayLayer);
 
-        g2.drawImage(gameOver, (int) gameOverRect.x, (int) gameOverRect.y,(int) gameOverRect.width, (int) gameOverRect.height, null);
-        g2.drawImage(playAgainCurrentImage, (int) playAgainRect.x, (int) playAgainRect.y,(int) playAgainRect.width, (int) playAgainRect.height, null);
-        g2.drawImage(exitCurrentImage, (int) exitRect.x, (int) exitRect.y,(int) exitRect.width, (int) exitRect.height, null);
+        g2.drawImage(gameOver, (int) gameOverRect.x, (int) gameOverRect.y, (int) gameOverRect.width, (int) gameOverRect.height, null);
+        g2.drawImage(playAgainCurrentImage, (int) playAgainRect.x, (int) playAgainRect.y, (int) playAgainRect.width, (int) playAgainRect.height, null);
+        g2.drawImage(exitCurrentImage, (int) exitRect.x, (int) exitRect.y, (int) exitRect.width, (int) exitRect.height, null);
     }
 }

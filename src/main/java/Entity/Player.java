@@ -99,10 +99,11 @@ public class Player extends Entity {
             }
         }
     }
-    public void pickUpObject (int i){
-        if (i != 999){
+
+    public void pickUpObject(int i) {
+        if (i != 999) {
             String objName = GameScene.Object[i].name;
-            switch (objName){
+            switch (objName) {
                 case "BlastRadius":
                     Bomb.bombSize += 1;
                     GameScene.Object[i] = null;
@@ -114,6 +115,7 @@ public class Player extends Entity {
             }
         }
     }
+
     @Override
     public void draw(Graphics2D g2) {
         BufferedImage img = null;
