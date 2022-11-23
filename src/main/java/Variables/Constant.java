@@ -8,6 +8,7 @@ public class Constant {
     public static final int maxScreenRow = 9 +2;
     public static final int WIDTH = tileSize * maxScreenCol;
     public static final int HEIGHT = tileSize * maxScreenRow;
+
     public static final String title = "Bomberman Adventure";
     public static final int FPS = 60;
 }

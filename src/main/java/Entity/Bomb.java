@@ -11,11 +11,13 @@ import java.util.Objects;
 
 
 public class Bomb {
-    private final int bombSize = 5;
+    public static int bombSize = 5;
     KeyHandler keyH;
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
+
     private int x, y;
+
     private String key = "";
     private int bombCounter = 0;
 
@@ -78,5 +80,4 @@ public class Bomb {
         this.bombCounter = bombCounter;
     }
 }
-
 
