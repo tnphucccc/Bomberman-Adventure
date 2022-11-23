@@ -3,7 +3,6 @@ package GUI;
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
 import Controls.MouseHandler;
-
 import Entity.Bomb;
 import Entity.Mob;
 import Entity.Player;
@@ -13,21 +12,19 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GameScene extends Scene {
+    public static CollisionCheck cCheck;
+    public static SuperObject[] Object = new SuperObject[10];
     Pause pause;
     GameOver gameOver;
     OverLay overLay;
-
     Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
     Player player;
     Bomb bomb;
     ArrayList<Bomb> bombList;
-
-    public static CollisionCheck cCheck;
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
-    public static SuperObject[] Object = new SuperObject[10];
 
 
     public GameScene(KeyHandler keyH, MouseHandler mouseH) {
@@ -55,7 +52,7 @@ public class GameScene extends Scene {
         pause.pauseGame();
         gameOver.checkAlive(player.state);
 
-        if (!pause.isPaused){
+        if (!pause.isPaused) {
             //Game is running
             player.update(dt);
 
@@ -72,7 +69,7 @@ public class GameScene extends Scene {
         } else {
             // Do nothing
         }
-        if (!gameOver.isAlive){
+        if (!gameOver.isAlive) {
             //Game over
             gameOver.update(dt);
         }
@@ -102,11 +99,11 @@ public class GameScene extends Scene {
         }
 
         //Draw if the game is paused
-        if(pause.isPaused){
+        if (pause.isPaused) {
             overLay.draw(g2);
             pause.draw(g2);
         }
-        if(!gameOver.isAlive){
+        if (!gameOver.isAlive) {
             overLay.draw(g2);
             gameOver.draw(g2);
         }

@@ -41,17 +41,19 @@ public class Bomb {
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
-                
-                if(checkAvailable(this.x, this.y)){
+
+                if (checkAvailable(this.x, this.y)) {
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
                     bombCounter++;
-                    System.out.println("From update:" + bombCounter);
-                }           
-
+                    System.out.println("Bomb Placed:" + bombCounter);
+                } else {
+                    System.out.println("Bomb Cannot Be Placed");
+                }
             }
         }
     }
+
     // check if the tile is available
     public boolean checkAvailable(int x, int y) {
         for (int i = 0; i < bombList.size(); i++) {
@@ -61,6 +63,7 @@ public class Bomb {
         }
         return true;
     }
+
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         if (bombList != null) {
@@ -77,13 +80,16 @@ public class Bomb {
             }
         }
     }
-    // getter && setter 
+
+    // getter && setter
     public int getX() {
         return x;
     }
+
     public int getY() {
         return y;
     }
+
     public ArrayList<Bomb> getBombList() {
         return bombList;
     }
