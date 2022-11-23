@@ -12,3 +12,5 @@
 .project
 .settings/
 target/
+# Ignore .idea folder
+.idea/
