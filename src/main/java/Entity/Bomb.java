@@ -46,7 +46,7 @@ public class Bomb {
                 bombList.get(bombCounter).update(this.x, this.y);
 
                 bombCounter++;
-                System.out.println("From update:" + bombCounter);
+                System.out.println("Bomb Used:" + bombCounter);
 
             }
         }
