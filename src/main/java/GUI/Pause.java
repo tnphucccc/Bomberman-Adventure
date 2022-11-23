@@ -32,10 +32,10 @@ public class Pause {
     }
 
     public void pauseGame(){
-        if(keyH.enterPressed){
+        if(keyH.pausePressed){
             flag = true;
         }
-        if(!keyH.enterPressed && flag == true){
+        if(!keyH.pausePressed && flag == true){
             status = (status + 1) % 2;
             this.isPaused = !this.isPaused; //toggle
             flag = !flag;

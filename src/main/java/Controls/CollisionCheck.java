@@ -1,6 +1,7 @@
 package Controls;
 
 import Entity.Entity;
+import GUI.GameScene;
 import GUI.TileManager;
 import GUI.Window;
 import Variables.Constant;
@@ -78,5 +79,70 @@ public class CollisionCheck {
             entity.collisionOn = true;
             entity.state = 0;
         }
+    }
+    public int checkObject (Entity entity, Boolean player) {
+        int index = 999;
+        for (int i = 0; i < GameScene.Object.length; i++){
+            if (GameScene.Object[i] != null){
+                //get entity's solid area position
+                entity.solidArea.x = entity.x + entity.solidArea.x;
+                entity.solidArea.y = entity.y + entity.solidArea.y;
+                //get object's solid area position
+                GameScene.Object[i].solidArea.x = GameScene.Object[i].x + GameScene.Object[i].solidArea.x;
+                GameScene.Object[i].solidArea.y = GameScene.Object[i].y + GameScene.Object[i].solidArea.y;
+
+                switch (entity.direction){
+                    case "up":
+                        entity.solidArea.y -= entity.speed;
+                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)){
+                            if (GameScene.Object[i].collision == true){
+                                entity.collisionOn = true;
+                            }
+                            if (player == true){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "down":
+                        entity.solidArea.y += entity.speed;
+                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)){
+                            if (GameScene.Object[i].collision == true){
+                                entity.collisionOn = true;
+                            }
+                            if (player == true){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "left":
+                        entity.solidArea.x -= entity.speed;
+                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)){
+                            if (GameScene.Object[i].collision == true){
+                                entity.collisionOn = true;
+                            }
+                            if (player == true){
+                                index = i;
+                            }
+                        }
+                        break;
+                    case "right":
+                        entity.solidArea.x += entity.speed;
+                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)){
+                            if (GameScene.Object[i].collision == true){
+                                entity.collisionOn = true;
+                            }
+                            if (player == true){
+                                index = i;
+                            }
+                        }
+                        break;
+                }
+                entity.solidArea.x = entity.solidAreaDefaultX;
+                entity.solidArea.y = entity.solidAreaDefaultY;
+                GameScene.Object[i].solidArea.x = GameScene.Object[i].solidAreaDefaultX;
+                GameScene.Object[i].solidArea.y = GameScene.Object[i].solidAreaDefaultY;
+            }
+        }
+        return index;
     }
 }
