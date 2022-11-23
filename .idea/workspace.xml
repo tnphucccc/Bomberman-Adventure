@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17393db1-5792-4a20-8bc4-ae7c7c509cb8" name="Changes" comment="Merge Update From Master" />
+    <list default="true" id="17393db1-5792-4a20-8bc4-ae7c7c509cb8" name="Changes" comment="Merge Update From Master">
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controls/CollisionCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controls/CollisionCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/GameScene.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,6 +42,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/coding/java/Bomberman",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
@@ -48,11 +53,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="196ce96e-da3c-48ee-a9a4-24ea733fd67d" name="Changes" comment="" />
+      <changelist id="17393db1-5792-4a20-8bc4-ae7c7c509cb8" name="Changes" comment="Merge Update From Master" />
       <created>1668955148670</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668955148670</updated>
+      <workItem from="1669172867305" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="Merge Update From Master">
       <created>1669123883696</created>
