@@ -22,7 +22,7 @@ public class Mob extends Entity {
         solidArea.x = 4;
         solidArea.y = 16;
         solidArea.width = 36;
-        solidArea.height = 32;
+        solidArea.height = 36;
         setDefault();
         getMobImage();
     }

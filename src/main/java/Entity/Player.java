@@ -2,6 +2,7 @@ package Entity;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
+import GUI.Window;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -10,6 +11,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 public class Player extends Entity {
@@ -118,6 +121,8 @@ public class Player extends Entity {
         } else {
             g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
+            g2.dispose();
+
             //Window.getWindow().changeState(0);
         }
     }
