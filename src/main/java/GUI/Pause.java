@@ -8,15 +8,13 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Pause {
+    public int status = 0; //0 = not paused, 1 = paused
     KeyHandler keyH;
     BufferedImage pause;
-
     boolean isPaused, flag;
-    public int status = 0; //0 = not paused, 1 = paused
-
     Rect pauseRect;
 
-    Pause(boolean isPaused, KeyHandler keyH){
+    Pause(boolean isPaused, KeyHandler keyH) {
         this.isPaused = isPaused;
         this.keyH = keyH;
 
@@ -31,17 +29,18 @@ public class Pause {
         pauseRect = new Rect(254, 235, 308, 57);
     }
 
-    public void pauseGame(){
-        if(keyH.enterPressed){
+    public void pauseGame() {
+        if (keyH.pausePressed) {
             flag = true;
         }
-        if(!keyH.enterPressed && flag == true){
+        if (!keyH.pausePressed && flag == true) {
             status = (status + 1) % 2;
             this.isPaused = !this.isPaused; //toggle
             flag = !flag;
         }
     }
-    public void draw(Graphics g2){
-        g2.drawImage(pause, (int) pauseRect.x, (int) pauseRect.y,(int) pauseRect.width, (int) pauseRect.height, null);
+
+    public void draw(Graphics g2) {
+        g2.drawImage(pause, (int) pauseRect.x, (int) pauseRect.y, (int) pauseRect.width, (int) pauseRect.height, null);
     }
 }

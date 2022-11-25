@@ -1,7 +1,5 @@
 package Entity;
 
-import GUI.GameScene;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

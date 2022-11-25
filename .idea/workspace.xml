@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6b794dcc-5eea-423a-8f1b-69d7f5d3d155" name="Changes" comment="h">
+    <list default="true" id="be8b21fd-9d89-4876-a98e-1079d3efa9a0" name="Changes" comment="Fix bugs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/GUI/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Variables/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Variables/Constant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,14 +20,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/Entity/Entity.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2Hod0I8oR761Fgasd8xAnSG19ri" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -37,29 +32,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Java/Files/Learning/Bomberman&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6b794dcc-5eea-423a-8f1b-69d7f5d3d155" name="Changes" comment="h" />
+      <changelist id="196ce96e-da3c-48ee-a9a4-24ea733fd67d" name="Changes" comment="" />
       <created>1668955148670</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668955148670</updated>
-      <workItem from="1669178856389" duration="649000" />
-      <workItem from="1669348633841" duration="651000" />
     </task>
     <task id="LOCAL-00001" summary="Fix bugs">
       <created>1669114490402</created>
@@ -93,8 +84,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix bugs" />
-    <MESSAGE value="h" />
-    <option name="LAST_COMMIT_MESSAGE" value="h" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Bomberman$Main.ic" NAME="Main Coverage Results" MODIFIED="1669113751866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
