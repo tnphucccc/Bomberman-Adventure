@@ -22,7 +22,7 @@ public class GameScene extends Scene {
     MouseHandler mouseH;
     Player player;
     Bomb bomb;
-    ArrayList<Bomb> bombList;
+    static ArrayList<Bomb> bombList;
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
@@ -65,6 +65,7 @@ public class GameScene extends Scene {
 
             bomb.update(player.x, player.y);
             bombList = bomb.getBombList();
+            
 
         } else {
             // Do nothing
@@ -107,5 +108,8 @@ public class GameScene extends Scene {
             overLay.draw(g2);
             gameOver.draw(g2);
         }
+    }
+    public static ArrayList<Bomb> getBombList() {
+        return bombList;
     }
 }

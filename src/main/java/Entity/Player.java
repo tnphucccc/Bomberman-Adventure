@@ -80,6 +80,7 @@ public class Player extends Entity {
             cCheck.checkTile(this);
             int objIndex = GameScene.cCheck.checkObject(this, true);
             pickUpObject(objIndex);
+            cCheck.checkBomb(GameScene.getBombList(), this);
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;

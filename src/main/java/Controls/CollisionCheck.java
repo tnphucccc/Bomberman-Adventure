@@ -5,9 +5,11 @@ import GUI.GameScene;
 import GUI.TileManager;
 import GUI.Window;
 import Variables.Constant;
-
+import Entity.Bomb;
 import java.awt.*;
+import java.util.ArrayList;
 
+import Entity.Player;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
 
@@ -146,4 +148,19 @@ public class CollisionCheck {
         }
         return index;
     }
+   //check if player hit bomb
+   public void checkBomb(ArrayList<Bomb> bombList,Player player) {
+        if(bombList != null){
+            for (int i = 0; i < bombList.size(); i++) {
+                if (bombList.get(i).solidArea.intersects(player.solidArea)) {
+                    player.collisionOn = true;
+                    
+                }
+            }
+        }
+    }
+        
+    
+        
+   
 }

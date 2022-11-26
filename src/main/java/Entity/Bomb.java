@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class Bomb {
+public class Bomb extends Entity {
     public static int bombSize = 5;
     KeyHandler keyH;
     boolean spacePressed = false;
@@ -20,10 +20,19 @@ public class Bomb {
 
     private String key = "";
     private int bombCounter = 0;
-
+    
+    
     //KeyHandler
+    
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
     }
 
     public void update(int x, int y) {
@@ -32,7 +41,6 @@ public class Bomb {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-
         //this.x = x;
         //this.y = y;
         if (bombCounter < bombSize) {
@@ -100,6 +108,18 @@ public class Bomb {
 
     public void setBombCounter(int bombCounter) {
         this.bombCounter = bombCounter;
+    }
+
+    @Override
+    public void setDefault() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void update(double dt) {
+        // TODO Auto-generated method stub
+        
     }
 }
 
