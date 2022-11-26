@@ -13,9 +13,8 @@ public class AssetSetter {
     }
 
     public void setMob() {
-        gameScene.mob[0] = new Mob(144 + 48, 224 + 48);
-        gameScene.mob[1] = new Mob(624 + 48, 32 + 48);
-
+        gameScene.mob[0] = new Mob(192, 272);
+        gameScene.mob[1] = new Mob(672, 70);
     }
 
     public void setItems() {

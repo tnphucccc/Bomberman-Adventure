@@ -59,58 +59,24 @@ public class Mob extends Entity {
 
     public void getMobImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-2.png")));
-            up3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-3.png")));
-            up4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-4.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-2.png")));
-            down3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-3.png")));
-            down4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-4.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-2.png")));
-            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-1.png")));
-            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-2.png")));
-            right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-1.png")));
-            right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-2.png")));
-            die1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die1.png")));
-            die2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die2.png")));
-            die3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die3.png")));
-            die4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die4.png")));
-            die5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die5.png")));
-            die6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die6.png")));
+            for (int i = 0; i < 4; i++) {
+                up[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobUp-" + (i + 1) + ".png")));
+                down[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDown-" + (i + 1) + ".png")));
+                left[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                right[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void draw(Graphics2D g2) {
-        BufferedImage img = null;
-        switch (direction) {
-            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
-        }
+        BufferedImage img = getEntityImage();
         g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
                 Constant.original_tile_size * Constant.scale, null);
-    }
-
-    private BufferedImage getBufferedImage(BufferedImage img1,
-                                           BufferedImage img2,
-                                           BufferedImage img3,
-                                           BufferedImage img4) {
-        if (spriteNum == 1) {
-            return img1;
-        } else if (spriteNum == 2) {
-            return img2;
-        } else if (spriteNum == 3) {
-            return img3;
-        } else if (spriteNum == 4) {
-            return img4;
-        }
-        return null;
     }
 }

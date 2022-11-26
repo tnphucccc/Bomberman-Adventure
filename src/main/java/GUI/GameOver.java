@@ -45,11 +45,7 @@ public class GameOver {
     }
 
     public void checkAlive(int state) {
-        if (state == 0) {
-            isAlive = false;
-        } else {
-            isAlive = true;
-        }
+        isAlive = state != 0;
     }
 
     public void update(double dt) {

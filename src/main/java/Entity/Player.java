@@ -40,28 +40,19 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up2.png")));
-            up3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up3.png")));
-            up4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_up4.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down2.png")));
-            down3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down3.png")));
-            down4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_down4.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left2.png")));
-            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left3.png")));
-            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_left4.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right2.png")));
-            right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right3.png")));
-            right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right4.png")));
-            die1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die1.png")));
-            die2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die2.png")));
-            die3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die3.png")));
-            die4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die4.png")));
-            die5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die5.png")));
-            die6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die6.png")));
+            for (int i = 0; i < 4; i++) {
+                up[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Player/player_up" + (i + 1) + ".png")));
+                down[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Player/player_down" + (i + 1) + ".png")));
+                left[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Player/player_left" + (i + 1) + ".png")));
+                right[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Player/player_right" + (i + 1) + ".png")));
+            }
+            for (int i = 0; i < 6; i++)
+                die[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Player/player_die" + (i + 1) + ".png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -130,17 +121,9 @@ public class Player extends Entity {
 
     @Override
     public void draw(Graphics2D g2) {
-        BufferedImage img = null;
-        //Image img1 = null;
-
-        switch (direction) {
-            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
-        }
+        BufferedImage img = getEntityImage();
         if (state == 0) {
-            img = getBufferedImage(die1, die2, die3, die4, die5, die6);
+            img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
             g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
             speed = 0;
@@ -150,53 +133,5 @@ public class Player extends Entity {
                     Constant.original_tile_size * Constant.scale, null);
             //if (img1 != null) img1.flush();
         }
-    }
-
-    private BufferedImage getBufferedImage(BufferedImage die1,
-                                           BufferedImage die2,
-                                           BufferedImage die3,
-                                           BufferedImage die4,
-                                           BufferedImage die5,
-                                           BufferedImage die6) {
-        switch (spriteNum) {
-            case 1 -> {
-                return die1;
-            }
-            case 2 -> {
-                return die2;
-            }
-            case 3 -> {
-                return die3;
-            }
-            case 4 -> {
-                return die4;
-            }
-            case 5 -> {
-                return die5;
-            }
-            case 6 -> {
-                return die6;
-            }
-        }
-        return null;
-    }
-
-    private BufferedImage getBufferedImage(BufferedImage img1,
-                                           BufferedImage img2,
-                                           BufferedImage img3,
-                                           BufferedImage img4) {
-        if (spriteNum == 1) {
-            return img1;
-        }
-        if (spriteNum == 2) {
-            return img2;
-        }
-        if (spriteNum == 3) {
-            return img3;
-        }
-        if (spriteNum == 4) {
-            return img4;
-        }
-        return null;
     }
 }
