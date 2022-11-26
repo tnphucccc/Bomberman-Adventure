@@ -6,11 +6,9 @@ import GUI.GameScene;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Objects;
 
 public class Player extends Entity {
@@ -58,6 +56,12 @@ public class Player extends Entity {
             right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right2.png")));
             right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right3.png")));
             right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right4.png")));
+            die1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die1.png")));
+            die2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die2.png")));
+            die3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die3.png")));
+            die4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die4.png")));
+            die5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die5.png")));
+            die6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die6.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +69,7 @@ public class Player extends Entity {
 
     @Override
     public void update(double dt) {
-        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+        if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";
             } else if (keyH.downPressed) {
@@ -97,6 +101,14 @@ public class Player extends Entity {
                     spriteNum = 1;
                 spriteCounter = 0;
             }
+        } else if (state == 0) {
+            spriteCounter++;
+            if (spriteCounter > 12) {
+                if (spriteNum != 6) {
+                    spriteNum++;
+                }
+                spriteCounter = 0;
+            }
         }
     }
 
@@ -104,14 +116,14 @@ public class Player extends Entity {
         if (i != 999) {
             String objName = GameScene.Object[i].name;
             switch (objName) {
-                case "BlastRadius":
+                case "BlastRadius" -> {
                     Bomb.bombSize += 1;
                     GameScene.Object[i] = null;
-                    break;
-                case "SpeedIncrease":
+                }
+                case "SpeedIncrease" -> {
                     speed += 1;
                     GameScene.Object[i] = null;
-                    break;
+                }
             }
         }
     }
@@ -119,7 +131,7 @@ public class Player extends Entity {
     @Override
     public void draw(Graphics2D g2) {
         BufferedImage img = null;
-        Image img1 = null;
+        //Image img1 = null;
 
         switch (direction) {
             case "up" -> img = getBufferedImage(up1, up2, up3, up4);
@@ -128,22 +140,45 @@ public class Player extends Entity {
             case "right" -> img = getBufferedImage(right1, right2, right3, right4);
         }
         if (state == 0) {
-            URL url = Objects.requireNonNull(getClass().getResource("/Player/player_die.gif"));
-            ImageIcon icon = new ImageIcon(url);
-            img1 = icon.getImage();
-            //img = getBufferedImage(die1, die2, die3, die4);
+            img = getBufferedImage(die1, die2, die3, die4, die5, die6);
+            g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                    Constant.original_tile_size * Constant.scale, null);
             speed = 0;
-        }
-        if (img1 == null) {
+        } else {
             //PLayer is alive
             g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
-        } else {
-            //PLayer die
-            g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
-                    Constant.original_tile_size * Constant.scale, null);
-//            Window.getWindow().changeState(0);
+            //if (img1 != null) img1.flush();
         }
+    }
+
+    private BufferedImage getBufferedImage(BufferedImage die1,
+                                           BufferedImage die2,
+                                           BufferedImage die3,
+                                           BufferedImage die4,
+                                           BufferedImage die5,
+                                           BufferedImage die6) {
+        switch (spriteNum) {
+            case 1 -> {
+                return die1;
+            }
+            case 2 -> {
+                return die2;
+            }
+            case 3 -> {
+                return die3;
+            }
+            case 4 -> {
+                return die4;
+            }
+            case 5 -> {
+                return die5;
+            }
+            case 6 -> {
+                return die6;
+            }
+        }
+        return null;
     }
 
     private BufferedImage getBufferedImage(BufferedImage img1,
