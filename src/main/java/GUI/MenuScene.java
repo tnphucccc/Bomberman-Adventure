@@ -65,8 +65,6 @@ public class MenuScene extends Scene {
         g.setColor(new Color(240, 235, 227));
         g.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
 
-        g.drawImage(title, (int) titleRect.x, (int) titleRect.y, (int) titleRect.width, (int) titleRect.height, null);
-        g.drawImage(playCurrentImage, (int) playRect.x, (int) playRect.y, (int) playRect.width, (int) playRect.height, null);
-        g.drawImage(exitCurrentImage, (int) exitRect.x, (int) exitRect.y, (int) exitRect.width, (int) exitRect.height, null);
+        GameOver.getOption(g, title, titleRect, playCurrentImage, playRect, exitCurrentImage, exitRect);
     }
 }
