@@ -20,7 +20,7 @@ public class Bomb extends Entity {
 
     private String key = "";
     private int bombCounter = 0;
-    
+    public boolean flag = false;
     
     //KeyHandler
     
@@ -29,8 +29,8 @@ public class Bomb extends Entity {
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 8;
-        //solidAreaDefaultX = solidArea.x;
-        //solidAreaDefaultY = solidArea.y;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
     }
