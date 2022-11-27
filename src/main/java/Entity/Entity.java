@@ -33,5 +33,13 @@ public abstract class Entity {
         this.InteractionBox.add(2, entity.y + entity.solidArea.y + entity.solidArea.height);//BottomY
         this.InteractionBox.add(3, entity.x + entity.solidArea.x);//Left
     }
+    //getter && setter for x y but in tile
+    public int getX() {
+        return ((x + 16) / 48) * 48;
+    }
+    public int getY(){
+        return ((y + 16) / 48) * 48;
+    }
+
 
 }
