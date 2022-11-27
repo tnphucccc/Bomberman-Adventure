@@ -154,29 +154,35 @@ public class CollisionCheck {
             for (int i = 0; i < bombList.size(); i++) {
                 bombList.get(i).setEntityInteractionBox(bombList.get(i));
                 player.setEntityInteractionBox(player);
-                Rectangle bombSolidBox = new Rectangle(bombList.get(i).solidArea.x,
-                        bombList.get(i).solidArea.y,
+                Rectangle bombSolidBox = new Rectangle(bombList.get(i).solidArea.x+bombList.get(i).getX(),
+                        bombList.get(i).solidArea.y+bombList.get(i).getY(),
                         bombList.get(i).solidArea.width,
                         bombList.get(i).solidArea.height);
-                Rectangle playerSolidBox = new Rectangle(player.solidArea.x,
-                        player.solidArea.y,
+                Rectangle playerSolidBox = new Rectangle(player.solidArea.x+player.x,
+                        player.solidArea.y+player.y,
                         player.solidArea.width,
                         player.solidArea.height);
-                boolean intersects = bombSolidBox.intersects(playerSolidBox);
-                if (intersects) {
+                boolean inter = bombSolidBox.intersects(playerSolidBox);
+                if(inter){
+                    //player.collisionOn = true;
+                    bombList.get(i).flag = true;
+                } 
+                if(bombList.get(i).flag == false && flag == true){
                     player.collisionOn = true;
-                    flag = true;
-                    System.out.println("hit");
-                    
-                } else {
-                    player.collisionOn = false;
+                    System.out.println(bombSolidBox);
+                    System.out.println(playerSolidBox);
+                    bombList.get(i).flag = false;
                 }
-            }
                 
                 
-            }
+            }       
+            
         }
     }
+    
+    
+}
+
         
     
         
