@@ -6,13 +6,13 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 
 ### Team Members
 
-| Order |          Name          | Student ID  |
-|:-----:|:----------------------:|:-----------:|
-|   1   |    Tran Nguyen Phuc    | ITCSIU21097 |
-|   2   | Nguyen Mach Khang Huy  | ITCSIU21072 |
-|   3   |    Nguyen Tuan Khoa    | ITCSIU21140 |
-|   4   | Nguyen Manh Viet Khoi  | ITCSIU21081 |
-|   5   |    Pham Nhat Quang     | ITCSIU21xxx |
+| Order |         Name          | Student ID  |
+|:-----:|:---------------------:|:-----------:|
+|   1   |   Tran Nguyen Phuc    | ITCSIU21097 |
+|   2   | Nguyen Mach Khang Huy | ITCSIU21072 |
+|   3   |   Nguyen Tuan Khoa    | ITCSIU21140 |
+|   4   | Nguyen Manh Viet Khoi | ITCSIU21081 |
+|   5   |     Pham Vu Quang     | ITITIU21096 |
 
 ### How to run
 
