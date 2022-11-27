@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import Entity.Player;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-
+    private boolean flag = false;
     public CollisionCheck() {
     }
 
@@ -152,10 +152,28 @@ public class CollisionCheck {
    public void checkBomb(ArrayList<Bomb> bombList,Player player) {
         if(bombList != null){
             for (int i = 0; i < bombList.size(); i++) {
-                if (bombList.get(i).solidArea.intersects(player.solidArea)) {
+                bombList.get(i).setEntityInteractionBox(bombList.get(i));
+                player.setEntityInteractionBox(player);
+                Rectangle bombSolidBox = new Rectangle(bombList.get(i).solidArea.x,
+                        bombList.get(i).solidArea.y,
+                        bombList.get(i).solidArea.width,
+                        bombList.get(i).solidArea.height);
+                Rectangle playerSolidBox = new Rectangle(player.solidArea.x,
+                        player.solidArea.y,
+                        player.solidArea.width,
+                        player.solidArea.height);
+                boolean intersects = bombSolidBox.intersects(playerSolidBox);
+                if (intersects) {
                     player.collisionOn = true;
+                    flag = true;
+                    System.out.println("hit");
                     
+                } else {
+                    player.collisionOn = false;
                 }
+            }
+                
+                
             }
         }
     }
@@ -163,4 +181,3 @@ public class CollisionCheck {
     
         
    
-}
