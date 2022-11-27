@@ -107,7 +107,7 @@ public class Player extends Entity {
         if (i != 999) {
             String objName = GameScene.Object[i].name;
             switch (objName) {
-                case "BlastRadius" -> {
+                case "ExtraBomb" -> {
                     Bomb.bombSize += 1;
                     GameScene.Object[i] = null;
                 }
