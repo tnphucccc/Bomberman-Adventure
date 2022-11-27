@@ -4,9 +4,9 @@ import Variables.Constant;
 
 import java.awt.*;
 
-public class OverLay {
-    OverLay() {
-        //OverLay
+public class Overlay {
+    Overlay() {
+        //Overlay
         //Draws the overlay
     }
 

@@ -16,7 +16,7 @@ public class GameScene extends Scene {
     public static SuperObject[] Object = new SuperObject[10];
     Pause pause;
     GameOver gameOver;
-    OverLay overLay;
+    Overlay overLay;
     Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
@@ -44,7 +44,7 @@ public class GameScene extends Scene {
 
         pause = new Pause(false, keyH);
         gameOver = new GameOver(mouseH);
-        overLay = new OverLay();
+        overLay = new Overlay();
     }
 
     @Override
@@ -70,9 +70,8 @@ public class GameScene extends Scene {
             bomb.update(player.x, player.y);
             bombList = bomb.getBombList();
 
-        } else {
-            // Do nothing
-        }
+        }  // Do nothing
+
         if (!gameOver.isAlive) {
             //Game over
             gameOver.update(dt);

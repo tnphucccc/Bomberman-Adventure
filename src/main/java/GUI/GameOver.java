@@ -45,11 +45,7 @@ public class GameOver {
     }
 
     public void checkAlive(int state) {
-        if (state == 0) {
-            isAlive = false;
-        } else {
-            isAlive = true;
-        }
+        isAlive = state != 0;
     }
 
     public void update(double dt) {
@@ -79,6 +75,10 @@ public class GameOver {
 //
 //        Window.getWindow().addLayer(grayLayer);
 
+        getOption(g2, gameOver, gameOverRect, playAgainCurrentImage, playAgainRect, exitCurrentImage, exitRect);
+    }
+
+    static void getOption(Graphics g2, BufferedImage gameOver, Rect gameOverRect, BufferedImage playAgainCurrentImage, Rect playAgainRect, BufferedImage exitCurrentImage, Rect exitRect) {
         g2.drawImage(gameOver, (int) gameOverRect.x, (int) gameOverRect.y, (int) gameOverRect.width, (int) gameOverRect.height, null);
         g2.drawImage(playAgainCurrentImage, (int) playAgainRect.x, (int) playAgainRect.y, (int) playAgainRect.width, (int) playAgainRect.height, null);
         g2.drawImage(exitCurrentImage, (int) exitRect.x, (int) exitRect.y, (int) exitRect.width, (int) exitRect.height, null);

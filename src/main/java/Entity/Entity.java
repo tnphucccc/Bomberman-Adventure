@@ -1,20 +1,14 @@
 package Entity;
 
-import Variables.Constant;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public abstract class Entity {
     public int x, y, speed, state;
-
-    public BufferedImage up1, up2, up3, up4,
-            down1, down2, down3, down4,
-            left1, left2, left3, left4,
-            right1, right2, right3, right4,
-            die1, die2, die3, die4, die5, die6;
-
+    public BufferedImage[] up = new BufferedImage[4], down = new BufferedImage[4],
+            left = new BufferedImage[4], right = new BufferedImage[4],
+            die = new BufferedImage[6];
     public String direction;
     public int spriteCounter = 0, spriteNum = 1;
     public Rectangle solidArea;
@@ -27,6 +21,7 @@ public abstract class Entity {
 
     public abstract void update(double dt);
 
+    public abstract void draw(Graphics2D g2);
 
     public void setEntityInteractionBox(Entity entity) {
         this.InteractionBox.add(0, entity.y + entity.solidArea.y);//TopY
@@ -34,28 +29,59 @@ public abstract class Entity {
         this.InteractionBox.add(2, entity.y + entity.solidArea.y + entity.solidArea.height);//BottomY
         this.InteractionBox.add(3, entity.x + entity.solidArea.x);//Left
     }
-    public void draw(Graphics2D g2) {
+
+    public BufferedImage getEntityImage() {
         BufferedImage img = null;
         switch (direction) {
-            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
+            case "up" -> img = getBufferedImage(up[0], up[1], up[2], up[3]);
+            case "down" -> img = getBufferedImage(down[0], down[1], down[2], down[3]);
+            case "left" -> img = getBufferedImage(left[0], left[1], left[2], left[3]);
+            case "right" -> img = getBufferedImage(right[0], right[1], right[2], right[3]);
         }
-        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale, null);
+        return img;
     }
 
-    private BufferedImage getBufferedImage(BufferedImage img1,
-                                           BufferedImage img2,
-                                           BufferedImage img3,
-                                           BufferedImage img4) {
+    public BufferedImage getBufferedImage(BufferedImage img1, BufferedImage img2,
+                                          BufferedImage img3, BufferedImage img4) {
         switch (spriteNum) {
-            case 1 -> {return img1;}
-            case 2 -> {return img2;}
-            case 3 -> {return img3;}
-            case 4 -> {return img4;}
-            default -> {return null;}
+            case 1 -> {
+                return img1;
+            }
+            case 2 -> {
+                return img2;
+            }
+            case 3 -> {
+                return img3;
+            }
+            case 4 -> {
+                return img4;
+            }
         }
+        return null;
+    }
+
+    public BufferedImage getBufferedImage(BufferedImage img1, BufferedImage img2, BufferedImage img3,
+                                          BufferedImage img4, BufferedImage img5, BufferedImage img6) {
+        switch (spriteNum) {
+            case 1 -> {
+                return img1;
+            }
+            case 2 -> {
+                return img2;
+            }
+            case 3 -> {
+                return img3;
+            }
+            case 4 -> {
+                return img4;
+            }
+            case 5 -> {
+                return img5;
+            }
+            case 6 -> {
+                return img6;
+            }
+        }
+        return null;
     }
 }

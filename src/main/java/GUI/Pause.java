@@ -33,10 +33,10 @@ public class Pause {
         if (keyH.pausePressed) {
             flag = true;
         }
-        if (!keyH.pausePressed && flag == true) {
+        if (!keyH.pausePressed && flag) {
             status = (status + 1) % 2;
             this.isPaused = !this.isPaused; //toggle
-            flag = !flag;
+            flag = false;
         }
     }
 

@@ -22,7 +22,7 @@ public class Mob extends Entity {
         solidArea.x = 4;
         solidArea.y = 16;
         solidArea.width = 36;
-        solidArea.height = 36;
+        solidArea.height = 32;
         setDefault();
         getMobImage();
     }
@@ -59,32 +59,24 @@ public class Mob extends Entity {
 
     public void getMobImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-2.png")));
-            up3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-3.png")));
-            up4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobUp-4.png")));
-            down1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-1.png")));
-            down2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-2.png")));
-            down3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-3.png")));
-            down4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobDown-4.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-2.png")));
-            left3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-1.png")));
-            left4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobLeft-2.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-2.png")));
-            right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-1.png")));
-            right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Mob/MobRight-2.png")));
-            die1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die1.png")));
-            die2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die2.png")));
-            die3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die3.png")));
-            die4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die4.png")));
-            die5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die5.png")));
-            die6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_die6.png")));
+            for (int i = 0; i < 4; i++) {
+                up[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobUp-" + (i + 1) + ".png")));
+                down[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDown-" + (i + 1) + ".png")));
+                left[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                right[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
+    public void draw(Graphics2D g2) {
+        BufferedImage img = getEntityImage();
+        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale, null);
+    }
 }
