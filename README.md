@@ -35,7 +35,7 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 |   2   | Nguyen Mach Khang Huy |          Items, Interaction          |      20      |
 |   3   |   Nguyen Tuan Khoa    |          Entities, Controls          |      20      |
 |   4   | Nguyen Manh Viet Khoi |            GUI, Entities             |      20      |
-|   5   |    Pham Nhat Quang    |              GUI, Maps               |      20      |
+|   5   |     Pham Vu Quang     |              GUI, Maps               |      20      |
 
 ## Game
 
