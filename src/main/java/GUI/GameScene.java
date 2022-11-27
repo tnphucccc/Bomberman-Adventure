@@ -60,6 +60,10 @@ public class GameScene extends Scene {
                 if (value != null) {
                     value.update(dt);
                     cCheck.checkMob(player, value);
+                    if (player.state==0){
+                        value.speed=0;
+                    }
+
                 }
             }
 

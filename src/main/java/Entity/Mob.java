@@ -86,31 +86,5 @@ public class Mob extends Entity {
         }
     }
 
-    public void draw(Graphics2D g2) {
-        BufferedImage img = null;
-        switch (direction) {
-            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
-        }
-        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale, null);
-    }
 
-    private BufferedImage getBufferedImage(BufferedImage img1,
-                                           BufferedImage img2,
-                                           BufferedImage img3,
-                                           BufferedImage img4) {
-        if (spriteNum == 1) {
-            return img1;
-        } else if (spriteNum == 2) {
-            return img2;
-        } else if (spriteNum == 3) {
-            return img3;
-        } else if (spriteNum == 4) {
-            return img4;
-        }
-        return null;
-    }
 }

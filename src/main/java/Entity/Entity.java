@@ -1,5 +1,7 @@
 package Entity;
 
+import Variables.Constant;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -25,7 +27,6 @@ public abstract class Entity {
 
     public abstract void update(double dt);
 
-    public abstract void draw(Graphics2D g2);
 
     public void setEntityInteractionBox(Entity entity) {
         this.InteractionBox.add(0, entity.y + entity.solidArea.y);//TopY
@@ -33,5 +34,28 @@ public abstract class Entity {
         this.InteractionBox.add(2, entity.y + entity.solidArea.y + entity.solidArea.height);//BottomY
         this.InteractionBox.add(3, entity.x + entity.solidArea.x);//Left
     }
+    public void draw(Graphics2D g2) {
+        BufferedImage img = null;
+        switch (direction) {
+            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
+            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
+            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
+            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
+        }
+        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
+                Constant.original_tile_size * Constant.scale, null);
+    }
 
+    private BufferedImage getBufferedImage(BufferedImage img1,
+                                           BufferedImage img2,
+                                           BufferedImage img3,
+                                           BufferedImage img4) {
+        switch (spriteNum) {
+            case 1 -> {return img1;}
+            case 2 -> {return img2;}
+            case 3 -> {return img3;}
+            case 4 -> {return img4;}
+            default -> {return null;}
+        }
+    }
 }

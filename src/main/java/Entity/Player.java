@@ -8,7 +8,6 @@ import Variables.Constant;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -58,6 +57,7 @@ public class Player extends Entity {
             right2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right2.png")));
             right3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right3.png")));
             right4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/player_right4.png")));
+            die1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Player/Player_die2.gif")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,7 +88,6 @@ public class Player extends Entity {
                     case "right" -> x += speed;
                 }
             }
-
             spriteCounter++;
             if (spriteCounter > 8) {
                 if (spriteNum != 4) {
@@ -104,64 +103,34 @@ public class Player extends Entity {
         if (i != 999) {
             String objName = GameScene.Object[i].name;
             switch (objName) {
-                case "BlastRadius":
+                case "BlastRadius" -> {
                     Bomb.bombSize += 1;
                     GameScene.Object[i] = null;
-                    break;
-                case "SpeedIncrease":
+                }
+                case "SpeedIncrease" -> {
                     speed += 1;
                     GameScene.Object[i] = null;
-                    break;
+                }
             }
         }
     }
 
     @Override
     public void draw(Graphics2D g2) {
-        BufferedImage img = null;
-        Image img1 = null;
+        Image img1  = null;
 
-        switch (direction) {
-            case "up" -> img = getBufferedImage(up1, up2, up3, up4);
-            case "down" -> img = getBufferedImage(down1, down2, down3, down4);
-            case "left" -> img = getBufferedImage(left1, left2, left3, left4);
-            case "right" -> img = getBufferedImage(right1, right2, right3, right4);
-        }
         if (state == 0) {
-            URL url = Objects.requireNonNull(getClass().getResource("/Player/player_die.gif"));
+            URL url = Objects.requireNonNull(getClass().getResource("/Player/Player_die2.gif"));
             ImageIcon icon = new ImageIcon(url);
             img1 = icon.getImage();
             //img = getBufferedImage(die1, die2, die3, die4);
             speed = 0;
         }
-        if (img1 == null) {
+        if (img1 != null) {
             //PLayer is alive
-            g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                    Constant.original_tile_size * Constant.scale, null);
-        } else {
-            //PLayer die
             g2.drawImage(img1, x, y, Constant.original_tile_size * Constant.scale,
                     Constant.original_tile_size * Constant.scale, null);
-//            Window.getWindow().changeState(0);
         }
     }
 
-    private BufferedImage getBufferedImage(BufferedImage img1,
-                                           BufferedImage img2,
-                                           BufferedImage img3,
-                                           BufferedImage img4) {
-        if (spriteNum == 1) {
-            return img1;
-        }
-        if (spriteNum == 2) {
-            return img2;
-        }
-        if (spriteNum == 3) {
-            return img3;
-        }
-        if (spriteNum == 4) {
-            return img4;
-        }
-        return null;
-    }
 }
