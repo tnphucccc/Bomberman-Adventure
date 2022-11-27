@@ -1,7 +1,7 @@
 package GUI;
 
 import Entity.Mob;
-import Objects.OBJ_BlastRadius;
+import Objects.OBJ_ExtraBomb;
 import Objects.OBJ_SpeedIncrease;
 import Variables.Constant;
 
@@ -18,7 +18,7 @@ public class AssetSetter {
     }
 
     public void setItems() {
-        GameScene.Object[0] = new OBJ_BlastRadius();
+        GameScene.Object[0] = new OBJ_ExtraBomb();
         GameScene.Object[0].x = 6 * Constant.tileSize;
         GameScene.Object[0].y = 6 * Constant.tileSize;
         GameScene.Object[1] = new OBJ_SpeedIncrease();
