@@ -13,17 +13,16 @@ public class AssetSetter {
     }
 
     public void setMob() {
-        gameScene.mob[0] = new Mob(144 + 48, 224 + 48);
-        gameScene.mob[1] = new Mob(624 + 48, 32 + 48);
-
+        gameScene.mob[0] = new Mob(192, 272);
+        gameScene.mob[1] = new Mob(672, 70);
     }
 
     public void setItems() {
-        gameScene.Object[0] = new OBJ_BlastRadius();
-        gameScene.Object[0].x = 6 * Constant.tileSize;
-        gameScene.Object[0].y = 6 * Constant.tileSize;
-        gameScene.Object[1] = new OBJ_SpeedIncrease();
-        gameScene.Object[1].x = 8 * Constant.tileSize;
-        gameScene.Object[1].y = 2 * Constant.tileSize;
+        GameScene.Object[0] = new OBJ_BlastRadius();
+        GameScene.Object[0].x = 6 * Constant.tileSize;
+        GameScene.Object[0].y = 6 * Constant.tileSize;
+        GameScene.Object[1] = new OBJ_SpeedIncrease();
+        GameScene.Object[1].x = 8 * Constant.tileSize;
+        GameScene.Object[1].y = 2 * Constant.tileSize;
     }
 }
