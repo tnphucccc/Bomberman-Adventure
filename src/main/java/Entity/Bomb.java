@@ -54,8 +54,8 @@ public class Bomb {
 
     // check if the tile is available
     public boolean checkAvailable(int x, int y) {
-        for (int i = 0; i < bombList.size(); i++) {
-            if (bombList.get(i).x == x && bombList.get(i).y == y) {
+        for (Bomb bomb : bombList) {
+            if (bomb.x == x && bomb.y == y) {
                 return false;
             }
         }
@@ -66,7 +66,6 @@ public class Bomb {
     public void draw(Graphics2D g2) {
         if (bombList != null) {
             //Image img = null;
-
             if (key.equals("space")) {
                 //load Bomb.gif from resources
                 URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
