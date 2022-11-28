@@ -19,10 +19,10 @@ public class Window extends JFrame implements Runnable {
     KeyHandler keyH = new KeyHandler();
     MouseHandler mouseH = new MouseHandler();
 
-    public Window(int width, int height, String title) {
+    public Window(int width, int height, String TITLE) {
         //Window handler
         setSize(width, height);
-        setTitle(title);
+        setTitle(TITLE);
         setIconImage(new ImageIcon("src\\main\\resources\\Logo-1.png").getImage());
 
         setResizable(false);
@@ -44,7 +44,7 @@ public class Window extends JFrame implements Runnable {
 
     public static Window getWindow() {
         if (Window.window == null) {
-            Window.window = new Window(Constant.WIDTH, Constant.HEIGHT, Constant.title);
+            Window.window = new Window(Constant.WIDTH, Constant.HEIGHT, Constant.TITLE);
         }
         return Window.window;
     }

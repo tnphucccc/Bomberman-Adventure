@@ -61,9 +61,9 @@ public class Mob extends Entity {
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobUp-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
                 down[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobDown-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
                 left[i] = ImageIO.read(Objects.requireNonNull(getClass()
                         .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
                 right[i] = ImageIO.read(Objects.requireNonNull(getClass()
@@ -76,7 +76,7 @@ public class Mob extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale, null);
+        g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
     }
 }
