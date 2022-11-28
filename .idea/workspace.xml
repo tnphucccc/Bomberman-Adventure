@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="daf2e359-0c4a-4a24-b42a-575edbd01702" name="Changes" comment="Fix minor bugs">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controls/SoundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controls/SoundManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Mob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/Mob.java" afterDir="false" />
+    <list default="true" id="be8b21fd-9d89-4876-a98e-1079d3efa9a0" name="Changes" comment="Fix minor bugs">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +20,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/Entity/Entity.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -39,8 +41,6 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Workspace/Java/OOP_BOMBERMAN_GAME-master&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -48,43 +48,17 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main.Main" />
-      <module name="Bomberman" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Main.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="daf2e359-0c4a-4a24-b42a-575edbd01702" name="Changes" comment="Fix bugs" />
+      <changelist id="be8b21fd-9d89-4876-a98e-1079d3efa9a0" name="Changes" comment="Fix bugs" />
       <created>1668955148670</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668955148670</updated>
-      <workItem from="1669172909532" duration="1383000" />
-      <workItem from="1669197101505" duration="5332000" />
-      <workItem from="1669357906025" duration="4438000" />
-      <workItem from="1669365471491" duration="22000" />
-      <workItem from="1669449721414" duration="5398000" />
-      <workItem from="1669475593647" duration="7442000" />
-      <workItem from="1669518012960" duration="9604000" />
-      <workItem from="1669562886981" duration="2899000" />
-      <workItem from="1669617625488" duration="690000" />
+      <workItem from="1669362293885" duration="2982000" />
+      <workItem from="1669562712493" duration="2387000" />
+      <workItem from="1669616417659" duration="1033000" />
     </task>
     <task id="LOCAL-00001" summary="Fix bugs">
       <created>1669114490402</created>
@@ -93,105 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669114490402</updated>
     </task>
-    <task id="LOCAL-00002" summary="Update gitignore">
-      <created>1669173861529</created>
+    <task id="LOCAL-00002" summary="h">
+      <created>1669563891961</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1669173861529</updated>
+      <updated>1669563891961</updated>
     </task>
-    <task id="LOCAL-00003" summary="Update gitignore">
-      <created>1669174004574</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1669174004574</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Update image">
-      <created>1669200437051</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1669200437051</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Update Player die animation">
-      <created>1669454145183</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1669454145183</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Optimize player and mob draw, change mob's sprite, fix typo, shortened code">
-      <created>1669486165274</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1669486165274</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Optimize player and mob draw, change mob's sprite, fix typo, shortened code">
-      <created>1669486216044</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1669486216044</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Refactor duplicated lines, fix minor bugs">
-      <created>1669486487739</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1669486487739</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Update README.md">
-      <created>1669524506330</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1669524506330</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Change Mob Image">
-      <created>1669526870674</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1669526870674</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Item ExtraBomb instead of Blast Radius">
-      <created>1669527086873</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1669527086873</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Update README.md">
-      <created>1669527364577</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1669527364577</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Update README.md">
-      <created>1669527387362</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1669527387362</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Update README.md">
-      <created>1669532329216</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1669532329216</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Fix minor bugs">
-      <created>1669533236592</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1669533236592</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,16 +99,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix bugs" />
-    <MESSAGE value="Update gitignore" />
-    <MESSAGE value="Update image" />
-    <MESSAGE value="Update Player die animation" />
-    <MESSAGE value="Optimize player and mob draw, change mob's sprite, fix typo, shortened code" />
-    <MESSAGE value="Refactor duplicated lines, fix minor bugs" />
-    <MESSAGE value="Change Mob Image" />
-    <MESSAGE value="Item ExtraBomb instead of Blast Radius" />
-    <MESSAGE value="Update README.md" />
-    <MESSAGE value="Fix minor bugs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix minor bugs" />
+    <MESSAGE value="h" />
+    <option name="LAST_COMMIT_MESSAGE" value="h" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Bomberman$Main.ic" NAME="Main Coverage Results" MODIFIED="1669113751866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
