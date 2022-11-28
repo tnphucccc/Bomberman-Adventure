@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class MenuScene extends Scene {
-    public BufferedImage title, play, playPressed, exit, exitPressed;
+    public BufferedImage TITLE, play, playPressed, exit, exitPressed;
     public BufferedImage playCurrentImage, exitCurrentImage;
 
     public Rect playRect, exitRect, titleRect;
@@ -26,7 +26,7 @@ public class MenuScene extends Scene {
             exitPressed = spriteSheet1.getSubimage(208, 69, 175, 53);
 
             BufferedImage spriteSheet2 = ImageIO.read(new File("src/main/resources/Menu/Game_Title.png"));
-            title = spriteSheet2.getSubimage(0, 0, 463, 55);
+            TITLE = spriteSheet2.getSubimage(0, 0, 463, 55);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,6 +65,6 @@ public class MenuScene extends Scene {
         g.setColor(new Color(240, 235, 227));
         g.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
 
-        GameOver.getOption(g, title, titleRect, playCurrentImage, playRect, exitCurrentImage, exitRect);
+        GameOver.getOption(g, TITLE, titleRect, playCurrentImage, playRect, exitCurrentImage, exitRect);
     }
 }

@@ -76,7 +76,7 @@ public class Mob extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                Constant.original_tile_size * Constant.scale, null);
+        g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
     }
 }
