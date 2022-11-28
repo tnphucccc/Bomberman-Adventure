@@ -10,5 +10,7 @@
 .project
 .settings/
 target/
-# Ignore .idea folder
-.idea/
+# Ignore shelf folder and inspectionProfiles folder
+/.idea/shelf/
+/.idea/inspectionProfiles/
+/.idea/workspace.xml

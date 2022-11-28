@@ -60,6 +60,10 @@ public class GameScene extends Scene {
                 if (value != null) {
                     value.update(dt);
                     cCheck.checkMob(player, value);
+                    if (player.state==0){
+                        value.speed=0;
+                    }
+
                 }
             }
 
@@ -77,7 +81,6 @@ public class GameScene extends Scene {
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
         tileM.draw(g2);
         player.draw(g2);
 

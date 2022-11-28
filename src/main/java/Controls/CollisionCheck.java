@@ -78,6 +78,7 @@ public class CollisionCheck {
         if (intersects) {
             entity.collisionOn = true;
             entity.state = 0;
+            entity.speed = 0;
         }
     }
 
