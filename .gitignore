@@ -11,6 +11,6 @@
 .settings/
 target/
 # Ignore shelf folder and inspectionProfiles folder
-/shelf/*
-/inspectionProfiles/*
+/.idea/shelf/
+/.idea/inspectionProfiles/
 /.idea/workspace.xml
