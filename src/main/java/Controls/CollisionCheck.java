@@ -163,15 +163,16 @@ public class CollisionCheck {
                         player.solidArea.width,
                         player.solidArea.height);
                 boolean inter = bombSolidBox.intersects(playerSolidBox);
-                if(inter){
+                if (inter) {
                     //player.collisionOn = true;
-                    bombList.get(i).flag = true;
+                    flag = true;
+                    //player.state = 0;
+
                 } 
-                if(bombList.get(i).flag == false && flag == true){
-                    player.collisionOn = true;
-                    System.out.println(bombSolidBox);
-                    System.out.println(playerSolidBox);
-                    bombList.get(i).flag = false;
+                if(!inter && flag){
+                    //player.state = 0;
+                    flag = false;
+                    System.out.println("Hit");
                 }
                 
                 
