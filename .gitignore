@@ -13,4 +13,4 @@ target/
 # Ignore shelf folder and inspectionProfiles folder
 /shelf/*
 /inspectionProfiles/*
-/workspace.xml
+/.idea/workspace.xml
