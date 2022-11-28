@@ -7,10 +7,7 @@ import java.net.URL;
 
 public class SoundManager extends JFrame {
     private String soundPath;
-    private Clip just_died;
-    private Clip put_bomb;
-    private Clip bomb_explode;
-    private Clip get_item;
+    private Clip just_died, put_bomb, bomb_explode, get_item;
 
     public SoundManager(String name, String sound) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
