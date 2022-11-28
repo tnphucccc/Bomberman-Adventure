@@ -66,6 +66,7 @@ public class Bomb {
     public void draw(Graphics2D g2) {
         if (bombList != null) {
             //Image img = null;
+
             if (key.equals("space")) {
                 //load Bomb.gif from resources
                 URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));

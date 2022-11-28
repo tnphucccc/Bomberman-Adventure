@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be8b21fd-9d89-4876-a98e-1079d3efa9a0" name="Changes" comment="h">
+    <list default="true" id="be8b21fd-9d89-4876-a98e-1079d3efa9a0" name="Changes" comment="Optimize code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Mob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/Mob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +60,7 @@
       <updated>1668955148670</updated>
       <workItem from="1669362293885" duration="2982000" />
       <workItem from="1669562712493" duration="2387000" />
-      <workItem from="1669616417659" duration="1033000" />
+      <workItem from="1669616417659" duration="3379000" />
     </task>
     <task id="LOCAL-00001" summary="Fix bugs">
       <created>1669114490402</created>
@@ -74,7 +76,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669563891961</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Optimize code">
+      <created>1669617479466</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1669617479466</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,7 +109,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix bugs" />
     <MESSAGE value="h" />
-    <option name="LAST_COMMIT_MESSAGE" value="h" />
+    <MESSAGE value="Optimize code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Optimize code" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Bomberman$Main.ic" NAME="Main Coverage Results" MODIFIED="1669113751866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
