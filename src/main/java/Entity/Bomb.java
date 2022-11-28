@@ -72,8 +72,8 @@ public class Bomb {
                 ImageIcon icon = new ImageIcon(url);
                 Image img = icon.getImage();
 
-                g2.drawImage(img, this.x, this.y, Constant.original_tile_size * Constant.scale,
-                        Constant.original_tile_size * Constant.scale, null);
+                g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             }
         }
     }
