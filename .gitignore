@@ -11,6 +11,4 @@
 .settings/
 target/
 # Ignore .idea folder
-.idea/
-*.xml
-!pom.xml
+/workspace.xml
