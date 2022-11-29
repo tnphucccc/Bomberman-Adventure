@@ -15,7 +15,8 @@ public class Bomb extends Entity {
     KeyHandler keyH;
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
-
+    private long timeStart = 0;
+    private int timeElapsed = 3000;
     private int x, y;
 
     private String key = "";
@@ -27,8 +28,8 @@ public class Bomb extends Entity {
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
-        solidArea.x = 8;
-        solidArea.y = 8;
+        solidArea.x = 0;
+        solidArea.y = 0;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
@@ -60,6 +61,8 @@ public class Bomb extends Entity {
                 }
             }
         }
+        timeStart= System.nanoTime();
+        System.out.println(timeStart);
     }
 
     // check if the tile is available
