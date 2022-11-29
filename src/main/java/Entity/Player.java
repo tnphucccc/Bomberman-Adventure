@@ -20,7 +20,7 @@ public class Player extends Entity {
         this.keyH = keyH;
         solidArea = new Rectangle();
         solidArea.x = 8;
-        solidArea.y = 8;
+        solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
