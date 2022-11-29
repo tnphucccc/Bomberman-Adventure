@@ -5,12 +5,14 @@ import GUI.GameScene;
 import GUI.TileManager;
 import GUI.Window;
 import Variables.Constant;
-
+import Entity.Bomb;
 import java.awt.*;
+import java.util.ArrayList;
 
+import Entity.Player;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-
+    private boolean flag = false;
     public CollisionCheck() {
     }
 
@@ -147,4 +149,70 @@ public class CollisionCheck {
         }
         return index;
     }
+    public Rectangle check(int x, int y, int width, int height) {
+        return new Rectangle(x,y,width,height);
+    }
+   //check if player hit bomb
+   public void checkBomb(ArrayList<Bomb> bombList,Entity player) {
+        if(bombList != null){
+            for (int i = 0; i < bombList.size(); i++) {
+                
+                bombList.get(i).setEntityInteractionBox(bombList.get(i));
+                player.setEntityInteractionBox(player);
+                Rectangle bombSolidBox = new Rectangle(bombList.get(i).solidArea.x+bombList.get(i).getX(),
+                        bombList.get(i).solidArea.y+bombList.get(i).getY(),
+                        bombList.get(i).solidArea.width,
+                        bombList.get(i).solidArea.height);
+                Rectangle playerSolidBox = new Rectangle(player.x,
+                        player.y,
+                        player.solidArea.width,
+                        player.solidArea.height);
+                boolean inter = bombSolidBox.intersects(playerSolidBox);
+                if(!inter){
+                    switch(player.direction){
+                        case "up" -> {
+                            Rectangle playerNextMove = check(player.x,player.y-player.speed,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("up");
+                            }
+                        }
+                        case "down" -> {
+                            Rectangle playerNextMove = check(player.x,player.y+player.speed,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("down");
+                            }
+                        }
+                        case "left" -> {
+                            Rectangle playerNextMove = check(player.x-player.speed,player.y,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("left");
+                            }
+                        }
+                        case "right" -> {
+                            Rectangle playerNextMove = check(player.x+player.speed,player.y,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("right");
+                            }
+                        }
+                        
+                    }
+                }
+                
+                
+                
+            }       
+            
+        }
+    }
+    
+    
 }
+
+        
+    
+        
+   

@@ -75,6 +75,9 @@ public class Player extends Entity {
             cCheck.checkTile(this);
             int objIndex = GameScene.cCheck.checkObject(this, true);
             pickUpObject(objIndex);
+            cCheck.checkBomb(GameScene.getBombList(), this);
+            // player can't go through if there is a bomb
+            
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;
@@ -83,7 +86,7 @@ public class Player extends Entity {
                     case "right" -> x += speed;
                 }
             }
-
+            
             spriteCounter++;
             if (spriteCounter > 8) {
                 if (spriteNum != 4) {

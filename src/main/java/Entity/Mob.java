@@ -2,7 +2,7 @@ package Entity;
 
 import Controls.CollisionCheck;
 import Variables.Constant;
-
+import GUI.GameScene;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -36,7 +36,7 @@ public class Mob extends Entity {
     public void update(double dt) {
         collisionOn = false;
         cCheck.checkTile(this);
-
+        cCheck.checkBomb(GameScene.getBombList(), this);
         if (!collisionOn) {
             switch (direction) {
                 case "up" -> y -= speed;
