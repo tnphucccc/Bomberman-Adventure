@@ -16,7 +16,7 @@ public class GameScene extends Scene {
     public static SuperObject[] Object = new SuperObject[10];
     Pause pause;
     GameOver gameOver;
-    OverLay overLay;
+    Overlay overLay;
     Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
@@ -44,7 +44,7 @@ public class GameScene extends Scene {
 
         pause = new Pause(false, keyH);
         gameOver = new GameOver(mouseH);
-        overLay = new OverLay();
+        overLay = new Overlay();
     }
 
     @Override
@@ -60,6 +60,10 @@ public class GameScene extends Scene {
                 if (value != null) {
                     value.update(dt);
                     cCheck.checkMob(player, value);
+                    if (player.state==0){
+                        value.speed=0;
+                    }
+
                 }
             }
 
@@ -67,9 +71,8 @@ public class GameScene extends Scene {
             bombList = bomb.getBombList();
             cCheck.checkBomb(GameScene.getBombList(), player);
 
-        } else {
-            // Do nothing
-        }
+        }  // Do nothing
+
         if (!gameOver.isAlive) {
             //Game over
             gameOver.update(dt);
@@ -79,7 +82,6 @@ public class GameScene extends Scene {
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
         tileM.draw(g2);
         player.draw(g2);
 
