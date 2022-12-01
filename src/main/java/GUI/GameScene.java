@@ -22,7 +22,7 @@ public class GameScene extends Scene {
     MouseHandler mouseH;
     Player player;
     Bomb bomb;
-    ArrayList<Bomb> bombList;
+    static ArrayList<Bomb> bombList;
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
@@ -69,6 +69,7 @@ public class GameScene extends Scene {
 
             bomb.update(player.x, player.y);
             bombList = bomb.getBombList();
+            cCheck.checkBomb(GameScene.getBombList(), player);
 
         }  // Do nothing
 
@@ -84,6 +85,12 @@ public class GameScene extends Scene {
         tileM.draw(g2);
         player.draw(g2);
 
+        if (bombList != null) {
+            for (Bomb b : bombList) {
+                b.draw(g2);
+            }
+        }
+
         for (SuperObject superObject : Object) {
             if (superObject != null) {
                 superObject.draw(g2);
@@ -94,11 +101,7 @@ public class GameScene extends Scene {
                 value.draw(g2);
             }
         }
-        if (bombList != null) {
-            for (Bomb b : bombList) {
-                b.draw(g2);
-            }
-        }
+        
 
         //Draw if the game is paused
         if (pause.isPaused) {
@@ -109,5 +112,8 @@ public class GameScene extends Scene {
             overLay.draw(g2);
             gameOver.draw(g2);
         }
+    }
+    public static ArrayList<Bomb> getBombList() {
+        return bombList;
     }
 }

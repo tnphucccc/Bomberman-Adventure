@@ -32,8 +32,8 @@ public class Player extends Entity {
 
     @Override
     public void setDefault() {
-        x = 48 + Constant.tileSize;
-        y = 32 + Constant.tileSize;
+        x = 48 + Constant.TILE_SIZE;
+        y = 32 + Constant.TILE_SIZE;
         speed = 2;
         direction = "down";
     }
@@ -75,6 +75,9 @@ public class Player extends Entity {
             cCheck.checkTile(this);
             int objIndex = GameScene.cCheck.checkObject(this, true);
             pickUpObject(objIndex);
+            cCheck.checkBomb(GameScene.getBombList(), this);
+            // player can't go through if there is a bomb
+            
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;
@@ -83,7 +86,7 @@ public class Player extends Entity {
                     case "right" -> x += speed;
                 }
             }
-
+            
             spriteCounter++;
             if (spriteCounter > 8) {
                 if (spriteNum != 4) {
@@ -124,13 +127,13 @@ public class Player extends Entity {
         BufferedImage img = getEntityImage();
         if (state == 0) {
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                    Constant.original_tile_size * Constant.scale, null);
+            g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             speed = 0;
         } else {
             //PLayer is alive
-            g2.drawImage(img, x, y, Constant.original_tile_size * Constant.scale,
-                    Constant.original_tile_size * Constant.scale, null);
+            g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             //if (img1 != null) img1.flush();
         }
     }

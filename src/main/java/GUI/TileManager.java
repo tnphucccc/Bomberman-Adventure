@@ -16,7 +16,7 @@ public class TileManager {
 
     public TileManager() {
         tiles = new Tile[10];
-        mapTileNum = new int[Constant.maxScreenRow][Constant.maxScreenCol];
+        mapTileNum = new int[Constant.MAX_SCREEN_ROW][Constant.MAX_SCREEN_COL];
         getTileImage();
         loadMap("/Maps/Map01.txt");
     }
@@ -50,15 +50,15 @@ public class TileManager {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0, row = 0;
-            while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
+            while (col < Constant.MAX_SCREEN_COL && row < Constant.MAX_SCREEN_ROW) {
                 String line = br.readLine();
-                while (col < Constant.maxScreenCol) {
+                while (col < Constant.MAX_SCREEN_COL) {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[row][col] = num;
                     col++;
                 }
-                if (col == Constant.maxScreenCol) {
+                if (col == Constant.MAX_SCREEN_COL) {
                     col = 0;
                     row++;
                 }
@@ -72,18 +72,18 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int col = 0, row = 0, x = 0, y = 0;
 
-        while (col < Constant.maxScreenCol && row < Constant.maxScreenRow) {
+        while (col < Constant.MAX_SCREEN_COL && row < Constant.MAX_SCREEN_ROW) {
             int tileNum = mapTileNum[row][col];
             g2.drawImage(tiles[tileNum].image, x, y,
-                    Constant.tileSize, Constant.tileSize, null);
+                    Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             col++;
-            x += Constant.tileSize;
+            x += Constant.TILE_SIZE;
 
-            if (col == Constant.maxScreenCol) {
+            if (col == Constant.MAX_SCREEN_COL) {
                 col = 0;
                 row++;
                 x = 0;
-                y += Constant.tileSize;
+                y += Constant.TILE_SIZE;
             }
         }
     }

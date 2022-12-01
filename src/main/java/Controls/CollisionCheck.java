@@ -5,27 +5,29 @@ import GUI.GameScene;
 import GUI.TileManager;
 import GUI.Window;
 import Variables.Constant;
-
+import Entity.Bomb;
 import java.awt.*;
+import java.util.ArrayList;
 
+import Entity.Player;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-
+    private boolean flag = false;
     public CollisionCheck() {
     }
 
     public void checkTile(Entity entity) {
         entity.setEntityInteractionBox(entity);
-        int entityLeftCol = entity.InteractionBox.get(3) / (Constant.original_tile_size * Constant.scale);
-        int entityRightCol = entity.InteractionBox.get(1) / (Constant.original_tile_size * Constant.scale);
-        int entityTopRow = entity.InteractionBox.get(0) / (Constant.original_tile_size * Constant.scale);
-        int entityBottomRow = entity.InteractionBox.get(2) / (Constant.original_tile_size * Constant.scale);
+        int entityLeftCol = entity.InteractionBox.get(3) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+        int entityRightCol = entity.InteractionBox.get(1) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+        int entityTopRow = entity.InteractionBox.get(0) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
+        int entityBottomRow = entity.InteractionBox.get(2) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
         int tileNum1, tileNum2;
 
         switch (entity.direction) {
             case "up" -> {
-                entityTopRow = (entity.InteractionBox.get(0) - entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityTopRow = (entity.InteractionBox.get(0) - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -34,7 +36,7 @@ public class CollisionCheck {
                 }
             }
             case "down" -> {
-                entityBottomRow = (entity.InteractionBox.get(2) + entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityBottomRow = (entity.InteractionBox.get(2) + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
                 if (tileM.tiles[tileNum1].collision
@@ -43,7 +45,7 @@ public class CollisionCheck {
                 }
             }
             case "left" -> {
-                entityLeftCol = (entity.InteractionBox.get(3) - entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityLeftCol = (entity.InteractionBox.get(3) - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
                 if (tileM.tiles[tileNum1].collision
@@ -52,11 +54,11 @@ public class CollisionCheck {
                 }
             }
             case "right" -> {
-                entityRightCol = (entity.InteractionBox.get(1) + entity.speed) / (Constant.original_tile_size * Constant.scale);
+                entityRightCol = (entity.InteractionBox.get(1) + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
                 tileNum1 = tileM.mapTileNum[entityTopRow][entityRightCol];
                 tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
-                if (Window.getWindow().tileM.tiles[tileNum1].collision
-                        || Window.getWindow().tileM.tiles[tileNum2].collision) {
+                if (tileM.tiles[tileNum1].collision
+                        || tileM.tiles[tileNum2].collision) {
                     entity.collisionOn = true;
                 }
             }
@@ -147,4 +149,70 @@ public class CollisionCheck {
         }
         return index;
     }
+    public Rectangle check(int x, int y, int width, int height) {
+        return new Rectangle(x,y,width,height);
+    }
+   //check if player hit bomb
+   public void checkBomb(ArrayList<Bomb> bombList,Entity player) {
+        if(bombList != null){
+            for (int i = 0; i < bombList.size(); i++) {
+                
+                bombList.get(i).setEntityInteractionBox(bombList.get(i));
+                player.setEntityInteractionBox(player);
+                Rectangle bombSolidBox = new Rectangle(bombList.get(i).solidArea.x+bombList.get(i).getX(),
+                        bombList.get(i).solidArea.y+bombList.get(i).getY(),
+                        bombList.get(i).solidArea.width,
+                        bombList.get(i).solidArea.height);
+                Rectangle playerSolidBox = new Rectangle(player.x,
+                        player.y,
+                        player.solidArea.width,
+                        player.solidArea.height);
+                boolean inter = bombSolidBox.intersects(playerSolidBox);
+                if(!inter){
+                    switch(player.direction){
+                        case "up" -> {
+                            Rectangle playerNextMove = check(player.x,player.y-player.speed,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("up");
+                            }
+                        }
+                        case "down" -> {
+                            Rectangle playerNextMove = check(player.x,player.y+player.speed,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("down");
+                            }
+                        }
+                        case "left" -> {
+                            Rectangle playerNextMove = check(player.x-player.speed,player.y,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("left");
+                            }
+                        }
+                        case "right" -> {
+                            Rectangle playerNextMove = check(player.x+player.speed,player.y,player.solidArea.width,player.solidArea.height);
+                            if(playerNextMove.intersects(bombSolidBox)){
+                                player.collisionOn = true;
+                            //    System.out.println("right");
+                            }
+                        }
+                        
+                    }
+                }
+                
+                
+                
+            }       
+            
+        }
+    }
+    
+    
 }
+
+        
+    
+        
+   
