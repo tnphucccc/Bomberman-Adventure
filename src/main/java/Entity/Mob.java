@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Mob extends Entity {
-    private int mobSize = 3;
+    private final int  mobSize = 3;
     ArrayList<Mob> mobList = new ArrayList<>(mobSize);
     private final Random rand = new Random();
     CollisionCheck cCheck = new CollisionCheck();
