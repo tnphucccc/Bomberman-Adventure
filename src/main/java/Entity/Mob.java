@@ -62,13 +62,13 @@ public class Mob extends Entity {
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
                 down[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
                 left[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
                 right[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
             }
         } catch (IOException e) {
             e.printStackTrace();
