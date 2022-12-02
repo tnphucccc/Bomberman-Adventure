@@ -1,7 +1,6 @@
 package Entity;
 
 import Controls.KeyHandler;
-import GUI.Window;
 import Variables.Constant;
 
 import javax.swing.*;
@@ -17,7 +16,7 @@ public class Bomb extends Entity {
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
     public long timeStart = 0;
-    public int timeElapsed = 3;
+    public long timeElapsed = 1000L;
     public int x, y;
 
     private String key = "";
@@ -46,6 +45,7 @@ public class Bomb extends Entity {
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
+                timeStart=System.currentTimeMillis();
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
@@ -59,7 +59,6 @@ public class Bomb extends Entity {
                     System.out.println("Bomb Cannot Be Placed");
                 }
             }
-            //explode(timeStart,timeElapsed);
         }
 
     }
@@ -121,7 +120,9 @@ public class Bomb extends Entity {
     @Override
     public void update(double dt) {
         // TODO Auto-generated method stub
-        
+        if ((System.currentTimeMillis() - timeStart < 5000L)&&(System.currentTimeMillis() - timeElapsed > 1000L)) {
+            System.out.println("explode");
+        }
     }
 }
 

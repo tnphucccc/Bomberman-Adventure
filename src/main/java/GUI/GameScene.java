@@ -17,10 +17,10 @@ public class GameScene extends Scene {
     Pause pause;
     GameOver gameOver;
     Overlay overLay;
-    public static ArrayList<Mob> mobList = new ArrayList<>(3);
+    static ArrayList<Mob> mobList = new ArrayList<>(3);
     KeyHandler keyH;
     MouseHandler mouseH;
-    Player player;
+    static Player player;
     Bomb bomb;
     static ArrayList<Bomb> bombList;
     AssetSetter aSetter = new AssetSetter(this);
@@ -54,11 +54,12 @@ public class GameScene extends Scene {
         if (!pause.isPaused) {
             //Game is running
             player.update(dt);
-
             for (Mob value : mobList) {
                 value.update(dt);
+                //cCheck.checkMob(player,mobList);
             }
             bomb.update(player.x, player.y);
+            bomb.update(dt);
             bombList = bomb.getBombList();
 
         }  // Do nothing
@@ -90,8 +91,6 @@ public class GameScene extends Scene {
             value.draw(g2);
         }
 
-        
-
         //Draw if the game is paused
         if (pause.isPaused) {
             overLay.draw(g2);
@@ -104,5 +103,11 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
+    }
+    public static Player getPlayer(){
+        return player;
+    }
+    public static ArrayList<Mob> getMobList(){
+        return mobList;
     }
 }

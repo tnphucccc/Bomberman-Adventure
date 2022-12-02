@@ -38,6 +38,7 @@ public class Mob extends Entity {
         collisionOn = false;
         cCheck.checkTile(this);
         cCheck.checkBomb(GameScene.getBombList(), this);
+        cCheck.checkMob(GameScene.getPlayer(),GameScene.getMobList());
         if (!collisionOn) {
             switch (direction) {
                 case "up" -> y -= speed;
