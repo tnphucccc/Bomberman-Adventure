@@ -17,7 +17,7 @@ public class GameScene extends Scene {
     Pause pause;
     GameOver gameOver;
     Overlay overLay;
-    public static ArrayList<Mob> mobList = new ArrayList<>();
+    public static ArrayList<Mob> mobList = new ArrayList<>(3);
     KeyHandler keyH;
     MouseHandler mouseH;
     Player player;
