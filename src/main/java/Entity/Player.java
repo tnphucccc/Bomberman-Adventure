@@ -115,7 +115,7 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "SpeedIncrease" -> {
-                    speed += 1;
+                    speed += 0.5;
                     GameScene.Object[i] = null;
                 }
             }
