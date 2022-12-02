@@ -21,7 +21,8 @@ public class GameScene extends Scene {
     Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
-    Player player;
+
+    static Player player;
     Bomb bomb;
     static ArrayList<Bomb> bombList;
     AssetSetter aSetter = new AssetSetter(this);
@@ -82,18 +83,18 @@ public class GameScene extends Scene {
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        //Draw Map
-        tileM.draw(g2);
-
-        //Draw player
-        player.draw(g2);
-
         //Draw Bomb
         if (bombList != null) {
             for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }
+
+        //Draw Map
+        tileM.draw(g2);
+
+        //Draw player
+        player.draw(g2);
 
         //Draw Items
         for (SuperObject superObject : Object) {
@@ -108,7 +109,7 @@ public class GameScene extends Scene {
                 value.draw(g2);
             }
         }
-        
+
 
         //Draw if the game is paused
         if (pause.isPaused) {
@@ -122,5 +123,8 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
+    }
+    public static Player getPlayer() {
+        return player;
     }
 }

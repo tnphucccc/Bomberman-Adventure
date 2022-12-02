@@ -1,5 +1,6 @@
 package Objects;
 
+import GUI.GameScene;
 import Variables.Constant;
 
 import java.awt.*;
@@ -14,6 +15,16 @@ public class SuperObject {
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
 
     public void draw(Graphics2D g2) {
-        g2.drawImage(image, x, y, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+
+        int screenX = x - GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X;
+        int screenY = y - GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y;
+
+        if (x + Constant.TILE_SIZE > GameScene.getPlayer().x - Constant.PLAYER_SCREEN_X &&
+                x - Constant.TILE_SIZE < GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X &&
+                y + Constant.TILE_SIZE > GameScene.getPlayer().y - Constant.PLAYER_SCREEN_Y &&
+                y - Constant.TILE_SIZE < GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y)
+        {
+            g2.drawImage(image, screenX, screenY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+        }
     }
 }

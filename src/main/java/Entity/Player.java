@@ -23,8 +23,10 @@ public class Player extends Entity {
         solidArea.y = 16;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+
         solidArea.width = 32;
         solidArea.height = 32;
+
         setDefault();
         getPlayerImage();
 
@@ -32,9 +34,9 @@ public class Player extends Entity {
 
     @Override
     public void setDefault() {
-        x = 48 + Constant.TILE_SIZE;
-        y = 32 + Constant.TILE_SIZE;
-        speed = 2;
+        x = Constant.TILE_SIZE * 8; // at tile 16
+        y = Constant.TILE_SIZE * 5; // at tile 16
+        speed = 4;
         direction = "down";
     }
 
@@ -131,15 +133,25 @@ public class Player extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
         if (state == 0) {
+            //Player die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+            g2.drawImage(img, Constant.PLAYER_SCREEN_X, Constant.PLAYER_SCREEN_Y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             speed = 0;
         } else {
             //PLayer is alive
-            g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+            g2.drawImage(img, Constant.PLAYER_SCREEN_X, Constant.PLAYER_SCREEN_Y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+            System.out.println("Player Cord: "+ x +" "+ y);
             //if (img1 != null) img1.flush();
         }
+    }
+
+    //getter
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
     }
 }

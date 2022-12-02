@@ -37,6 +37,7 @@ public class Mob extends Entity {
         collisionOn = false;
         cCheck.checkTile(this);
         cCheck.checkBomb(GameScene.getBombList(), this);
+
         if (!collisionOn) {
             switch (direction) {
                 case "up" -> y -= speed;
@@ -76,7 +77,17 @@ public class Mob extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+
+        int screenX = x - GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X;
+        int screenY = y - GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y;
+
+        if (x + Constant.TILE_SIZE > GameScene.getPlayer().x - Constant.PLAYER_SCREEN_X &&
+                x - Constant.TILE_SIZE < GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X &&
+                y + Constant.TILE_SIZE > GameScene.getPlayer().y - Constant.PLAYER_SCREEN_Y &&
+                y - Constant.TILE_SIZE < GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y)
+        {
+            g2.drawImage(img, screenX, screenY, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+        }
     }
 }

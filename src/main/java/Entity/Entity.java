@@ -14,6 +14,7 @@ public abstract class Entity {
     public Rectangle solidArea;
 
     public boolean collisionOn = false;
+
     public ArrayList<Integer> InteractionBox = new ArrayList<>();
     public int solidAreaDefaultX, solidAreaDefaultY;
 
