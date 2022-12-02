@@ -13,7 +13,14 @@ import Entity.Player;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
     private boolean flag = false;
-    public CollisionCheck() {
+
+    public static CollisionCheck instance;
+
+    public static CollisionCheck getInstance(){
+        if(instance == null){
+            instance = new CollisionCheck();
+        }
+        return instance;
     }
 
     public void checkTile(Entity entity) {

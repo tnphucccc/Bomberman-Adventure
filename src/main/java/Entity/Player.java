@@ -13,11 +13,11 @@ import java.util.Objects;
 
 public class Player extends Entity {
     KeyHandler keyH;
-    CollisionCheck cCheck = new CollisionCheck();
 
     public Player(KeyHandler keyH, int state) {
         this.state = state;
         this.keyH = keyH;
+
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
@@ -72,11 +72,16 @@ public class Player extends Entity {
             }
 
             collisionOn = false;
-            cCheck.checkTile(this);
+
+            //Check collision with Tiles
+            CollisionCheck.getInstance().checkTile(this);
+
+            //Check collision with Items
             int objIndex = GameScene.cCheck.checkObject(this, true);
             pickUpObject(objIndex);
-            cCheck.checkBomb(GameScene.getBombList(), this);
-            // player can't go through if there is a bomb
+
+            //Check Collision with Bomb
+            CollisionCheck.getInstance().checkBomb(GameScene.getBombList(), this);
             
             if (!collisionOn) {
                 switch (direction) {
