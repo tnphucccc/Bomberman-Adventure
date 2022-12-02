@@ -13,8 +13,9 @@ public class AssetSetter {
     }
 
     public void setMob() {
-        gameScene.mob[0] = new Mob(192, 272);
-        gameScene.mob[1] = new Mob(672, 70);
+        GameScene.mobList.removeAll(GameScene.mobList);//reset the creation of mobs
+        GameScene.mobList.add(0, new Mob(192,272));
+        GameScene.mobList.add(1, new Mob(672, 70));
     }
 
     public void setItems() {
