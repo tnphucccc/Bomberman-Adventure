@@ -27,7 +27,7 @@ public class Bomb extends Entity {
 
     private String key = " ";
     private int bombCounter = 0;
-
+    
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
 
@@ -39,13 +39,7 @@ public class Bomb extends Entity {
         solidArea.width = 32;
         solidArea.height = 32;
 
-        try {
-            bombImage = ImageIO.read(Objects.requireNonNull(getClass().
-                    getResourceAsStream("/Bomb/Bomb.gif")));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        
 
     }
 
@@ -98,14 +92,21 @@ public class Bomb extends Entity {
 
                 int screenX = this.x - GameScene.getPlayer().getX() + Constant.PLAYER_SCREEN_X;
                 int screenY = this.y - GameScene.getPlayer().getY() + Constant.PLAYER_SCREEN_Y;
+              
+                    // wake up dude
+                    
+               // gif 
 
                 if (this.x + Constant.TILE_SIZE > GameScene.getPlayer().getX() - Constant.PLAYER_SCREEN_X &&
                         this.x - Constant.TILE_SIZE < GameScene.getPlayer().getX() + Constant.PLAYER_SCREEN_X &&
                         this.y + Constant.TILE_SIZE > GameScene.getPlayer().getY() - Constant.PLAYER_SCREEN_Y &&
                         this.y - Constant.TILE_SIZE < GameScene.getPlayer().getY() + Constant.PLAYER_SCREEN_Y) {
-
-                    g2.drawImage(bombImage, screenX, screenY, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                            URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
+                            ImageIcon icon = new ImageIcon(url);
+                            Image img = icon.getImage();
+                    g2.drawImage(img, screenX, screenY, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                            System.out.println("Bomb Drawn");
                 }
             }
         }

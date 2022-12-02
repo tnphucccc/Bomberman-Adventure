@@ -84,11 +84,7 @@ public class GameScene extends Scene {
         Graphics2D g2 = (Graphics2D) g;
 
         //Draw Bomb
-        if (bombList != null) {
-            for (Bomb b : bombList) {
-                b.draw(g2);
-            }
-        }
+        
 
         //Draw Map
         tileM.draw(g2);
@@ -102,7 +98,11 @@ public class GameScene extends Scene {
                 superObject.draw(g2);
             }
         }
-
+        if (bombList != null) {
+            for (Bomb b : bombList) {
+                b.draw(g2);
+            }
+        }
         //Draw mob
         for (Mob value : mob) {
             if (value != null) {
