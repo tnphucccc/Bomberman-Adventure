@@ -18,11 +18,13 @@ public class Mob extends Entity {
     public Mob(int x, int y) {
         this.x = x;
         this.y = y;
+
         solidArea = new Rectangle();
         solidArea.x = 4;
         solidArea.y = 16;
         solidArea.width = 36;
         solidArea.height = 32;
+
         setDefault();
         getMobImage();
     }
@@ -44,9 +46,11 @@ public class Mob extends Entity {
                 case "left" -> x -= speed;
                 case "right" -> x += speed;
             }
+
         } else {
             this.direction = dir[rand.nextInt(4)];
         }
+
         spriteCounter++;
         if (spriteCounter > 8) {
             if (spriteNum != 4) {
@@ -61,13 +65,13 @@ public class Mob extends Entity {
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
                 down[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
                 left[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
                 right[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -87,24 +87,28 @@ public class Window extends JFrame implements Runnable {
         long lastTime = System.nanoTime(), currentTime, timer = 0;
         int Count = 0;
 
-        while (isRunning) {
-            currentTime = System.nanoTime();
+        try{
+            while (isRunning) {
+                currentTime = System.nanoTime();
 
-            delta += (currentTime - lastTime) / drawInterval;
-            timer += (currentTime - lastTime);
-            lastTime = currentTime;
+                delta += (currentTime - lastTime) / drawInterval;
+                timer += (currentTime - lastTime);
+                lastTime = currentTime;
 
-            if (delta >= 1) {
-                update(delta);
-                delta--;
-                Count++;
+                if (delta >= 1) {
+                    update(delta);
+                    delta--;
+                    Count++;
+                }
+
+                if (timer >= 1000000000) {
+                    System.out.println("FPS: " + Count);
+                    Count = 0;
+                    timer = 0;
+                }
             }
-
-            if (timer >= 1000000000) {
-                System.out.println("FPS: " + Count);
-                Count = 0;
-                timer = 0;
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         this.dispose();
     }

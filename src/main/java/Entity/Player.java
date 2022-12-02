@@ -52,9 +52,11 @@ public class Player extends Entity {
                 right[i] = ImageIO.read(Objects.requireNonNull(getClass()
                         .getResourceAsStream("/Player/player_right" + (i + 1) + ".png")));
             }
+
             for (int i = 0; i < 6; i++)
                 die[i] = ImageIO.read(Objects.requireNonNull(getClass()
                         .getResourceAsStream("/Player/player_die" + (i + 1) + ".png")));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
