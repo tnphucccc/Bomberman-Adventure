@@ -15,9 +15,11 @@ public class Bomb extends Entity {
     KeyHandler keyH;
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
+
     private long timeStart = 0l;
     private long timeElapsed = 3000000000l;
     private int x, y;
+
 
     private String key = "";
     private int bombCounter = 0;
@@ -37,14 +39,15 @@ public class Bomb extends Entity {
     }
 
     public void update(int x, int y) {
-
         key = "space";
+        timeStart = System.nanoTime()/1000000000;
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
+                timeStart=System.currentTimeMillis();
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
@@ -61,8 +64,7 @@ public class Bomb extends Entity {
                 }
             }
         }
-        timeStart= System.nanoTime();
-        System.out.println(timeStart);
+
     }
 
     // check if the tile is available
@@ -78,6 +80,7 @@ public class Bomb extends Entity {
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         if (bombList != null) {
+
             //Image img = null;
             if (key.equals("space")) {
                 //load Bomb.gif from resources
@@ -133,7 +136,9 @@ public class Bomb extends Entity {
     @Override
     public void update(double dt) {
         // TODO Auto-generated method stub
-        
+        if ((System.currentTimeMillis() - timeStart < 5000L)&&(System.currentTimeMillis() - timeElapsed > 1000L)) {
+            System.out.println("explode");
+        }
     }
 }
 

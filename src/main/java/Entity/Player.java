@@ -70,14 +70,14 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
-
+            //check collision with tile, mob,object,bomb
             collisionOn = false;
             cCheck.checkTile(this);
+            cCheck.checkMob(this, GameScene.getMobList());
             int objIndex = GameScene.cCheck.checkObject(this, true);
             pickUpObject(objIndex);
             cCheck.checkBomb(GameScene.getBombList(), this);
-            // player can't go through if there is a bomb
-            
+
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;
@@ -115,7 +115,7 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "SpeedIncrease" -> {
-                    speed += 1;
+                    speed += 0.5;
                     GameScene.Object[i] = null;
                 }
             }

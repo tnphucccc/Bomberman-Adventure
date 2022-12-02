@@ -34,9 +34,11 @@ public class Mob extends Entity {
 
     @Override
     public void update(double dt) {
+        //check collision with tile,bomb
         collisionOn = false;
         cCheck.checkTile(this);
         cCheck.checkBomb(GameScene.getBombList(), this);
+        cCheck.checkMob(GameScene.getPlayer(),GameScene.getMobList());
         if (!collisionOn) {
             switch (direction) {
                 case "up" -> y -= speed;
@@ -61,13 +63,13 @@ public class Mob extends Entity {
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
                 down[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
                 left[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobLeft-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
                 right[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobRight-" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
             }
         } catch (IOException e) {
             e.printStackTrace();
