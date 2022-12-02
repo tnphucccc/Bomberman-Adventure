@@ -7,10 +7,13 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
 public class Mob extends Entity {
+    private int mobSize = 3;
+    ArrayList<Mob> mobList = new ArrayList<>(mobSize);
     private final Random rand = new Random();
     CollisionCheck cCheck = new CollisionCheck();
     String[] dir = {"down", "up", "right", "left"};

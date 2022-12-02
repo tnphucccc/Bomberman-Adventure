@@ -73,6 +73,7 @@ public class Player extends Entity {
 
             collisionOn = false;
             cCheck.checkTile(this);
+            cCheck.checkMob(this, GameScene.mobList);
             int objIndex = GameScene.cCheck.checkObject(this, true);
             pickUpObject(objIndex);
             cCheck.checkBomb(GameScene.getBombList(), this);
