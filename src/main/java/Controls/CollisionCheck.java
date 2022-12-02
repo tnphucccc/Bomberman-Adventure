@@ -72,7 +72,6 @@ public class CollisionCheck {
         if(mobList != null){
             for (Mob mob : mobList) {
                 mob.setEntityInteractionBox(mob);
-
                 Rectangle mobSolidBox = new Rectangle(mob.InteractionBox.get(3),
                         mob.InteractionBox.get(0),
                         mob.solidArea.width,
