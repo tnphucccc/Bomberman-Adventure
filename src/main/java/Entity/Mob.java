@@ -34,6 +34,7 @@ public class Mob extends Entity {
 
     @Override
     public void update(double dt) {
+        //check collision with tile,bomb
         collisionOn = false;
         cCheck.checkTile(this);
         cCheck.checkBomb(GameScene.getBombList(), this);

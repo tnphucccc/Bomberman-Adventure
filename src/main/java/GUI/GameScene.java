@@ -17,7 +17,7 @@ public class GameScene extends Scene {
     Pause pause;
     GameOver gameOver;
     Overlay overLay;
-    Mob[] mob;
+    public static ArrayList<Mob> mobList = new ArrayList<>(3);
     KeyHandler keyH;
     MouseHandler mouseH;
     Player player;
@@ -35,7 +35,6 @@ public class GameScene extends Scene {
         cCheck = new CollisionCheck();
         tileM = new TileManager();
 
-        mob = new Mob[3];
         aSetter.setMob();
         aSetter.setItems();
 
@@ -56,20 +55,11 @@ public class GameScene extends Scene {
             //Game is running
             player.update(dt);
 
-            for (Mob value : mob) {
-                if (value != null) {
-                    value.update(dt);
-                    cCheck.checkMob(player, value);
-                    if (player.state==0){
-                        value.speed=0;
-                    }
-
-                }
+            for (Mob value : mobList) {
+                value.update(dt);
             }
-
             bomb.update(player.x, player.y);
             bombList = bomb.getBombList();
-            cCheck.checkBomb(GameScene.getBombList(), player);
 
         }  // Do nothing
 
@@ -96,11 +86,10 @@ public class GameScene extends Scene {
                 superObject.draw(g2);
             }
         }
-        for (Mob value : mob) {
-            if (value != null) {
-                value.draw(g2);
-            }
+        for (Mob value : mobList) {
+            value.draw(g2);
         }
+
         
 
         //Draw if the game is paused
