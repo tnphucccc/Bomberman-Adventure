@@ -41,7 +41,7 @@ public class Bomb extends Entity {
 
         try {
             bombImage = ImageIO.read(Objects.requireNonNull(getClass().
-                    getResourceAsStream("/Bomb/bomb1.png")));
+                    getResourceAsStream("/Bomb/Bomb.gif")));
 
         } catch (Exception e) {
             e.printStackTrace();
