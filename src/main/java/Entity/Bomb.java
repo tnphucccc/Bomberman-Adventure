@@ -15,8 +15,8 @@ public class Bomb extends Entity {
     KeyHandler keyH;
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
-    private long timeStart = 0;
-    private int timeElapsed = 3000;
+    private long timeStart = 0l;
+    private long timeElapsed = 3000000000l;
     private int x, y;
 
     private String key = "";
@@ -54,6 +54,8 @@ public class Bomb extends Entity {
                     bombList.get(bombCounter).update(this.x, this.y);
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
+                    timeStart = System.nanoTime();
+
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
                 }
@@ -82,9 +84,21 @@ public class Bomb extends Entity {
                 URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
                 ImageIcon icon = new ImageIcon(url);
                 Image img = icon.getImage();
+                // img for the bomb initial 
 
-                g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                if(timeElapsed>System.nanoTime()-timeStart){
+                    g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                         Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                } else {
+                    // img for the bomb after 3 seconds
+                    URL url2 = Objects.requireNonNull(getClass().getResource("/Bomb/start1.png"));
+                    ImageIcon icon2 = new ImageIcon(url2);
+                    Image img2 = icon2.getImage();
+                    g2.drawImage(img2, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                }
+                
+                
             }
         }
     }
