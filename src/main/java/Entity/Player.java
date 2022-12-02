@@ -60,8 +60,7 @@ public class Player extends Entity {
         }
     }
 
-    @Override
-    public void update(double dt) {
+    public void update() {
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -142,7 +141,6 @@ public class Player extends Entity {
             //PLayer is alive
             g2.drawImage(img, Constant.PLAYER_SCREEN_X, Constant.PLAYER_SCREEN_Y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-            System.out.println("Player Cord: "+ x +" "+ y);
             //if (img1 != null) img1.flush();
         }
     }

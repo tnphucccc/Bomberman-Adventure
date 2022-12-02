@@ -15,6 +15,8 @@ public class AssetSetter {
     public void setMob() {
         gameScene.mob[0] = new Mob(18 * Constant.TILE_SIZE, 19 * Constant.TILE_SIZE);
         gameScene.mob[1] = new Mob(19 * Constant.TILE_SIZE, 20 * Constant.TILE_SIZE);
+        gameScene.mob[2] = new Mob(26 * Constant.TILE_SIZE, 30 * Constant.TILE_SIZE);
+
     }
 
     public void setItems() {

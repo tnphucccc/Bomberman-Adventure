@@ -20,8 +20,6 @@ public abstract class Entity {
 
     public abstract void setDefault();
 
-    public abstract void update(double dt);
-
     public abstract void draw(Graphics2D g2);
 
     public void setEntityInteractionBox(Entity entity) {

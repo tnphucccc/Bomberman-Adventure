@@ -25,9 +25,9 @@ public class GameScene extends Scene {
     static Player player;
     Bomb bomb;
     static ArrayList<Bomb> bombList;
+
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
-
 
     public GameScene(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
@@ -54,7 +54,7 @@ public class GameScene extends Scene {
         gameOver.checkAlive(player.state); // Check Game State
 
         if (!pause.isPaused) {
-            player.update(dt);
+            player.update();
 
             for (Mob value : mob) {
                 if (value != null) {
@@ -73,8 +73,8 @@ public class GameScene extends Scene {
 
         }  // Do nothing
 
+        //Game over
         if (!gameOver.isAlive) {
-            //Game over
             gameOver.update(dt);
         }
     }
@@ -82,9 +82,6 @@ public class GameScene extends Scene {
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
-
-        //Draw Bomb
-        
 
         //Draw Map
         tileM.draw(g2);
@@ -98,18 +95,20 @@ public class GameScene extends Scene {
                 superObject.draw(g2);
             }
         }
+
+        //Draw Bomb
         if (bombList != null) {
             for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }
+
         //Draw mob
         for (Mob value : mob) {
             if (value != null) {
                 value.draw(g2);
             }
         }
-
 
         //Draw if the game is paused
         if (pause.isPaused) {
