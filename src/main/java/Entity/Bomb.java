@@ -4,6 +4,7 @@ import Controls.KeyHandler;
 import GUI.Camera;
 import Variables.Constant;
 import Variables.Time;
+import com.sun.security.jgss.GSSUtil;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -55,6 +56,7 @@ public class Bomb extends Entity {
             e.printStackTrace();
         }
     }
+    //Explosion Timer
     public boolean checkExplosion(){
         for (int i = 0; i < bombList.size(); i++) {
             double delta = Time.getTime() - timePlaced.get(i);
@@ -65,6 +67,7 @@ public class Bomb extends Entity {
         return false;
     }
 
+
     public boolean checkAvailable(int x, int y) {
         for (Bomb bomb : bombList) {
             if (bomb.x == x && bomb.y == y) {
@@ -73,6 +76,8 @@ public class Bomb extends Entity {
         }
         return true;
     }
+
+    //Check if when the bomb is placed
     public boolean checkPlaceBomb(int x, int y) {
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
@@ -101,11 +106,15 @@ public class Bomb extends Entity {
             System.out.println("Bomb" + bombCounter + " placed at " + timePlaced.get(bombCounter));
             bombCounter++;
         }
+
+        //Animation
         if(checkExplosion()){
             currentImage = bombExplodeImage;
+            System.out.println("Bomb Exploded");
         }
         else {
             currentImage = bombImage;
+            System.out.println("Bomb not exploded");
         }
     }
     public void draw(Graphics2D g2) {
