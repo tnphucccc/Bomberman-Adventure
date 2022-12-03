@@ -37,6 +37,7 @@ public class Player extends Entity {
         x = Constant.TILE_SIZE * 8; // at tile 16
         y = Constant.TILE_SIZE * 5; // at tile 16
         speed = 4;
+
         direction = "down";
     }
 
@@ -52,7 +53,6 @@ public class Player extends Entity {
                 right[i] = ImageIO.read(Objects.requireNonNull(getClass()
                         .getResourceAsStream("/Player/player_right" + (i + 1) + ".png")));
             }
-
             for (int i = 0; i < 6; i++)
                 die[i] = ImageIO.read(Objects.requireNonNull(getClass()
                         .getResourceAsStream("/Player/player_die" + (i + 1) + ".png")));
@@ -73,7 +73,7 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
-
+            //check collision with tile, mob,object,bomb
             collisionOn = false;
 
             //Check collision with Tiles
@@ -85,7 +85,7 @@ public class Player extends Entity {
 
             //Check Collision with Bomb
             CollisionCheck.getInstance().checkBomb(GameScene.getBombList(), this);
-            
+
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;

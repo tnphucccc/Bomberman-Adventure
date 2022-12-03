@@ -88,6 +88,7 @@ public class Bomb extends Entity {
                 URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
                 ImageIcon icon = new ImageIcon(url);
                 Image img = icon.getImage();
+
                 // img for the bomb initial
 
                 if(timeElapsed>System.nanoTime()-timeStart){
@@ -106,7 +107,6 @@ public class Bomb extends Entity {
                                 Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
                     }
                 }
-
 
             }
         }
