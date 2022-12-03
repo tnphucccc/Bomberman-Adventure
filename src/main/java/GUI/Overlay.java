@@ -5,15 +5,6 @@ import Variables.Constant;
 import java.awt.*;
 
 public class Overlay {
-
-    public static Overlay instance;
-
-    public static Overlay getInstance(){
-        if(instance == null){
-            instance = new Overlay();
-        }
-        return instance;
-    }
     Overlay() {
         //Overlay
         //Draws the overlay
