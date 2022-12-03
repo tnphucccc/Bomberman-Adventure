@@ -1,7 +1,7 @@
 package Entity;
 
 import Controls.KeyHandler;
-import GUI.GameScene;
+import GUI.Camera;
 import Variables.Constant;
 
 import javax.swing.*;
@@ -13,25 +13,23 @@ import java.util.Objects;
 
 public class Bomb extends Entity {
     public static int bombSize = 5;
+    KeyHandler keyH;
+    boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
-    private int bombCounter = 0;
 
+    private long timeStart = 0l;
+    private long timeElapsed = 3000000000l;
     private int x, y;
-    public int screenX, screenY;
 
-    private long timeStart = 0L;
-    private final long timeElapsed = 50000000000L;
 
     private String key = "";
-    boolean spacePressed = false;
+    private int bombCounter = 0;
+    public boolean flag = false;
 
-    public boolean canDrawn = false;
-    public Image bombImg, bombExplodeImg, currentBombImg;
-    KeyHandler keyH;
+    //KeyHandler
 
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
-
         solidArea = new Rectangle();
         solidArea.x = 0;
         solidArea.y = 0;
@@ -39,43 +37,19 @@ public class Bomb extends Entity {
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
-
-        try{
-            URL url1 = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
-            ImageIcon icon1 = new ImageIcon(url1);
-            bombImg = icon1.getImage();
-
-            URL url2 = Objects.requireNonNull(getClass().getResource("/Bomb/start1.png"));
-            ImageIcon icon2 = new ImageIcon(url2);
-            bombExplodeImg = icon2.getImage();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public void checkExplosion(){
-        if (timeElapsed > System.nanoTime() - timeStart){
-            currentBombImg = bombImg;
-        } else {
-            currentBombImg = bombExplodeImg;
-        }
     }
 
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime()/1000000000;
-
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-
         if (bombCounter < bombSize) {
-
             if (keyH.spacePressed) {
                 spacePressed = true;
-                timeStart = System.currentTimeMillis();
+                timeStart=System.currentTimeMillis();
             }
-
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
 
@@ -83,7 +57,6 @@ public class Bomb extends Entity {
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
                     bombCounter++;
-
                     System.out.println("Bomb Placed:" + bombCounter);
                     timeStart = System.nanoTime();
 
@@ -92,11 +65,7 @@ public class Bomb extends Entity {
                 }
             }
         }
-        checkExplosion(); //Check time, if time is up, change image to explosion
 
-        if ((System.currentTimeMillis() - timeStart < 5000L) && (System.currentTimeMillis() - timeElapsed > 1000L)) {
-            System.out.println("explode");
-        }
     }
 
     // check if the tile is available
@@ -109,30 +78,32 @@ public class Bomb extends Entity {
         return true;
     }
 
+    //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
-        drawCord(this.x, this.y);
-
         if (bombList != null) {
+
+            //Image img = null;
             if (key.equals("space")) {
-                if (canDrawn) {
-                    g2.drawImage(currentBombImg, screenX, screenY, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                //load Bomb.gif from resources
+                URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
+                ImageIcon icon = new ImageIcon(url);
+                Image img = icon.getImage();
+                // img for the bomb initial
+
+                if(timeElapsed>System.nanoTime()-timeStart){
+                    g2.drawImage(img, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                } else {
+                    // img for the bomb after 3 seconds
+                    URL url2 = Objects.requireNonNull(getClass().getResource("/Bomb/start1.png"));
+                    ImageIcon icon2 = new ImageIcon(url2);
+                    Image img2 = icon2.getImage();
+                    g2.drawImage(img2, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
                 }
+
+
             }
-        }
-    }
-
-    public void drawCord(int x, int y){
-        screenX = x - GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X;
-        screenY = y - GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y;
-
-        //Create a draw area for the bomb
-        if (x + Constant.TILE_SIZE > GameScene.getPlayer().x - Constant.PLAYER_SCREEN_X &&
-                x - Constant.TILE_SIZE < GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X &&
-                y + Constant.TILE_SIZE > GameScene.getPlayer().y - Constant.PLAYER_SCREEN_Y &&
-                y - Constant.TILE_SIZE < GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y)
-        {
-            canDrawn = true;
         }
     }
 
@@ -163,4 +134,10 @@ public class Bomb extends Entity {
 
     }
 
+    public void update(double dt) {
+        // TODO Auto-generated method stub
+        if ((System.currentTimeMillis() - timeStart < 5000L)&&(System.currentTimeMillis() - timeElapsed > 1000L)) {
+            System.out.println("explode");
+        }
+    }
 }

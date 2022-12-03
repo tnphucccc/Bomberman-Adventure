@@ -1,6 +1,7 @@
 package Entity;
 
 import Controls.CollisionCheck;
+import GUI.Camera;
 import Variables.Constant;
 import GUI.GameScene;
 import javax.imageio.ImageIO;
@@ -81,15 +82,9 @@ public class Mob extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
 
-        int screenX = x - GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X;
-        int screenY = y - GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y;
-
-        if (x + Constant.TILE_SIZE > GameScene.getPlayer().x - Constant.PLAYER_SCREEN_X &&
-                x - Constant.TILE_SIZE < GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X &&
-                y + Constant.TILE_SIZE > GameScene.getPlayer().y - Constant.PLAYER_SCREEN_Y &&
-                y - Constant.TILE_SIZE < GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y)
+        if (Camera.canDraw(x, y))
         {
-            g2.drawImage(img, screenX, screenY, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+            g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
         }
     }

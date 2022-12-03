@@ -1,5 +1,6 @@
 package Objects;
 
+import GUI.Camera;
 import GUI.GameScene;
 import Variables.Constant;
 
@@ -15,16 +16,9 @@ public class SuperObject {
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
 
     public void draw(Graphics2D g2) {
-
-        int screenX = x - GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X;
-        int screenY = y - GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y;
-
-        if (x + Constant.TILE_SIZE > GameScene.getPlayer().x - Constant.PLAYER_SCREEN_X &&
-                x - Constant.TILE_SIZE < GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X &&
-                y + Constant.TILE_SIZE > GameScene.getPlayer().y - Constant.PLAYER_SCREEN_Y &&
-                y - Constant.TILE_SIZE < GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y)
+        if (Camera.canDraw(x, y))
         {
-            g2.drawImage(image, screenX, screenY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+            g2.drawImage(image, Camera.getXCord(x), Camera.getYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
         }
     }
 }

@@ -99,20 +99,13 @@ public class TileManager {
 
             int x = worldCol * Constant.TILE_SIZE;
             int y = worldRow * Constant.TILE_SIZE;
-            int screenX = x - GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X;
-            int screenY = y - GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y;
 
             //Create a boundary for the screen
-            if (x + Constant.TILE_SIZE > GameScene.getPlayer().x - Constant.PLAYER_SCREEN_X &&
-                    x - Constant.TILE_SIZE < GameScene.getPlayer().x + Constant.PLAYER_SCREEN_X &&
-                    y + Constant.TILE_SIZE > GameScene.getPlayer().y - Constant.PLAYER_SCREEN_Y &&
-                    y - Constant.TILE_SIZE < GameScene.getPlayer().y + Constant.PLAYER_SCREEN_Y)
+            if (Camera.canDraw(x, y))
             {
-                g2.drawImage(tiles[tileNum].image, screenX, screenY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+                g2.drawImage(tiles[tileNum].image, Camera.getXCord(x), Camera.getYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             }
-
             worldCol++;
-
 
             if (worldCol == Constant.MAX_WORLD_COL){
                 worldCol =  0;
