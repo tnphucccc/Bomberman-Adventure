@@ -31,6 +31,7 @@ public class Bomb extends Entity {
     Image bombImage, bombExplodeImage, currentImage;
 
     ArrayList<Double> timePlaced = new ArrayList<>(bombSize);
+    final int bombExplodeTime = 3;
 
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
@@ -60,13 +61,12 @@ public class Bomb extends Entity {
     public boolean checkExplosion(){
         for (int i = 0; i < bombList.size(); i++) {
             double delta = Time.getTime() - timePlaced.get(i);
-            if (delta > 3) {
+            if (delta > bombExplodeTime) {
                 return true;
             }
         }
         return false;
     }
-
 
     public boolean checkAvailable(int x, int y) {
         for (Bomb bomb : bombList) {
