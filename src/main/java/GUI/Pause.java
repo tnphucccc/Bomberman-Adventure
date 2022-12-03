@@ -11,6 +11,7 @@ public class Pause {
     public int status = 0; //0 = not paused, 1 = paused
     KeyHandler keyH;
     BufferedImage pause;
+
     boolean isPaused, flag;
     Rect pauseRect;
 
