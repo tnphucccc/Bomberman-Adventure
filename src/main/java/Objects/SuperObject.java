@@ -1,7 +1,5 @@
 package Objects;
 
-import GUI.Camera;
-import GUI.GameScene;
 import Variables.Constant;
 
 import java.awt.*;
@@ -16,9 +14,6 @@ public class SuperObject {
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
 
     public void draw(Graphics2D g2) {
-        if (Camera.canDraw(x, y))
-        {
-            g2.drawImage(image, Camera.getXCord(x), Camera.getYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
-        }
+        g2.drawImage(image, x, y, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
     }
 }
