@@ -14,11 +14,12 @@ public abstract class Entity {
     public Rectangle solidArea;
 
     public boolean collisionOn = false;
-
     public ArrayList<Integer> InteractionBox = new ArrayList<>();
     public int solidAreaDefaultX, solidAreaDefaultY;
 
     public abstract void setDefault();
+
+    public abstract void update(double dt);
 
     public abstract void draw(Graphics2D g2);
 
