@@ -17,7 +17,8 @@ public class Bomb extends Entity {
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0l;
-    private long timeElapsed = 3000000000l;
+    private long timeElapsed = 5000000000l;
+    private long currentTime = 0l;
     private int x, y;
 
 
@@ -39,25 +40,27 @@ public class Bomb extends Entity {
     }
 
     public void update(int x, int y) {
-        key = "space";
-        timeStart = System.nanoTime()/1000000000;
+        this.timeStart = System.nanoTime();
+       // this.key = "space";
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
-                timeStart=System.currentTimeMillis();
+
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
-
+                
                 if (checkAvailable(this.x, this.y)) {
+                    
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
-                    timeStart = System.nanoTime();
+                    System.out.println(timeStart);
+                    
 
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
@@ -82,16 +85,18 @@ public class Bomb extends Entity {
         if (bombList != null) {
 
             //Image img = null;
-            if (key.equals("space")) {
+            //if (this.key.equals("space")) {
                 //load Bomb.gif from resources
-                URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
-                ImageIcon icon = new ImageIcon(url);
-                Image img = icon.getImage();
+                
                 // img for the bomb initial 
-
-                if(timeElapsed>System.nanoTime()-timeStart){
+                currentTime = System.nanoTime()-timeStart;
+                if(timeElapsed>currentTime){
+                    URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
+                    ImageIcon icon = new ImageIcon(url);
+                    Image img = icon.getImage();
                     g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                         Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                        System.out.println(this.timeStart);
                 } else {
                     // img for the bomb after 3 seconds
                     URL url2 = Objects.requireNonNull(getClass().getResource("/Bomb/start1.png"));
@@ -99,11 +104,12 @@ public class Bomb extends Entity {
                     Image img2 = icon2.getImage();
                     g2.drawImage(img2, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                         Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                        System.out.println(this.timeStart);
                 }
                 
                 
             }
-        }
+        //}
     }
 
     // getter && setter
@@ -136,9 +142,7 @@ public class Bomb extends Entity {
     @Override
     public void update(double dt) {
         // TODO Auto-generated method stub
-        if ((System.currentTimeMillis() - timeStart < 5000L)&&(System.currentTimeMillis() - timeElapsed > 1000L)) {
-            System.out.println("explode");
-        }
+
     }
 }
 
