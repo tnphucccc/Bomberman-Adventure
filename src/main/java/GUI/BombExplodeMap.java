@@ -22,22 +22,24 @@ public class BombExplodeMap {
         } catch (IOException e) {
             e.printStackTrace();
         }
+     
     }
     //draw 
     public void draw(int x,int y,Graphics2D g2) {
         this.x = x/48;
         this.y = y/48;
+        
         if(map[this.x][this.y-1]==0){
-            drawBombExplode(g2, up, this.x*48, (this.y-1)*48);
+            drawBombExplode(g2, up, this.x, (this.y-1));
         }
         if(map[this.x][this.y+1]==0){
-            drawBombExplode(g2, up, this.x*48, (this.y+1)*48);
+            drawBombExplode(g2, up, this.x, (this.y+1)*48);
         }
         if(map[this.x-1][this.y]==0){
-            drawBombExplode(g2, up, (this.x-1)*48, this.y*48);
+            drawBombExplode(g2, up, (this.x-1), this.y);
         }
         if(map[this.x+1][this.y]==0){
-            drawBombExplode(g2, up, (this.x+1)*48, this.y*48);
+            drawBombExplode(g2, up, (this.x+1), this.y);
         }
     }
     //load map tp 2d array
@@ -75,6 +77,7 @@ public class BombExplodeMap {
     }
     //draw bomb explosion
     public void drawBombExplode(Graphics2D g2,BufferedImage img,int x,int y) {
-        g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+        System.out.println(this.x+" "+this.y);
+        g2.drawImage(img, x*48, y*48, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
     }
 }
