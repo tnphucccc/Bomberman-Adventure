@@ -20,7 +20,6 @@ public class Bomb extends Entity {
     private long timeStart = 0L;
     private int x, y;
 
-
     private int bombCounter = 0;
     public boolean flag = false;
 
