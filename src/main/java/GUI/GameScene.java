@@ -26,13 +26,15 @@ public class GameScene extends Scene {
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
 
+    int mapID;
 
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
-    public GameScene(KeyHandler keyH, MouseHandler mouseH) {
+    public GameScene(KeyHandler keyH, MouseHandler mouseH, int mapID) {
         this.keyH = keyH;
         this.mouseH = mouseH;
+        this.mapID = mapID;
 
         player = new Player(keyH, 1);
         cCheck = new CollisionCheck();
@@ -119,6 +121,9 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Mob> getMobList(){
         return mobList;
+    }
+    public int getmapID(){
+        return mapID;
     }
 
 }

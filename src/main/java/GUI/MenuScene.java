@@ -16,6 +16,8 @@ public class MenuScene extends Scene {
 
     public MouseHandler mouseH;
 
+    public int mapID = 0;
+
     public MenuScene(MouseHandler mouseH) {
         this.mouseH = mouseH;
         try {

@@ -53,7 +53,8 @@ public class Window extends JFrame implements Runnable {
         currentState = newState;
         switch (currentState) {
             case 0 -> currentScene = new MenuScene(mouseH);
-            case 1 -> currentScene = new GameScene(keyH, mouseH);
+            case 1 -> currentScene = new GameScene(keyH, mouseH, 1);
+            case 2 -> currentScene = new GameScene(keyH, mouseH, 2);
 
             default -> {
                 System.out.println("Error: Invalid state");
@@ -107,5 +108,8 @@ public class Window extends JFrame implements Runnable {
             }
         }
         this.dispose();
+    }
+    public static Scene getCurrentScence() {
+        return Window.getWindow().currentScene;
     }
 }
