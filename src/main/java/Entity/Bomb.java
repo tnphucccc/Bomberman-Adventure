@@ -18,6 +18,7 @@ public class Bomb extends Entity {
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
+    private long timeElapsed = 2000000000L;
     private int x, y;
 
     private int bombCounter = 0;
@@ -88,7 +89,7 @@ public class Bomb extends Entity {
             // img for the bomb initial
             long currentTime = System.nanoTime() - timeStart;
             if (Camera.canDraw(this.x, this.y)) {
-                long timeElapsed = 5000000000L;
+                
                 if (timeElapsed > currentTime) {
                     URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
                     ImageIcon icon = new ImageIcon(url);
