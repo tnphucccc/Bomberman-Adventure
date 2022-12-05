@@ -3,13 +3,12 @@ package Entity;
 import Controls.KeyHandler;
 import GUI.Camera;
 import Variables.Constant;
-
+import GUI.BombExplodeMap;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
-
 
 public class Bomb extends Entity {
     public static int bombSize = 5;
@@ -23,7 +22,7 @@ public class Bomb extends Entity {
 
     private int bombCounter = 0;
     public boolean flag = false;
-
+    BombExplodeMap bombExplodeMap;
     //KeyHandler
 
     public Bomb(KeyHandler keyH) {
@@ -39,6 +38,7 @@ public class Bomb extends Entity {
 
     public void update(int x, int y) {
         this.timeStart = System.nanoTime();
+        bombExplodeMap = new BombExplodeMap();
         // this.key = "space";
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
@@ -58,7 +58,7 @@ public class Bomb extends Entity {
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
                     System.out.println(timeStart);
-
+                    
 
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
@@ -97,7 +97,7 @@ public class Bomb extends Entity {
 
                     g2.drawImage(img, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                    System.out.println(this.timeStart);
+                            System.out.println(this.x/(48)+" "+this.x);
 
                 } else {
                     // img for the bomb after 3 seconds
@@ -107,7 +107,9 @@ public class Bomb extends Entity {
 
                     g2.drawImage(img2, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                    System.out.println(this.timeStart);
+                    
+                    bombExplodeMap.draw(this.x,this.y,g2);
+                    System.out.println(this.x/(48)+" "+this.x);
                 }
             }
         }

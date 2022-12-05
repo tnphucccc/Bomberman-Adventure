@@ -2,6 +2,7 @@ package GUI;
 import Variables.Constant;
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,11 +12,33 @@ import java.util.Objects;
 public class BombExplodeMap {
     private int x, y;
     private int[][] map;
-    public BombExplodeMap(int x,int y) {
-        this.x = x;
-        this.y = y;
+    BufferedImage up;
+    public BombExplodeMap() {
+        
         map = new int[Constant.MAX_SCREEN_ROW][Constant.MAX_SCREEN_COL];
-        loadMap("/Maps/Map01.txt");
+        loadMap("/Maps/Map01.txt");    
+        try {
+            up = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/start4.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //draw 
+    public void draw(int x,int y,Graphics2D g2) {
+        this.x = x/48;
+        this.y = y/48;
+        if(map[this.x][this.y-1]==0){
+            drawBombExplode(g2, up, this.x*48, (this.y-1)*48);
+        }
+        if(map[this.x][this.y+1]==0){
+            drawBombExplode(g2, up, this.x*48, (this.y+1)*48);
+        }
+        if(map[this.x-1][this.y]==0){
+            drawBombExplode(g2, up, (this.x-1)*48, this.y*48);
+        }
+        if(map[this.x+1][this.y]==0){
+            drawBombExplode(g2, up, (this.x+1)*48, this.y*48);
+        }
     }
     //load map tp 2d array
     public void loadMap(String filePath) {
@@ -49,5 +72,9 @@ public class BombExplodeMap {
     //set map
     public void setMap(int x,int y,int value) {
         map[x][y] = value;
+    }
+    //draw bomb explosion
+    public void drawBombExplode(Graphics2D g2,BufferedImage img,int x,int y) {
+        g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
     }
 }
