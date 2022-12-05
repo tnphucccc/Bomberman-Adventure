@@ -1,6 +1,7 @@
 package Entity;
 
 import Controls.CollisionCheck;
+import GUI.Camera;
 import Variables.Constant;
 import GUI.GameScene;
 import javax.imageio.ImageIO;
@@ -16,14 +17,15 @@ public class Mob extends Entity {
     String[] dir = {"down", "up", "right", "left"};
 
     public Mob(int x, int y) {
-        this.state = 1;
         this.x = x;
         this.y = y;
+
         solidArea = new Rectangle();
         solidArea.x = 4;
         solidArea.y = 16;
         solidArea.width = 36;
         solidArea.height = 32;
+
         setDefault();
         getMobImage();
     }
@@ -31,43 +33,34 @@ public class Mob extends Entity {
     public void setDefault() {
         speed = 1;
         this.direction = "down";
-
     }
 
     @Override
-    public void update(double dt) {
-        if (state != 0) {
-            //check collision with tile,bomb
-            collisionOn = false;
-            cCheck.checkTile(this);
-            cCheck.checkBomb(GameScene.getBombList(), this);
-            cCheck.checkMob(GameScene.getPlayer(), GameScene.getMobList());
-            if (!collisionOn) {
-                switch (direction) {
-                    case "up" -> y -= speed;
-                    case "down" -> y += speed;
-                    case "left" -> x -= speed;
-                    case "right" -> x += speed;
-                }
-            } else {
-                this.direction = dir[rand.nextInt(4)];
+    public void update() {
+        collisionOn = false;
+        cCheck.checkTile(this);
+        cCheck.checkBomb(GameScene.getBombList(), this);
+        cCheck.checkMob(GameScene.getPlayer(),GameScene.getMobList());
+
+        if (!collisionOn) {
+            switch (direction) {
+                case "up" -> y -= speed;
+                case "down" -> y += speed;
+                case "left" -> x -= speed;
+                case "right" -> x += speed;
             }
-            spriteCounter++;
-            if (spriteCounter > 8) {
-                if (spriteNum != 4) {
-                    spriteNum++;
-                } else
-                    spriteNum = 1;
-                spriteCounter = 0;
-            }
+
         } else {
-            spriteCounter++;
-            if (spriteCounter > 12) {
-                if (spriteNum != 6) {
-                    spriteNum++;
-                }
-                spriteCounter = 0;
-            }
+            this.direction = dir[rand.nextInt(4)];
+        }
+
+        spriteCounter++;
+        if (spriteCounter > 8) {
+            if (spriteNum != 4) {
+                spriteNum++;
+            } else
+                spriteNum = 1;
+            spriteCounter = 0;
         }
     }
 
@@ -93,14 +86,10 @@ public class Mob extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        if (state == 0) {
-            img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5],die[6],die[7]);
-            g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-            speed = 0;
-        } else {
-            //Mob is alive
-            g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+
+        if (Camera.canDraw(x, y))
+        {
+            g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
         }
     }

@@ -1,6 +1,7 @@
 package Entity;
 
 import Controls.KeyHandler;
+//import GUI.Camera;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+
 public class Bomb extends Entity {
     public static int bombSize = 5;
     KeyHandler keyH;
@@ -17,16 +19,17 @@ public class Bomb extends Entity {
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
-    private final long timeElapsed = 3000000000L;
-    private final long timeDuration = 4000000000L;
+    private final long timeElapsed = 2000000000L;
+    private final long timeDuration =4000000000L;
     private int x, y;
 
 
     private String key = "";
     private int bombCounter = 0;
-    
+    public boolean flag = false;
+
     //KeyHandler
-    
+
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
@@ -49,14 +52,16 @@ public class Bomb extends Entity {
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
+
             }
-            if (!keyH.spacePressed && spacePressed && state==0) {
+            if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
+
                 if (checkAvailable(this.x, this.y)) {
+
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
                     bombCounter++;
-
                     System.out.println("Bomb Placed:" + bombCounter);
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
@@ -153,14 +158,13 @@ public class Bomb extends Entity {
         }
     }
 
-    @Override
     public void setDefault() {
         // TODO Auto-generated method stub
         this.direction="bomb";
         this.state=0;//0 is not explode, 1 is exploded, 2 is disappeared
     }
-    @Override
-    public void update(double dt) {
+
+    public void update() {
         // TODO Auto-generated method stub
     }
 }
