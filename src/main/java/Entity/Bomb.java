@@ -21,8 +21,6 @@ public class Bomb extends Entity {
     private long currentTime = 0l;
     private int x, y;
 
-
-    private String key = "";
     private int bombCounter = 0;
     public boolean flag = false;
     
