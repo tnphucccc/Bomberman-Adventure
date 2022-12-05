@@ -1,6 +1,5 @@
 package GUI;
 
-import Entity.Player;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -50,7 +49,7 @@ public class TileManager {
             tiles[3].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/GroundShadow.png")));
 
             tiles[4] = new Tile();//Seriously ? Sand vs sand typo?
-            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/sand.png")));
+            tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/Sand.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,7 +69,7 @@ public class TileManager {
                 String line = br.readLine();
 
                 while (col < Constant.MAX_WORLD_COL){
-                    String numbers[] = line.split(" ");
+                    String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
 

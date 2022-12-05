@@ -32,7 +32,6 @@ public class Player extends Entity {
 
     }
 
-    @Override
     public void setDefault() {
         x = Constant.TILE_SIZE * 8; // at tile 16
         y = Constant.TILE_SIZE * 5; // at tile 16
@@ -62,8 +61,7 @@ public class Player extends Entity {
         }
     }
     @Override
-
-    public void update(double dt) {
+    public void update() {
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";

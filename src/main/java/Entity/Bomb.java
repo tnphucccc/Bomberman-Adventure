@@ -17,13 +17,10 @@ public class Bomb extends Entity {
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
-    private long timeStart = 0l;
-    private long timeElapsed = 5000000000l;
-    private long currentTime = 0l;
+    private long timeStart = 0L;
     private int x, y;
 
 
-    private String key = "";
     private int bombCounter = 0;
     public boolean flag = false;
 
@@ -90,8 +87,9 @@ public class Bomb extends Entity {
             //load Bomb.gif from resources
 
             // img for the bomb initial
-            currentTime = System.nanoTime()-timeStart;
+            long currentTime = System.nanoTime() - timeStart;
             if (Camera.canDraw(this.x, this.y)) {
+                long timeElapsed = 5000000000L;
                 if (timeElapsed > currentTime) {
                     URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
                     ImageIcon icon = new ImageIcon(url);
@@ -137,13 +135,12 @@ public class Bomb extends Entity {
         this.bombCounter = bombCounter;
     }
 
-    @Override
     public void setDefault() {
         // TODO Auto-generated method stub
 
     }
 
-    public void update(double dt) {
+    public void update() {
         // TODO Auto-generated method stub
 
     }

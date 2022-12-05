@@ -35,7 +35,8 @@ public class Mob extends Entity {
         this.direction = "down";
     }
 
-    public void update(double dt) {
+    @Override
+    public void update() {
         collisionOn = false;
         cCheck.checkTile(this);
         cCheck.checkBomb(GameScene.getBombList(), this);
