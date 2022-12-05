@@ -14,18 +14,21 @@ import java.util.ArrayList;
 public class GameScene extends Scene {
     public static CollisionCheck cCheck;
     public static SuperObject[] Object = new SuperObject[10];
+
     Pause pause;
     GameOver gameOver;
-    Overlay overLay;
-    static ArrayList<Mob> mobList = new ArrayList<>(3);
+
     KeyHandler keyH;
     MouseHandler mouseH;
+
     static Player player;
     Bomb bomb;
     static ArrayList<Bomb> bombList;
+    static ArrayList<Mob> mobList = new ArrayList<>(3);
+
+
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
-
 
     public GameScene(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
@@ -43,7 +46,6 @@ public class GameScene extends Scene {
 
         pause = new Pause(false, keyH);
         gameOver = new GameOver(mouseH);
-        overLay = new Overlay();
     }
 
     @Override
@@ -53,19 +55,19 @@ public class GameScene extends Scene {
 
         if (!pause.isPaused) {
             //Game is running
-            player.update(dt);
+            player.update();
             for (Mob value : mobList) {
-                value.update(dt);
+                value.update();
                 //cCheck.checkMob(player,mobList);
             }
             bomb.update(player.x, player.y);
-            bomb.update(dt);
+            bomb.update();
             bombList = bomb.getBombList();
 
         }  // Do nothing
 
+        //Game over
         if (!gameOver.isAlive) {
-            //Game over
             gameOver.update(dt);
         }
     }
@@ -73,31 +75,39 @@ public class GameScene extends Scene {
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+
+        //Draw Map
         tileM.draw(g2);
+
+        //Draw player
         player.draw(g2);
 
+        //Draw Items
+        for (SuperObject superObject : Object) {
+            if (superObject != null) {
+                superObject.draw(g2);
+            }
+        }
+
+        //Draw Bomb
         if (bombList != null) {
             for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }
 
-        for (SuperObject superObject : Object) {
-            if (superObject != null) {
-                superObject.draw(g2);
-            }
-        }
+        //Draw mob
         for (Mob value : mobList) {
-            value.draw(g2);
+                value.draw(g2);
         }
 
         //Draw if the game is paused
         if (pause.isPaused) {
-            overLay.draw(g2);
+            Overlay.getInstance().draw(g2);
             pause.draw(g2);
         }
         if (!gameOver.isAlive) {
-            overLay.draw(g2);
+            Overlay.getInstance().draw(g2);
             gameOver.draw(g2);
         }
     }
@@ -110,4 +120,5 @@ public class GameScene extends Scene {
     public static ArrayList<Mob> getMobList(){
         return mobList;
     }
+
 }

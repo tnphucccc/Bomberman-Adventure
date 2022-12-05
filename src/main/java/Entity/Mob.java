@@ -1,6 +1,7 @@
 package Entity;
 
 import Controls.CollisionCheck;
+import GUI.Camera;
 import Variables.Constant;
 import GUI.GameScene;
 import javax.imageio.ImageIO;
@@ -18,11 +19,13 @@ public class Mob extends Entity {
     public Mob(int x, int y) {
         this.x = x;
         this.y = y;
+
         solidArea = new Rectangle();
         solidArea.x = 4;
         solidArea.y = 16;
         solidArea.width = 36;
         solidArea.height = 32;
+
         setDefault();
         getMobImage();
     }
@@ -33,12 +36,12 @@ public class Mob extends Entity {
     }
 
     @Override
-    public void update(double dt) {
-        //check collision with tile,bomb
+    public void update() {
         collisionOn = false;
         cCheck.checkTile(this);
         cCheck.checkBomb(GameScene.getBombList(), this);
         cCheck.checkMob(GameScene.getPlayer(),GameScene.getMobList());
+
         if (!collisionOn) {
             switch (direction) {
                 case "up" -> y -= speed;
@@ -46,9 +49,11 @@ public class Mob extends Entity {
                 case "left" -> x -= speed;
                 case "right" -> x += speed;
             }
+
         } else {
             this.direction = dir[rand.nextInt(4)];
         }
+
         spriteCounter++;
         if (spriteCounter > 8) {
             if (spriteNum != 4) {
@@ -78,7 +83,11 @@ public class Mob extends Entity {
 
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        g2.drawImage(img, x, y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+
+        if (Camera.canDraw(x, y))
+        {
+            g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+        }
     }
 }

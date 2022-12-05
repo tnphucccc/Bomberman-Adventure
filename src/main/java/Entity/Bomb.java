@@ -1,6 +1,7 @@
 package Entity;
 
 import Controls.KeyHandler;
+import GUI.Camera;
 import Variables.Constant;
 
 import javax.swing.*;
@@ -16,16 +17,14 @@ public class Bomb extends Entity {
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
-    private long timeStart = 0l;
-    private long timeElapsed = 5000000000l;
-    private long currentTime = 0l;
+    private long timeStart = 0L;
     private int x, y;
 
     private int bombCounter = 0;
     public boolean flag = false;
-    
+
     //KeyHandler
-    
+
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
         solidArea = new Rectangle();
@@ -39,7 +38,7 @@ public class Bomb extends Entity {
 
     public void update(int x, int y) {
         this.timeStart = System.nanoTime();
-       // this.key = "space";
+        // this.key = "space";
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
@@ -50,15 +49,15 @@ public class Bomb extends Entity {
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
-                
+
                 if (checkAvailable(this.x, this.y)) {
-                    
+
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
                     System.out.println(timeStart);
-                    
+
 
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
@@ -84,29 +83,33 @@ public class Bomb extends Entity {
 
             //Image img = null;
             //if (this.key.equals("space")) {
-                //load Bomb.gif from resources
-                
-                // img for the bomb initial 
-                currentTime = System.nanoTime()-timeStart;
-                if(timeElapsed>currentTime){
+            //load Bomb.gif from resources
+
+            // img for the bomb initial
+            long currentTime = System.nanoTime() - timeStart;
+            if (Camera.canDraw(this.x, this.y)) {
+                long timeElapsed = 5000000000L;
+                if (timeElapsed > currentTime) {
                     URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
                     ImageIcon icon = new ImageIcon(url);
                     Image img = icon.getImage();
-                    g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                        System.out.println(this.timeStart);
+
+                    g2.drawImage(img, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                    System.out.println(this.timeStart);
+
                 } else {
                     // img for the bomb after 3 seconds
                     URL url2 = Objects.requireNonNull(getClass().getResource("/Bomb/start1.png"));
                     ImageIcon icon2 = new ImageIcon(url2);
                     Image img2 = icon2.getImage();
-                    g2.drawImage(img2, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                        System.out.println(this.timeStart);
+
+                    g2.drawImage(img2, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                    System.out.println(this.timeStart);
                 }
-                
-                
             }
+        }
         //}
     }
 
@@ -131,16 +134,13 @@ public class Bomb extends Entity {
         this.bombCounter = bombCounter;
     }
 
-    @Override
     public void setDefault() {
         // TODO Auto-generated method stub
-        
+
     }
 
-    @Override
-    public void update(double dt) {
+    public void update() {
         // TODO Auto-generated method stub
 
     }
 }
-
