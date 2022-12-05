@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public abstract class Entity {
     public int x, y, speed, state;
     public BufferedImage[] up = new BufferedImage[4], down = new BufferedImage[4],
-            left = new BufferedImage[4], right = new BufferedImage[4],
+            left = new BufferedImage[4], right = new BufferedImage[4], bomb = new BufferedImage[4],
             die = new BufferedImage[6];
     public String direction;
     public int spriteCounter = 0, spriteNum = 1;
@@ -17,9 +17,9 @@ public abstract class Entity {
     public ArrayList<Integer> InteractionBox = new ArrayList<>();
     public int solidAreaDefaultX, solidAreaDefaultY;
 
-    public abstract void setDefault();
+    //public abstract void setDefault();
 
-    public abstract void update(double dt);
+    public abstract void update();
 
     public abstract void draw(Graphics2D g2);
 
@@ -37,7 +37,6 @@ public abstract class Entity {
         return ((y + 16) / 48) * 48;
     }
 
-
     public BufferedImage getEntityImage() {
         BufferedImage img = null;
         switch (direction) {
@@ -46,6 +45,12 @@ public abstract class Entity {
             case "left" -> img = getBufferedImage(left[0], left[1], left[2], left[3]);
             case "right" -> img = getBufferedImage(right[0], right[1], right[2], right[3]);
         }
+        return img;
+    }
+
+    public BufferedImage getBomb() {
+        BufferedImage img = null;
+        img = getBufferedImage(bomb[0], bomb[1], bomb[2], bomb[3]);
         return img;
     }
 

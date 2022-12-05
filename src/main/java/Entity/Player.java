@@ -27,18 +27,16 @@ public class Player extends Entity {
         solidArea.height = 32;
         setDefault();
         getPlayerImage();
-
     }
 
-    @Override
-    public void setDefault() {
+    private void setDefault() {
         x = 48 + Constant.TILE_SIZE;
         y = 32 + Constant.TILE_SIZE;
         speed = 2;
         direction = "down";
     }
 
-    public void getPlayerImage() {
+    private void getPlayerImage() {
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()
@@ -59,7 +57,7 @@ public class Player extends Entity {
     }
 
     @Override
-    public void update(double dt) {
+    public void update() {
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";

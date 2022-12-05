@@ -27,13 +27,13 @@ public class Mob extends Entity {
         getMobImage();
     }
 
-    public void setDefault() {
+    private void setDefault() {
         speed = 1;
         this.direction = "down";
     }
 
     @Override
-    public void update(double dt) {
+    public void update() {
         //check collision with tile,bomb
         collisionOn = false;
         cCheck.checkTile(this);
@@ -59,7 +59,7 @@ public class Mob extends Entity {
         }
     }
 
-    public void getMobImage() {
+    private void getMobImage() {
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()

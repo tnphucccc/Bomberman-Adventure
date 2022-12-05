@@ -53,13 +53,13 @@ public class GameScene extends Scene {
 
         if (!pause.isPaused) {
             //Game is running
-            player.update(dt);
+            player.update();
             for (Mob value : mobList) {
-                value.update(dt);
+                value.update();
                 //cCheck.checkMob(player,mobList);
             }
             bomb.update(player.x, player.y);
-            bomb.update(dt);
+            bomb.update();
             bombList = bomb.getBombList();
 
         }  // Do nothing
