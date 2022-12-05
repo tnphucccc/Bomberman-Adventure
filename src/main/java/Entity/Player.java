@@ -95,7 +95,7 @@ public class Player extends Entity {
                     case "right" -> x += speed;
                 }
             }
-            
+
             spriteCounter++;
             if (spriteCounter > 8) {
                 if (spriteNum != 4) {

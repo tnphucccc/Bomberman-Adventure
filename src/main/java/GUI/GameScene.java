@@ -18,13 +18,14 @@ public class GameScene extends Scene {
     Pause pause;
     GameOver gameOver;
 
-    Mob[] mob;
     KeyHandler keyH;
     MouseHandler mouseH;
 
     static Player player;
     Bomb bomb;
     static ArrayList<Bomb> bombList;
+    static ArrayList<Mob> mobList = new ArrayList<>(3);
+
 
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
@@ -37,7 +38,6 @@ public class GameScene extends Scene {
         cCheck = new CollisionCheck();
         tileM = new TileManager();
 
-        mob = new Mob[3];
         aSetter.setMob();
         aSetter.setItems();
 
@@ -50,26 +50,19 @@ public class GameScene extends Scene {
 
     @Override
     public void update(double dt) {
-        pause.pauseGame(); // Check if paused
-        gameOver.checkAlive(player.state); // Check Game State
+        pause.pauseGame();
+        gameOver.checkAlive(player.state);
 
         if (!pause.isPaused) {
+            //Game is running
             player.update(dt);
-
-            for (Mob value : mob) {
-                if (value != null) {
-                    value.update(dt);
-                    cCheck.checkMob(player, value);
-                    if (player.state==0){
-                        value.speed=0;
-                    }
-
-                }
+            for (Mob value : mobList) {
+                value.update(dt);
+                //cCheck.checkMob(player,mobList);
             }
-
             bomb.update(player.x, player.y);
+            bomb.update(dt);
             bombList = bomb.getBombList();
-            cCheck.checkBomb(GameScene.getBombList(), player);
 
         }  // Do nothing
 
@@ -104,10 +97,8 @@ public class GameScene extends Scene {
         }
 
         //Draw mob
-        for (Mob value : mob) {
-            if (value != null) {
+        for (Mob value : mobList) {
                 value.draw(g2);
-            }
         }
 
         //Draw if the game is paused
@@ -123,7 +114,11 @@ public class GameScene extends Scene {
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
-    public static Player getPlayer() {
+    public static Player getPlayer(){
         return player;
     }
+    public static ArrayList<Mob> getMobList(){
+        return mobList;
+    }
+
 }
