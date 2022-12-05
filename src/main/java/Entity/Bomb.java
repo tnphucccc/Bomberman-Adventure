@@ -20,14 +20,16 @@ public class Bomb extends Entity {
     private long timeStart = 0L;
     private int x, y;
 
-
     private int bombCounter = 0;
     public boolean flag = false;
+
+    Image bombImage, bombExplodeImage, currentImage;
 
     //KeyHandler
 
     public Bomb(KeyHandler keyH) {
         this.keyH = keyH;
+
         solidArea = new Rectangle();
         solidArea.x = 0;
         solidArea.y = 0;
@@ -35,6 +37,19 @@ public class Bomb extends Entity {
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
+
+        try {
+            URL url1 = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
+            ImageIcon icon = new ImageIcon(url1);
+            bombImage = icon.getImage();
+
+            URL url2 = Objects.requireNonNull(getClass().getResource("/Bomb/start1.png"));
+            ImageIcon icon2 = new ImageIcon(url2);
+            bombExplodeImage = icon2.getImage();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void update(int x, int y) {
@@ -81,37 +96,22 @@ public class Bomb extends Entity {
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         if (bombList != null) {
-
-            //Image img = null;
-            //if (this.key.equals("space")) {
-            //load Bomb.gif from resources
-
-            // img for the bomb initial
             long currentTime = System.nanoTime() - timeStart;
+
             if (Camera.canDraw(this.x, this.y)) {
                 long timeElapsed = 5000000000L;
-                if (timeElapsed > currentTime) {
-                    URL url = Objects.requireNonNull(getClass().getResource("/Bomb/Bomb.gif"));
-                    ImageIcon icon = new ImageIcon(url);
-                    Image img = icon.getImage();
 
-                    g2.drawImage(img, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                    System.out.println(this.timeStart);
+                if (timeElapsed > currentTime) {
+                    currentImage = bombImage;
 
                 } else {
                     // img for the bomb after 3 seconds
-                    URL url2 = Objects.requireNonNull(getClass().getResource("/Bomb/start1.png"));
-                    ImageIcon icon2 = new ImageIcon(url2);
-                    Image img2 = icon2.getImage();
-
-                    g2.drawImage(img2, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                    System.out.println(this.timeStart);
+                    currentImage = bombExplodeImage;
                 }
+                g2.drawImage(currentImage, Camera.getXCord(this.x), Camera.getYCord(this.y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             }
         }
-        //}
     }
 
     // getter && setter
