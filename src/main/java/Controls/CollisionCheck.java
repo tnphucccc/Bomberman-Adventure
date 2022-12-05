@@ -1,21 +1,29 @@
 package Controls;
 
 import Entity.Entity;
-import GUI.GameScene;
-import GUI.TileManager;
+import GUI.*;
+import Entity.*;
 import Variables.Constant;
-import Entity.Bomb;
-import Entity.Mob;
 import java.awt.*;
 import java.util.ArrayList;
 
+import Entity.Player;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-    public CollisionCheck() {
+    private boolean flag = false;
+
+    public static CollisionCheck instance;
+
+    public static CollisionCheck getInstance(){
+        if(instance == null){
+            instance = new CollisionCheck();
+        }
+        return instance;
     }
 
     public void checkTile(Entity entity) {
         entity.setEntityInteractionBox(entity);
+
         int entityLeftCol = entity.InteractionBox.get(3) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
         int entityRightCol = entity.InteractionBox.get(1) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
         int entityTopRow = entity.InteractionBox.get(0) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
@@ -26,37 +34,48 @@ public class CollisionCheck {
         switch (entity.direction) {
             case "up" -> {
                 entityTopRow = (entity.InteractionBox.get(0) - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
-                tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
-                tileNum2 = tileM.mapTileNum[entityTopRow][entityRightCol];
-                if (tileM.tiles[tileNum1].collision
-                        || tileM.tiles[tileNum2].collision) {
+
+                tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
+                tileNum2 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
+
+
+                if (TileManager.getInstance().tiles[tileNum1].collision
+                        || TileManager.getInstance().tiles[tileNum2].collision) {
                     entity.collisionOn = true;
                 }
             }
             case "down" -> {
                 entityBottomRow = (entity.InteractionBox.get(2) + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
-                tileNum1 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
-                tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
-                if (tileM.tiles[tileNum1].collision
-                        || tileM.tiles[tileNum2].collision) {
+
+                tileNum1 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
+                tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
+
+
+                if (TileManager.getInstance().tiles[tileNum1].collision
+                        || TileManager.getInstance().tiles[tileNum2].collision) {
                     entity.collisionOn = true;
                 }
             }
             case "left" -> {
                 entityLeftCol = (entity.InteractionBox.get(3) - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
-                tileNum1 = tileM.mapTileNum[entityTopRow][entityLeftCol];
-                tileNum2 = tileM.mapTileNum[entityBottomRow][entityLeftCol];
-                if (tileM.tiles[tileNum1].collision
-                        || tileM.tiles[tileNum2].collision) {
+
+                tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
+                tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
+
+                if (TileManager.getInstance().tiles[tileNum1].collision
+                        || TileManager.getInstance().tiles[tileNum2].collision) {
                     entity.collisionOn = true;
                 }
             }
             case "right" -> {
                 entityRightCol = (entity.InteractionBox.get(1) + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
-                tileNum1 = tileM.mapTileNum[entityTopRow][entityRightCol];
-                tileNum2 = tileM.mapTileNum[entityBottomRow][entityRightCol];
-                if (tileM.tiles[tileNum1].collision
-                        || tileM.tiles[tileNum2].collision) {
+
+                tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
+                tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
+
+
+                if (TileManager.getInstance().tiles[tileNum1].collision
+                        || TileManager.getInstance().tiles[tileNum2].collision) {
                     entity.collisionOn = true;
                 }
             }
@@ -205,12 +224,12 @@ public class CollisionCheck {
                 }
 
 
-            }       
-            
+            }
+
         }
     }
-    
-    
+
+
 }
 
         
