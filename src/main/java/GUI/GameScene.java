@@ -101,6 +101,7 @@ public class GameScene extends Scene {
             gameOver.draw(g2);
         }
     }
+    //getter &setter
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }

@@ -95,7 +95,8 @@ public class Player extends Entity {
                     spriteNum = 1;
                 spriteCounter = 0;
             }
-        } else if (state == 0) {
+        }
+        else if (state == 0) {
             spriteCounter++;
             if (spriteCounter > 12) {
                 if (spriteNum != 6) {

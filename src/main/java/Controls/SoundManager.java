@@ -15,18 +15,23 @@ public class SoundManager extends JFrame {
             URL url = this.getClass().getClassLoader().getResource(name);
             assert url != null;
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
-            if (sound.equals("just_died")) {
-                just_died = AudioSystem.getClip();
-                just_died.open(audioInputStream);
-            } else if (sound.equals("put_bomb")) {
-                put_bomb = AudioSystem.getClip();
-                put_bomb.open(audioInputStream);
-            } else if (sound.equals("bomb_explode")) {
-                bomb_explode = AudioSystem.getClip();
-                bomb_explode.open(audioInputStream);
-            } else if (sound.equals("get_item")) {
-                get_item = AudioSystem.getClip();
-                get_item.open(audioInputStream);
+            switch (sound) {
+                case "just_died" -> {
+                    just_died = AudioSystem.getClip();
+                    just_died.open(audioInputStream);
+                }
+                case "put_bomb" -> {
+                    put_bomb = AudioSystem.getClip();
+                    put_bomb.open(audioInputStream);
+                }
+                case "bomb_explode" -> {
+                    bomb_explode = AudioSystem.getClip();
+                    bomb_explode.open(audioInputStream);
+                }
+                case "get_item" -> {
+                    get_item = AudioSystem.getClip();
+                    get_item.open(audioInputStream);
+                }
             }
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
