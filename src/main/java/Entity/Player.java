@@ -61,8 +61,9 @@ public class Player extends Entity {
             e.printStackTrace();
         }
     }
+    @Override
 
-    public void update() {
+    public void update(double dt) {
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";

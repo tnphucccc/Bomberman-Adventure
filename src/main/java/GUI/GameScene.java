@@ -54,7 +54,7 @@ public class GameScene extends Scene {
         gameOver.checkAlive(player.state); // Check Game State
 
         if (!pause.isPaused) {
-            player.update();
+            player.update(dt);
 
             for (Mob value : mob) {
                 if (value != null) {
