@@ -20,8 +20,7 @@ public class Bomb extends Entity {
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
-    private final long timeElapsed = 2000000000L;
-    private final long timeDuration =4000000000L;
+
     private int x, y;
 
 
@@ -53,7 +52,6 @@ public class Bomb extends Entity {
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
-
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
@@ -83,41 +81,25 @@ public class Bomb extends Entity {
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
+        long timeElapsed = 2000000000L;
+        long timeDuration = 4000000000L;
         if (bombList != null) {
             //Image img = null;
             if (key.equals("space")) {
-                if(timeElapsed>System.nanoTime()-timeStart){//planting
-                    //count sprite
-                    spriteCounter++;
-                    if (spriteCounter > 12) {
-                        if (spriteNum != 4) {
-                            spriteNum++;
-                        } else
-                            spriteNum = 1;
-                        spriteCounter = 0;
-                    }
+                if(timeElapsed >System.nanoTime()-timeStart){//planting
+                    update();
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                } else if (timeDuration<System.nanoTime()-timeStart) {//disappeared
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                } else if (timeDuration <System.nanoTime()-timeStart) {//disappeared
                     state=2;
-
-                    bombList.remove(this);
-
+                    update();
                 } else {//exploding
-                    //another count sprite (some1 optimize this 4 me T.T
-                    spriteCounter++;
-                    if (spriteCounter > 12) {
-                        if (spriteNum != 8) {
-                            spriteNum++;
-                        } else
-                            spriteNum = 1;
-                        spriteCounter = 0;
-                    }
-                    // img for the bomb after 3 seconds
-                    img =getBufferedImage(die[0],die[1],die[2],die[3],die[4],die[5],die[6],die[7]);
-                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
                     state=1;
+                    update();
+                    // img for the bomb after 3 seconds
+                    img = getBufferedImage(die[0],die[1],die[2],die[3],die[4],die[5],die[6],die[7]);
+                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
                 }
             }
         }
@@ -165,8 +147,35 @@ public class Bomb extends Entity {
         this.state=0;//0 is not explode, 1 is exploded, 2 is disappeared
     }
 
-    public void update() {
+    public void update() {//count sprite
         // TODO Auto-generated method stub
+        switch (state) {
+            case 0 -> {
+                spriteCounter++;
+                if (spriteCounter > 12) {
+                    if (spriteNum != 4) {
+                        spriteNum++;
+                    } else
+                        spriteNum = 1;
+                    spriteCounter = 0;
+                }
+            }
+            case 1 -> {
+                spriteCounter++;
+                if (spriteCounter > 12) {
+                    if (spriteNum != 8) {
+                        spriteNum++;
+                    } else
+                        spriteNum = 1;
+                    spriteCounter = 0;
+                }
+                bombCounter--;
+            }
+        }
+        for(Bomb bomb : bombList){
+            if(bomb.state==2){
+                bombList.remove(bomb);
+            }
+        }
     }
 }
-
