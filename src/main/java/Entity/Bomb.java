@@ -4,14 +4,14 @@ import Controls.KeyHandler;
 //import GUI.Camera;
 import GUI.Camera;
 import Variables.Constant;
-
+import GUI.BombExplodeMap;
+import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
-
 
 public class Bomb extends Entity {
     public static int bombSize = 5;
@@ -29,7 +29,7 @@ public class Bomb extends Entity {
     private String key = "";
     private int bombCounter = 0;
     public boolean flag = false;
-
+    BombExplodeMap bombExplodeMap;
     //KeyHandler
 
     public Bomb(KeyHandler keyH) {
@@ -51,6 +51,7 @@ public class Bomb extends Entity {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
+        System.out.println(this.x+" "+this.y);
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
@@ -62,6 +63,8 @@ public class Bomb extends Entity {
                 if (checkAvailable(this.x, this.y)) {
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
+                    bombList.get(bombCounter).setX(this.x);
+                    bombList.get(bombCounter).setY(this.y);
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
                 } else {
@@ -132,7 +135,12 @@ public class Bomb extends Entity {
     public int getY() {
         return y;
     }
-
+    public void setX(int x) {
+        this.x = x;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
     public ArrayList<Bomb> getBombList() {
         return bombList;
     }
