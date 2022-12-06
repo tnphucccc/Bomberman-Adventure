@@ -33,6 +33,7 @@ public class Mob extends Entity {
     public void setDefault() {
         speed = 1;
         this.direction = "down";
+        this.state =1;
     }
 
     @Override
@@ -55,12 +56,22 @@ public class Mob extends Entity {
         }
 
         spriteCounter++;
-        if (spriteCounter > 8) {
-            if (spriteNum != 4) {
-                spriteNum++;
-            } else
-                spriteNum = 1;
-            spriteCounter = 0;
+        if (state!=0){
+            if (spriteCounter > 8) {
+                if (spriteNum != 4) {
+                    spriteNum++;
+                } else
+                    spriteNum = 1;
+                spriteCounter = 0;
+            }
+        } else {
+            spriteCounter++;
+            if (spriteCounter > 12) {
+                if (spriteNum != 6) {
+                    spriteNum++;
+                }
+                spriteCounter = 0;
+            }
         }
     }
 
@@ -76,6 +87,9 @@ public class Mob extends Entity {
                 right[i] = ImageIO.read(Objects.requireNonNull(getClass()
                         .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
             }
+            for (int i = 0; i < 6; i++)
+                die[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Player/player_die" + (i + 1) + ".png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,8 +98,14 @@ public class Mob extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
 
-        if (Camera.canDraw(x, y))
-        {
+        if (state == 0) {
+            //Mob die
+            img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
+            g2.drawImage(img,Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+            speed = 0;
+        } else {
+            //Mob is alive
             g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
         }
