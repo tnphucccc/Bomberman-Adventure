@@ -2,6 +2,7 @@ package Entity;
 
 import Controls.KeyHandler;
 //import GUI.Camera;
+import GUI.Camera;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -58,7 +59,6 @@ public class Bomb extends Entity {
                 spacePressed = false;
 
                 if (checkAvailable(this.x, this.y)) {
-
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
                     bombCounter++;
@@ -96,12 +96,13 @@ public class Bomb extends Entity {
                             spriteNum = 1;
                         spriteCounter = 0;
                     }
-                    g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                         Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
                 } else if (timeDuration<System.nanoTime()-timeStart) {//disappeared
                     state=2;
+
                     bombList.remove(this);
-                    bombCounter--;
+
                 } else {//exploding
                     //another count sprite (some1 optimize this 4 me T.T
                     spriteCounter++;
@@ -114,9 +115,9 @@ public class Bomb extends Entity {
                     }
                     // img for the bomb after 3 seconds
                     img =getBufferedImage(die[0],die[1],die[2],die[3],die[4],die[5],die[6],die[7]);
-                    g2.drawImage(img, this.x, this.y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                         Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                    this.state=1;
+                    state=1;
                 }
             }
         }

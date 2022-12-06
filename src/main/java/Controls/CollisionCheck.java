@@ -7,10 +7,9 @@ import Variables.Constant;
 import java.awt.*;
 import java.util.ArrayList;
 
-import Entity.Player;
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-    private boolean flag = false;
+    private final boolean flag = false;
 
     public static CollisionCheck instance;
 
@@ -175,62 +174,75 @@ public class CollisionCheck {
     }
    //check if player hit bomb
    public void checkBomb(ArrayList<Bomb> bombList,Entity entity) {
-        if(bombList != null){
+        if(bombList != null) {
             for (Bomb bomb : bombList) {
+                if (bomb.state != 2) {
+                    bomb.setEntityInteractionBox(bomb);
+                    entity.setEntityInteractionBox(entity);
+                    Rectangle bombSolidBox = new Rectangle(bomb.solidArea.x + bomb.getX(),
+                            bomb.solidArea.y + bomb.getY(),
+                            bomb.solidArea.width,
+                            bomb.solidArea.height);
+                    Rectangle playerSolidBox = new Rectangle(entity.x,
+                            entity.y,
+                            entity.solidArea.width,
+                            entity.solidArea.height);
+                    boolean inter = bombSolidBox.intersects(playerSolidBox);
+                    if (!inter) {
+                        switch (entity.direction) {
+                            case "up" -> {
+                                Rectangle playerNextMove = check(entity.x, entity.y - entity.speed, entity.solidArea.width, entity.solidArea.height);
+                                if (playerNextMove.intersects(bombSolidBox)) {
+                                    entity.collisionOn = true;
+                                    //    System.out.println("up");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
+                                }
+                            }
+                            case "down" -> {
+                                Rectangle playerNextMove = check(entity.x, entity.y + entity.speed, entity.solidArea.width, entity.solidArea.height);
+                                if (playerNextMove.intersects(bombSolidBox)) {
+                                    entity.collisionOn = true;
+                                    //    System.out.println("down");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
+                                }
 
-                bomb.setEntityInteractionBox(bomb);
-                entity.setEntityInteractionBox(entity);
-                Rectangle bombSolidBox = new Rectangle(bomb.solidArea.x + bomb.getX(),
-                        bomb.solidArea.y + bomb.getY(),
-                        bomb.solidArea.width,
-                        bomb.solidArea.height);
-                Rectangle playerSolidBox = new Rectangle(entity.x,
-                        entity.y,
-                        entity.solidArea.width,
-                        entity.solidArea.height);
-                boolean inter = bombSolidBox.intersects(playerSolidBox);
-                if (!inter) {
-                    switch (entity.direction) {
-                        case "up" -> {
-                            Rectangle playerNextMove = check(entity.x, entity.y - entity.speed, entity.solidArea.width, entity.solidArea.height);
-                            if (playerNextMove.intersects(bombSolidBox)) {
-                                entity.collisionOn = true;
-                                //    System.out.println("up");
                             }
-                        }
-                        case "down" -> {
-                            Rectangle playerNextMove = check(entity.x, entity.y + entity.speed, entity.solidArea.width, entity.solidArea.height);
-                            if (playerNextMove.intersects(bombSolidBox)) {
-                                entity.collisionOn = true;
-                                //    System.out.println("down");
-                            }
-                        }
-                        case "left" -> {
-                            Rectangle playerNextMove = check(entity.x - entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
-                            if (playerNextMove.intersects(bombSolidBox)) {
-                                entity.collisionOn = true;
-                                //    System.out.println("left");
-                            }
-                        }
-                        case "right" -> {
-                            Rectangle playerNextMove = check(entity.x + entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
-                            if (playerNextMove.intersects(bombSolidBox)) {
-                                entity.collisionOn = true;
-                                //    System.out.println("right");
-                            }
-                        }
+                            case "left" -> {
+                                Rectangle playerNextMove = check(entity.x - entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
+                                if (playerNextMove.intersects(bombSolidBox)) {
+                                    entity.collisionOn = true;
+                                    //    System.out.println("left");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
+                                }
 
+                            }
+                            case "right" -> {
+                                Rectangle playerNextMove = check(entity.x + entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
+                                if (playerNextMove.intersects(bombSolidBox)) {
+                                    entity.collisionOn = true;
+                                    //    System.out.println("right");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
-
-
             }
-
         }
+
     }
-
-
 }
+
+
+
 
         
     
