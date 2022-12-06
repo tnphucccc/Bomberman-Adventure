@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class BombExplodeMap {
     private int x, y;
-    private int[][] map;
+    private static int[][] map;
     BufferedImage up;
     public BombExplodeMap() {
         
@@ -28,18 +28,19 @@ public class BombExplodeMap {
     public void draw(int x,int y,Graphics2D g2) {
         this.x = x/48;
         this.y = y/48;
-        
+        System.out.println(this.x+"fuck "+this.y);
+        System.out.println(this.x+" "+this.y);
         if(map[this.x][this.y-1]==0){
-            drawBombExplode(g2, up, this.x, (this.y-1));
+            drawBombExplode(g2, up, this.x, this.y-1);
         }
         if(map[this.x][this.y+1]==0){
-            drawBombExplode(g2, up, this.x, (this.y+1)*48);
+            drawBombExplode(g2, up, this.x, this.y+1);
         }
         if(map[this.x-1][this.y]==0){
-            drawBombExplode(g2, up, (this.x-1), this.y);
+            drawBombExplode(g2, up, this.x-1, this.y);
         }
-        if(map[this.x+1][this.y]==0){
-            drawBombExplode(g2, up, (this.x+1), this.y);
+        if(map[this.x][this.y]==0){
+            drawBombExplode(g2, up, this.x+1, this.y);
         }
     }
     //load map tp 2d array
@@ -77,7 +78,8 @@ public class BombExplodeMap {
     }
     //draw bomb explosion
     public void drawBombExplode(Graphics2D g2,BufferedImage img,int x,int y) {
-        System.out.println(this.x+" "+this.y);
-        g2.drawImage(img, x*48, y*48, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+        
+        g2.drawImage(up, Camera.getXCord(this.x*48), Camera.getYCord(this.y*48), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
     }
 }
