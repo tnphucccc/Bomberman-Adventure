@@ -1,7 +1,6 @@
 package Entity;
 
 import Controls.KeyHandler;
-//import GUI.Camera;
 import GUI.Camera;
 import Variables.Constant;
 import GUI.BombExplodeMap;
@@ -50,6 +49,7 @@ public class Bomb extends Entity {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
+        System.out.println(this.x+" "+this.y);
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
