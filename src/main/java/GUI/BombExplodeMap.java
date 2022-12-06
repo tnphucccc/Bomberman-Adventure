@@ -29,7 +29,7 @@ public class BombExplodeMap {
         this.x = x/48;
         this.y = y/48;
 
-        System.out.println("Location "+this.x+" "+this.y);
+        System.out.println("Location "+map[this.x][this.y]);
         
         if(map[this.x][this.y-1]==0 || map[this.x][this.y-1]==3) {
             System.out.println(map[this.x][this.y-1]+" up");
