@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    public static int bombSize = 5;
+    public static int bombSize = 100;
     KeyHandler keyH;
     boolean spacePressed = false;
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
@@ -23,11 +23,9 @@ public class Bomb extends Entity {
     private final long timeDuration =4000000000L;
 
     private int x, y;
-
-
     private String key = "";
     private int bombCounter = 0;
-    public boolean flag = false;
+
     BombExplodeMap bombExplodeMap;
     //KeyHandler
 
@@ -47,10 +45,11 @@ public class Bomb extends Entity {
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
+        bombExplodeMap = new BombExplodeMap();
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-        System.out.println(this.x+" "+this.y);
+        System.out.println(this.x/48+" "+this.y/48);
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
@@ -104,7 +103,7 @@ public class Bomb extends Entity {
                     }
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                            System.out.println(this.x/(48)+" "+this.x);
+
                 } else if (timeDuration<System.nanoTime()-timeStart) {//disappeared
                     state=2;
 
@@ -124,8 +123,10 @@ public class Bomb extends Entity {
                     img = getBufferedImage(die[0],die[1],die[2],die[3],die[4],die[5],die[6],die[7]);
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                    
-                    
+                    //draw the explosion
+
+
+                    bombExplodeMap.draw(x,y, g2);
                     
                     state=1;
                 }
