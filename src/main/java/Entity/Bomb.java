@@ -19,12 +19,15 @@ public class Bomb extends Entity {
     ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
+    private final long timeElapsed = 2000000000L;
+    private final long timeDuration =4000000000L;
 
     private int x, y;
 
 
     private String key = "";
     private int bombCounter = 0;
+    public boolean flag = false;
     BombExplodeMap bombExplodeMap;
     //KeyHandler
 
@@ -82,8 +85,6 @@ public class Bomb extends Entity {
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        long timeElapsed = 2000000000L;
-        long timeDuration = 4000000000L;
         if (bombList != null) {
             //Image img = null;
             if (key.equals("space")) {
