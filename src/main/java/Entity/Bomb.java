@@ -16,7 +16,7 @@ public class Bomb extends Entity {
     public static int bombSize = 100;
     KeyHandler keyH;
     boolean spacePressed = false;
-    ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
+    private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
     private final long timeElapsed = 2000000000L;
@@ -49,7 +49,7 @@ public class Bomb extends Entity {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-        System.out.println(this.x/48+" "+this.y/48);
+        
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
@@ -61,8 +61,7 @@ public class Bomb extends Entity {
                 if (checkAvailable(this.x, this.y)) {
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
-                    bombList.get(bombCounter).setX(this.x);
-                    bombList.get(bombCounter).setY(this.y);
+                    System.out.println(this.x/48+" "+this.y/48);
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
                     
@@ -126,7 +125,7 @@ public class Bomb extends Entity {
                     //draw the explosion
 
 
-                    bombExplodeMap.draw(x,y, g2);
+                    bombExplodeMap.draw(this.x,this.y, g2);
                     
                     state=1;
                 }

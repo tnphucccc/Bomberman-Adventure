@@ -61,7 +61,7 @@ public class GameScene extends Scene {
                 //cCheck.checkMob(player,mobList);
             }
             bomb.update(player.x, player.y);
-            bomb.update();
+            
             bombList = bomb.getBombList();
 
         }  // Do nothing
