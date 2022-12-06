@@ -182,26 +182,21 @@ public class CollisionCheck {
                             bomb.solidArea.y + bomb.getY(),
                             bomb.solidArea.width,
                             bomb.solidArea.height);
-                    Rectangle bombSolidBox1 = new Rectangle(bomb.solidArea.x + bomb.getX(),
-                            bomb.solidArea.y + bomb.getY(),
-                            Constant.TILE_SIZE,
-                            Constant.TILE_SIZE);
-                    Rectangle entitySolidBox = new Rectangle(entity.x,
+                    Rectangle playerSolidBox = new Rectangle(entity.x,
                             entity.y,
                             entity.solidArea.width,
                             entity.solidArea.height);
-                    boolean inter = bombSolidBox.intersects(entitySolidBox);
-                    boolean inter1 = bombSolidBox1.intersects(entitySolidBox);
-                    if (inter1&&bomb.state == 1) {
-                        entity.state = 0;
-                    }
-                    else if (!inter) {
+                    boolean inter = bombSolidBox.intersects(playerSolidBox);
+                    if (!inter) {
                         switch (entity.direction) {
                             case "up" -> {
                                 Rectangle playerNextMove = check(entity.x, entity.y - entity.speed, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     //    System.out.println("up");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
                                 }
                             }
                             case "down" -> {
@@ -209,6 +204,9 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     //    System.out.println("down");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
                                 }
 
                             }
@@ -217,6 +215,9 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     //    System.out.println("left");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
                                 }
 
                             }
@@ -225,6 +226,9 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     //    System.out.println("right");
+                                    if (bomb.state == 1) {
+                                        entity.state = 0;
+                                    }
                                 }
                             }
                         }
