@@ -67,13 +67,13 @@ public class Window extends JFrame implements Runnable {
     }
 
 
-    public void update(double dt) {
+    public void update() {
         Image dbImage = createImage(getWidth(), getHeight());
         Graphics dbg = dbImage.getGraphics();
         this.draw(dbg);
         getGraphics().drawImage(dbImage, 0, 0, this);
 
-        currentScene.update(dt);
+        currentScene.update();
     }
 
     public void draw(Graphics g) {
@@ -95,7 +95,7 @@ public class Window extends JFrame implements Runnable {
             lastTime = currentTime;
 
             if (delta >= 1) {
-                update(delta);
+                update();
                 delta--;
                 Count++;
             }
