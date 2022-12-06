@@ -97,7 +97,7 @@ public class Bomb extends Entity {
                         spriteCounter = 0;
                     }
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
                 } else if (timeDuration<System.nanoTime()-timeStart) {//disappeared
                     state=2;
 
@@ -116,7 +116,7 @@ public class Bomb extends Entity {
                     // img for the bomb after 3 seconds
                     img =getBufferedImage(die[0],die[1],die[2],die[3],die[4],die[5],die[6],die[7]);
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                        Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
                     state=1;
                 }
             }
@@ -169,4 +169,3 @@ public class Bomb extends Entity {
         // TODO Auto-generated method stub
     }
 }
-

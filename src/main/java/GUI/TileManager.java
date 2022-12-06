@@ -70,7 +70,9 @@ public class TileManager {
 
                 while (col < Constant.MAX_WORLD_COL){
                     String[] numbers = line.split(" ");
+
                     int num = Integer.parseInt(numbers[col]);
+
                     mapTileNum[row][col] = num;
                     col++;
                 }

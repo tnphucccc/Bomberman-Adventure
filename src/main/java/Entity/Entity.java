@@ -45,7 +45,7 @@ public abstract class Entity {
             case "left" -> img = getBufferedImage(left[0], left[1], left[2], left[3]);
             case "right" -> img = getBufferedImage(right[0], right[1], right[2], right[3]);
             case "bomb" -> img = getBufferedImage(bomb[0],bomb[1],bomb[2],bomb[3]);
-         }
+        }
         return img;
     }
 

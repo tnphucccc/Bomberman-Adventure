@@ -65,14 +65,14 @@ public class Mob extends Entity {
                 spriteCounter = 0;
             }
         } else {
-        spriteCounter++;
-        if (spriteCounter > 12) {
-            if (spriteNum != 6) {
-                spriteNum++;
+            spriteCounter++;
+            if (spriteCounter > 12) {
+                if (spriteNum != 6) {
+                    spriteNum++;
+                }
+                spriteCounter = 0;
             }
-            spriteCounter = 0;
         }
-    }
     }
 
     public void getMobImage() {

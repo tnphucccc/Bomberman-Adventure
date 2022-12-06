@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class CollisionCheck {
     TileManager tileM = new TileManager();
-    private final boolean flag = false;
 
     public static CollisionCheck instance;
 
@@ -237,9 +236,12 @@ public class CollisionCheck {
                 }
             }
         }
-
     }
 }
+
+
+
+
 
 
 
