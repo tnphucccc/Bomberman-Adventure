@@ -5,7 +5,6 @@ import Controls.KeyHandler;
 import GUI.Camera;
 import Variables.Constant;
 import GUI.BombExplodeMap;
-import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -67,6 +66,9 @@ public class Bomb extends Entity {
                     bombList.get(bombCounter).setY(this.y);
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
+                    
+                    
+
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
                 }
@@ -102,6 +104,7 @@ public class Bomb extends Entity {
                     }
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                            System.out.println(this.x/(48)+" "+this.x);
                 } else if (timeDuration<System.nanoTime()-timeStart) {//disappeared
                     state=2;
 
@@ -121,6 +124,9 @@ public class Bomb extends Entity {
                     img = getBufferedImage(die[0],die[1],die[2],die[3],die[4],die[5],die[6],die[7]);
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                    
+                    
+                    
                     state=1;
                 }
             }

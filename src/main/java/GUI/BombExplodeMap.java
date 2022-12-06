@@ -28,8 +28,8 @@ public class BombExplodeMap {
     public void draw(int x,int y,Graphics2D g2) {
         this.x = x/48;
         this.y = y/48;
+        
         System.out.println(this.x+"fuck "+this.y);
-        System.out.println(this.x+" "+this.y);
         if(map[this.x][this.y-1]==0){
             drawBombExplode(g2, up, this.x, this.y-1);
         }
@@ -39,7 +39,7 @@ public class BombExplodeMap {
         if(map[this.x-1][this.y]==0){
             drawBombExplode(g2, up, this.x-1, this.y);
         }
-        if(map[this.x][this.y]==0){
+        if(map[this.x+1][this.y]==0){
             drawBombExplode(g2, up, this.x+1, this.y);
         }
     }
@@ -78,7 +78,7 @@ public class BombExplodeMap {
     }
     //draw bomb explosion
     public void drawBombExplode(Graphics2D g2,BufferedImage img,int x,int y) {
-        
+        System.out.println(this.x+"fuck "+this.y);
         g2.drawImage(up, Camera.getXCord(this.x*48), Camera.getYCord(this.y*48), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
     }
