@@ -29,7 +29,8 @@ public class BombExplodeMap {
         this.x = x/48;
         this.y = y/48;
 
-      
+        System.out.println("Location "+this.x+" "+this.y);
+        
         if(map[this.x][this.y-1]==0 || map[this.x][this.y-1]==3) {
             System.out.println(map[this.x][this.y-1]+" up");
             drawBombExplode(g2, up, this.x, this.y-1);
@@ -46,6 +47,7 @@ public class BombExplodeMap {
             System.out.println(map[this.x+1][this.y]+" right");
             drawBombExplode(g2, up, this.x+1, this.y);
         }
+      
     }
     //load map tp 2d array
     public void loadMap(String filePath) {
