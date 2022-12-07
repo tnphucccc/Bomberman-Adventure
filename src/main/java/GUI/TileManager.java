@@ -28,10 +28,8 @@ public class TileManager {
         tiles = new Tile[10];
         mapTileNum = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
 
-        if (Window.getCurrentScence().mapID != 0) {
-            loadMap("/Maps/Map0" + Window.getCurrentScence().mapID + ".txt");
-        }
         getTileImage();
+        loadMap("/Maps/Map02.txt");
     }
 
     public void getTileImage() {
@@ -93,6 +91,7 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;
+
 
         while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW){
             int tileNum = mapTileNum[worldRow][worldCol];

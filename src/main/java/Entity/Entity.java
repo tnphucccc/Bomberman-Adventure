@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public abstract class Entity {
     public int x, y, speed, state;
     public BufferedImage[] up = new BufferedImage[4], down = new BufferedImage[4],
-            left = new BufferedImage[4], right = new BufferedImage[4], bomb = new BufferedImage[4],
-            die = new BufferedImage[6];
+            left = new BufferedImage[4], right = new BufferedImage[4],bomb=new BufferedImage[4],
+            die = new BufferedImage[6], explode = new BufferedImage[8];
     public String direction;
     public int spriteCounter = 0, spriteNum = 1;
     public Rectangle solidArea;
@@ -44,13 +44,8 @@ public abstract class Entity {
             case "down" -> img = getBufferedImage(down[0], down[1], down[2], down[3]);
             case "left" -> img = getBufferedImage(left[0], left[1], left[2], left[3]);
             case "right" -> img = getBufferedImage(right[0], right[1], right[2], right[3]);
+            case "bomb" -> img = getBufferedImage(bomb[0],bomb[1],bomb[2],bomb[3]);
         }
-        return img;
-    }
-
-    public BufferedImage getBomb() {
-        BufferedImage img = null;
-        img = getBufferedImage(bomb[0], bomb[1], bomb[2], bomb[3]);
         return img;
     }
 
@@ -93,6 +88,37 @@ public abstract class Entity {
             }
             case 6 -> {
                 return img6;
+            }
+        }
+        return null;
+    }
+    public BufferedImage getBufferedImage(BufferedImage img1, BufferedImage img2, BufferedImage img3,
+                                          BufferedImage img4, BufferedImage img5, BufferedImage img6,
+                                          BufferedImage img7, BufferedImage img8) {
+        switch (spriteNum) {
+            case 1 -> {
+                return img1;
+            }
+            case 2 -> {
+                return img2;
+            }
+            case 3 -> {
+                return img3;
+            }
+            case 4 -> {
+                return img4;
+            }
+            case 5 -> {
+                return img5;
+            }
+            case 6 -> {
+                return img6;
+            }
+            case 7 -> {
+                return img7;
+            }
+            case 8 -> {
+                return img8;
             }
         }
         return null;

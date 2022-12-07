@@ -48,7 +48,7 @@ public class GameOver {
         isAlive = state != 0;
     }
 
-    public void update(double dt) {
+    public void update() {
         //Pressed Play Again
         if (mouseH.getX() >= playAgainRect.x && mouseH.getX() <= playAgainRect.x + playAgainRect.width &&
                 mouseH.getY() >= playAgainRect.y && mouseH.getY() <= playAgainRect.y + playAgainRect.height) {

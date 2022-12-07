@@ -53,8 +53,7 @@ public class Window extends JFrame implements Runnable {
         currentState = newState;
         switch (currentState) {
             case 0 -> currentScene = new MenuScene(mouseH);
-            case 1 -> currentScene = new GameScene(keyH, mouseH, 1);
-            case 2 -> currentScene = new GameScene(keyH, mouseH, 2);
+            case 1 -> currentScene = new GameScene(keyH, mouseH);
 
             default -> {
                 System.out.println("Error: Invalid state");
@@ -68,13 +67,13 @@ public class Window extends JFrame implements Runnable {
     }
 
 
-    public void update(double dt) {
+    public void update() {
         Image dbImage = createImage(getWidth(), getHeight());
         Graphics dbg = dbImage.getGraphics();
         this.draw(dbg);
         getGraphics().drawImage(dbImage, 0, 0, this);
 
-        currentScene.update(dt);
+        currentScene.update();
     }
 
     public void draw(Graphics g) {
@@ -96,7 +95,7 @@ public class Window extends JFrame implements Runnable {
             lastTime = currentTime;
 
             if (delta >= 1) {
-                update(delta);
+                update();
                 delta--;
                 Count++;
             }
@@ -108,8 +107,5 @@ public class Window extends JFrame implements Runnable {
             }
         }
         this.dispose();
-    }
-    public static Scene getCurrentScence() {
-        return Window.getWindow().currentScene;
     }
 }

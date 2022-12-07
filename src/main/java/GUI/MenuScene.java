@@ -16,8 +16,6 @@ public class MenuScene extends Scene {
 
     public MouseHandler mouseH;
 
-    public int mapID = 0;
-
     public MenuScene(MouseHandler mouseH) {
         this.mouseH = mouseH;
         try {
@@ -43,7 +41,7 @@ public class MenuScene extends Scene {
     }
 
     @Override
-    public void update(double dt) {
+    public void update() {
         if (mouseH.getX() >= playRect.x && mouseH.getX() <= playRect.x + playRect.width &&
                 mouseH.getY() >= playRect.y && mouseH.getY() <= playRect.y + playRect.height) {
             playCurrentImage = playPressed;

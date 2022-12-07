@@ -26,15 +26,13 @@ public class GameScene extends Scene {
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
 
-    int mapID;
 
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
-    public GameScene(KeyHandler keyH, MouseHandler mouseH, int mapID) {
+    public GameScene(KeyHandler keyH, MouseHandler mouseH) {
         this.keyH = keyH;
         this.mouseH = mouseH;
-        this.mapID = mapID;
 
         player = new Player(keyH, 1);
         cCheck = new CollisionCheck();
@@ -51,7 +49,7 @@ public class GameScene extends Scene {
     }
 
     @Override
-    public void update(double dt) {
+    public void update() {
         pause.pauseGame();
         gameOver.checkAlive(player.state);
 
@@ -63,14 +61,13 @@ public class GameScene extends Scene {
                 //cCheck.checkMob(player,mobList);
             }
             bomb.update(player.x, player.y);
-            bomb.update();
             bombList = bomb.getBombList();
 
         }  // Do nothing
 
         //Game over
         if (!gameOver.isAlive) {
-            gameOver.update(dt);
+            gameOver.update();
         }
     }
 
@@ -121,9 +118,6 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Mob> getMobList(){
         return mobList;
-    }
-    public int getmapID(){
-        return mapID;
     }
 
 }
