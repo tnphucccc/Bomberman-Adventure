@@ -4,7 +4,6 @@ import Controls.KeyHandler;
 import GUI.BombExplodeMap;
 import GUI.Camera;
 import Variables.Constant;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,16 +12,17 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    public static int bombSize = 5;
-    public boolean flag = false;
+    public static int bombSize = 100;
     KeyHandler keyH;
     boolean spacePressed = false;
-    ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
-    BombExplodeMap bombExplodeMap;
+    private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
+
     private long timeStart = 0L;
     private int x, y;
     private String key = "";
     private int bombCounter = 0;
+
+    BombExplodeMap bombExplodeMap;
     //KeyHandler
 
     public Bomb(KeyHandler keyH) {
@@ -41,6 +41,7 @@ public class Bomb extends Entity {
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
+        bombExplodeMap = new BombExplodeMap();
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
@@ -56,10 +57,12 @@ public class Bomb extends Entity {
                 if (checkAvailable(this.x, this.y)) {
                     bombList.add(bombCounter, new Bomb(keyH));
                     bombList.get(bombCounter).update(this.x, this.y);
-                    bombList.get(bombCounter).setX(this.x);
-                    bombList.get(bombCounter).setY(this.y);
+                    System.out.println(this.x/48+" "+this.y/48);
                     bombCounter++;
                     System.out.println("Bomb Placed:" + bombCounter);
+                    
+                    
+
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
                 }
@@ -89,9 +92,12 @@ public class Bomb extends Entity {
                     update();
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-                } else if (timeDuration < System.nanoTime() - timeStart) {//disappeared
-                    state = 2;
+
+                } else if (timeDuration<System.nanoTime()-timeStart) {//disappeared
+                    state=2;
                     update();
+                    bombList.remove(this);
+
                 } else {//exploding
                     state = 1;
                     update();
@@ -100,6 +106,12 @@ public class Bomb extends Entity {
                             explode[4], explode[5], explode[6], explode[7]);
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                    //draw the explosion
+
+
+                    bombExplodeMap.draw(this.x,this.y, g2);
+                    
+                    state=1;
                 }
             }
         }
