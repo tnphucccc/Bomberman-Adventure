@@ -11,12 +11,11 @@ import java.util.Objects;
 
 public class BombExplodeMap {
     private int x, y;
-    private static int[][] map;
+    private int[][] map;
     BufferedImage up;
     public BombExplodeMap() {
-        
-        map = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
-        loadMap("/Maps/Map02.txt");
+
+        map = TileManager.getInstance().mapTileNum;
         try {
             up = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/start4.png")));
         } catch (IOException e) {
@@ -49,31 +48,7 @@ public class BombExplodeMap {
         }
       
     }
-    //load map tp 2d array
-    public void loadMap(String filePath) {
-        try {
-            InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(filePath));
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-            int col = 0, row = 0;
-            while (col < Constant.MAX_WORLD_COL && row < Constant.MAX_WORLD_ROW) {
-                String line = br.readLine();
-                while (col < Constant.MAX_WORLD_COL) {
-                    String[] numbers = line.split(" ");
-                    int num = Integer.parseInt(numbers[col]);
-                    map[row][col] = num;
-                    col++;
-                }
-                if (col == Constant.MAX_WORLD_COL) {
-                    col = 0;
-                    row++;
-                }
-            }
-            br.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     //get map
     public int[][] getMap() {
         return map;
