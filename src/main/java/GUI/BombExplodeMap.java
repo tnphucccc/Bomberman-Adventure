@@ -26,8 +26,8 @@ public class BombExplodeMap {
     }
     //draw 
     public void draw(int x,int y,Graphics2D g2) {
-        this.x = (x-16)/48;
-        this.y = (y-24)/48;
+        this.x = (x)/48+x%48;
+        this.y = (y)/48+y%48;
 
         System.out.println("Location "+map[this.x][this.y]+" "+this.x+" "+this.y);
         
