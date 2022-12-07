@@ -49,7 +49,7 @@ public class GameScene extends Scene {
     }
 
     @Override
-    public void update(double dt) {
+    public void update() {
         pause.pauseGame();
         gameOver.checkAlive(player.state);
 
@@ -61,14 +61,13 @@ public class GameScene extends Scene {
                 //cCheck.checkMob(player,mobList);
             }
             bomb.update(player.x, player.y);
-            
             bombList = bomb.getBombList();
 
         }  // Do nothing
 
         //Game over
         if (!gameOver.isAlive) {
-            gameOver.update(dt);
+            gameOver.update();
         }
     }
 
