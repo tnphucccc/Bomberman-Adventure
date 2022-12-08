@@ -26,7 +26,6 @@ public class Bomb extends Entity {
 
     BombExplodeMap bombExplodeMap;
 
-    //KeyHandler
 
     public Bomb() {
         solidArea = new Rectangle();
@@ -167,6 +166,7 @@ public class Bomb extends Entity {
         // TODO Auto-generated method stub
         this.direction = "bomb";
         this.state = 0; //0 is not explode, 1 is exploded, 2 is disappeared
+
     }
 
     public void update() {//count sprite
