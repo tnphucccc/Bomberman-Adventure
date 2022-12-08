@@ -14,10 +14,9 @@ public class GameOver {
     BufferedImage playAgainCurrentImage, exitCurrentImage;
 
     Rect gameOverRect, playAgainRect, exitRect;
-    MouseHandler mouseH;
+    MouseHandler mouseH = Window.getMouseH();
 
-    public GameOver(MouseHandler mouseH) {
-        this.mouseH = mouseH;
+    public GameOver() {
 
         try {
             BufferedImage spriteSheet1 = ImageIO.read(new File("src/main/resources/Menu/Game_Over.png"));

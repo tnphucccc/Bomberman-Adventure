@@ -14,10 +14,10 @@ public class MenuScene extends Scene {
 
     public Rect playRect, exitRect, titleRect;
 
-    public MouseHandler mouseH;
+    public MouseHandler mouseH = Window.getMouseH();
 
-    public MenuScene(MouseHandler mouseH) {
-        this.mouseH = mouseH;
+    public MenuScene() {
+
         try {
             BufferedImage spriteSheet1 = ImageIO.read(new File("src/main/resources/Menu/Exit_Play.png"));
             play = spriteSheet1.getSubimage(0, 0, 197, 57);

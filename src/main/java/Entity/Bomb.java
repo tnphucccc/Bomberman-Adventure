@@ -3,6 +3,7 @@ package Entity;
 import Controls.KeyHandler;
 import GUI.BombExplodeMap;
 import GUI.Camera;
+import GUI.Window;
 import Variables.Constant;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,7 +14,8 @@ import java.util.Objects;
 
 public class Bomb extends Entity {
     public static int bombSize = 100;
-    KeyHandler keyH;
+    KeyHandler keyH = Window.getKeyH();
+
     boolean spacePressed = false;
     private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
@@ -23,10 +25,10 @@ public class Bomb extends Entity {
     private int bombCounter = 0;
 
     BombExplodeMap bombExplodeMap;
+
     //KeyHandler
 
-    public Bomb(KeyHandler keyH) {
-        this.keyH = keyH;
+    public Bomb() {
         solidArea = new Rectangle();
         solidArea.x = 0;
         solidArea.y = 0;
@@ -55,7 +57,7 @@ public class Bomb extends Entity {
                 spacePressed = false;
 
                 if (checkAvailable(this.x, this.y)) {
-                    bombList.add(bombCounter, new Bomb(keyH));
+                    bombList.add(bombCounter, new Bomb());
                     bombList.get(bombCounter).update(this.x, this.y);
                     System.out.println(this.x/48+" "+this.y/48);
                     bombCounter++;

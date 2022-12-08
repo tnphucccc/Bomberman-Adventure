@@ -9,14 +9,13 @@ import java.io.File;
 
 public class Pause {
     public int status = 0; //0 = not paused, 1 = paused
-    KeyHandler keyH;
+    KeyHandler keyH = Window.getKeyH();
     BufferedImage pause;
     boolean isPaused, flag;
     Rect pauseRect;
 
-    Pause(boolean isPaused, KeyHandler keyH) {
+    Pause(boolean isPaused) {
         this.isPaused = isPaused;
-        this.keyH = keyH;
 
         try {
             BufferedImage spriteSheet = ImageIO.read(new File("src/main/resources/Menu/Pause.png"));
@@ -28,7 +27,6 @@ public class Pause {
         //Pause location
         pauseRect = new Rect(254, 235, 308, 57);
     }
-
     public void pauseGame() {
         if (keyH.pausePressed) {
             flag = true;

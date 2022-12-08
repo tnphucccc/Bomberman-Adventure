@@ -3,6 +3,7 @@ package Entity;
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
 import GUI.GameScene;
+import GUI.Window;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -12,11 +13,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Player extends Entity {
-    KeyHandler keyH;
+    KeyHandler keyH = Window.getKeyH();
+    public static Player instance;
 
-    public Player(KeyHandler keyH, int state) {
+    public Player(int state) {
         this.state = state;
-        this.keyH = keyH;
 
         solidArea = new Rectangle();
         solidArea.x = 8;
@@ -29,7 +30,12 @@ public class Player extends Entity {
 
         setDefault();
         getPlayerImage();
-
+    }
+    public static Player getInstance(){
+        if (Player.instance == null){
+            Player.instance = new Player(1);
+        }
+        return Player.instance;
     }
 
     public void setDefault() {

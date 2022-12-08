@@ -18,34 +18,36 @@ public class GameScene extends Scene {
     Pause pause;
     GameOver gameOver;
 
-    KeyHandler keyH;
-    MouseHandler mouseH;
-
-    static Player player;
+    public static Player player;
     Bomb bomb;
+
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
-
 
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
-    public GameScene(KeyHandler keyH, MouseHandler mouseH) {
-        this.keyH = keyH;
-        this.mouseH = mouseH;
-
-        player = new Player(keyH, 1);
+    public GameScene() {
         cCheck = new CollisionCheck();
         tileM = new TileManager();
+        player = new Player(1);
 
         aSetter.setMob();
         aSetter.setItems();
 
-        bomb = new Bomb(keyH);
+        bomb = new Bomb();
         bombList = bomb.getBombList();
 
-        pause = new Pause(false, keyH);
-        gameOver = new GameOver(mouseH);
+        pause = new Pause(false);
+        gameOver = new GameOver();
+    }
+
+    public static GameScene instance = null;
+    public static GameScene getInstance(){
+        if(GameScene.instance == null){
+            GameScene.instance = new GameScene();
+        }
+        return GameScene.instance;
     }
 
     @Override
@@ -56,8 +58,8 @@ public class GameScene extends Scene {
         if (!pause.isPaused) {
             //Game is running
             player.update();
-            for (Mob value : mobList) {
-                value.update();
+            for (Mob mob : mobList) {
+                mob.update();
                 //cCheck.checkMob(player,mobList);
             }
             bomb.update(player.x, player.y);
