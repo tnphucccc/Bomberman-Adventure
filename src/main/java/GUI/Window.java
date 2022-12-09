@@ -11,13 +11,11 @@ public class Window extends JFrame implements Runnable {
     public static Window window = null;
     public boolean isRunning;
 
-    public TileManager tileM = new TileManager();
-
     public int currentState;
     public Scene currentScene;
 
-    KeyHandler keyH = new KeyHandler();
-    MouseHandler mouseH = new MouseHandler();
+    static KeyHandler keyH = new KeyHandler();
+    static MouseHandler mouseH = new MouseHandler();
 
     public Window(int width, int height, String TITLE) {
         //Window handler
@@ -52,8 +50,8 @@ public class Window extends JFrame implements Runnable {
     public void changeState(int newState) {
         currentState = newState;
         switch (currentState) {
-            case 0 -> currentScene = new MenuScene(mouseH);
-            case 1 -> currentScene = new GameScene(keyH, mouseH);
+            case 0 -> currentScene = new MenuScene();
+            case 1 -> currentScene = new GameScene();
 
             default -> {
                 System.out.println("Error: Invalid state");
@@ -107,5 +105,11 @@ public class Window extends JFrame implements Runnable {
             }
         }
         this.dispose();
+    }
+    public static KeyHandler getKeyH() {
+        return keyH;
+    }
+    public static MouseHandler getMouseH() {
+        return mouseH;
     }
 }

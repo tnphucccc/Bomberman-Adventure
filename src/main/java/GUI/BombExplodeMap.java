@@ -50,6 +50,11 @@ public class BombExplodeMap {
     }
 
     //get map
+    public void drawBombExplode(Graphics2D g2,BufferedImage img,int x,int y) {
+
+        g2.drawImage(img, Camera.getXCord(x*48), Camera.getYCord(y*48), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+    }
     public int[][] getMap() {
         return map;
     }
@@ -58,9 +63,5 @@ public class BombExplodeMap {
         map[x][y] = value;
     }
     //draw bomb explosion
-    public void drawBombExplode(Graphics2D g2,BufferedImage img,int x,int y) {
 
-        g2.drawImage(img, Camera.getXCord(x*48), Camera.getYCord(y*48), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-    }
 }
