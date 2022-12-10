@@ -47,28 +47,7 @@ public class Bomb extends Entity {
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
         System.out.println(this.x + " " + this.y);
-        if (bombCounter < bombSize) {
-            if (keyH.spacePressed) {
-                spacePressed = true;
-
-            }
-            if (!keyH.spacePressed && spacePressed) {
-                spacePressed = false;
-
-                if (checkAvailable(this.x, this.y)) {
-                    bombList.add(bombCounter, new Bomb());
-                    bombList.get(bombCounter).update(this.x, this.y);
-                    System.out.println(this.x/48+" "+this.y/48);
-                    bombCounter++;
-                    System.out.println("Bomb Placed:" + bombCounter);
-                    
-                    
-
-                } else {
-                    System.out.println("Bomb Cannot Be Placed");
-                }
-            }
-        }
+        
     }
 
     // check if the tile is available
