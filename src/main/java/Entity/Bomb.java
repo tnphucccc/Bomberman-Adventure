@@ -46,28 +46,8 @@ public class Bomb extends Entity {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
+        System.out.println(this.x + " " + this.y);
 
-        if (bombCounter < bombSize) {
-            if (keyH.spacePressed) {
-                spacePressed = true;
-
-            }
-            if (!keyH.spacePressed && spacePressed) {
-                spacePressed = false;
-
-                if (checkAvailable(this.x, this.y)) {
-                    bombList.add(bombCounter, new Bomb());
-                    bombList.get(bombCounter).update(this.x, this.y);
-                    bombCounter++;
-                    System.out.println("Bomb " + bombCounter + "placed at tile " + this.x / Constant.TILE_SIZE + " " + this.y / Constant.TILE_SIZE);
-
-//                    bombExplodeMap.printMap();
-
-                } else {
-                    System.out.println("Bomb Cannot Be Placed");
-                }
-            }
-        }
     }
 
     // check if the tile is available

@@ -20,8 +20,10 @@ public class GameScene extends Scene {
 
     public static Player player;
     Bomb bomb;
-    BombExplodeMap bombExplodeMap;
-
+    public static int bombSize = 100;
+    public static int bombCounter = 0;
+    KeyHandler keyH = Window.getKeyH();
+    boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
 
@@ -38,7 +40,6 @@ public class GameScene extends Scene {
 
         bomb = new Bomb();
         bombList = bomb.getBombList();
-        bombExplodeMap = new BombExplodeMap();
 
         pause = new Pause(false);
         gameOver = new GameOver();
@@ -64,11 +65,32 @@ public class GameScene extends Scene {
                 mob.update();
                 //cCheck.checkMob(player,mobList);
             }
-            bomb.update(player.x, player.y);
-            bombList = bomb.getBombList();
-//            bombExplodeMap.update(player.x, player.y);
+
             tileM.update();
 
+            // bomb.update(player.x, player.y);
+            // bombList = bomb.getBombList();
+            if (bombCounter < bombSize) {
+                if (keyH.spacePressed) {
+                    spacePressed = true;
+    
+                }
+                if (!keyH.spacePressed && spacePressed) {
+                    spacePressed = false;
+    
+                    if (CheckAvailable.checkAvailable(player.x, player.y)) {
+                        bombList.add(bombCounter, new Bomb());
+                        bombList.get(bombCounter).update(player.x, player.y);
+                        bombCounter++;
+                        System.out.println("Bomb Placed:" + bombCounter);
+                        
+                        
+    
+                    } else {
+                        System.out.println("Bomb Cannot Be Placed");
+                    }
+                }
+            }
         }  // Do nothing
 
         //Game over
