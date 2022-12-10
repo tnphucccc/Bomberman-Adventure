@@ -46,7 +46,7 @@ public class Bomb extends Entity {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-        System.out.println(this.x + " " + this.y);
+
         if (bombCounter < bombSize) {
             if (keyH.spacePressed) {
                 spacePressed = true;
@@ -58,11 +58,10 @@ public class Bomb extends Entity {
                 if (checkAvailable(this.x, this.y)) {
                     bombList.add(bombCounter, new Bomb());
                     bombList.get(bombCounter).update(this.x, this.y);
-                    System.out.println(this.x/48+" "+this.y/48);
                     bombCounter++;
-                    System.out.println("Bomb Placed:" + bombCounter);
-                    
-                    
+                    System.out.println("Bomb " + bombCounter + "placed at tile " + this.x / Constant.TILE_SIZE + " " + this.y / Constant.TILE_SIZE);
+
+//                    bombExplodeMap.printMap();
 
                 } else {
                     System.out.println("Bomb Cannot Be Placed");
@@ -89,28 +88,32 @@ public class Bomb extends Entity {
             if (key.equals("space")) {
                 long timeElapsed = 2000000000L;
                 long timeDuration = 4000000000L;
+
                 if (timeElapsed > System.nanoTime() - timeStart) {//planting
                     update();
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 
-                } else if (timeDuration<System.nanoTime()-timeStart) {//disappeared
-                    state=2;
+                } else if (timeDuration<System.nanoTime()-timeStart) { //disappeared
+                    state = 2;
                     update();
                     bombList.remove(this);
+                    bombExplodeMap.deleteExplosion();
 
                 } else {//exploding
                     state = 1;
-                    update();
+//                    update();
                     // img for the bomb after 3 seconds
-                    img = getBufferedImage(explode[0], explode[1], explode[2], explode[3],
-                            explode[4], explode[5], explode[6], explode[7]);
-                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+//                    img = getBufferedImage(explode[0], explode[1], explode[2], explode[3],
+//                            explode[4], explode[5], explode[6], explode[7]);
+//                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+//                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+
+
                     //draw the explosion
+                    bombExplodeMap.drawExplosion(this.x / Constant.TILE_SIZE, this.y / Constant.TILE_SIZE);
 
-
-                    bombExplodeMap.draw(this.x,this.y, g2);
+//                    bombExplodeMap.draw(this.x,this.y, g2);
                     
                     state=1;
                 }

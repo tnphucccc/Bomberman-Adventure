@@ -20,6 +20,7 @@ public class GameScene extends Scene {
 
     public static Player player;
     Bomb bomb;
+    BombExplodeMap bombExplodeMap;
 
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
@@ -37,6 +38,7 @@ public class GameScene extends Scene {
 
         bomb = new Bomb();
         bombList = bomb.getBombList();
+        bombExplodeMap = new BombExplodeMap();
 
         pause = new Pause(false);
         gameOver = new GameOver();
@@ -64,6 +66,8 @@ public class GameScene extends Scene {
             }
             bomb.update(player.x, player.y);
             bombList = bomb.getBombList();
+//            bombExplodeMap.update(player.x, player.y);
+            tileM.update();
 
         }  // Do nothing
 

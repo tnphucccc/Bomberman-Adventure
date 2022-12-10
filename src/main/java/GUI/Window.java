@@ -99,7 +99,7 @@ public class Window extends JFrame implements Runnable {
             }
 
             if (timer >= 1000000000) {
-                System.out.println("FPS: " + Count);
+//                System.out.println("FPS: " + Count);
                 Count = 0;
                 timer = 0;
             }
