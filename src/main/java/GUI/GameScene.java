@@ -19,7 +19,7 @@ public class GameScene extends Scene {
     GameOver gameOver;
 
     public static Player player;
-    Bomb bomb;
+   
     public static int bombSize = 100;
     public static int bombCounter = 0;
     KeyHandler keyH = Window.getKeyH();
@@ -38,8 +38,8 @@ public class GameScene extends Scene {
         aSetter.setMob();
         aSetter.setItems();
 
-        bomb = new Bomb();
-        bombList = bomb.getBombList();
+        
+        bombList = new ArrayList<>();
 
         pause = new Pause(false);
         gameOver = new GameOver();
@@ -93,6 +93,8 @@ public class GameScene extends Scene {
         //Game over
         if (!gameOver.isAlive) {
             gameOver.update();
+            bombList.clear();
+            bombCounter = 0;
         }
     }
 
