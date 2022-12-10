@@ -14,19 +14,17 @@ public class BombExplodeMap {
     private int[][] map;
     BufferedImage up;
     public BombExplodeMap() {
-
         map = TileManager.getInstance().mapTileNum;
         try {
             up = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/start4.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
-     
     }
     //draw 
     public void draw(int x,int y,Graphics2D g2) {
-        this.x = (x)/48+x%48;
-        this.y = (y)/48+y%48;
+        this.x = (x)/48;
+        this.y = (y)/48;
 
         System.out.println("Location "+map[this.x][this.y]+" "+this.x+" "+this.y);
         
@@ -51,7 +49,6 @@ public class BombExplodeMap {
 
     //get map
     public void drawBombExplode(Graphics2D g2,BufferedImage img,int x,int y) {
-
         g2.drawImage(img, Camera.getXCord(x*48), Camera.getYCord(y*48), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                 Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
     }
