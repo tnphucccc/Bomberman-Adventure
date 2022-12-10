@@ -57,6 +57,10 @@ public class TileManager {
             tiles[5].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/start4.png")));
             tiles[5].death = true;
 
+            tiles[6] = new Tile();
+            tiles[6].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/BrickDestroy3.png")));
+            tiles[6].death = true;
+
         } catch (IOException e) {
             e.printStackTrace();
         }

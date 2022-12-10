@@ -10,8 +10,7 @@ import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class BombExplodeMap {
-    private int x, y;
-    private int[][] map = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
+    private int[][] map;
     private int bombRadius = 2;
     public static BombExplodeMap instance;
 
@@ -41,49 +40,50 @@ public class BombExplodeMap {
         }
     }
 
-    public void drawExplosion(int x, int y){
+    public void drawExplosion(int x, int y) {
         //explosion at bomb
         map[y][x] = 5;
 
         //check downward
         for (int i = 1; i <= bombRadius; i++) {
-            if (map[y+i][x] == 0 || map[y+i][x] == 3 || map[y+i][x] == 2) {
-                System.out.println("x: "+ x  + " y: " + (y + i) + " Tile is Ground or Ground Shadow or Brick");
-                map[y+i][x] = 5;
-            } else if (map[y+i][x] == 1 || map[y+i][x] == 4) {
-                System.out.println("x: "+ x  + " y: " + (y + i) + " Tile is Block");
+            if (map[y + i][x] == 0 || map[y + i][x] == 3) {
+                map[y + i][x] = 5;
+            } else if (map[y + i][x] == 2) {
+                map[y + i][x] = 6;
+            } else if (map[y + i][x] == 1 || map[y + i][x] == 4) {
                 break;
             }
         }
 
         //check upward
         for (int i = 1; i <= bombRadius; i++) {
-            if (map[y-i][x] == 0 || map[y-i][x] == 3 || map[y-i][x] == 2) {
-                System.out.println("x: "+ x  + " y: " + (y - i) + " Tile is Ground or Ground Shadow or Brick");
-                map[y-i][x] = 5;
-            } else if (map[y-i][x] == 1 || map[y-i][x] == 4) {
-                System.out.println("x: "+ x  + " y: " + (y - i) + " Tile is Block");
+            if (map[y - i][x] == 0 || map[y - i][x] == 3) {
+                map[y - i][x] = 5;
+            } else if (map[y - i][x] == 2) {
+                map[y - i][x] = 6;
+            } else if (map[y - i][x] == 1 || map[y - i][x] == 4) {
                 break;
             }
         }
 
         //check right
         for (int i = 1; i <= bombRadius; i++) {
-            if (map[y][x+i] == 0 || map[y][x+i] == 3 || map[y][x+i] == 2) {
-                System.out.println("x: "+ (x + i)  + " y: " + y + " Tile is Ground or Ground Shadow or Brick");
+            if (map[y][x+i] == 0 || map[y][x+i] == 3) {
                 map[y][x+i] = 5;
+            } else if (map[y][x+i] == 2) {
+                map[y][x+i] = 6;
             } else if (map[y][x+i] == 1 || map[y][x+i] == 4) {
-                System.out.println("x: "+ (x + i)  + " y: " + y + " Tile is Block");
                 break;
             }
         }
 
         //check left
         for (int i = 1; i <= bombRadius; i++) {
-            if (map[y][x-i] == 0 || map[y][x-i] == 3 || map[y][x-i] == 2) {
-                System.out.println("x: "+ (x - i)  + " y: " + y + " Tile is Ground or Ground Shadow or Brick");
-                map[y][x-i] = 5;
-            } else if (map[y][x-i] == 1 || map[y][x-i] == 4) {
+            if (map[y][x - i] == 0 || map[y][x - i] == 3) {
+                map[y][x - i] = 5;
+            } else if (map[y][x - i] == 2) {
+                map[y][x - i] = 6;
+            } else if (map[y][x - i] == 1 || map[y][x - i] == 4) {
                 break;
             }
         }
@@ -92,8 +92,11 @@ public class BombExplodeMap {
     public void deleteExplosion(){
         for (int i = 0; i < Constant.MAX_WORLD_ROW; i++) {
             for (int j = 0; j < Constant.MAX_WORLD_COL; j++) {
-                if (map[i][j] == 5){
-                    map[i][j] = TileManager.getInstance().originalMap[i][j];
+                if (map[i][j] == 5 ){
+                    map[i][j] = 0;
+                }
+                if (map[i][j] == 6){
+                    map[i][j] = 0;
                 }
             }
         }

@@ -115,7 +115,6 @@ public class Bomb extends Entity {
 
 //                    bombExplodeMap.draw(this.x,this.y, g2);
                     
-                    state=1;
                 }
             }
         }
