@@ -136,6 +136,7 @@ public class BombExplodeMap {
 //        g2.drawImage(img, Camera.getXCord(x*48), Camera.getYCord(y*48), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
 //                Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 //    }
+
     public int[][] getMap() {
         return map;
     }

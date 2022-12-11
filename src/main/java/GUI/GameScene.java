@@ -22,7 +22,9 @@ public class GameScene extends Scene {
 
     public static int bombSize = 100;
     public static int bombCounter = 0;
+
     KeyHandler keyH = Window.getKeyH();
+
     boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
@@ -37,7 +39,6 @@ public class GameScene extends Scene {
 
         aSetter.setMob();
         aSetter.setItems();
-
 
         bombList = new ArrayList<>();
 
