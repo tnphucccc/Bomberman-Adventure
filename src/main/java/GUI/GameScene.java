@@ -63,31 +63,20 @@ public class GameScene extends Scene {
             player.update();
             for (Mob mob : mobList) {
                 mob.update();
-                //cCheck.checkMob(player,mobList);
             }
 
             tileM.update();
 
-            // bomb.update(player.x, player.y);
-            // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
                 if (keyH.spacePressed) {
                     spacePressed = true;
-    
                 }
                 if (!keyH.spacePressed && spacePressed) {
                     spacePressed = false;
-    
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
                         bombList.add(bombCounter, new Bomb());
                         bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
-                        System.out.println("Bomb Placed:" + bombCounter);
-                        
-                        
-    
-                    } else {
-                        System.out.println("Bomb Cannot Be Placed");
                     }
                 }
             }

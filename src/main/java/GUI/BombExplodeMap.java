@@ -92,10 +92,10 @@ public class BombExplodeMap {
     public void deleteExplosion(){
         for (int i = 0; i < Constant.MAX_WORLD_ROW; i++) {
             for (int j = 0; j < Constant.MAX_WORLD_COL; j++) {
-                if (map[i][j] == 5 ){
+                if (map[i][j] == 5 ){ //Delete explosion
                     map[i][j] = 0;
                 }
-                if (map[i][j] == 6){
+                if (map[i][j] == 6){ //Delete Brick after explosion
                     map[i][j] = 0;
                 }
             }
