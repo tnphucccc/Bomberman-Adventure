@@ -19,7 +19,7 @@ public class GameScene extends Scene {
     GameOver gameOver;
 
     public static Player player;
-    Bomb bomb;
+
     public static int bombSize = 100;
     public static int bombCounter = 0;
     KeyHandler keyH = Window.getKeyH();
@@ -38,8 +38,8 @@ public class GameScene extends Scene {
         aSetter.setMob();
         aSetter.setItems();
 
-        bomb = new Bomb();
-        bombList = bomb.getBombList();
+
+        bombList = new ArrayList<>();
 
         pause = new Pause(false);
         gameOver = new GameOver();
@@ -61,22 +61,26 @@ public class GameScene extends Scene {
         if (!pause.isPaused) {
             //Game is running
             player.update();
+            tileM.update();
             for (Mob mob : mobList) {
                 mob.update();
+                //cCheck.checkMob(player,mobList);
             }
-
-            tileM.update();
-
+            // bomb.update(player.x, player.y);
+            // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
                 if (keyH.spacePressed) {
                     spacePressed = true;
                 }
                 if (!keyH.spacePressed && spacePressed) {
                     spacePressed = false;
+
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
                         bombList.add(bombCounter, new Bomb());
                         bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
+                    } else {
+                        System.out.println("Bomb Cannot Be Placed");
                     }
                 }
             }
@@ -85,6 +89,8 @@ public class GameScene extends Scene {
         //Game over
         if (!gameOver.isAlive) {
             gameOver.update();
+            bombList.clear();
+            bombCounter = 0;
         }
     }
 
@@ -114,7 +120,7 @@ public class GameScene extends Scene {
 
         //Draw mob
         for (Mob value : mobList) {
-                value.draw(g2);
+            value.draw(g2);
         }
 
         //Draw if the game is paused

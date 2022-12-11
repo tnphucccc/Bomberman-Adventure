@@ -43,11 +43,10 @@ public class Bomb extends Entity {
         key = "space";
         timeStart = System.nanoTime();
         bombExplodeMap = new BombExplodeMap();
+
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-        System.out.println(this.x + " " + this.y);
-
     }
 
     // check if the tile is available
