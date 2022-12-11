@@ -59,10 +59,10 @@ public class GameScene extends Scene {
         pause.pauseGame();
         gameOver.checkAlive(player.state);
 
+        //update when not pause
         if (!pause.isPaused) {
-            //Game is running
             player.update();
-            tileM.update();
+
             for (Mob mob : mobList) {
                 mob.update();
                 //cCheck.checkMob(player,mobList);
@@ -75,17 +75,14 @@ public class GameScene extends Scene {
                 }
                 if (!keyH.spacePressed && spacePressed) {
                     spacePressed = false;
-
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
                         bombList.add(bombCounter, new Bomb());
                         bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
-                    } else {
-                        System.out.println("Bomb Cannot Be Placed");
                     }
                 }
             }
-        }  // Do nothing
+        }
 
         //Game over
         if (!gameOver.isAlive) {
@@ -124,7 +121,7 @@ public class GameScene extends Scene {
             value.draw(g2);
         }
 
-        //Draw if the game is paused
+        //Draw pause menu
         if (pause.isPaused) {
             Overlay.getInstance().draw(g2);
             pause.draw(g2);
