@@ -24,9 +24,6 @@ public class Bomb extends Entity {
     private String key = "";
     private int bombCounter = 0;
 
-    BombExplodeMap bombExplodeMap;
-
-
     public Bomb() {
         solidArea = new Rectangle();
         solidArea.x = 0;
@@ -42,7 +39,6 @@ public class Bomb extends Entity {
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
-        bombExplodeMap = new BombExplodeMap();
 
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
@@ -73,27 +69,22 @@ public class Bomb extends Entity {
                     g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 
-                } else if (timeDuration<System.nanoTime()-timeStart) { //disappeared
+                } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
                     state = 2;
                     update();
                     bombList.remove(this);
-                    bombExplodeMap.deleteExplosion();
 
                 } else {//exploding
                     state = 1;
-//                    update();
-                    // img for the bomb after 3 seconds
-//                    img = getBufferedImage(explode[0], explode[1], explode[2], explode[3],
-//                            explode[4], explode[5], explode[6], explode[7]);
-//                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-//                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-
+                    update();
+                    //img for bomb after 3 seconds
+                    img = getBufferedImage(explode[0], explode[1], explode[2], explode[3],
+                            explode[4], explode[5], explode[6], explode[7]);
+                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 
                     //draw the explosion
-                    bombExplodeMap.drawExplosion(this.x / Constant.TILE_SIZE, this.y / Constant.TILE_SIZE);
-
-//                    bombExplodeMap.draw(this.x,this.y, g2);
-                    
+                    BombExplodeMap.getInstance().drawExplosion(this.x, this.y, g2);
                 }
             }
         }
