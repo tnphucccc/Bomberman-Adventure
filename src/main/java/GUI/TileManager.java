@@ -12,6 +12,7 @@ import java.util.Objects;
 
 public class TileManager {
     public Tile[] tiles;
+    public int[][] originalMap;
     public int[][] mapTileNum;
 
     public static TileManager instance = null;
@@ -27,6 +28,7 @@ public class TileManager {
     public TileManager() {
         tiles = new Tile[10];
         mapTileNum = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
+        originalMap = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
 
         getTileImage();
         loadMap("/Maps/Map02.txt");
@@ -51,6 +53,14 @@ public class TileManager {
             tiles[4] = new Tile();//Seriously ? Sand vs sand typo?
             tiles[4].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/Sand.png")));
 
+            tiles[5] = new Tile();
+            tiles[5].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/start4.png")));
+            tiles[5].death = true;
+
+            tiles[6] = new Tile();
+            tiles[6].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Tiles/BrickDestroy3.png")));
+            tiles[6].death = true;
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,6 +84,7 @@ public class TileManager {
                     int num = Integer.parseInt(numbers[col]);
 
                     mapTileNum[row][col] = num;
+                    originalMap[row][col] = num;
                     col++;
                 }
 
@@ -86,6 +97,9 @@ public class TileManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void update(){
+        mapTileNum = BombExplodeMap.getInstance().getMap(); //get new map after explosion
     }
 
     public void draw(Graphics2D g2) {

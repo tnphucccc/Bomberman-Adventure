@@ -19,10 +19,12 @@ public class GameScene extends Scene {
     GameOver gameOver;
 
     public static Player player;
-   
+
     public static int bombSize = 100;
     public static int bombCounter = 0;
+
     KeyHandler keyH = Window.getKeyH();
+
     boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
@@ -38,7 +40,6 @@ public class GameScene extends Scene {
         aSetter.setMob();
         aSetter.setItems();
 
-        
         bombList = new ArrayList<>();
 
         pause = new Pause(false);
@@ -61,6 +62,7 @@ public class GameScene extends Scene {
         if (!pause.isPaused) {
             //Game is running
             player.update();
+            tileM.update();
             for (Mob mob : mobList) {
                 mob.update();
                 //cCheck.checkMob(player,mobList);
@@ -70,19 +72,14 @@ public class GameScene extends Scene {
             if (bombCounter < bombSize) {
                 if (keyH.spacePressed) {
                     spacePressed = true;
-    
                 }
                 if (!keyH.spacePressed && spacePressed) {
                     spacePressed = false;
-    
+
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
                         bombList.add(bombCounter, new Bomb());
                         bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
-                        System.out.println("Bomb Placed:" + bombCounter);
-                        
-                        
-    
                     } else {
                         System.out.println("Bomb Cannot Be Placed");
                     }
@@ -124,7 +121,7 @@ public class GameScene extends Scene {
 
         //Draw mob
         for (Mob value : mobList) {
-                value.draw(g2);
+            value.draw(g2);
         }
 
         //Draw if the game is paused

@@ -16,6 +16,15 @@ public class GameOver {
     Rect gameOverRect, playAgainRect, exitRect;
     MouseHandler mouseH = Window.getMouseH();
 
+    public static GameOver instance = null;
+
+    public static GameOver getInstance(){
+        if (GameOver.instance == null){
+            GameOver.instance = new GameOver();
+        }
+        return GameOver.instance;
+    }
+
     public GameOver() {
 
         try {

@@ -8,8 +8,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class CollisionCheck {
-    TileManager tileM = new TileManager();
-
     public static CollisionCheck instance;
 
     public static CollisionCheck getInstance(){
@@ -27,7 +25,7 @@ public class CollisionCheck {
         int entityTopRow = entity.InteractionBox.get(0) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
         int entityBottomRow = entity.InteractionBox.get(2) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
-        int tileNum1, tileNum2;
+        int tileNum1, tileNum2, tileNum3;
 
         switch (entity.direction) {
             case "up" -> {
@@ -35,11 +33,14 @@ public class CollisionCheck {
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
+                tileNum3 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
 
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
-                        || TileManager.getInstance().tiles[tileNum2].collision) {
+                        || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
+                } else if (TileManager.getInstance().tiles[tileNum3].death){
+                    entity.state = 0;
                 }
             }
             case "down" -> {
@@ -47,34 +48,44 @@ public class CollisionCheck {
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
+                tileNum3 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
 
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
-                        || TileManager.getInstance().tiles[tileNum2].collision) {
+                        || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
+                } else if (TileManager.getInstance().tiles[tileNum3].death){
+                    entity.state = 0;
                 }
+
             }
             case "left" -> {
                 entityLeftCol = (entity.InteractionBox.get(3) - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
+                tileNum3 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
-                        || TileManager.getInstance().tiles[tileNum2].collision) {
+                        || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
+                } else if (TileManager.getInstance().tiles[tileNum3].death){
+                    entity.state = 0;
                 }
+
             }
             case "right" -> {
                 entityRightCol = (entity.InteractionBox.get(1) + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
-
+                tileNum3 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
-                        || TileManager.getInstance().tiles[tileNum2].collision) {
+                        || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
+                } else if (TileManager.getInstance().tiles[tileNum3].death){
+                    entity.state = 0;
                 }
             }
         }
