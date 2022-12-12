@@ -12,6 +12,7 @@ import java.util.Objects;
 public class BombExplodeMap {
     private int[][] map;
     public final static int bombRadius = 2;
+
     public static BombExplodeMap instance;
 
     BufferedImage up;
@@ -72,6 +73,7 @@ public class BombExplodeMap {
                 break;
             }
             else if (map[y][x + i] == 2) {
+
                 draw(g2, x + i, y);
                 break;
             }
