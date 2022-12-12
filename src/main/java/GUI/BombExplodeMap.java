@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class BombExplodeMap {
     private int[][] map;
-    public static int bombRadius = 2;
+    public final static int bombRadius = 2;
     public static BombExplodeMap instance;
 
     BufferedImage up;
@@ -65,13 +65,13 @@ public class BombExplodeMap {
 
         //check right
         for (int i = 1; i <= bombRadius; i++) {
-            if (map[y][x + 1] == 0 || map[y][x + 1] == 3) {
+            if (map[y][x + i] == 0 || map[y][x + i] == 3) {
                 draw(g2, x + i, y);
             }
-            else if (map[y][x + 1] == 1 || map[y][x + 1] == 4) {
+            else if (map[y][x + i] == 1 || map[y][x + i] == 4) {
                 break;
             }
-            else if (map[y][x + 1] == 2) {
+            else if (map[y][x + i] == 2) {
                 draw(g2, x + i, y);
                 break;
             }
@@ -79,13 +79,13 @@ public class BombExplodeMap {
 
         //check left
         for (int i = 1; i <= bombRadius; i++) {
-            if (map[y][x - 1] == 0 || map[y][x - 1] == 3) {
+            if (map[y][x - i] == 0 || map[y][x - i] == 3) {
                 draw(g2, x - i, y);
             }
-            else if (map[y][x - 1] == 1 || map[y][x - 1] == 4) {
+            else if (map[y][x - i] == 1 || map[y][x - i] == 4) {
                 break;
             }
-            else if (map[y][x - 1] == 2) {
+            else if (map[y][x - i] == 2) {
                 draw(g2, x - i, y);
                 break;
             }
