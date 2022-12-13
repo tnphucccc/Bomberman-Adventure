@@ -2,7 +2,6 @@ package GUI;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
-import Controls.MouseHandler;
 import Entity.Bomb;
 import Entity.Mob;
 import Entity.Player;
