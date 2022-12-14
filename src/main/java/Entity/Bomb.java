@@ -1,9 +1,7 @@
 package Entity;
 
-import Controls.KeyHandler;
 import GUI.BombExplodeMap;
 import GUI.Camera;
-import GUI.Window;
 import Variables.Constant;
 import javax.imageio.ImageIO;
 import java.awt.*;
