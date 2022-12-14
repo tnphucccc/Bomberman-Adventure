@@ -14,9 +14,7 @@ import java.util.Objects;
 
 public class Bomb extends Entity {
     public static int bombSize = 100;
-    KeyHandler keyH = Window.getKeyH();
 
-    boolean spacePressed = false;
     private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
