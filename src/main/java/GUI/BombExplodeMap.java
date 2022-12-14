@@ -12,7 +12,7 @@ public class BombExplodeMap {
     public static BombExplodeMap instance;
     private int x,y;
     BufferedImage up;
-
+    
     public BombExplodeMap() {
         map = TileManager.getInstance().mapTileNum; //get map from TileManager
         try {
@@ -93,7 +93,14 @@ public class BombExplodeMap {
     public void draw(Graphics2D g2, int x, int y) {
         int drawX = Camera.getXCord(x * Constant.TILE_SIZE);
         int drawY = Camera.getYCord(y * Constant.TILE_SIZE);
-
+        // spriteCounter++;
+        //         if (spriteCounter > 24) {
+        //             if (spriteNum != 8) {
+        //                 spriteNum++;
+        //             } else
+        //                 spriteNum = 5;
+        //             spriteCounter = 0;
+        //         }
         g2.drawImage(up, drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
     }
 }
