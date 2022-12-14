@@ -244,6 +244,15 @@ public class CollisionCheck {
                             }
                         }
                     }
+                    if(bomb.state == 1){
+                        System.out.println("bomb");
+                        if(entity.x<=bomb.getX()/Constant.TILE_SIZE && entity.x+entity.solidArea.width>=bomb.getX()/Constant.TILE_SIZE){
+                            if(entity.y<=bomb.getY()/Constant.TILE_SIZE && entity.y+entity.solidArea.height>=bomb.getY()/Constant.TILE_SIZE){
+                                entity.state = 0;
+                            }
+                        }
+
+                    }
                 }
             }
         }
