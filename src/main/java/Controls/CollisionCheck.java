@@ -247,9 +247,11 @@ public class CollisionCheck {
                     if(bomb.state == 1){
                         System.out.println(bomb.getX()/Constant.TILE_SIZE+" "+bomb.getY()/Constant.TILE_SIZE);
                         System.out.println(entity.x+" "+entity.y);
-                        if(entity.x/Constant.TILE_SIZE<=bomb.getX()/Constant.TILE_SIZE+bomb.getBombRadius() && entity.x/Constant.TILE_SIZE>=bomb.getX()/Constant.TILE_SIZE-bomb.getBombRadius() && entity.y/Constant.TILE_SIZE<=bomb.getY()/Constant.TILE_SIZE+bomb.getBombRadius() && entity.y/Constant.TILE_SIZE>=bomb.getY()/Constant.TILE_SIZE-bomb.getBombRadius()){
+                        if(entity.x/Constant.TILE_SIZE<=bomb.getX()/Constant.TILE_SIZE+bomb.getBombRadius() &&
+                                entity.x/Constant.TILE_SIZE>=bomb.getX()/Constant.TILE_SIZE- bomb.getBombRadius() &&
+                                entity.y/Constant.TILE_SIZE<=bomb.getY()/Constant.TILE_SIZE+ bomb.getBombRadius() &&
+                                entity.y/Constant.TILE_SIZE>=bomb.getY()/Constant.TILE_SIZE-bomb.getBombRadius()){
                                 entity.state = 0;
-                                System.out.println("hey");
                         }
 
                     }
