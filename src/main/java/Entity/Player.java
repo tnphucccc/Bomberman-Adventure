@@ -68,6 +68,7 @@ public class Player extends Entity {
     }
     @Override
     public void update() {
+        CollisionCheck.getInstance().checkBomb(GameScene.getBombList(), this);
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -89,7 +90,7 @@ public class Player extends Entity {
             pickUpObject(objIndex);
 
             //Check Collision with Bomb
-            CollisionCheck.getInstance().checkBomb(GameScene.getBombList(), this);
+            
 
             if (!collisionOn) {
                 switch (direction) {
