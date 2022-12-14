@@ -10,7 +10,7 @@ public class BombExplodeMap {
     private int[][] map;
     
     public static BombExplodeMap instance;
-
+    private int x,y;
     BufferedImage up;
 
     public BombExplodeMap() {
@@ -28,9 +28,9 @@ public class BombExplodeMap {
         return instance;
     }
 
-    public void drawExplosion(int x, int y, Graphics2D g2,Bomb bomb) {
-        x = x / Constant.TILE_SIZE;
-        y = y / Constant.TILE_SIZE;
+    public void drawExplosion(Graphics2D g2,Bomb bomb) {
+        this.x = bomb.getX() / Constant.TILE_SIZE;
+        this.y = bomb.getY() / Constant.TILE_SIZE;
 
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
