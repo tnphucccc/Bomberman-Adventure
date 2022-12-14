@@ -35,7 +35,6 @@ public class CollisionCheck {
                 tileNum2 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
                 tileNum3 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
 
-
                 if (TileManager.getInstance().tiles[tileNum1].collision
                         || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
@@ -245,15 +244,12 @@ public class CollisionCheck {
                         }
                     }
                     if(bomb.state == 1){
-                        System.out.println(bomb.getX()/Constant.TILE_SIZE+" "+bomb.getY()/Constant.TILE_SIZE);
-                        System.out.println(entity.x+" "+entity.y);
                         if(entity.x/Constant.TILE_SIZE<=bomb.getX()/Constant.TILE_SIZE+bomb.getBombRadius() &&
                                 entity.x/Constant.TILE_SIZE>=bomb.getX()/Constant.TILE_SIZE- bomb.getBombRadius() &&
                                 entity.y/Constant.TILE_SIZE<=bomb.getY()/Constant.TILE_SIZE+ bomb.getBombRadius() &&
                                 entity.y/Constant.TILE_SIZE>=bomb.getY()/Constant.TILE_SIZE-bomb.getBombRadius()){
                                 entity.state = 0;
                         }
-
                     }
                 }
             }

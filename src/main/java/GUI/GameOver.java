@@ -63,6 +63,7 @@ public class GameOver {
             playAgainCurrentImage = playAgainPressed;
             if (mouseH.isPressed) {
                 Window.getWindow().changeState(1);
+                TileManager.getInstance().clearMap();
             }
         } else playAgainCurrentImage = playAgain;
 

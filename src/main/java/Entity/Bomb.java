@@ -3,6 +3,7 @@ package Entity;
 import Controls.KeyHandler;
 import GUI.BombExplodeMap;
 import GUI.Camera;
+import GUI.TileManager;
 import GUI.Window;
 import Variables.Constant;
 import javax.imageio.ImageIO;
@@ -41,16 +42,6 @@ public class Bomb extends Entity {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-    }
-
-    // check if the tile is available
-    public boolean checkAvailable(int x, int y) {
-        for (Bomb bomb : bombList) {
-            if (bomb.x == x && bomb.y == y) {
-                return false;
-            }
-        }
-        return true;
     }
 
     //draw bomb on the map with gif

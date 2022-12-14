@@ -8,7 +8,7 @@ import java.util.Objects;
 import Entity.Bomb;
 public class BombExplodeMap {
     private int[][] map;
-    
+
     public static BombExplodeMap instance;
 
     BufferedImage up;
@@ -28,20 +28,19 @@ public class BombExplodeMap {
         return instance;
     }
 
-    public void drawExplosion(int x, int y, Graphics2D g2,Bomb bomb) {
+    public void drawExplosion(int x, int y, Graphics2D g2, Bomb bomb) {
         x = x / Constant.TILE_SIZE;
         y = y / Constant.TILE_SIZE;
 
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
-            if (map[y + i][x] == 0 || map[y + i][x] == 3 ) {
+            if (map[y + i][x] == 0 || map[y + i][x] == 3) {
                 draw(g2, x, y + i);
-            }
-            else if (map[y + i][x] == 1 || map[y + i][x] == 4) {
+            } else if (map[y + i][x] == 1 || map[y + i][x] == 4) {
                 break;
-            }
-            else if (map[y + i][x] == 2) {
+            } else if (map[y + i][x] == 2) {
                 draw(g2, x, y + i);
+                breakBrick(x, y + i);
                 break;
             }
         }
@@ -56,6 +55,7 @@ public class BombExplodeMap {
             }
             else if (map[y - i][x] == 2) {
                 draw(g2, x, y - i);
+                breakBrick(x, y - i);
                 break;
             }
         }
@@ -69,8 +69,8 @@ public class BombExplodeMap {
                 break;
             }
             else if (map[y][x + i] == 2) {
-
                 draw(g2, x + i, y);
+                breakBrick(x + i, y);
                 break;
             }
         }
@@ -85,9 +85,26 @@ public class BombExplodeMap {
             }
             else if (map[y][x - i] == 2) {
                 draw(g2, x - i, y);
+                breakBrick(x - i, y);
                 break;
             }
         }
+    }
+
+    public void breakBrick(int x, int y) {
+        if (map[y-1][x] == 1) {
+            map[y][x] = 3;//check and draw shadow
+        } else map[y][x] = 0;
+    }
+    //for Debug
+    public void printMap(int[][] array ){
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
     public void draw(Graphics2D g2, int x, int y) {
@@ -95,5 +112,9 @@ public class BombExplodeMap {
         int drawY = Camera.getYCord(y * Constant.TILE_SIZE);
 
         g2.drawImage(up, drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+    }
+
+    public int[][] getMap(){
+        return map;
     }
 }

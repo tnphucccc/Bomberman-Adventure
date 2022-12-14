@@ -13,7 +13,7 @@ import java.util.Objects;
 public class TileManager {
     public Tile[] tiles;
     public int[][] mapTileNum;
-
+    public int[][] originalMap;
     public static TileManager instance = null;
 
     //Singleton
@@ -27,6 +27,7 @@ public class TileManager {
     public TileManager() {
         tiles = new Tile[10];
         mapTileNum = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
+        originalMap = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
 
         getTileImage();
         loadMap("/Maps/Map02.txt");
@@ -59,7 +60,6 @@ public class TileManager {
     public void loadMap(String filePath) {
         try {
             InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(filePath));
-
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0, row = 0;
@@ -74,6 +74,7 @@ public class TileManager {
                     int num = Integer.parseInt(numbers[col]);
 
                     mapTileNum[row][col] = num;
+                    originalMap[row][col] = num;
                     col++;
                 }
 
@@ -88,10 +89,14 @@ public class TileManager {
         }
     }
 
+    public void update(){
+        mapTileNum = BombExplodeMap.getInstance().getMap();
+    }
+
+
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;
-
 
         while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW){
             int tileNum = mapTileNum[worldRow][worldCol];
@@ -111,5 +116,8 @@ public class TileManager {
                 worldRow++;
             }
         }
+    }
+    public void clearMap(){
+        loadMap("/Maps/Map02.txt");
     }
 }
