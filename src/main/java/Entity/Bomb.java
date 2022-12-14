@@ -1,9 +1,7 @@
 package Entity;
 
-import Controls.KeyHandler;
 import GUI.BombExplodeMap;
 import GUI.Camera;
-import GUI.Window;
 import Variables.Constant;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -21,7 +19,7 @@ public class Bomb extends Entity {
     private int x, y;
     private String key = "";
     private int bombCounter = 0;
-    public int bombRadius = 2;
+    private int bombRadius = 2;
     public Bomb() {
         solidArea = new Rectangle();
         solidArea.x = 0;
@@ -82,7 +80,7 @@ public class Bomb extends Entity {
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 
                     //draw the explosion
-                    BombExplodeMap.getInstance().drawExplosion(this.x, this.y, g2,this);
+                    BombExplodeMap.getInstance().drawExplosion(g2,this);
                 }
             }
         }
