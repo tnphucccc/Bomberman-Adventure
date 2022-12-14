@@ -244,7 +244,7 @@ public class CollisionCheck {
                             }
                         }
                     }
-                    if(bomb.state == 1){
+                    if(bomb.state == 1){// check if player is in bomb radius
                         // System.out.println(bomb.getX()/Constant.TILE_SIZE+" "+bomb.getY()/Constant.TILE_SIZE);
                         // System.out.println(entity.x+" "+entity.y);
                         if(entity.x/Constant.TILE_SIZE<=bomb.getX()/Constant.TILE_SIZE+bomb.getBombRadius() && entity.x/Constant.TILE_SIZE>=bomb.getX()/Constant.TILE_SIZE-bomb.getBombRadius() && entity.y/Constant.TILE_SIZE<=bomb.getY()/Constant.TILE_SIZE+bomb.getBombRadius() && entity.y/Constant.TILE_SIZE>=bomb.getY()/Constant.TILE_SIZE-bomb.getBombRadius()){
