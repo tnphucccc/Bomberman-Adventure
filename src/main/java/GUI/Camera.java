@@ -1,6 +1,5 @@
 package GUI;
 
-import Entity.Player;
 import Variables.Constant;
 
 public class Camera {

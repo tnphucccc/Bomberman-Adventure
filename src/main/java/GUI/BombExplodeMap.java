@@ -3,16 +3,12 @@ import Variables.Constant;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Objects;
-
+import Entity.Bomb;
 public class BombExplodeMap {
     private int[][] map;
-    public final static int bombRadius = 2;
-
+    
     public static BombExplodeMap instance;
 
     BufferedImage up;
@@ -32,12 +28,12 @@ public class BombExplodeMap {
         return instance;
     }
 
-    public void drawExplosion(int x, int y, Graphics2D g2) {
+    public void drawExplosion(int x, int y, Graphics2D g2,Bomb bomb) {
         x = x / Constant.TILE_SIZE;
         y = y / Constant.TILE_SIZE;
 
         //check downward
-        for (int i = 1; i <= bombRadius; i++) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y + i][x] == 0 || map[y + i][x] == 3 ) {
                 draw(g2, x, y + i);
             }
@@ -51,7 +47,7 @@ public class BombExplodeMap {
         }
 
         //check upward
-        for (int i = 1; i <= bombRadius; i++) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y - i][x] == 0 || map[y - i][x] == 3 ) {
                 draw(g2, x, y - i);
             }
@@ -65,8 +61,8 @@ public class BombExplodeMap {
         }
 
         //check right
-        for (int i = 1; i <= bombRadius; i++) {
-            if (map[y][x + i] == 0 || map[y][x + i] == 3) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
+            if (map[y][x + 1] == 0 || map[y][x + 1] == 3) {
                 draw(g2, x + i, y);
             }
             else if (map[y][x + i] == 1 || map[y][x + i] == 4) {
@@ -80,8 +76,8 @@ public class BombExplodeMap {
         }
 
         //check left
-        for (int i = 1; i <= bombRadius; i++) {
-            if (map[y][x - i] == 0 || map[y][x - i] == 3) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
+            if (map[y][x - 1] == 0 || map[y][x - 1] == 3) {
                 draw(g2, x - i, y);
             }
             else if (map[y][x - i] == 1 || map[y][x - i] == 4) {
