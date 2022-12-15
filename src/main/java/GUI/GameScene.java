@@ -62,6 +62,8 @@ public class GameScene extends Scene {
         if (!pause.isPaused) {
             player.update();
 
+            tileM.update();
+
             for (Mob mob : mobList) {
                 mob.update();
                 //cCheck.checkMob(player,mobList);

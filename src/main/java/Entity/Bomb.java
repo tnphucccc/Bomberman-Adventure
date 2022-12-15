@@ -3,6 +3,7 @@ package Entity;
 import GUI.BombExplodeMap;
 import GUI.Camera;
 import Variables.Constant;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,14 +13,16 @@ import java.util.Objects;
 
 public class Bomb extends Entity {
     public static int bombSize = 100;
-
     private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
     private int x, y;
     private String key = "";
+
     private int bombCounter = 0;
-    private int bombRadius = 2;
+    public int bombRadius = 2;
+
+
     public Bomb() {
         solidArea = new Rectangle();
         solidArea.x = 0;
@@ -39,16 +42,6 @@ public class Bomb extends Entity {
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
-    }
-
-    // check if the tile is available
-    public boolean checkAvailable(int x, int y) {
-        for (Bomb bomb : bombList) {
-            if (bomb.x == x && bomb.y == y) {
-                return false;
-            }
-        }
-        return true;
     }
 
     //draw bomb on the map with gif
@@ -85,6 +78,7 @@ public class Bomb extends Entity {
             }
         }
     }
+
 
     // getter && setter
     public int getX() {

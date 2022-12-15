@@ -20,8 +20,8 @@ public class AssetSetter {
 
     public void setItems() {
         GameScene.Object[0] = new OBJ_ExtraBomb();
-        GameScene.Object[0].x = 19 * Constant.TILE_SIZE;
-        GameScene.Object[0].y = 20 * Constant.TILE_SIZE;
+        GameScene.Object[0].x = 8 * Constant.TILE_SIZE;
+        GameScene.Object[0].y = 9 * Constant.TILE_SIZE;
 
         GameScene.Object[1] = new OBJ_SpeedIncrease();
         GameScene.Object[1].x = 22 * Constant.TILE_SIZE;
