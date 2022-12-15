@@ -2,7 +2,6 @@ package GUI;
 import Variables.Constant;
 import javax.imageio.ImageIO;
 
-import Controls.CollisionCheck;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
