@@ -10,6 +10,7 @@ public class BombExplodeMap {
     private int[][] map;
 
     public static BombExplodeMap instance;
+    public boolean breakBrick = false;
 
     BufferedImage up;
 
@@ -29,6 +30,7 @@ public class BombExplodeMap {
     }
 
     public void drawExplosion(int x, int y, Graphics2D g2, Bomb bomb) {
+        breakBrick = false;
         x = x / Constant.TILE_SIZE;
         y = y / Constant.TILE_SIZE;
 
@@ -92,7 +94,7 @@ public class BombExplodeMap {
     }
 
     public void breakBrick(int x, int y) {
-        if (map[y-1][x] == 1) {
+        if (map[y - 1][x] == 1) {
             map[y][x] = 3;//check and draw shadow
         } else map[y][x] = 0;
     }
@@ -116,5 +118,8 @@ public class BombExplodeMap {
 
     public int[][] getMap(){
         return map;
+    }
+    public void setBreakBrick(boolean breakBrick){
+        this.breakBrick = breakBrick;
     }
 }

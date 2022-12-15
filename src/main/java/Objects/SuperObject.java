@@ -1,6 +1,7 @@
 package Objects;
 
 import GUI.Camera;
+import GUI.TileManager;
 import Variables.Constant;
 
 import java.awt.*;
@@ -13,10 +14,16 @@ public class SuperObject {
     public int x, y;
     public Rectangle solidArea = new Rectangle(0, 0, Constant.TILE_SIZE, Constant.TILE_SIZE);
     public int solidAreaDefaultX = 0, solidAreaDefaultY = 0;
+    public int[][] map;
+
+    public SuperObject() {
+        map = TileManager.getInstance().mapTileNum;
+    }
 
     public void draw(Graphics2D g2) {
-        if(Camera.canDraw(x, y)){
-            g2.drawImage(image, Camera.getXCord(x), Camera.getYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+        if(map[y / Constant.TILE_SIZE][x / Constant.TILE_SIZE] == 0) {
+            g2.drawImage(image, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
         }
     }
 }
