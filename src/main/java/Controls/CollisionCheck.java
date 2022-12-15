@@ -254,10 +254,7 @@ public class CollisionCheck {
                             entity.state = 0;
                             System.out.println("hey");
                         }
-                        // if(entity.x/Constant.TILE_SIZE<=bomb.getX()/Constant.TILE_SIZE+bomb.getBombRadius() && entity.x/Constant.TILE_SIZE>=bomb.getX()/Constant.TILE_SIZE-bomb.getBombRadius() && entity.y/Constant.TILE_SIZE<=bomb.getY()/Constant.TILE_SIZE+bomb.getBombRadius() && entity.y/Constant.TILE_SIZE>=bomb.getY()/Constant.TILE_SIZE-bomb.getBombRadius()){
-                        //         entity.state = 0;
-                        //         System.out.println("hey");
-                        // }
+                     
 
                     }
                 }
