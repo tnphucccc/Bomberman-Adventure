@@ -22,6 +22,7 @@ public class Bomb extends Entity {
     private int bombCounter = 0;
     public int bombRadius = 2;
 
+
     public Bomb() {
         solidArea = new Rectangle();
         solidArea.x = 0;
@@ -72,7 +73,7 @@ public class Bomb extends Entity {
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 
                     //draw the explosion
-                    BombExplodeMap.getInstance().drawExplosion(this.x, this.y, g2, this);
+                    BombExplodeMap.getInstance().drawExplosion(g2,this);
                 }
             }
         }

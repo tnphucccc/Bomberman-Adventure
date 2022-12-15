@@ -10,10 +10,11 @@ public class BombExplodeMap {
     private int[][] map;
 
     public static BombExplodeMap instance;
-    public boolean breakBrick = false;
+
+    private int x,y;
 
     BufferedImage up;
-
+    
     public BombExplodeMap() {
         map = TileManager.getInstance().mapTileNum; //get map from TileManager
         try {
@@ -29,10 +30,10 @@ public class BombExplodeMap {
         return instance;
     }
 
-    public void drawExplosion(int x, int y, Graphics2D g2, Bomb bomb) {
-        breakBrick = false;
-        x = x / Constant.TILE_SIZE;
-        y = y / Constant.TILE_SIZE;
+
+    public void drawExplosion(Graphics2D g2,Bomb bomb) {
+        this.x = bomb.getX() / Constant.TILE_SIZE;
+        this.y = bomb.getY() / Constant.TILE_SIZE;
 
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
@@ -112,14 +113,18 @@ public class BombExplodeMap {
     public void draw(Graphics2D g2, int x, int y) {
         int drawX = Camera.getXCord(x * Constant.TILE_SIZE);
         int drawY = Camera.getYCord(y * Constant.TILE_SIZE);
-
+        // spriteCounter++;
+        //         if (spriteCounter > 24) {
+        //             if (spriteNum != 8) {
+        //                 spriteNum++;
+        //             } else
+        //                 spriteNum = 5;
+        //             spriteCounter = 0;
+        //         }
         g2.drawImage(up, drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
     }
 
     public int[][] getMap(){
         return map;
-    }
-    public void setBreakBrick(boolean breakBrick){
-        this.breakBrick = breakBrick;
     }
 }
