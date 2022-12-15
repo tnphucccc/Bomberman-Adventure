@@ -1,6 +1,7 @@
 package GUI;
 import Variables.Constant;
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -65,7 +66,7 @@ public class BombExplodeMap {
 
         //check right
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
-            if (map[y][x + 1] == 0 || map[y][x + 1] == 3) {
+            if (map[y][x + i] == 0 || map[y][x + i] == 3) {
                 draw(g2, x + i, y);
             }
             else if (map[y][x + i] == 1 || map[y][x + i] == 4) {
@@ -80,7 +81,7 @@ public class BombExplodeMap {
 
         //check left
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
-            if (map[y][x - 1] == 0 || map[y][x - 1] == 3) {
+            if (map[y][x - i] == 0 || map[y][x - i] == 3) {
                 draw(g2, x - i, y);
             }
             else if (map[y][x - i] == 1 || map[y][x - i] == 4) {
@@ -99,6 +100,7 @@ public class BombExplodeMap {
             map[y][x] = 3;//check and draw shadow
         } else map[y][x] = 0;
     }
+
     //for Debug
     public void printMap(int[][] array ){
         for (int i = 0; i < array.length; i++) {
@@ -113,6 +115,7 @@ public class BombExplodeMap {
     public void draw(Graphics2D g2, int x, int y) {
         int drawX = Camera.getXCord(x * Constant.TILE_SIZE);
         int drawY = Camera.getYCord(y * Constant.TILE_SIZE);
+        g2.drawImage(up, drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
         // spriteCounter++;
         //         if (spriteCounter > 24) {
         //             if (spriteNum != 8) {
@@ -121,7 +124,6 @@ public class BombExplodeMap {
         //                 spriteNum = 5;
         //             spriteCounter = 0;
         //         }
-        g2.drawImage(up, drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
     }
 
     public int[][] getMap(){
