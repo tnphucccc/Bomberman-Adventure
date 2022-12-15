@@ -1,6 +1,7 @@
 package GUI;
 import Variables.Constant;
 import javax.imageio.ImageIO;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -69,7 +70,6 @@ public class BombExplodeMap {
                 break;
             }
             else if (map[y][x + i] == 2) {
-
                 draw(g2, x + i, y);
                 break;
             }
