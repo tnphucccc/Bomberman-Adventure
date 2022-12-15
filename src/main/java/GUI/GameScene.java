@@ -66,6 +66,9 @@ public class GameScene extends Scene {
 
             for (Mob mob : mobList) {
                 mob.update();
+                if(mob.state==0){
+                    mobList.remove(mob);
+                }
                 //cCheck.checkMob(player,mobList);
             }
             // bomb.update(player.x, player.y);
@@ -84,7 +87,7 @@ public class GameScene extends Scene {
                 }
             }
         }
-
+        
         //Game over
         if (!gameOver.isAlive) {
             gameOver.update();
