@@ -63,7 +63,7 @@ public class GameOver {
             playAgainCurrentImage = playAgainPressed;
             if (mouseH.isPressed) {
                 Window.getWindow().changeState(1);
-                TileManager.getInstance().clearMap();
+                TileManager.getInstance().clearMap(); //Return map to default map
             }
         } else playAgainCurrentImage = playAgain;
 
