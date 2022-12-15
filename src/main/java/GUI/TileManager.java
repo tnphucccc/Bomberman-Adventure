@@ -24,6 +24,8 @@ public class TileManager {
         return instance;
     }
 
+    //Map.txt Edit Guide: x = y/2 -1 and y = x - 1
+
     public TileManager() {
         tiles = new Tile[10];
         mapTileNum = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
