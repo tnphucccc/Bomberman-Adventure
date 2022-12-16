@@ -2,6 +2,7 @@ package Entity;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
+import GUI.Camera;
 import GUI.GameScene;
 import GUI.Window;
 import Variables.Constant;
@@ -39,10 +40,17 @@ public class Player extends Entity {
     }
 
     public void setDefault() {
-        x = Constant.TILE_SIZE * 8; // at tile 16
-        y = Constant.TILE_SIZE * 5; // at tile 16
-        speed = 4;
+        if(GameScene.getMapID() == 2) {
+            x = Constant.TILE_SIZE * 8; // at tile 16
+            y = Constant.TILE_SIZE * 5; // at tile 16
+            speed = 4;
+        }
 
+        if(GameScene.getMapID() == 1) {
+            x = 48 + Constant.TILE_SIZE;
+            y = 32 + Constant.TILE_SIZE;
+            speed = 2;
+        }
         direction = "down";
     }
 
@@ -127,6 +135,7 @@ public class Player extends Entity {
                 case "ExtraBomb" -> {
                     Bomb.bombSize += 1;
                     GameScene.Object[i] = null;
+                    Window.getWindow().changeState(1);
                 }
                 case "SpeedIncrease" -> {
                     speed += 1;
@@ -139,17 +148,12 @@ public class Player extends Entity {
     @Override
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        if (state == 0) {
-            //Player die
+        if (state == 0) { //Player Die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            g2.drawImage(img, Constant.PLAYER_SCREEN_X, Constant.PLAYER_SCREEN_Y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+            g2.drawImage(img, Camera.setXPlayerCord(x), Camera.setYPlayerCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             speed = 0;
-        } else {
-            //PLayer is alive
-            g2.drawImage(img, Constant.PLAYER_SCREEN_X, Constant.PLAYER_SCREEN_Y, Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-            //if (img1 != null) img1.flush();
+        } else { // Player alive
+            g2.drawImage(img, Camera.setXPlayerCord(x), Camera.setYPlayerCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
         }
     }
 

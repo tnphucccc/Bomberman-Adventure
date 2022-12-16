@@ -94,25 +94,44 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;
-        while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW){
-            int tileNum = mapTileNum[worldRow][worldCol];
+        if(GameScene.getMapID() == 2) {
+            while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW) {
+                int tileNum = mapTileNum[worldRow][worldCol];
 
-            int x = worldCol * Constant.TILE_SIZE;
-            int y = worldRow * Constant.TILE_SIZE;
+                int x = worldCol * Constant.TILE_SIZE;
+                int y = worldRow * Constant.TILE_SIZE;
 
-            //Create a boundary for the screen
-            if (Camera.canDraw(x, y))
-            {
-                g2.drawImage(tiles[tileNum].image, Camera.getXCord(x), Camera.getYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+                if (Camera.canDraw(x, y)) {
+                    g2.drawImage(tiles[tileNum].image, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+                }
+                worldCol++;
+
+                if (worldCol == Constant.MAX_WORLD_COL) {
+                    worldCol = 0;
+                    worldRow++;
+                }
             }
-            worldCol++;
+        }
+        else if (GameScene.getMapID() == 1) {
+            int x = 0, y = 0;
+            while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW) {
+                int tileNum = mapTileNum[worldRow][worldCol];
 
-            if (worldCol == Constant.MAX_WORLD_COL){
-                worldCol =  0;
-                worldRow++;
+                g2.drawImage(tiles[tileNum].image, x, y, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+
+                worldCol++;
+                x += Constant.TILE_SIZE;
+
+                if (worldCol == Constant.MAX_WORLD_COL) {
+                    worldCol = 0;
+                    worldRow++;
+                    x = 0;
+                    y += Constant.TILE_SIZE;
+                }
             }
         }
     }
+
     public void clearMap(){
         if (GameScene.getMapID() == 1){
             loadMap("/Maps/Map01.txt");
