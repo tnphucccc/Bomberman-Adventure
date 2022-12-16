@@ -115,6 +115,7 @@ public class BombExplodeMap {
     public void draw(Graphics2D g2, int x, int y) {
         int drawX = Camera.getXCord(x * Constant.TILE_SIZE);
         int drawY = Camera.getYCord(y * Constant.TILE_SIZE);
+
         g2.drawImage(up, drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
         // spriteCounter++;
         //         if (spriteCounter > 24) {
@@ -129,4 +130,5 @@ public class BombExplodeMap {
     public int[][] getMap(){
         return map;
     }
+
 }

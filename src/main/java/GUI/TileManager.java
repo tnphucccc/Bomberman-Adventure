@@ -14,6 +14,7 @@ public class TileManager {
     public Tile[] tiles;
     public int[][] mapTileNum;
     public int[][] originalMap;
+
     public static TileManager instance = null;
 
     //Singleton
@@ -32,7 +33,8 @@ public class TileManager {
         originalMap = new int[Constant.MAX_WORLD_ROW][Constant.MAX_WORLD_COL];
 
         getTileImage();
-        loadMap("/Maps/Map02.txt");
+
+        loadMap("/Maps/Map0"+ GameScene.getMapID() +".txt");
     }
 
     public void getTileImage() {
@@ -63,23 +65,16 @@ public class TileManager {
         try {
             InputStream is = Objects.requireNonNull(getClass().getResourceAsStream(filePath));
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
             int col = 0, row = 0;
-
             while (col < Constant.MAX_WORLD_COL && row < Constant.MAX_WORLD_ROW){
-
                 String line = br.readLine();
-
                 while (col < Constant.MAX_WORLD_COL){
                     String[] numbers = line.split(" ");
-
                     int num = Integer.parseInt(numbers[col]);
-
                     mapTileNum[row][col] = num;
                     originalMap[row][col] = num;
                     col++;
                 }
-
                 if (col == Constant.MAX_WORLD_COL){
                     col = 0;
                     row++;
@@ -99,7 +94,6 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;
-
         while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW){
             int tileNum = mapTileNum[worldRow][worldCol];
 
@@ -120,6 +114,11 @@ public class TileManager {
         }
     }
     public void clearMap(){
-        loadMap("/Maps/Map02.txt");
+        if (GameScene.getMapID() == 1){
+            loadMap("/Maps/Map01.txt");
+        }
+        if (GameScene.getMapID() == 2){
+            loadMap("/Maps/Map02.txt");
+        }
     }
 }

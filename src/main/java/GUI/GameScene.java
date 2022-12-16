@@ -17,12 +17,14 @@ public class GameScene extends Scene {
     Pause pause;
     GameOver gameOver;
 
+    KeyHandler keyH = Window.getKeyH();
+
     public static Player player;
 
     public static int bombSize = 100;
     public static int bombCounter = 0;
 
-    KeyHandler keyH = Window.getKeyH();
+    public static int mapID;
 
     boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
@@ -31,7 +33,9 @@ public class GameScene extends Scene {
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
-    public GameScene() {
+    public GameScene(int mapID) {
+        GameScene.mapID = mapID;
+
         cCheck = new CollisionCheck();
         tileM = new TileManager();
         player = new Player(1);
@@ -45,13 +49,13 @@ public class GameScene extends Scene {
         gameOver = new GameOver();
     }
 
-    public static GameScene instance = null;
-    public static GameScene getInstance(){
-        if(GameScene.instance == null){
-            GameScene.instance = new GameScene();
-        }
-        return GameScene.instance;
-    }
+//    public static GameScene instance = null;
+//    public static GameScene getInstance(){
+//        if(GameScene.instance == null){
+//            GameScene.instance = new GameScene(1);
+//        }
+//        return GameScene.instance;
+//    }
 
     @Override
     public void update() {
@@ -140,6 +144,10 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Mob> getMobList(){
         return mobList;
+    }
+
+    public static int getMapID(){
+        return mapID;
     }
 
 }

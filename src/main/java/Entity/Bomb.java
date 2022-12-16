@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    public static int bombSize = 100;
+    public static int bombSize = 5;
     private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
@@ -20,7 +20,7 @@ public class Bomb extends Entity {
     private String key = "";
 
     private int bombCounter = 0;
-    public int bombRadius = 2;
+    public int bombRadius = 1;
 
 
     public Bomb() {
@@ -31,6 +31,7 @@ public class Bomb extends Entity {
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
+
         getBombImage();
         setDefault();
     }
