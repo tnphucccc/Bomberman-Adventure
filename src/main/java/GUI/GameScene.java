@@ -69,7 +69,7 @@ public class GameScene extends Scene {
                 if(mob.state==0){
                     mobList.remove(mob);
                 }
-                //cCheck.checkMob(player,mobList);
+              
             }
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
