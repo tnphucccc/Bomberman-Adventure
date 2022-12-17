@@ -133,11 +133,6 @@ public class TileManager {
     }
 
     public void clearMap(){
-        if (GameScene.getMapID() == 1){
-            loadMap("/Maps/Map01.txt");
-        }
-        if (GameScene.getMapID() == 2){
-            loadMap("/Maps/Map02.txt");
-        }
+        loadMap("/Maps/Map0"+ GameScene.getMapID() +".txt");
     }
 }
