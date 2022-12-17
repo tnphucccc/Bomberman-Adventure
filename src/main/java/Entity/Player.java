@@ -41,13 +41,13 @@ public class Player extends Entity {
     }
 
     public void setDefault() {
-        if(GameScene.getMapID() == 2) {
-            x = Constant.TILE_SIZE * 8; // at tile 16
-            y = Constant.TILE_SIZE * 5; // at tile 16
+        if(GameScene.getMapID() == 2) { //Player cord at Map 02
+            x = Constant.TILE_SIZE * 8;
+            y = Constant.TILE_SIZE * 5;
             speed = 4;
         }
 
-        if(GameScene.getMapID() == 1) {
+        if(GameScene.getMapID() == 1) { //Player cord at Map01
             x = 48 + Constant.TILE_SIZE;
             y = 32 + Constant.TILE_SIZE;
             speed = 2;
@@ -140,8 +140,9 @@ public class Player extends Entity {
                 case "SpeedIncrease" -> {
                     speed += 1;
                     GameScene.Object[i] = null;
-                    MapTransitionMenu.getInstance().setisTransitioning(true);
+                    MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
                 }
+                // TO DO: Add Door Item
             }
         }
     }

@@ -51,7 +51,7 @@ public class MapTransitionMenu {
                 mouseH.getY() >= mapTransitionMenuRect.y && mouseH.getY() <= mapTransitionMenuRect.y + mapTransitionMenuRect.height) {
             mapTransitionMenuCurrentImage = mapTransitionMenuPressed;
             if (mouseH.isPressed) {
-                Window.getWindow().changeState(2); //change to next level
+                Window.getWindow().changeState(2); //transition from map 01 to map 02
                 TileManager.getInstance().clearMap();
                 isTransitioning = false;
             }

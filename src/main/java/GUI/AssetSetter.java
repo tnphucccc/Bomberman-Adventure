@@ -14,9 +14,9 @@ public class AssetSetter {
 
     public void setMob() {
         GameScene.mobList.removeAll(GameScene.mobList);//reset the creation of mobs
-        if(GameScene.getMapID() == 1) {
+        if(GameScene.getMapID() == 1) { // Mob Cord at Map 01
             GameScene.mobList.add(0, new Mob(192, 272));
-        } else if (GameScene.getMapID() == 2) {
+        } else if (GameScene.getMapID() == 2) { // Mob Cord at Map 02
             GameScene.mobList.add(0, new Mob(10 * Constant.TILE_SIZE, 11 * Constant.TILE_SIZE));
         }
 //        GameScene.mobList.add(1, new Mob(10 * Constant.TILE_SIZE, 24 * Constant.TILE_SIZE));
