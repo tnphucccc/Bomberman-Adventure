@@ -4,6 +4,7 @@ import Controls.CollisionCheck;
 import Controls.KeyHandler;
 import GUI.Camera;
 import GUI.GameScene;
+import GUI.MapTransitionMenu;
 import GUI.Window;
 import Variables.Constant;
 
@@ -135,11 +136,11 @@ public class Player extends Entity {
                 case "ExtraBomb" -> {
                     Bomb.bombSize += 1;
                     GameScene.Object[i] = null;
-                    Window.getWindow().changeState(1);
                 }
                 case "SpeedIncrease" -> {
                     speed += 1;
                     GameScene.Object[i] = null;
+                    MapTransitionMenu.getInstance().changeMap();
                 }
             }
         }

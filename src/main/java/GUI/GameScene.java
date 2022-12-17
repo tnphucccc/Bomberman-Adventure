@@ -9,6 +9,7 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GameScene extends Scene {
     public static CollisionCheck cCheck;
@@ -16,6 +17,7 @@ public class GameScene extends Scene {
 
     Pause pause;
     GameOver gameOver;
+    MapTransitionMenu mapTransitionMenu;
 
     KeyHandler keyH = Window.getKeyH();
 
@@ -47,6 +49,7 @@ public class GameScene extends Scene {
 
         pause = new Pause(false);
         gameOver = new GameOver();
+        mapTransitionMenu = new MapTransitionMenu();
     }
 
 //    public static GameScene instance = null;
@@ -95,6 +98,10 @@ public class GameScene extends Scene {
             bombList.clear();
             bombCounter = 0;
         }
+
+        if (MapTransitionMenu.getInstance().isTransitioning) {
+            MapTransitionMenu.getInstance().update();
+        }
     }
 
     @Override
@@ -134,6 +141,11 @@ public class GameScene extends Scene {
         if (!gameOver.isAlive) {
             Overlay.getInstance().draw(g2);
             gameOver.draw(g2);
+        }
+
+        if(MapTransitionMenu.getInstance().isTransitioning){
+            Overlay.getInstance().draw(g2);
+            MapTransitionMenu.getInstance().draw(g2);
         }
     }
     public static ArrayList<Bomb> getBombList() {
