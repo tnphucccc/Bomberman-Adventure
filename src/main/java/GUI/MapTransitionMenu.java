@@ -39,6 +39,13 @@ public class MapTransitionMenu {
         isTransitioning = true;
     }
 
+    public boolean getisTransitioning(){
+        return isTransitioning;
+    }
+    public void setisTransitioning(boolean isTransitioning){
+        this.isTransitioning = isTransitioning;
+    }
+
     public void update(){
         if (mouseH.getX() >= mapTransitionMenuRect.x && mouseH.getX() <= mapTransitionMenuRect.x + mapTransitionMenuRect.width &&
                 mouseH.getY() >= mapTransitionMenuRect.y && mouseH.getY() <= mapTransitionMenuRect.y + mapTransitionMenuRect.height) {

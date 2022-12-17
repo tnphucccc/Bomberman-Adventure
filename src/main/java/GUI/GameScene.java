@@ -146,7 +146,7 @@ public class GameScene extends Scene {
             gameOver.draw(g2);
         }
 
-        if(MapTransitionMenu.getInstance().isTransitioning){
+        if(MapTransitionMenu.getInstance().getisTransitioning()){
             Overlay.getInstance().draw(g2);
             MapTransitionMenu.getInstance().draw(g2);
         }

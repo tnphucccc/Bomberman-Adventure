@@ -140,7 +140,7 @@ public class Player extends Entity {
                 case "SpeedIncrease" -> {
                     speed += 1;
                     GameScene.Object[i] = null;
-                    MapTransitionMenu.getInstance().changeMap();
+                    MapTransitionMenu.getInstance().setisTransitioning(true);
                 }
             }
         }
