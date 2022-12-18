@@ -9,7 +9,6 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class GameScene extends Scene {
     public static CollisionCheck cCheck;
@@ -70,14 +69,13 @@ public class GameScene extends Scene {
             player.update();
 
             tileM.update();
-
-            for (Mob mob : mobList) {
-                mob.update();
-                if(mob.state==0){
-                    mobList.remove(mob);
+            if(mobList != null){
+                for (Mob mob : mobList) {
+                    mob.update();
+                    if(mob.state==0){
+                        mobList.remove(mob);
+                    }
                 }
-              
-            }
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {

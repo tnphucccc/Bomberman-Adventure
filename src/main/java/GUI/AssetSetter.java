@@ -1,7 +1,6 @@
 package GUI;
 
 import Entity.Mob;
-import Objects.OBJ_ExtraBomb;
 import Objects.OBJ_SpeedIncrease;
 import Variables.Constant;
 
