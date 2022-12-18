@@ -35,6 +35,7 @@ public class CollisionCheck {
                 tileNum2 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
                 tileNum3 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
 
+
                 if (TileManager.getInstance().tiles[tileNum1].collision
                         || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    public static int bombSize = 100;
+    public static int bombSize = 5;
     private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
@@ -20,7 +20,7 @@ public class Bomb extends Entity {
     private String key = "";
 
     private int bombCounter = 0;
-    public int bombRadius = 2;
+    public int bombRadius = 1;
 
 
     public Bomb() {
@@ -31,6 +31,7 @@ public class Bomb extends Entity {
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
+
         getBombImage();
         setDefault();
     }
@@ -55,7 +56,7 @@ public class Bomb extends Entity {
 
                 if (timeElapsed > System.nanoTime() - timeStart) {//planting
                     update();
-                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 
                 } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
@@ -69,7 +70,7 @@ public class Bomb extends Entity {
                     //img for bomb after 3 seconds
                     img = getBufferedImage(explode[0], explode[1], explode[2], explode[3],
                             explode[4], explode[5], explode[6], explode[7]);
-                    g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+                    g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                             Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
 
                     //draw the explosion

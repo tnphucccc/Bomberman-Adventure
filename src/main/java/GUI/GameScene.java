@@ -9,6 +9,7 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class GameScene extends Scene {
     public static CollisionCheck cCheck;
@@ -16,13 +17,16 @@ public class GameScene extends Scene {
 
     Pause pause;
     GameOver gameOver;
+    MapTransitionMenu mapTransitionMenu;
+
+    KeyHandler keyH = Window.getKeyH();
 
     public static Player player;
 
     public static int bombSize = 100;
     public static int bombCounter = 0;
 
-    KeyHandler keyH = Window.getKeyH();
+    public static int mapID;
 
     boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
@@ -31,7 +35,9 @@ public class GameScene extends Scene {
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
-    public GameScene() {
+    public GameScene(int mapID) {
+        GameScene.mapID = mapID;
+
         cCheck = new CollisionCheck();
         tileM = new TileManager();
         player = new Player(1);
@@ -43,15 +49,16 @@ public class GameScene extends Scene {
 
         pause = new Pause(false);
         gameOver = new GameOver();
+        mapTransitionMenu = new MapTransitionMenu();
     }
 
-    public static GameScene instance = null;
-    public static GameScene getInstance(){
-        if(GameScene.instance == null){
-            GameScene.instance = new GameScene();
-        }
-        return GameScene.instance;
-    }
+//    public static GameScene instance = null;
+//    public static GameScene getInstance(){
+//        if(GameScene.instance == null){
+//            GameScene.instance = new GameScene(1);
+//        }
+//        return GameScene.instance;
+//    }
 
     @Override
     public void update() {
@@ -94,6 +101,10 @@ public class GameScene extends Scene {
             bombList.clear();
             bombCounter = 0;
         }
+
+        if (MapTransitionMenu.getInstance().isTransitioning) {
+            MapTransitionMenu.getInstance().update();
+        }
     }
 
     @Override
@@ -134,6 +145,11 @@ public class GameScene extends Scene {
             Overlay.getInstance().draw(g2);
             gameOver.draw(g2);
         }
+
+        if(MapTransitionMenu.getInstance().getisTransitioning()){
+            Overlay.getInstance().draw(g2);
+            MapTransitionMenu.getInstance().draw(g2);
+        }
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
@@ -143,6 +159,10 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Mob> getMobList(){
         return mobList;
+    }
+
+    public static int getMapID(){
+        return mapID;
     }
 
 }

@@ -96,9 +96,12 @@ public class BombExplodeMap {
     }
 
     public void breakBrick(int x, int y) {
-        if (map[y - 1][x] == 1) {
-            map[y][x] = 3;//check and draw shadow
+        if (map[y - 1][x] == 1 || map[y - 1][x] == 2) {
+            map[y][x] = 3;//if there is brick or block above draw shadow
         } else map[y][x] = 0;
+        if(map[y + 1][x] == 3){
+            map[y + 1][x] = 0;//check if under brick is shadow, if shadow draw ground
+        }
     }
 
     //for Debug
@@ -113,8 +116,9 @@ public class BombExplodeMap {
     }
 
     public void draw(Graphics2D g2, int x, int y) {
-        int drawX = Camera.getXCord(x * Constant.TILE_SIZE);
-        int drawY = Camera.getYCord(y * Constant.TILE_SIZE);
+        int drawX = Camera.setXCord(x * Constant.TILE_SIZE);
+        int drawY = Camera.setYCord(y * Constant.TILE_SIZE);
+
         g2.drawImage(up, drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
         // spriteCounter++;
         //         if (spriteCounter > 24) {
@@ -129,4 +133,5 @@ public class BombExplodeMap {
     public int[][] getMap(){
         return map;
     }
+
 }

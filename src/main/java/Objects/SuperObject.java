@@ -22,7 +22,7 @@ public class SuperObject {
 
     public void draw(Graphics2D g2) {
         if(map[y / Constant.TILE_SIZE][x / Constant.TILE_SIZE] == 0 || map[y / Constant.TILE_SIZE][x / Constant.TILE_SIZE] == 3) {
-            g2.drawImage(image, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+            g2.drawImage(image, Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
         }
     }
