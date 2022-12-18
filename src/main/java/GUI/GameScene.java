@@ -76,7 +76,6 @@ public class GameScene extends Scene {
                         mobList.remove(mob);
                     }
                 }
-            }
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
