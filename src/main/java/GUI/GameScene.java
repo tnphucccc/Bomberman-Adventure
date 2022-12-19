@@ -72,9 +72,6 @@ public class GameScene extends Scene {
             if(mobList != null){
                 for (Mob mob : mobList) {
                     mob.update();
-                    if(mob.state==0){
-                        mobList.remove(mob);
-                    }
                 }
             }
             // bomb.update(player.x, player.y);
