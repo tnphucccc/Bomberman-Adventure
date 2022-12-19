@@ -15,6 +15,7 @@ public class Mob extends Entity {
     private final Random rand = new Random();
     CollisionCheck cCheck = new CollisionCheck();
     String[] dir = {"down", "up", "right", "left"};
+    public boolean collision;
 
     public Mob(int x, int y) {
         this.x = x;
@@ -32,6 +33,7 @@ public class Mob extends Entity {
 
     public void setDefault() {
         speed = 1;
+        collision =true;
         this.direction = "down";
         this.state =1;
     }
@@ -89,7 +91,7 @@ public class Mob extends Entity {
             }
             for (int i = 0; i < 6; i++)
                 die[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Player/player_die" + (i + 1) + ".png")));
+                        .getResourceAsStream("/Mob/MobDie" + (i + 1) + ".png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,12 +103,13 @@ public class Mob extends Entity {
         if (state == 0) {
             //Mob die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            g2.drawImage(img,Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+            g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
             speed = 0;
+            collision=false;
         } else {
             //Mob is alive
-            g2.drawImage(img, Camera.getXCord(x), Camera.getYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
+            g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
                     Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
         }
     }

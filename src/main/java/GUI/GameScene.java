@@ -2,7 +2,6 @@ package GUI;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
-import Controls.MouseHandler;
 import Entity.Bomb;
 import Entity.Mob;
 import Entity.Player;
@@ -17,17 +16,27 @@ public class GameScene extends Scene {
 
     Pause pause;
     GameOver gameOver;
+    MapTransitionMenu mapTransitionMenu;
+
+    KeyHandler keyH = Window.getKeyH();
 
     public static Player player;
-    Bomb bomb;
 
+    public static int bombSize = 100;
+    public static int bombCounter = 0;
+
+    public static int mapID;
+
+    boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
 
     AssetSetter aSetter = new AssetSetter(this);
     TileManager tileM;
 
-    public GameScene() {
+    public GameScene(int mapID) {
+        GameScene.mapID = mapID;
+
         cCheck = new CollisionCheck();
         tileM = new TileManager();
         player = new Player(1);
@@ -35,41 +44,65 @@ public class GameScene extends Scene {
         aSetter.setMob();
         aSetter.setItems();
 
-        bomb = new Bomb();
-        bombList = bomb.getBombList();
+        bombList = new ArrayList<>();
 
         pause = new Pause(false);
         gameOver = new GameOver();
+        mapTransitionMenu = new MapTransitionMenu();
     }
 
-    public static GameScene instance = null;
-    public static GameScene getInstance(){
-        if(GameScene.instance == null){
-            GameScene.instance = new GameScene();
-        }
-        return GameScene.instance;
-    }
+//    public static GameScene instance = null;
+//    public static GameScene getInstance(){
+//        if(GameScene.instance == null){
+//            GameScene.instance = new GameScene(1);
+//        }
+//        return GameScene.instance;
+//    }
 
     @Override
     public void update() {
         pause.pauseGame();
         gameOver.checkAlive(player.state);
 
+        //update when not pause
         if (!pause.isPaused) {
-            //Game is running
             player.update();
-            for (Mob mob : mobList) {
-                mob.update();
-                //cCheck.checkMob(player,mobList);
+
+            tileM.update();
+            if(mobList != null){
+                for (Mob mob : mobList) {
+                    mob.update();
+//                    if(mob.state==0){
+//                        mobList.remove(mob);
+//                    }
+                }
             }
-            bomb.update(player.x, player.y);
-            bombList = bomb.getBombList();
-
-        }  // Do nothing
-
+            // bomb.update(player.x, player.y);
+            // bombList = bomb.getBombList();
+            if (bombCounter < bombSize) {
+                if (keyH.spacePressed) {
+                    spacePressed = true;
+                }
+                if (!keyH.spacePressed && spacePressed) {
+                    spacePressed = false;
+                    if (CheckAvailable.checkAvailable(player.x, player.y)) {
+                        bombList.add(bombCounter, new Bomb());
+                        bombList.get(bombCounter).update(player.x, player.y);
+                        bombCounter++;
+                    }
+                }
+            }
+        }
+        
         //Game over
         if (!gameOver.isAlive) {
             gameOver.update();
+            bombList.clear();
+            bombCounter = 0;
+        }
+
+        if (MapTransitionMenu.getInstance().isTransitioning) {
+            MapTransitionMenu.getInstance().update();
         }
     }
 
@@ -99,10 +132,10 @@ public class GameScene extends Scene {
 
         //Draw mob
         for (Mob value : mobList) {
-                value.draw(g2);
+            value.draw(g2);
         }
 
-        //Draw if the game is paused
+        //Draw pause menu
         if (pause.isPaused) {
             Overlay.getInstance().draw(g2);
             pause.draw(g2);
@@ -110,6 +143,11 @@ public class GameScene extends Scene {
         if (!gameOver.isAlive) {
             Overlay.getInstance().draw(g2);
             gameOver.draw(g2);
+        }
+
+        if(MapTransitionMenu.getInstance().getisTransitioning()){
+            Overlay.getInstance().draw(g2);
+            MapTransitionMenu.getInstance().draw(g2);
         }
     }
     public static ArrayList<Bomb> getBombList() {
@@ -120,6 +158,10 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Mob> getMobList(){
         return mobList;
+    }
+
+    public static int getMapID(){
+        return mapID;
     }
 
 }

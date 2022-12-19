@@ -35,7 +35,6 @@ public class Window extends JFrame implements Runnable {
         //0 is original, 1 is game,
         changeState(0);
 
-
         isRunning = true;
     }
 
@@ -51,7 +50,8 @@ public class Window extends JFrame implements Runnable {
         currentState = newState;
         switch (currentState) {
             case 0 -> currentScene = new MenuScene();
-            case 1 -> currentScene = new GameScene();
+            case 1 -> currentScene = new GameScene(1);
+            case 2 -> currentScene = new GameScene(2);
 
             default -> {
                 System.out.println("Error: Invalid state");
@@ -99,7 +99,7 @@ public class Window extends JFrame implements Runnable {
             }
 
             if (timer >= 1000000000) {
-                System.out.println("FPS: " + Count);
+//                System.out.println("FPS: " + Count);
                 Count = 0;
                 timer = 0;
             }
