@@ -183,9 +183,9 @@ public class CollisionCheck {
         return new Rectangle(x,y,width,height);
     }
    //check if player hit bomb
-   public void checkBomb(ArrayList<Bomb> bombList,Entity entity) {
-        if(bombList != null) {
-            for (Bomb bomb : bombList) {
+   public void checkBomb(Bomb bomb,Entity entity) {
+        if(bomb != null) {
+            
                 if (bomb.state != 2) {
                     bomb.setEntityInteractionBox(bomb);
                     entity.setEntityInteractionBox(entity);
@@ -260,8 +260,8 @@ public class CollisionCheck {
                 }
             }
         }
-    }
-}
+ }
+
 
 
 

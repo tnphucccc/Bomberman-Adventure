@@ -40,7 +40,11 @@ public class Mob extends Entity {
     public void update() {
         collisionOn = false;
         cCheck.checkTile(this);
-        cCheck.checkBomb(GameScene.getBombList(), this);
+        if(GameScene.getBombList() != null){
+            for(int i = 0; i < GameScene.getBombList().size(); i++)
+                cCheck.checkBomb(GameScene.getBombList().get(i), this);
+        }
+
         cCheck.checkMob(GameScene.getPlayer(), GameScene.getMobList());
 
         if (!collisionOn) {
