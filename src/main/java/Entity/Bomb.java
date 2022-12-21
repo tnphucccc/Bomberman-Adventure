@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    public static int bombSize = 5;
+    public static int bombSize = 2;
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
