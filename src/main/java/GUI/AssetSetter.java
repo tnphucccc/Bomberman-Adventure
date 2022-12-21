@@ -6,8 +6,6 @@ import Objects.OBJ_ExtraBomb;
 import Objects.OBJ_SpeedIncrease;
 import Variables.Constant;
 
-import java.awt.*;
-
 public class AssetSetter {
     GameScene gameScene;
 
