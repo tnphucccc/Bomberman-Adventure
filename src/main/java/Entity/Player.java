@@ -139,7 +139,7 @@ public class Player extends Entity {
             String objName = GameScene.Object[i].name;
             switch (objName) {
                 case "ExtraBomb" -> {
-                    Bomb.bombSize += 1;
+                    GameScene.bombSize += 1;
                     GameScene.Object[i] = null;
                 }
                 case "SpeedIncrease" -> {

@@ -2,6 +2,7 @@ package Entity;
 
 import GUI.BombExplodeMap;
 import GUI.Camera;
+import GUI.GameScene;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    public static int bombSize = 5;
+    private int bombSize = GameScene.bombSize;
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
