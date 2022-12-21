@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class Bomb extends Entity {
     public static int bombSize = 5;
-    private ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
+    private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
     private int x, y;
@@ -75,6 +75,7 @@ public class Bomb extends Entity {
 
                     //draw the explosion
                     BombExplodeMap.getInstance().drawExplosion(g2,this);
+                    BombExplodeMap.getInstance().update();
                 }
             }
         }

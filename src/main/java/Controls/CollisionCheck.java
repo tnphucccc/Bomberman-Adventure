@@ -105,7 +105,7 @@ public class CollisionCheck {
                         mob.solidArea.width,
                         mob.solidArea.height);
                 boolean intersects = entitySolidBox.intersects(mobSolidBox);
-                if (intersects) {
+                if (intersects&&mob.collision) {
                     entity.collisionOn = true;
                     entity.state = 0;
                     entity.speed = 0;
