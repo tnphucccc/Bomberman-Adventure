@@ -255,15 +255,16 @@ public class CollisionCheck {
                         //     System.out.println("hey");
                         // }
                         // create a rectangle for bomb range vertical 
-                        Rectangle vertical = new Rectangle(bomb.getX()-bomb.getBombRadius()*Constant.TILE_SIZE,
-                                bomb.getY(),
-                                bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE,
-                                Constant.TILE_SIZE);
+                        int r = 15;
+                        Rectangle vertical = new Rectangle(bomb.getX()-bomb.getBombRadius()*Constant.TILE_SIZE-r,
+                                bomb.getY()-r,
+                                bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r,
+                                Constant.TILE_SIZE-r);
                         //create a rectangle for bomb range horizontal 
-                        Rectangle horizontal = new Rectangle(bomb.getX(),
-                                bomb.getY()-bomb.getBombRadius()*Constant.TILE_SIZE,
-                                Constant.TILE_SIZE,
-                                bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE);
+                        Rectangle horizontal = new Rectangle(bomb.getX()-r,
+                                bomb.getY()-bomb.getBombRadius()*Constant.TILE_SIZE-r,
+                                Constant.TILE_SIZE-r,
+                                bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r);
                         if(vertical.intersects(playerSolidBox) || horizontal.intersects(playerSolidBox)){
                             entity.state = 0;
                         }
