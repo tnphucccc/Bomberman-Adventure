@@ -32,7 +32,5 @@ public class AssetSetter {
             GameScene.Object[2] = new OBJ_Door(12,4);
             GameScene.Object[3] = new OBJ_ExtraBomb(10,6);
         }
-
-
     }
 }
