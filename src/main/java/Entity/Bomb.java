@@ -159,8 +159,9 @@ public class Bomb extends Entity {
                 if (spriteCounter > 24) {
                     if (spriteNum != 8) {
                         spriteNum++;
-                    } else
-                        spriteNum = 5;
+                    } else {
+                        spriteNum = 1;
+                    }
                     spriteCounter = 0;
                 }
             }
