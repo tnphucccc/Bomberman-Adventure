@@ -77,7 +77,12 @@ public class Player extends Entity {
     }
     @Override
     public void update() {
-        CollisionCheck.getInstance().checkBomb(GameScene.getBombList(), this);
+        if(GameScene.getBombList() != null){
+            for(Bomb b : GameScene.getBombList()){
+                GameScene.cCheck.checkBomb(b,this);
+            }
+        }
+       
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -134,15 +139,24 @@ public class Player extends Entity {
             String objName = GameScene.Object[i].name;
             switch (objName) {
                 case "ExtraBomb" -> {
-                    Bomb.bombSize += 1;
+                    GameScene.bombSize += 1;
                     GameScene.Object[i] = null;
                 }
                 case "SpeedIncrease" -> {
                     speed += 1;
                     GameScene.Object[i] = null;
-                    MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
                 }
-                // TO DO: Add Door Item
+                case "Door" ->{
+                    if(GameScene.getMobList() == null) {
+                        System.out.println("Map Transition");
+                        MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
+                    }
+                }
+                case "BlastRadius" -> {
+                    //Bomb.blastRadius += 1;
+                    GameScene.Object[i] = null;
+                }
+
             }
         }
     }

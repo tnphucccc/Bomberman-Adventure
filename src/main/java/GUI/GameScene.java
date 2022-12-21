@@ -9,7 +9,6 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class GameScene extends Scene {
     public static CollisionCheck cCheck;
@@ -23,7 +22,7 @@ public class GameScene extends Scene {
 
     public static Player player;
 
-    public static int bombSize = 100;
+    public static int bombSize = 5;
     public static int bombCounter = 0;
 
     public static int mapID;
@@ -46,7 +45,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-
+        bombSize = 5;
         pause = new Pause(false);
         gameOver = new GameOver();
         mapTransitionMenu = new MapTransitionMenu();
@@ -70,13 +69,10 @@ public class GameScene extends Scene {
             player.update();
 
             tileM.update();
-
-            for (Mob mob : mobList) {
-                mob.update();
-                if(mob.state==0){
-                    mobList.remove(mob);
+            if(mobList != null){
+                for (Mob mob : mobList) {
+                    mob.update();
                 }
-              
             }
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
