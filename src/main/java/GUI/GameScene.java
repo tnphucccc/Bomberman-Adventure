@@ -46,6 +46,8 @@ public class GameScene extends Scene {
 
         bombList = new ArrayList<>();
         bombSize = 5;
+        bombCounter = 0;
+        
         pause = new Pause(false);
         gameOver = new GameOver();
         mapTransitionMenu = new MapTransitionMenu();
