@@ -184,7 +184,7 @@ public class CollisionCheck {
     }
    //check if player hit bomb
    public void checkBomb(Bomb bomb,Entity entity) {
-        int r = 20;
+        int r = 15;
         if(bomb != null) {
             
                 if (bomb.state != 2) {
