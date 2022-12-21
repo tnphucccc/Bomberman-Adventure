@@ -184,6 +184,7 @@ public class CollisionCheck {
     }
    //check if player hit bomb
    public void checkBomb(Bomb bomb,Entity entity) {
+        int r = 20;
         if(bomb != null) {
             
                 if (bomb.state != 2) {
@@ -193,10 +194,10 @@ public class CollisionCheck {
                             bomb.solidArea.y + bomb.getY(),
                             bomb.solidArea.width,
                             bomb.solidArea.height);
-                    Rectangle playerSolidBox = new Rectangle(entity.x,
-                            entity.y,
-                            entity.solidArea.width,
-                            entity.solidArea.height);
+                    Rectangle playerSolidBox = new Rectangle(entity.x+r,
+                            entity.y+r,
+                            entity.solidArea.width-r,
+                            entity.solidArea.height-r);
                     boolean inter = bombSolidBox.intersects(playerSolidBox);
                     if (!inter) {
                         switch (entity.direction) {
@@ -255,16 +256,17 @@ public class CollisionCheck {
                         //     System.out.println("hey");
                         // }
                         // create a rectangle for bomb range vertical 
-                        int r = 15;
-                        Rectangle vertical = new Rectangle(bomb.getX()-bomb.getBombRadius()*Constant.TILE_SIZE-r,
-                                bomb.getY()-r,
+                        
+                        Rectangle vertical = new Rectangle(bomb.getX()-bomb.getBombRadius()*Constant.TILE_SIZE+r,
+                                bomb.getY()+r,
                                 bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r,
                                 Constant.TILE_SIZE-r);
                         //create a rectangle for bomb range horizontal 
-                        Rectangle horizontal = new Rectangle(bomb.getX()-r,
-                                bomb.getY()-bomb.getBombRadius()*Constant.TILE_SIZE-r,
-                                Constant.TILE_SIZE-r,
-                                bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r);
+                        Rectangle horizontal = new Rectangle(bomb.getX()+r,
+                                bomb.getY()-bomb.getBombRadius()*Constant.TILE_SIZE+r,
+                                Constant.TILE_SIZE-20,
+                                bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-20);
+                                System.out.println(entity.x+" "+bomb.getX());
                         if(vertical.intersects(playerSolidBox) || horizontal.intersects(playerSolidBox)){
                             entity.state = 0;
                         }
