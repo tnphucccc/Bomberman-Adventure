@@ -76,6 +76,7 @@ public class GameScene extends Scene {
                     mob.update();
                 }
             }
+            System.out.println("Bomb: "+(bombSize-bombCounter));
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
@@ -98,6 +99,7 @@ public class GameScene extends Scene {
             gameOver.update();
             bombList.clear();
             bombCounter = 0;
+            bombSize = 10;
         }
 
         if (MapTransitionMenu.getInstance().isTransitioning) {

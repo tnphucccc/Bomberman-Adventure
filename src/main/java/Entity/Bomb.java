@@ -138,14 +138,14 @@ public class Bomb extends Entity {
     }
 
     public void setDefault() {
-        // TODO Auto-generated method stub
+       
         this.direction = "bomb";
         this.state = 0; //0 is not explode, 1 is exploded, 2 is disappeared
 
     }
 
     public void update() {//count sprite
-        // TODO Auto-generated method stub
+  
         switch (state) {
             case 0 -> {
                 spriteCounter++;

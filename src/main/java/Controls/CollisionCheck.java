@@ -266,7 +266,7 @@ public class CollisionCheck {
                                 bomb.getY()-bomb.getBombRadius()*Constant.TILE_SIZE+r,
                                 Constant.TILE_SIZE-20,
                                 bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-20);
-                                System.out.println(entity.x+" "+bomb.getX());
+                               
                         if(vertical.intersects(playerSolidBox) || horizontal.intersects(playerSolidBox)){
                             entity.state = 0;
                         }
