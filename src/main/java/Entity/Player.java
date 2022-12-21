@@ -145,9 +145,18 @@ public class Player extends Entity {
                 case "SpeedIncrease" -> {
                     speed += 1;
                     GameScene.Object[i] = null;
-                    MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
                 }
-                // TO DO: Add Door Item
+                case "Door" ->{
+                    if(GameScene.getMobList() == null) {
+                        System.out.println("Map Transition");
+                        MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
+                    }
+                }
+                case "BlastRadius" -> {
+                    //Bomb.blastRadius += 1;
+                    GameScene.Object[i] = null;
+                }
+
             }
         }
     }

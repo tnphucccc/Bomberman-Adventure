@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
+
     private int bombSize = GameScene.bombSize;
+
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
