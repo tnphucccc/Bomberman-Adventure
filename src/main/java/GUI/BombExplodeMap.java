@@ -93,8 +93,8 @@ public class BombExplodeMap extends Entity {
     }
 
     public void breakBrick(int x, int y) {
-        if (map[y - 1][x] == 1 || map[y - 1][x] == 2) {
-            map[y][x] = 3;//if there is brick or block above draw shadow
+        if (map[y - 1][x] == 1) {
+            map[y][x] = 3;//check and draw shadow
         } else map[y][x] = 0;
         if (map[y + 1][x] == 3) {
             map[y + 1][x] = 0;//check if under brick is shadow, if shadow draw ground
