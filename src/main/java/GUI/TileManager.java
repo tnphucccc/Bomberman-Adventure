@@ -140,4 +140,7 @@ public class TileManager {
             loadMap("/Maps/Map02.txt");
         }
     }
+    public void loadAsset(){
+
+    }
 }
