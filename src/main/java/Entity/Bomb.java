@@ -38,11 +38,24 @@ public class Bomb extends Entity {
         getBombImage();
         setDefault();
     }
+    public Bomb(int radius) {
+        this.bombRadius = radius;
+        solidArea = new Rectangle();
+        solidArea.x = 0;
+        solidArea.y = 0;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+        solidArea.width = 32;
+        solidArea.height = 32;
+
+        getBombImage();
+        setDefault();
+    }
 
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
-
+        
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
@@ -66,6 +79,7 @@ public class Bomb extends Entity {
                     state = 2;
                     update();
                     bombList.remove(this);
+                    
 
                 } else {//exploding
                     state = 1;

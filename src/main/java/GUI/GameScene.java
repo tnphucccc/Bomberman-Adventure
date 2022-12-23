@@ -45,7 +45,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 5;
+        bombSize = 2;
         bombCounter = 0;
         
         pause = new Pause(false);
@@ -83,7 +83,7 @@ public class GameScene extends Scene {
                 if (keyH.spacePressed) {
                     spacePressed = true;
                 }
-                if (!keyH.spacePressed && spacePressed) {
+                if (!keyH.spacePressed && spacePressed ) {
                     spacePressed = false;
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
                         bombList.add(bombCounter, new Bomb());

@@ -194,10 +194,10 @@ public class CollisionCheck {
                             bomb.solidArea.y + bomb.getY(),
                             bomb.solidArea.width,
                             bomb.solidArea.height);
-                    Rectangle playerSolidBox = new Rectangle(entity.x+r,
-                            entity.y+r,
-                            entity.solidArea.width-r,
-                            entity.solidArea.height-r);
+                    Rectangle playerSolidBox = new Rectangle(entity.x,
+                            entity.y,
+                            entity.solidArea.width,
+                            entity.solidArea.height);
                     boolean inter = bombSolidBox.intersects(playerSolidBox);
                     if (!inter) {
                         switch (entity.direction) {
@@ -256,7 +256,10 @@ public class CollisionCheck {
                         //     System.out.println("hey");
                         // }
                         // create a rectangle for bomb range vertical 
-                        
+                        Rectangle playerSolidBox2 = new Rectangle(entity.x+r,
+                            entity.y+r,
+                            entity.solidArea.width-r,
+                            entity.solidArea.height-r);
                         Rectangle vertical = new Rectangle(bomb.getX()-bomb.getBombRadius()*Constant.TILE_SIZE+r,
                                 bomb.getY()+r,
                                 bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r,
@@ -267,7 +270,7 @@ public class CollisionCheck {
                                 Constant.TILE_SIZE-20,
                                 bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-20);
                                
-                        if(vertical.intersects(playerSolidBox) || horizontal.intersects(playerSolidBox)){
+                        if(vertical.intersects(playerSolidBox2) || horizontal.intersects(playerSolidBox2)){
                             entity.state = 0;
                         }
                     }
