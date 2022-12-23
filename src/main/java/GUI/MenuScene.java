@@ -25,8 +25,8 @@ public class MenuScene extends Scene {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        playRect = new Rect(359,346,107,26);
-        exitRect = new Rect(359, 405, 105, 26);
+        playRect = new Rect(345,365,142,32);
+        exitRect = new Rect(351, 417, 128, 30);
 
         MenuCurrentImage = Menu;
     }
