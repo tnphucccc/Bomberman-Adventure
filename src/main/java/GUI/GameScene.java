@@ -16,7 +16,6 @@ public class GameScene extends Scene {
 
     Pause pause;
     GameOver gameOver;
-    MapTransitionMenu mapTransitionMenu;
 
     KeyHandler keyH = Window.getKeyH();
 
@@ -50,7 +49,6 @@ public class GameScene extends Scene {
         
         pause = new Pause(false);
         gameOver = new GameOver();
-        mapTransitionMenu = new MapTransitionMenu();
     }
 
 //    public static GameScene instance = null;
