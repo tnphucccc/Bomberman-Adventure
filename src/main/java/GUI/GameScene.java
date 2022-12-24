@@ -16,7 +16,6 @@ public class GameScene extends Scene {
 
     Pause pause;
     GameOver gameOver;
-    MapTransitionMenu mapTransitionMenu;
 
     KeyHandler keyH = Window.getKeyH();
 
@@ -45,12 +44,11 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 5;
+        bombSize = 2;
         bombCounter = 0;
         
         pause = new Pause(false);
         gameOver = new GameOver();
-        mapTransitionMenu = new MapTransitionMenu();
     }
 
 //    public static GameScene instance = null;
@@ -76,13 +74,14 @@ public class GameScene extends Scene {
                     mob.update();
                 }
             }
+            System.out.println("Bomb: "+(bombSize-bombCounter));
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
                 if (keyH.spacePressed) {
                     spacePressed = true;
                 }
-                if (!keyH.spacePressed && spacePressed) {
+                if (!keyH.spacePressed && spacePressed ) {
                     spacePressed = false;
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
                         bombList.add(bombCounter, new Bomb());
@@ -98,6 +97,7 @@ public class GameScene extends Scene {
             gameOver.update();
             bombList.clear();
             bombCounter = 0;
+            bombSize = 10;
         }
 
         if (MapTransitionMenu.getInstance().isTransitioning) {

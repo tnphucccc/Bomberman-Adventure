@@ -3,13 +3,13 @@ package Variables;
 public class Constant {
     public static final int SCALE = 3;
     public static final int ORIGINAL_TILE_SIZE = 16;
-    public static final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE;
+    public static final int TILE_SIZE = ORIGINAL_TILE_SIZE * SCALE; // 48
 
     public static final int MAX_SCREEN_COL = 17;
     public static final int MAX_SCREEN_ROW = 11;
 
-    public static final int WIDTH = TILE_SIZE * MAX_SCREEN_COL;
-    public static final int HEIGHT = TILE_SIZE * MAX_SCREEN_ROW;
+    public static final int WIDTH = TILE_SIZE * MAX_SCREEN_COL; // 816
+    public static final int HEIGHT = TILE_SIZE * MAX_SCREEN_ROW ; // 528
 
     //WORLD SIZE
     public static int MAX_WORLD_COL = 50;
