@@ -13,14 +13,14 @@ import java.util.Objects;
 public class BombExplodeMap extends Entity {
     public static BombExplodeMap instance;
     private final int[][] map;
-    BufferedImage[][] mid = new BufferedImage[4][8];
+    BufferedImage[][] end = new BufferedImage[4][8];
 
     public BombExplodeMap() {
         map = TileManager.getInstance().mapTileNum; //get map from TileManager
         try {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++)
-                    mid[i][j] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/mid" + (i) + (j + 1) + ".png")));
+                    end[i][j] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/end" + (i) + (j + 1) + ".png")));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -118,7 +118,7 @@ public class BombExplodeMap extends Entity {
 //                BufferedImage img = getBufferedImage(end[i][j]);
 //            }
 //        }
-        BufferedImage img = getBufferedImage(mid[i][0], mid[i][1], mid[i][2], mid[i][3], mid[i][4], mid[i][5], mid[i][6], mid[i][7]);
+        BufferedImage img = getBufferedImage(end[i][0], end[i][1], end[i][2], end[i][3], end[i][4], end[i][5], end[i][6], end[i][7]);
         int drawX = Camera.setXCord(x * Constant.TILE_SIZE);
         int drawY = Camera.setYCord(y * Constant.TILE_SIZE);
 

@@ -22,7 +22,7 @@ public class GameScene extends Scene {
 
     public static Player player;
 
-    public static int bombSize = 5;
+    public static int bombSize = 15;
     public static int bombCounter = 0;
 
     public static int mapID;
