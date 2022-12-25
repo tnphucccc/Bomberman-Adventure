@@ -62,8 +62,8 @@ public class GameOver {
                 mouseH.getY() >= playAgainRect.y && mouseH.getY() <= playAgainRect.y + playAgainRect.height) {
             playAgainCurrentImage = playAgainPressed;
             if (mouseH.isPressed) {
-//                Window.getWindow().changeState(2); // For debugging purposes
-                Window.getWindow().changeState(GameScene.getMapID());
+                Window.getWindow().changeState(2); // For debugging purposes
+               // Window.getWindow().changeState(GameScene.getMapID());
                 TileManager.getInstance().clearMap(); //Return map to default map
             }
         } else playAgainCurrentImage = playAgain;
