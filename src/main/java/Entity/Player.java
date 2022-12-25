@@ -2,9 +2,7 @@ package Entity;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
-import GUI.Camera;
-import GUI.GameScene;
-import GUI.MapTransitionMenu;
+import GUI.*;
 import GUI.Window;
 import Variables.Constant;
 
@@ -17,7 +15,7 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
-
+    CollisionCheck cCheck = new CollisionCheck();
     public Player(int state) {
         this.state = state;
 
@@ -77,11 +75,8 @@ public class Player extends Entity {
     }
     @Override
     public void update() {
-        if(GameScene.getBombList() != null){
-            for(Bomb b : GameScene.getBombList()){
-                GameScene.cCheck.checkBomb(b,this);
-            }
-        }
+        
+        
        
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
@@ -104,7 +99,11 @@ public class Player extends Entity {
             pickUpObject(objIndex);
 
             //Check Collision with Bomb
-            
+            if(GameScene.getBombList() != null){
+                for(Bomb b : GameScene.getBombList()){
+                    cCheck.checkBomb(b,this);
+                }
+            }
 
             if (!collisionOn) {
                 switch (direction) {
@@ -147,10 +146,12 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    //if(GameScene.getMobList() == null) {
+//                    if(GameScene.getMobList() == null) {
                         System.out.println("Map Transition");
-                        MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
-                    //}
+//                        MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
+                        Window.getWindow().changeState(2);
+                        TileManager.getInstance().clearMap();
+//                    }
                 }
                 case "BlastRadius" -> {
                     //Bomb.blastRadius += 1;

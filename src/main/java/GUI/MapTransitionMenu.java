@@ -54,6 +54,7 @@ public class MapTransitionMenu {
                 Window.getWindow().changeState(2); //transition from map 01 to map 02
                 TileManager.getInstance().clearMap();
                 isTransitioning = false;
+                //TO DO: Make Item arraylist clear
             }
         } else mapTransitionMenuCurrentImage = mapTransitionMenu;
     }
