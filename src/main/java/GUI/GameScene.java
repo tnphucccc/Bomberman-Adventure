@@ -24,7 +24,7 @@ public class GameScene extends Scene {
 
     public static int bombSize = 2;
     public static int bombCounter = 0;
-    public static int counter =0;
+
     public static int mapID;
 
     boolean spacePressed = false;
@@ -45,7 +45,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 1000;
+        bombSize = 2;
         bombCounter = 0;
         
         pause = new Pause(false);
@@ -75,20 +75,20 @@ public class GameScene extends Scene {
                     mob.update();
                 }
             }
-            System.out.println("Bomb: "+(counter));
+            System.out.println("Bomb: "+(bombCounter));
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
-            if (counter < bombSize) {
+            if (bombCounter < bombSize) {
                 if (keyH.spacePressed) {
                     spacePressed = true;
                 }
                 if (!keyH.spacePressed && spacePressed ) {
                     spacePressed = false;
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
-                        bombList.add(bombCounter, new Bomb());
-                        bombList.get(bombCounter).update(player.x, player.y);
+                        bombList.add(new Bomb(player.x, player.y));
+                        //bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
-                        counter++;
+
                     }
                 }
             }
@@ -99,7 +99,7 @@ public class GameScene extends Scene {
             gameOver.update();
             bombList.clear();
             bombCounter = 0;
-            bombSize = 10;
+            bombSize = 2;
         }
 
         if (MapTransitionMenu.getInstance().isTransitioning) {
