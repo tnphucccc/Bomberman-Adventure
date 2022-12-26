@@ -85,7 +85,7 @@ public class GameScene extends Scene {
                 if (!keyH.spacePressed && spacePressed ) {
                     spacePressed = false;
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
-                        bombList.add(new Bomb(player.x, player.y));
+                        bombList.add(new Bomb(player.x, player.y,2));
                         //bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
 
