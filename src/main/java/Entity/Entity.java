@@ -8,7 +8,7 @@ public abstract class Entity {
     public int x, y, speed, state;
     public BufferedImage[] up = new BufferedImage[4], down = new BufferedImage[4],
             left = new BufferedImage[4], right = new BufferedImage[4],bomb=new BufferedImage[4],
-            die = new BufferedImage[6], explode = new BufferedImage[8];
+            die = new BufferedImage[6];
     //public BufferedImage[][] end =new BufferedImage[4][8];
     public String direction;
     public int spriteCounter = 0, spriteNum = 1;
@@ -46,11 +46,6 @@ public abstract class Entity {
             case "left" -> img = getBufferedImage(left[0], left[1], left[2], left[3]);
             case "right" -> img = getBufferedImage(right[0], right[1], right[2], right[3]);
             case "bomb" -> img = getBufferedImage(bomb[0],bomb[1],bomb[2],bomb[3]);
-//            case "end1" -> img = getBufferedImage(end[0][0],end[0][1],end[0][2],end[0][3],end[0][4],end[0][5],end[0][6],end[0][7]);
-//            case "end2" -> img = getBufferedImage(end[1][0],end[1][1],end[1][2],end[1][3],end[1][4],end[0][5],end[0][6],end[0][7]);
-//            case "end3" -> img = getBufferedImage(end[2][0],end[2][1],end[2][2],end[2][3],end[2][4],end[0][5],end[0][6],end[2][7]);
-//            case "end4" -> img = getBufferedImage(end[3][0],end[3][1],end[3][2],end[3][3],end[3][4],end[3][5],end[3][6],end[3][7]);
-
         }
         return img;
     }
