@@ -56,7 +56,7 @@ public class GameScene extends Scene {
 
     @Override
     public void update() {
-        Pause.getInstance().pauseGame(this);
+        Pause.getInstance(this).pauseGame();
         //update when not pause
         if (!isPaused) {
             player.update();
@@ -124,7 +124,7 @@ public class GameScene extends Scene {
 
         //Draw pause menu
         if (isPaused) {
-            Pause.getInstance().draw(g2);
+            Pause.getInstance(this).draw(g2);
         }
         if (player.state == 0) {
             GameOver.getInstance().draw(g2);

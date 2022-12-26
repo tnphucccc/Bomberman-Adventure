@@ -11,24 +11,26 @@ import java.io.File;
 public class Pause {
     KeyHandler keyH = Window.getKeyH();
     BufferedImage pause;
+    GameScene gameScene;
     boolean flag;
 
     public static Pause instance = null;
-    public static Pause getInstance(){
+    public static Pause getInstance(GameScene gameScene){
         if(Pause.instance == null){
-            Pause.instance = new Pause();
+            Pause.instance = new Pause(gameScene);
         }
         return Pause.instance;
     }
 
-    Pause() {
+    Pause(GameScene gameScene) {
+        this.gameScene = gameScene;
         try {
             pause = ImageIO.read(new File("src/main/resources/Menu/Pause.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void pauseGame(GameScene gameScene) {
+    public void pauseGame() {
         if (keyH.pausePressed) {
             flag = true;
         }
