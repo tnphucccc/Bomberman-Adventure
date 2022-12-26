@@ -9,36 +9,41 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-
 public class GameScene extends Scene {
+    KeyHandler keyH = Window.getKeyH();
+    boolean isPaused; //true = paused, false = not paused
+    static int mapID;
+    Player player;
+    TileManager tileM;
+    AssetSetter aSetter;
+
     public static CollisionCheck cCheck;
     public static SuperObject[] Object = new SuperObject[10];
 
-    Pause pause;
-    GameOver gameOver;
-
-    KeyHandler keyH = Window.getKeyH();
-
-    public static Player player;
-
-    public static int bombSize = 15;
+    public static int bombSize = 2;
     public static int bombCounter = 0;
-
-    public static int mapID;
 
     boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
 
-    AssetSetter aSetter = new AssetSetter(this);
-    TileManager tileM;
+
+    public static GameScene instance = null;
+    public static GameScene getInstance(){
+        if(GameScene.instance == null){
+            GameScene.instance = new GameScene(mapID);
+        }
+        return GameScene.instance;
+    }
 
     public GameScene(int mapID) {
         GameScene.mapID = mapID;
+        player = Player.getInstance();
+        tileM = TileManager.getInstance();
+        aSetter = new AssetSetter(this);
 
         cCheck = new CollisionCheck();
         tileM = new TileManager();
-        player = new Player(1);
 
         aSetter.setMob();
         aSetter.setItems();
@@ -46,35 +51,21 @@ public class GameScene extends Scene {
         bombList = new ArrayList<>();
         bombSize = 2;
         bombCounter = 0;
-        
-        pause = new Pause(false);
-        gameOver = new GameOver();
     }
-
-//    public static GameScene instance = null;
-//    public static GameScene getInstance(){
-//        if(GameScene.instance == null){
-//            GameScene.instance = new GameScene(1);
-//        }
-//        return GameScene.instance;
-//    }
 
     @Override
     public void update() {
-        pause.pauseGame();
-        gameOver.checkAlive(player.state);
-
+        Pause.getInstance(this).pauseGame();
         //update when not pause
-        if (!pause.isPaused) {
+        if (!isPaused) {
             player.update();
-
             tileM.update();
             if(mobList != null){
                 for (Mob mob : mobList) {
                     mob.update();
                 }
             }
-            System.out.println("Bomb: "+(bombSize-bombCounter));
+            System.out.println("Bomb: "+(bombCounter));
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
@@ -84,24 +75,21 @@ public class GameScene extends Scene {
                 if (!keyH.spacePressed && spacePressed ) {
                     spacePressed = false;
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
-                        bombList.add(bombCounter, new Bomb());
-                        bombList.get(bombCounter).update(player.x, player.y);
+                        bombList.add(new Bomb(player.x, player.y,1));
+                        //bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
+
                     }
                 }
             }
         }
         
         //Game over
-        if (!gameOver.isAlive) {
-            gameOver.update();
+        if (player.state == 0) {
+            GameOver.getInstance().update();
             bombList.clear();
             bombCounter = 0;
-            bombSize = 10;
-        }
-
-        if (MapTransitionMenu.getInstance().isTransitioning) {
-            MapTransitionMenu.getInstance().update();
+            bombSize = 2;
         }
     }
 
@@ -121,13 +109,15 @@ public class GameScene extends Scene {
                 superObject.draw(g2);
             }
         }
-
+        
         //Draw Bomb
-        if (bombList != null) {
+        bombList.removeIf(b -> b.getState() == 2);
+        if(bombList != null){
             for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }
+        System.out.println(bombList);
 
         //Draw mob
         for (Mob value : mobList) {
@@ -135,24 +125,17 @@ public class GameScene extends Scene {
         }
 
         //Draw pause menu
-        if (pause.isPaused) {
-            Overlay.getInstance().draw(g2);
-            pause.draw(g2);
+        if (isPaused) {
+            Pause.getInstance(this).draw(g2);
         }
-        if (!gameOver.isAlive) {
-            Overlay.getInstance().draw(g2);
-            gameOver.draw(g2);
-        }
-
-        if(MapTransitionMenu.getInstance().getisTransitioning()){
-            Overlay.getInstance().draw(g2);
-            MapTransitionMenu.getInstance().draw(g2);
+        if (player.state == 0) {
+            GameOver.getInstance().draw(g2);
         }
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
-    public static Player getPlayer(){
+    public Player getPlayer(){
         return player;
     }
     public static ArrayList<Mob> getMobList(){
@@ -162,5 +145,4 @@ public class GameScene extends Scene {
     public static int getMapID(){
         return mapID;
     }
-
 }

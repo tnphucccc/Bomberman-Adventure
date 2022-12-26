@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Random;
 
-public class Mob extends Entity {
+public class Boss extends Entity {
     private final Random rand = new Random();
     CollisionCheck cCheck = new CollisionCheck();
     String[] dir = {"down", "up", "right", "left"};
     public boolean collision;
 
-    public Mob(int x, int y) {
+    public Boss(int x, int y) {
         this.x = x;
         this.y = y;
 

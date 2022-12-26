@@ -15,9 +15,14 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
-    CollisionCheck cCheck = new CollisionCheck();
-    public Player(int state) {
-        this.state = state;
+
+    public static Player getInstance(){
+        if (Player.instance == null){
+            Player.instance = new Player();
+        }
+        return Player.instance;
+    }
+    public Player() {
 
         solidArea = new Rectangle();
         solidArea.x = 8;
@@ -27,15 +32,9 @@ public class Player extends Entity {
 
         solidArea.width = 32;
         solidArea.height = 32;
-
         setDefault();
         getPlayerImage();
-    }
-    public static Player getInstance(){
-        if (Player.instance == null){
-            Player.instance = new Player(1);
-        }
-        return Player.instance;
+        state = 1;
     }
 
     public void setDefault() {
@@ -46,8 +45,8 @@ public class Player extends Entity {
         }
 
         if(GameScene.getMapID() == 1) { //Player cord at Map01
-            x = 48 + Constant.TILE_SIZE;
-            y = 32 + Constant.TILE_SIZE;
+            x = Constant.TILE_SIZE * 2;
+            y = Constant.TILE_SIZE * 2;
             speed = 2;
         }
         direction = "down";
@@ -75,9 +74,6 @@ public class Player extends Entity {
     }
     @Override
     public void update() {
-        
-        
-       
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -101,7 +97,7 @@ public class Player extends Entity {
             //Check Collision with Bomb
             if(GameScene.getBombList() != null){
                 for(Bomb b : GameScene.getBombList()){
-                    cCheck.checkBomb(b,this);
+                    CollisionCheck.getInstance().checkBomb(b,this);
                 }
             }
 
@@ -146,18 +142,15 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-//                    if(GameScene.getMobList() == null) {
-                        System.out.println("Map Transition");
-//                        MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
-                        Window.getWindow().changeState(2);
+                    if(GameScene.getMobList() == null) {
+                        Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
-//                    }
+                    }
                 }
-                case "BlastRadius" -> {
+                case "BlastRadius" ->{
                     //Bomb.blastRadius += 1;
                     GameScene.Object[i] = null;
                 }
-
             }
         }
     }
