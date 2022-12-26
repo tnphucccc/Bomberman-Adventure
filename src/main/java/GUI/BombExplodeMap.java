@@ -20,7 +20,7 @@ public class BombExplodeMap extends Entity {
         try {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 4; j++)
-                    mid[i][j] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/end" + (i) + (j + 1) + ".png")));
+                    mid[i][j] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/mid" + (i) + (j + 1) + ".png")));
             }
         } catch (IOException e) {
             e.printStackTrace();

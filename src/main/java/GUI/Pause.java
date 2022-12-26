@@ -1,6 +1,7 @@
 package GUI;
 
 import Controls.KeyHandler;
+import Variables.Constant;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,20 +13,15 @@ public class Pause {
     KeyHandler keyH = Window.getKeyH();
     BufferedImage pause;
     boolean isPaused, flag;
-    Rect pauseRect;
 
     Pause(boolean isPaused) {
         this.isPaused = isPaused;
 
         try {
-            BufferedImage spriteSheet = ImageIO.read(new File("src/main/resources/Menu/Pause.png"));
-            pause = spriteSheet.getSubimage(0, 0, 308, 57);
+            pause = ImageIO.read(new File("src/main/resources/Menu/Pause.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        //Pause location
-        pauseRect = new Rect(254, 235, 308, 57);
     }
     public void pauseGame() {
         if (keyH.pausePressed) {
@@ -39,6 +35,6 @@ public class Pause {
     }
 
     public void draw(Graphics g2) {
-        g2.drawImage(pause, (int) pauseRect.x, (int) pauseRect.y, (int) pauseRect.width, (int) pauseRect.height, null);
+        g2.drawImage(pause, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
     }
 }
