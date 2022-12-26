@@ -33,8 +33,6 @@ public class AssetSetter {
             GameScene.Object[1] = new OBJ_ExtraBomb(13,4);
             GameScene.Object[2] = new OBJ_Door(15,8);
             GameScene.Object[3] = new OBJ_ExtraBomb(10,6);
-            GameScene.Object[4] = new OBJ_Door(3,2);
-        }
         if (GameScene.getMapID() == 2){
             //GameScene.Object[0] = new OBJ_Door(8,6);
         }
