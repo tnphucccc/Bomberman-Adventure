@@ -1,5 +1,8 @@
 package Controls;
 
+import GUI.Rect;
+
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -19,6 +22,11 @@ public class MouseHandler extends MouseAdapter implements MouseMotionListener {
     public void mouseMoved(MouseEvent e) {
         this.x = e.getX();
         this.y = e.getY();
+    }
+
+    public boolean checkInteractWithRect(MouseHandler mouseH, Rectangle rect){
+        return mouseH.getX() >= rect.x && mouseH.getX() <= rect.x + rect.width &&
+                mouseH.getY() >= rect.y && mouseH.getY() <= rect.y + rect.height;
     }
 
     public double getX() {

@@ -7,10 +7,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Objects;
 
 public class MenuScene extends Scene {
-    public Rect playRect, exitRect;
+    public Rectangle playRect, exitRect;
 
     public BufferedImage Menu, MenuPlayPressed, MenuExitPressed;
     public BufferedImage MenuCurrentImage;
@@ -25,8 +24,8 @@ public class MenuScene extends Scene {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        playRect = new Rect(345,365,142,32);
-        exitRect = new Rect(351, 417, 128, 30);
+        playRect = new Rectangle(345,365,142,32);
+        exitRect = new Rectangle(351, 417, 128, 30);
 
         MenuCurrentImage = Menu;
     }
@@ -34,14 +33,12 @@ public class MenuScene extends Scene {
     @Override
     public void update() {
         //Pressed Play
-        if (mouseH.getX() >= playRect.x && mouseH.getX() <= playRect.x + playRect.width &&
-                mouseH.getY() >= playRect.y && mouseH.getY() <= playRect.y + playRect.height) {
+        if (mouseH.checkInteractWithRect(mouseH, playRect)) {
             MenuCurrentImage = MenuPlayPressed;
             if (mouseH.isPressed) {
                 Window.getWindow().changeState(1);
             }
-        } else if (mouseH.getX() >= exitRect.x && mouseH.getX() <= exitRect.x + exitRect.width &&
-                mouseH.getY() >= exitRect.y && mouseH.getY() <= exitRect.y + exitRect.height) {
+        } else if (mouseH.checkInteractWithRect(mouseH, exitRect)) {
             MenuCurrentImage = MenuExitPressed;
             if (mouseH.isPressed) {
                 Window.getWindow().close();

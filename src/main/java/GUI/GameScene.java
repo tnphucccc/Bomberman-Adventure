@@ -21,7 +21,7 @@ public class GameScene extends Scene {
 
     public static Player player;
 
-    public static int bombSize = 5;
+    public static int bombSize = 100;
     public static int bombCounter = 0;
 
     public static int mapID;
@@ -44,7 +44,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 20;
+        bombSize = 1000;
         bombCounter = 0;
         
         pause = new Pause(false);
