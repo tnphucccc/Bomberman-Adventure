@@ -9,8 +9,6 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 public class GameScene extends Scene {
     KeyHandler keyH = Window.getKeyH();
     boolean isPaused; //true = paused, false = not paused
@@ -113,13 +111,7 @@ public class GameScene extends Scene {
         }
         
         //Draw Bomb
-        Iterator<Bomb> itr = bombList.iterator();
-        while (itr.hasNext()) {
-            Bomb b = itr.next();
-            if(b.getState()==2){
-                itr.remove();
-            }
-        }
+        bombList.removeIf(b -> b.getState() == 2);
         if(bombList != null){
             for (Bomb b : bombList) {
                 b.draw(g2);
