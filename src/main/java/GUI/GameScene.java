@@ -11,30 +11,37 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GameScene extends Scene {
+    KeyHandler keyH = Window.getKeyH();
+    boolean isPaused; //true = paused, false = not paused
+    static int mapID;
+    Player player;
+    TileManager tileM;
+    AssetSetter aSetter;
+
     public static CollisionCheck cCheck;
     public static SuperObject[] Object = new SuperObject[10];
 
-    Pause pause;
-    KeyHandler keyH = Window.getKeyH();
-
-    public Player player;
-
     public static int bombSize = 5;
     public static int bombCounter = 0;
-
-    public static int mapID;
 
     boolean spacePressed = false;
     static ArrayList<Bomb> bombList;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
 
-    AssetSetter aSetter = new AssetSetter(this);
-    TileManager tileM;
+
+    public static GameScene instance = null;
+    public static GameScene getInstance(){
+        if(GameScene.instance == null){
+            GameScene.instance = new GameScene(mapID);
+        }
+        return GameScene.instance;
+    }
 
     public GameScene(int mapID) {
         GameScene.mapID = mapID;
-
         player = Player.getInstance();
+        tileM = TileManager.getInstance();
+        aSetter = new AssetSetter(this);
 
         cCheck = new CollisionCheck();
         tileM = new TileManager();
@@ -45,26 +52,14 @@ public class GameScene extends Scene {
         bombList = new ArrayList<>();
         bombSize = 2;
         bombCounter = 0;
-        
-        pause = new Pause(false);
-    }
-
-    public static GameScene instance = null;
-    public static GameScene getInstance(){
-        if(GameScene.instance == null){
-            GameScene.instance = new GameScene(1);
-        }
-        return GameScene.instance;
     }
 
     @Override
     public void update() {
-        pause.pauseGame();
-
+        Pause.getInstance().pauseGame(this);
         //update when not pause
-        if (!pause.isPaused) {
+        if (!isPaused) {
             player.update();
-
             tileM.update();
             if(mobList != null){
                 for (Mob mob : mobList) {
@@ -128,8 +123,8 @@ public class GameScene extends Scene {
         }
 
         //Draw pause menu
-        if (pause.isPaused) {
-            pause.draw(g2);
+        if (isPaused) {
+            Pause.getInstance().draw(g2);
         }
         if (player.state == 0) {
             GameOver.getInstance().draw(g2);
@@ -148,5 +143,4 @@ public class GameScene extends Scene {
     public static int getMapID(){
         return mapID;
     }
-
 }
