@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class Bomb extends Entity {
 
-    private int bombSize = GameScene.bombSize;
+    private final int bombSize = GameScene.bombSize;
 
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
@@ -23,7 +23,7 @@ public class Bomb extends Entity {
     private String key = "";
 
     private int bombCounter = 0;
-    public int bombRadius = 1;
+    public int bombRadius;
 
 
     public Bomb(int x,int y,int radius) {
@@ -110,13 +110,14 @@ public class Bomb extends Entity {
         this.bombCounter = bombCounter;
     }
     //get radius
+
+    public void setBombRadius(int bombRadius) {
+        this.bombRadius = bombRadius;
+    }
     public int getBombRadius() {
         return bombRadius;
     }
     // set radius
-    public void setBombRadius(int bombRadius) {
-        this.bombRadius = bombRadius;
-    }
     public int getState(){
         return state;
     }
