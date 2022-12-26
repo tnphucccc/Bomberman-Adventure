@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Objects;
 
 public class MenuScene extends Scene {
     public Rectangle playRect, exitRect;

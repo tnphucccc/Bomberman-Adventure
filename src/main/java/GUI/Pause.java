@@ -9,14 +9,21 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class Pause {
-    public int status = 0; //0 = not paused, 1 = paused
     KeyHandler keyH = Window.getKeyH();
     BufferedImage pause;
-    boolean isPaused, flag;
+    GameScene gameScene;
+    boolean flag;
 
-    Pause(boolean isPaused) {
-        this.isPaused = isPaused;
+    public static Pause instance = null;
+    public static Pause getInstance(GameScene gameScene){
+        if(Pause.instance == null){
+            Pause.instance = new Pause(gameScene);
+        }
+        return Pause.instance;
+    }
 
+    Pause(GameScene gameScene) {
+        this.gameScene = gameScene;
         try {
             pause = ImageIO.read(new File("src/main/resources/Menu/Pause.png"));
         } catch (Exception e) {
@@ -28,13 +35,14 @@ public class Pause {
             flag = true;
         }
         if (!keyH.pausePressed && flag) {
-            status = (status + 1) % 2;
-            this.isPaused = !this.isPaused; //toggle
+            gameScene.isPaused = !gameScene.isPaused; //toggle
             flag = false;
         }
     }
 
     public void draw(Graphics g2) {
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
         g2.drawImage(pause, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
     }
 }

@@ -1,7 +1,5 @@
 package Controls;
 
-import GUI.Rect;
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

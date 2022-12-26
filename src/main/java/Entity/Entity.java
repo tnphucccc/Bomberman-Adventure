@@ -9,7 +9,6 @@ public abstract class Entity {
     public BufferedImage[] up = new BufferedImage[4], down = new BufferedImage[4],
             left = new BufferedImage[4], right = new BufferedImage[4],bomb=new BufferedImage[4],
             die = new BufferedImage[6];
-    //public BufferedImage[][] end =new BufferedImage[4][8];
     public String direction;
     public int spriteCounter = 0, spriteNum = 1;
     public Rectangle solidArea;
