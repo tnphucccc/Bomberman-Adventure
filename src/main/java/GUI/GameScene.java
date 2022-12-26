@@ -9,7 +9,8 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-
+import java.util.Iterator;
+import java.util.List;
 public class GameScene extends Scene {
     public static CollisionCheck cCheck;
     public static SuperObject[] Object = new SuperObject[10];
@@ -21,9 +22,9 @@ public class GameScene extends Scene {
 
     public static Player player;
 
-    public static int bombSize = 100;
+    public static int bombSize = 2;
     public static int bombCounter = 0;
-
+    public static int counter =0;
     public static int mapID;
 
     boolean spacePressed = false;
@@ -74,10 +75,10 @@ public class GameScene extends Scene {
                     mob.update();
                 }
             }
-            System.out.println("Bomb: "+(bombSize-bombCounter));
+            System.out.println("Bomb: "+(counter));
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
-            if (bombCounter < bombSize) {
+            if (counter < bombSize) {
                 if (keyH.spacePressed) {
                     spacePressed = true;
                 }
@@ -87,6 +88,7 @@ public class GameScene extends Scene {
                         bombList.add(bombCounter, new Bomb());
                         bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
+                        counter++;
                     }
                 }
             }
@@ -121,13 +123,21 @@ public class GameScene extends Scene {
                 superObject.draw(g2);
             }
         }
-
+        
         //Draw Bomb
-        if (bombList != null) {
+        Iterator<Bomb> itr = bombList.iterator();
+        while (itr.hasNext()) {
+            Bomb b = itr.next();
+            if(b.getState()==2){
+                itr.remove();
+            }
+        }
+        if(bombList != null){
             for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }
+        System.out.println(bombList);
 
         //Draw mob
         for (Mob value : mobList) {

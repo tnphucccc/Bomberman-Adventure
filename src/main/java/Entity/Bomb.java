@@ -78,8 +78,8 @@ public class Bomb extends Entity {
                 } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
                     state = 2;
                     update();
+                    GameScene.counter--;
                     bombList.remove(this);
-                    
 
                 } else {//exploding
                     state = 1;
@@ -134,6 +134,9 @@ public class Bomb extends Entity {
     // set radius
     public void setBombRadius(int bombRadius) {
         this.bombRadius = bombRadius;
+    }
+    public int getState(){
+        return state;
     }
 
     public void getBombImage() {
