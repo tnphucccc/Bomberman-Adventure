@@ -146,12 +146,10 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-//                    if(GameScene.getMobList() == null) {
-                        System.out.println("Map Transition");
-//                        MapTransitionMenu.getInstance().setisTransitioning(true); //transition to next map
-                        Window.getWindow().changeState(2);
+                    if(GameScene.getMobList() == null) {
+                        Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
-//                    }
+                    }
                 }
                 case "BlastRadius" -> {
                     //Bomb.blastRadius += 1;
