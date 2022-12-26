@@ -9,7 +9,8 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-
+import java.util.Iterator;
+import java.util.List;
 public class GameScene extends Scene {
     KeyHandler keyH = Window.getKeyH();
     boolean isPaused; //true = paused, false = not paused
@@ -21,7 +22,7 @@ public class GameScene extends Scene {
     public static CollisionCheck cCheck;
     public static SuperObject[] Object = new SuperObject[10];
 
-    public static int bombSize = 100;
+    public static int bombSize = 2;
     public static int bombCounter = 0;
 
     boolean spacePressed = false;
@@ -50,7 +51,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 100;
+        bombSize = 2;
         bombCounter = 0;
     }
 
@@ -66,7 +67,7 @@ public class GameScene extends Scene {
                     mob.update();
                 }
             }
-            System.out.println("Bomb: "+(bombSize-bombCounter));
+            System.out.println("Bomb: "+(bombCounter));
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
@@ -76,9 +77,10 @@ public class GameScene extends Scene {
                 if (!keyH.spacePressed && spacePressed ) {
                     spacePressed = false;
                     if (CheckAvailable.checkAvailable(player.x, player.y)) {
-                        bombList.add(bombCounter, new Bomb());
-                        bombList.get(bombCounter).update(player.x, player.y);
+                        bombList.add(new Bomb(player.x, player.y,1));
+                        //bombList.get(bombCounter).update(player.x, player.y);
                         bombCounter++;
+
                     }
                 }
             }
@@ -89,7 +91,7 @@ public class GameScene extends Scene {
             GameOver.getInstance().update();
             bombList.clear();
             bombCounter = 0;
-            bombSize = 10;
+            bombSize = 2;
         }
     }
 
@@ -109,13 +111,21 @@ public class GameScene extends Scene {
                 superObject.draw(g2);
             }
         }
-
+        
         //Draw Bomb
-        if (bombList != null) {
+        Iterator<Bomb> itr = bombList.iterator();
+        while (itr.hasNext()) {
+            Bomb b = itr.next();
+            if(b.getState()==2){
+                itr.remove();
+            }
+        }
+        if(bombList != null){
             for (Bomb b : bombList) {
                 b.draw(g2);
             }
         }
+        System.out.println(bombList);
 
         //Draw mob
         for (Mob value : mobList) {

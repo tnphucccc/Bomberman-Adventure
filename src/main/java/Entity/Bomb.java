@@ -26,7 +26,7 @@ public class Bomb extends Entity {
     public int bombRadius = 1;
 
 
-    public Bomb() {
+    public Bomb(int x,int y,int radius) {
         solidArea = new Rectangle();
         solidArea.x = 0;
         solidArea.y = 0;
@@ -34,24 +34,13 @@ public class Bomb extends Entity {
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
-
-        getBombImage();
-        setDefault();
-    }
-    public Bomb(int radius) {
+        this.x = x;
+        this.y = y;
         this.bombRadius = radius;
-        solidArea = new Rectangle();
-        solidArea.x = 0;
-        solidArea.y = 0;
-        solidAreaDefaultX = solidArea.x;
-        solidAreaDefaultY = solidArea.y;
-        solidArea.width = 32;
-        solidArea.height = 32;
-
         getBombImage();
         setDefault();
+        update(x,y);
     }
-
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
@@ -78,8 +67,8 @@ public class Bomb extends Entity {
                 } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
                     state = 2;
                     update();
-                    bombList.remove(this);
-                    
+                    GameScene.bombCounter--;
+                    //bombList.remove(this);
 
                 } else {//exploding
                     state = 1;
@@ -134,6 +123,9 @@ public class Bomb extends Entity {
     // set radius
     public void setBombRadius(int bombRadius) {
         this.bombRadius = bombRadius;
+    }
+    public int getState(){
+        return state;
     }
 
     public void getBombImage() {
