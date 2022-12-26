@@ -44,7 +44,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 2;
+        bombSize = 20;
         bombCounter = 0;
         
         pause = new Pause(false);
