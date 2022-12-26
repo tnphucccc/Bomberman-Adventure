@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class GameOver {
-    boolean isAlive;
 
     BufferedImage gameOver, playAgainPressed, exitPressed;
     BufferedImage currentGameOver;
@@ -40,16 +39,13 @@ public class GameOver {
         exitRect = new Rectangle(359, 344, 131, 29);
     }
 
-    public void checkAlive(int state) {
-        isAlive = state != 0;
-    }
 
     public void update() {
         if (mouseH.checkInteractWithRect(mouseH, playAgainRect)) {
             currentGameOver = playAgainPressed;
             if (mouseH.isPressed) {
-//                Window.getWindow().changeState(2); // For debugging purposes
-                Window.getWindow().changeState(GameScene.getMapID());
+                Window.getWindow().changeState(2); // For debugging purposes
+//                Window.getWindow().changeState(GameScene.getMapID());
                 TileManager.getInstance().clearMap(); //Return map to default map
             }
         } else if (mouseH.checkInteractWithRect(mouseH, exitRect)) {
@@ -63,6 +59,8 @@ public class GameOver {
     }
 
     public void draw(Graphics g2) {
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
         g2.drawImage(currentGameOver, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
     }
 }

@@ -26,15 +26,18 @@ public class Pause {
     public void pauseGame() {
         if (keyH.pausePressed) {
             flag = true;
+
         }
         if (!keyH.pausePressed && flag) {
-            status = (status + 1) % 2;
+            status = (status + 1) % 2; //pause game
             this.isPaused = !this.isPaused; //toggle
             flag = false;
         }
     }
 
     public void draw(Graphics g2) {
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
         g2.drawImage(pause, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
     }
 }

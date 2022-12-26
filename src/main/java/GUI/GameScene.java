@@ -15,11 +15,9 @@ public class GameScene extends Scene {
     public static SuperObject[] Object = new SuperObject[10];
 
     Pause pause;
-    GameOver gameOver;
-
     KeyHandler keyH = Window.getKeyH();
 
-    public static Player player;
+    public Player player;
 
     public static int bombSize = 5;
     public static int bombCounter = 0;
@@ -36,9 +34,10 @@ public class GameScene extends Scene {
     public GameScene(int mapID) {
         GameScene.mapID = mapID;
 
+        player = Player.getInstance();
+
         cCheck = new CollisionCheck();
         tileM = new TileManager();
-        player = new Player(1);
 
         aSetter.setMob();
         aSetter.setItems();
@@ -48,21 +47,19 @@ public class GameScene extends Scene {
         bombCounter = 0;
         
         pause = new Pause(false);
-        gameOver = new GameOver();
     }
 
-//    public static GameScene instance = null;
-//    public static GameScene getInstance(){
-//        if(GameScene.instance == null){
-//            GameScene.instance = new GameScene(1);
-//        }
-//        return GameScene.instance;
-//    }
+    public static GameScene instance = null;
+    public static GameScene getInstance(){
+        if(GameScene.instance == null){
+            GameScene.instance = new GameScene(1);
+        }
+        return GameScene.instance;
+    }
 
     @Override
     public void update() {
         pause.pauseGame();
-        gameOver.checkAlive(player.state);
 
         //update when not pause
         if (!pause.isPaused) {
@@ -93,15 +90,11 @@ public class GameScene extends Scene {
         }
         
         //Game over
-        if (!gameOver.isAlive) {
-            gameOver.update();
+        if (player.state == 0) {
+            GameOver.getInstance().update();
             bombList.clear();
             bombCounter = 0;
             bombSize = 10;
-        }
-
-        if (MapTransitionMenu.getInstance().isTransitioning) {
-            MapTransitionMenu.getInstance().update();
         }
     }
 
@@ -136,23 +129,16 @@ public class GameScene extends Scene {
 
         //Draw pause menu
         if (pause.isPaused) {
-            Overlay.getInstance().draw(g2);
             pause.draw(g2);
         }
-        if (!gameOver.isAlive) {
-            Overlay.getInstance().draw(g2);
-            gameOver.draw(g2);
-        }
-
-        if(MapTransitionMenu.getInstance().getisTransitioning()){
-            Overlay.getInstance().draw(g2);
-            MapTransitionMenu.getInstance().draw(g2);
+        if (player.state == 0) {
+            GameOver.getInstance().draw(g2);
         }
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
-    public static Player getPlayer(){
+    public Player getPlayer(){
         return player;
     }
     public static ArrayList<Mob> getMobList(){

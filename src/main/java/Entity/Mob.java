@@ -47,7 +47,7 @@ public class Mob extends Entity {
                 cCheck.checkBomb(GameScene.getBombList().get(i), this);
         }
 
-        cCheck.checkMob(GameScene.getPlayer(), GameScene.getMobList());
+        cCheck.checkMob(GameScene.getInstance().getPlayer(), GameScene.getMobList());
 
         if (!collisionOn) {
             switch (direction) {

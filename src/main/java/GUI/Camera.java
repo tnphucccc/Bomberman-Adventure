@@ -6,7 +6,7 @@ public class Camera {
     public int x, y;
 
     public static int setXCord(int x) {
-        int playerX = GameScene.getPlayer().getX();
+        int playerX = GameScene.getInstance().getPlayer().getX();
         if (GameScene.getMapID() == 2) {
             return x - playerX + Constant.PLAYER_SCREEN_X;
         } else if (GameScene.getMapID() == 1) {
@@ -16,7 +16,7 @@ public class Camera {
     }
 
     public static int setYCord(int y) {
-        int playerY = GameScene.getPlayer().getY();
+        int playerY = GameScene.getInstance().getPlayer().getY();
         if (GameScene.getMapID() == 2) {
             return y - playerY + Constant.PLAYER_SCREEN_Y;
         } else if (GameScene.getMapID() == 1) {
@@ -44,8 +44,8 @@ public class Camera {
     }
 
     public static boolean canDraw(int x, int y) {
-        int playerX = GameScene.getPlayer().getX();
-        int playerY = GameScene.getPlayer().getY();
+        int playerX = GameScene.getInstance().getPlayer().getX();
+        int playerY = GameScene.getInstance().getPlayer().getY();
 
         return x + Constant.TILE_SIZE > playerX - Constant.PLAYER_SCREEN_X &&
                 x - Constant.TILE_SIZE < playerX + Constant.PLAYER_SCREEN_X &&
