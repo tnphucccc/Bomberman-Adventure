@@ -21,7 +21,7 @@ public class GameScene extends Scene {
     public static CollisionCheck cCheck;
     public static SuperObject[] Object = new SuperObject[10];
 
-    public static int bombSize = 5;
+    public static int bombSize = 100;
     public static int bombCounter = 0;
 
     boolean spacePressed = false;
@@ -50,7 +50,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 2;
+        bombSize = 100;
         bombCounter = 0;
     }
 
