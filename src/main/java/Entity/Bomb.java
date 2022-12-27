@@ -27,6 +27,10 @@ public class Bomb extends Entity {
 
 
     public Bomb(int x,int y,int radius) {
+        this.x = x;
+        this.y = y;
+        this.bombRadius = radius;
+
         solidArea = new Rectangle();
         solidArea.x = 0;
         solidArea.y = 0;
@@ -34,9 +38,6 @@ public class Bomb extends Entity {
         solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
-        this.x = x;
-        this.y = y;
-        this.bombRadius = radius;
         getBombImage();
         setDefault();
         update(x,y);
@@ -65,7 +66,6 @@ public class Bomb extends Entity {
                     state = 2;
                     update();
                     GameScene.bombCounter--;
-                    //bombList.remove(this);
 
                 } else {//exploding
                     state = 1;
@@ -76,8 +76,35 @@ public class Bomb extends Entity {
             }
     }
 
+    public void getBombImage() {
+        try {
+            for (int i = 0; i < 4; i++) {
+                bomb[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Bomb/bomb" + (i + 1) + ".png")));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void setDefault() {
+        this.direction = "bomb";
+        this.state = 0; //0 is not explode, 1 is exploded, 2 is disappeared
+    }
+
+    public void update() {//count sprite
+        spriteCounter++;
+        if (spriteCounter > 8) {
+            if (spriteNum != 4) {
+                spriteNum++;
+            } else
+                spriteNum = 1;
+            spriteCounter = 0;
+        }
+        bombList.removeIf(bomb -> bomb.state == 2);
+    }
     // getter && setter
+
     public int getX() {
         return x;
     }
@@ -101,12 +128,11 @@ public class Bomb extends Entity {
     public int getBombCounter() {
         return bombCounter;
     }
-
     public void setBombCounter(int bombCounter) {
         this.bombCounter = bombCounter;
     }
-    //get radius
 
+    //get radius
     public void setBombRadius(int bombRadius) {
         this.bombRadius = bombRadius;
     }
@@ -114,37 +140,8 @@ public class Bomb extends Entity {
         return bombRadius;
     }
     // set radius
+
     public int getState(){
         return state;
-    }
-
-    public void getBombImage() {
-        try {
-            for (int i = 0; i < 4; i++) {
-                bomb[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Bomb/bomb" + (i + 1) + ".png")));
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setDefault() {
-       
-        this.direction = "bomb";
-        this.state = 0; //0 is not explode, 1 is exploded, 2 is disappeared
-
-    }
-
-    public void update() {//count sprite
-        spriteCounter++;
-        if (spriteCounter > 8) {
-            if (spriteNum != 4) {
-                spriteNum++;
-            } else
-                spriteNum = 1;
-            spriteCounter = 0;
-            }
-        bombList.removeIf(bomb -> bomb.state == 2);
     }
 }

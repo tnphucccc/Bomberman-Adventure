@@ -30,9 +30,6 @@ public class GameScene extends Scene {
     public static int bombSize = 2;
     public static int bombCounter = 0;
 
-    boolean spacePressed = false;
-
-
     public static GameScene instance = null;
     public static GameScene getInstance(){
         if(GameScene.instance == null){
@@ -77,22 +74,9 @@ public class GameScene extends Scene {
             if(mapID == 2){
                 boss.update();
             }
-
-//            System.out.println("Bomb: "+(bombCounter));
-            // bomb.update(player.x, player.y);
-            // bombList = bomb.getBombList();
-            if (bombCounter < bombSize) {
-                if (keyH.spacePressed) {
-                    spacePressed = true;
-                }
-                if (!keyH.spacePressed && spacePressed ) {
-                    spacePressed = false;
-                    if (CheckAvailable.checkAvailable(player.x, player.y)) {
-                        bombList.add(new Bomb(player.x, player.y,1));
-                        //bombList.get(bombCounter).update(player.x, player.y);
-                        bombCounter++;
-                    }
-                }
+            if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
+                bombList.add(new Bomb(player.getX(), player.getY(), 1));
+                bombCounter++;
             }
         }
         
