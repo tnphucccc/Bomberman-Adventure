@@ -15,6 +15,7 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
+    Bomb bomb = new Bomb();
 
     public static Player getInstance(){
         if (Player.instance == null){
@@ -74,6 +75,12 @@ public class Player extends Entity {
     }
     @Override
     public void update() {
+        collisionOn = false;
+        if(GameScene.getBombList() != null){
+            for(Bomb b : GameScene.getBombList()){
+                CollisionCheck.getInstance().checkBomb(b,this);
+            }
+        }
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
             if (keyH.upPressed) {
                 direction = "up";
@@ -85,7 +92,7 @@ public class Player extends Entity {
                 direction = "right";
             }
             //check collision with tile, mob,object,bomb
-            collisionOn = false;
+            
 
             //Check collision with Tiles
             CollisionCheck.getInstance().checkTile(this);
@@ -95,11 +102,7 @@ public class Player extends Entity {
             pickUpObject(objIndex);
 
             //Check Collision with Bomb
-            if(GameScene.getBombList() != null){
-                for(Bomb b : GameScene.getBombList()){
-                    CollisionCheck.getInstance().checkBomb(b,this);
-                }
-            }
+            
 
             if (!collisionOn) {
                 switch (direction) {
@@ -142,13 +145,13 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    if(GameScene.getMobList() == null) {
+                    //if(GameScene.getMobList() == null) {
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
-                    }
+                    //}
                 }
                 case "BlastRadius" ->{
-                    //Bomb.blastRadius += 1;
+                    bomb.setBombRadius(1);
                     GameScene.Object[i] = null;
                 }
             }
