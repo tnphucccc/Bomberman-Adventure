@@ -18,7 +18,7 @@ public class SoundManager extends JFrame {
             if (sound.equals("just_died")) {
                 just_died = AudioSystem.getClip();
                 just_died.open(audioInputStream);
-            } else if (sound.equals("put_bomb")) {
+            } else if (sound.equals("put_bombs")) {
                 put_bomb = AudioSystem.getClip();
                 put_bomb.open(audioInputStream);
             } else if (sound.equals("bomb_explode")) {
@@ -31,5 +31,33 @@ public class SoundManager extends JFrame {
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
+    }
+
+    public void playSound(String sound) {
+        if (sound.equals("just_died")) {
+            just_died.start();
+        } else if (sound.equals("put_bombs")) {
+            put_bomb.start();
+        } else if (sound.equals("bomb_explode")) {
+            bomb_explode.start();
+        } else if (sound.equals("get_item")) {
+            get_item.start();
+        }
+    }
+
+    public void stopSound(String sound) {
+        if (sound.equals("just_died")) {
+            just_died.stop();
+        } else if (sound.equals("put_bombs")) {
+            put_bomb.stop();
+        } else if (sound.equals("bomb_explode")) {
+            bomb_explode.stop();
+        } else if (sound.equals("get_item")) {
+            get_item.stop();
+        }
+    }
+
+    public void updateSound() {
+
     }
 }

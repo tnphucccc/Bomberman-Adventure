@@ -2,6 +2,7 @@ package GUI;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
+import Controls.SoundManager;
 import Entity.Bomb;
 import Entity.Boss;
 import Entity.Mob;
@@ -14,6 +15,7 @@ public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
 
     static int mapID;
+    // Sound
 
     TileManager tileM;
     AssetSetter aSetter;
@@ -72,6 +74,7 @@ public class GameScene extends Scene {
                 boss.update();
             }
             if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
+
                 bombList.add(new Bomb(player.getX(), player.getY(), 1));
                 bombCounter++;
             }
@@ -136,7 +139,11 @@ public class GameScene extends Scene {
         return player;
     }
     public static ArrayList<Mob> getMobList(){
-        return mobList;
+        // return null if every mob is dead
+        if (mobList.size() == 0){
+            return null;
+        }
+        else return mobList;
     }
     public static int getMapID(){
         return mapID;

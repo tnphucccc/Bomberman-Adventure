@@ -1,5 +1,6 @@
 package Entity;
 
+import Controls.SoundManager;
 import GUI.BombExplodeMap;
 import GUI.Camera;
 import GUI.GameScene;
@@ -23,7 +24,6 @@ public class Bomb extends Entity {
 
     private int bombCounter = 0;
     public int bombRadius;
-
 
     public Bomb(int x,int y,int radius) {
         this.x = x;
