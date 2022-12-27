@@ -1,8 +1,50 @@
-{
-    "Name" : "Map01",
-    "node" : "1",
-    "mob" : [
-        [1,2],
-        [2,3]
-    ]
-}
+[
+    {
+        "Map" : "Map01.txt",
+        "Node" : "1",
+        "Player" : [
+            {
+                "Name" : "Player1",
+                "X" : "2",
+                "Y" : "2"             
+            }
+        ],
+        "Mob" : [
+            {
+                "Name" : "Mob1",
+                "X" : "2",
+                "Y" : "2"             
+            },
+            {
+                "Name" : "Mob2",
+                "X" : "2",
+                "Y" : "2"             
+            },
+            {
+                "Name" : "Mob3",
+                "X" : "2",
+                "Y" : "2"             
+            }
+        ],
+        "Speciality" : [
+            {
+                "Name" : "ExtraBomb",
+                "X" : "2",
+                "Y" : "2"
+            },
+            {
+                "Name" : "SpeedIncrease",
+                "X" : "2",
+                "Y" : "2"
+            },
+            {
+                "Name" : "Door",
+                "X" : "2",
+                "Y" : "2"
+            }
+        ]
+    },
+    {
+
+    }
+]
