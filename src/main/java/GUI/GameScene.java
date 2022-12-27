@@ -21,6 +21,7 @@ public class GameScene extends Scene {
     AssetSetter aSetter;
 
     public static CollisionCheck cCheck;
+
     public static SuperObject[] Object = new SuperObject[100];
 
     static Player player;
@@ -30,6 +31,7 @@ public class GameScene extends Scene {
     static ArrayList<Bomb> bombList;
     public static int bombSize;
     public static int bombCounter;
+    public static int bombRadius;
 
     public static GameScene instance = null;
     public static GameScene getInstance(){
@@ -56,6 +58,7 @@ public class GameScene extends Scene {
         bombList = new ArrayList<>();
         bombCounter = 0;
         bombSize = 2;
+        bombRadius = 1;
     }
 
     @Override
@@ -79,7 +82,7 @@ public class GameScene extends Scene {
                 }
             }
             if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
-                bombList.add(new Bomb(player.getX(), player.getY(), 1));
+                bombList.add(new Bomb(player.getX(), player.getY(), bombRadius));
                 bombCounter++;
             }
         }

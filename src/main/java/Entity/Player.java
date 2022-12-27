@@ -151,7 +151,7 @@ public class Player extends Entity {
                     //}
                 }
                 case "BlastRadius" ->{
-                    bomb.setBombRadius(1);
+                    GameScene.bombRadius++;
                     GameScene.Object[i] = null;
                 }
             }
