@@ -114,16 +114,6 @@ public class BombExplodeMap extends Entity {
         }
     }
 
-    //for Debug
-    public void printMap(int[][] array) {
-        for (int[] ints : array) {
-            for (int j = 0; j < array.length; j++) {
-                System.out.print(ints[j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
 
     public void draw(Graphics2D g2, int x, int y, int i) {
         int drawX = Camera.setXCord(x * Constant.TILE_SIZE);
