@@ -48,68 +48,88 @@ public class BombExplodeMap extends Entity {
         int y = bomb.getY() / Constant.TILE_SIZE;
 
         //check downward
-        for (int i = 0; i < bomb.getBombRadius(); i++) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y + i][x] == 0 || map[y + i][x] == 3) {
                 draw(g2, x, y, 8);
-                draw(g2, x, y + i, 6);
-                draw(g2, x, y + bomb.getBombRadius(), 2);
-            } else if (map[y + i][x] == 1 || map[y + i][x] == 4) {
+                if (map[y + (i+1)][x] == 1 || map[y + (i+1)][x] == 4){
+                    draw(g2, x, y + i, 2);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x, y + i, 6);
+                }
+                else draw(g2, x, y + i, 2);
+            } else if (map[y + i][x] == 1 || map[y + i][x] == 4){
                 break;
             } else if (map[y + i][x] == 2) {
                 draw(g2, x, y, 8);
                 draw(g2, x, y + i, 6);
-                draw(g2, x, y + bomb.getBombRadius(), 2);
+                draw(g2, x, y + i, 2);
                 breakBrick(x, y + i);
                 break;
             }
         }
 
         //check upward
-        for (int i = 0; i < bomb.getBombRadius(); i++) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y - i][x] == 0 || map[y - i][x] == 3) {
                 draw(g2, x, y, 8);
-                draw(g2, x, y - i, 4);
-                draw(g2, x, y - bomb.getBombRadius(), 0);
-            } else if (map[y - i][x] == 1 || map[y - i][x] == 4) {
+                if (map[y - (i+1)][x] == 1 || map[y - (i+1)][x] == 4){
+                    draw(g2, x, y - i, 0);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x, y - i, 4);
+                }
+                else draw(g2, x, y - i, 0);
+            } else if (map[y - i][x] == 1 || map[y - i][x] == 4){
                 break;
             } else if (map[y - i][x] == 2) {
                 draw(g2, x, y, 8);
                 draw(g2, x, y - i, 4);
-                draw(g2, x, y - bomb.getBombRadius(), 0);
+                draw(g2, x, y - i, 0);
                 breakBrick(x, y - i);
                 break;
             }
         }
 
         //check right
-        for (int i = 0; i < bomb.getBombRadius(); i++) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y][x + i] == 0 || map[y][x + i] == 3) {
                 draw(g2, x, y, 8);
-                draw(g2, x + i, y, 5);
-                draw(g2, x + bomb.getBombRadius(), y, 1);
-            } else if (map[y][x + i] == 1 || map[y][x + i] == 4) {
+                if (map[y][x + (i+1)] == 1 || map[y][x + (i+1)] == 4){
+                    draw(g2, x + i, y, 1);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x + i, y, 5);
+                }
+                else draw(g2, x + i, y, 1);
+            } else if (map[y][x + i] == 1 || map[y][x + i] == 4){
                 break;
             } else if (map[y][x + i] == 2) {
                 draw(g2, x, y, 8);
                 draw(g2, x + i, y, 5);
-                draw(g2, x + bomb.getBombRadius(), y, 1);
+                draw(g2, x + i, y, 1);
                 breakBrick(x + i, y);
                 break;
             }
         }
 
         //check left
-        for (int i = 0; i < bomb.getBombRadius(); i++) {
+        for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y][x - i] == 0 || map[y][x - i] == 3) {
                 draw(g2, x, y, 8);
-                draw(g2, x - i, y, 7);
-                draw(g2, x - bomb.getBombRadius(), y, 3);
-            } else if (map[y][x - i] == 1 || map[y][x - i] == 4) {
+                if (map[y][x - (i+1)] == 1 || map[y][x - (i+1)] == 4){
+                    draw(g2, x - i, y, 3);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x - i, y, 7);
+                }
+                else draw(g2, x - i, y, 3);
+            } else if (map[y][x - i] == 1 || map[y][x - i] == 4){
                 break;
             } else if (map[y][x - i] == 2) {
                 draw(g2, x, y, 8);
                 draw(g2, x - i, y, 7);
-                draw(g2, x - bomb.getBombRadius(), y, 3);
+                draw(g2, x - i, y, 3);
                 breakBrick(x - i, y);
                 break;
             }
@@ -129,7 +149,6 @@ public class BombExplodeMap extends Entity {
     public void draw(Graphics2D g2, int x, int y, int i) {
         int drawX = Camera.setXCord(x * Constant.TILE_SIZE);
         int drawY = Camera.setYCord(y * Constant.TILE_SIZE);
-
         g2.drawImage(getBossImage(i), drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
     }
 

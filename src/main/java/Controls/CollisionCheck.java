@@ -104,18 +104,17 @@ public class CollisionCheck {
                 entity.InteractionBox.get(0),
                 entity.solidArea.width,
                 entity.solidArea.height);
-        Rectangle BossSolidBox = new Rectangle(boss.InteractionBox.get(3),
+        Rectangle bossSolidBox = new Rectangle(boss.InteractionBox.get(3),
                 boss.InteractionBox.get(0),
                 boss.solidArea.width,
                 boss.solidArea.height);
-        boolean intersects = entitySolidBox.intersects(BossSolidBox);
-        if (intersects&&boss.collision) {
+        boolean intersects = entitySolidBox.intersects(bossSolidBox);
+        if (intersects) {
             entity.collisionOn = true;
             entity.state = 0;
             entity.speed = 0;
         }
     }
-
     public int checkObject(Entity entity, Boolean player) {
         int index = 999;
         for (int i = 0; i < GameScene.Object.length; i++) {
