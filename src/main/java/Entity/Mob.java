@@ -35,7 +35,27 @@ public class Mob extends Entity {
         speed = 1;
         collision =true;
         this.direction = "down";
-        this.state =1;
+        this.state = 1;
+    }
+
+    public void getMobImage() {
+        try {
+            for (int i = 0; i < 4; i++) {
+                up[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
+                down[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
+                left[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
+                right[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
+            }
+            for (int i = 0; i < 6; i++)
+                die[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDie" + (i + 1) + ".png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -47,7 +67,7 @@ public class Mob extends Entity {
                 cCheck.checkBomb(GameScene.getBombList().get(i), this);
         }
 
-        cCheck.checkMob(GameScene.getInstance().getPlayer(), GameScene.getMobList());
+        cCheck.checkMob(GameScene.getPlayer(), GameScene.getMobList());
 
         if (!collisionOn) {
             switch (direction) {
@@ -81,40 +101,18 @@ public class Mob extends Entity {
         }
     }
 
-    public void getMobImage() {
-        try {
-            for (int i = 0; i < 4; i++) {
-                up[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
-                down[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
-                left[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
-                right[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
-            }
-            for (int i = 0; i < 6; i++)
-                die[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobDie" + (i + 1) + ".png")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
 
         if (state == 0) {
             //Mob die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+            g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             speed = 0;
-            collision=false;
+            collision = false;
         } else {
             //Mob is alive
-            g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+            g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
         }
     }
 }

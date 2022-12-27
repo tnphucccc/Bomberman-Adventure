@@ -25,7 +25,7 @@ public class CollisionCheck {
         int entityTopRow = entity.InteractionBox.get(0) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
         int entityBottomRow = entity.InteractionBox.get(2) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
-        int tileNum1, tileNum2, tileNum3;
+        int tileNum1, tileNum2;
 
         switch (entity.direction) {
             case "up" -> {
@@ -33,14 +33,10 @@ public class CollisionCheck {
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
-                tileNum3 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
-
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
                         || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
-                } else if (TileManager.getInstance().tiles[tileNum3].death){
-                    entity.state = 0;
                 }
             }
             case "down" -> {
@@ -48,44 +44,32 @@ public class CollisionCheck {
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
-                tileNum3 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
-
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
                         || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
-                } else if (TileManager.getInstance().tiles[tileNum3].death){
-                    entity.state = 0;
                 }
-
             }
             case "left" -> {
                 entityLeftCol = (entity.InteractionBox.get(3) - entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityLeftCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
-                tileNum3 = TileManager.getInstance().mapTileNum[entityBottomRow][entityLeftCol];
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
                         || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
-                } else if (TileManager.getInstance().tiles[tileNum3].death){
-                    entity.state = 0;
                 }
-
             }
             case "right" -> {
                 entityRightCol = (entity.InteractionBox.get(1) + entity.speed) / (Constant.ORIGINAL_TILE_SIZE * Constant.SCALE);
 
                 tileNum1 = TileManager.getInstance().mapTileNum[entityTopRow][entityRightCol];
                 tileNum2 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
-                tileNum3 = TileManager.getInstance().mapTileNum[entityBottomRow][entityRightCol];
 
                 if (TileManager.getInstance().tiles[tileNum1].collision
                         || TileManager.getInstance().tiles[tileNum2].collision){
                     entity.collisionOn = true;
-                } else if (TileManager.getInstance().tiles[tileNum3].death){
-                    entity.state = 0;
                 }
             }
         }
@@ -111,6 +95,24 @@ public class CollisionCheck {
                     entity.speed = 0;
                 }
             }
+        }
+    }
+    public void checkBoss(Entity entity1, Entity entity2){
+        entity1.setEntityInteractionBox(entity1);
+        entity2.setEntityInteractionBox(entity2);
+        Rectangle entity1SolidBox = new Rectangle(entity1.InteractionBox.get(3),
+                entity1.InteractionBox.get(0),
+                entity1.solidArea.width,
+                entity1.solidArea.height);
+        Rectangle entity2SolidBox = new Rectangle(entity2.InteractionBox.get(3),
+                entity2.InteractionBox.get(0),
+                entity2.solidArea.width,
+                entity2.solidArea.height);
+        boolean intersects = entity1SolidBox.intersects(entity2SolidBox);
+        if (intersects) {
+            entity1.collisionOn = true;
+            entity1.state = 0;
+            entity1.speed = 0;
         }
     }
 
@@ -186,7 +188,6 @@ public class CollisionCheck {
    public void checkBomb(Bomb bomb,Entity entity) {
         int r = 15;
         if(bomb != null) {
-            
                 if (bomb.state != 2) {
                     bomb.setEntityInteractionBox(bomb);
                     entity.setEntityInteractionBox(entity);
@@ -205,7 +206,6 @@ public class CollisionCheck {
                                 Rectangle playerNextMove = check(entity.x, entity.y - entity.speed, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
-                                    //    System.out.println("up");
                                     if (bomb.state == 1) {
                                         entity.state = 0;
                                     }
@@ -215,7 +215,6 @@ public class CollisionCheck {
                                 Rectangle playerNextMove = check(entity.x, entity.y + entity.speed, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
-                                    //    System.out.println("down");
                                     if (bomb.state == 1) {
                                         entity.state = 0;
                                     }
@@ -226,7 +225,6 @@ public class CollisionCheck {
                                 Rectangle playerNextMove = check(entity.x - entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
-                                    //    System.out.println("left");
                                     if (bomb.state == 1) {
                                         entity.state = 0;
                                     }
@@ -237,7 +235,6 @@ public class CollisionCheck {
                                 Rectangle playerNextMove = check(entity.x + entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
-                                    //    System.out.println("right");
                                     if (bomb.state == 1) {
                                         entity.state = 0;
                                     }
@@ -245,17 +242,7 @@ public class CollisionCheck {
                             }
                         }
                     }
-                    if(bomb.state == 1){// check if player is in bomb radius
-                        // boolean a = entity.x/Constant.TILE_SIZE<=bomb.getX()/Constant.TILE_SIZE+bomb.getBombRadius() &&
-                        //         entity.x/Constant.TILE_SIZE>=bomb.getX()/Constant.TILE_SIZE-bomb.getBombRadius();
-                        // boolean b = entity.y/Constant.TILE_SIZE<=bomb.getY()/Constant.TILE_SIZE+bomb.getBombRadius() &&
-                        //         entity.y/Constant.TILE_SIZE>=bomb.getY()/Constant.TILE_SIZE-bomb.getBombRadius();
-                        // //xor a and b
-                        // if((a && bomb.getY()==entity.y) ^ (b && bomb.getX()==entity.x)){
-                        //     entity.state = 0;
-                        //     System.out.println("hey");
-                        // }
-                        // create a rectangle for bomb range vertical 
+                    if(bomb.state == 1){
                         Rectangle playerSolidBox2 = new Rectangle(entity.x+r,
                             entity.y+r,
                             entity.solidArea.width-r,
