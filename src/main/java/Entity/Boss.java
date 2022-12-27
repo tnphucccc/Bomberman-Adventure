@@ -39,6 +39,26 @@ public class Boss extends Entity {
         this.state = 1;
     }
 
+    public void getMobImage() {
+        try {
+            for (int i = 0; i < 4; i++) {
+                up[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
+                down[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
+                left[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
+                right[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
+            }
+            for (int i = 0; i < 6; i++)
+                die[i] = ImageIO.read(Objects.requireNonNull(getClass()
+                        .getResourceAsStream("/Mob/MobDie" + (i + 1) + ".png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void update() {
         collisionOn = false;
@@ -81,26 +101,6 @@ public class Boss extends Entity {
                 }
                 spriteCounter = 0;
             }
-        }
-    }
-
-    public void getMobImage() {
-        try {
-            for (int i = 0; i < 4; i++) {
-                up[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
-                down[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
-                left[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobDownLeft" + (i + 1) + ".png")));
-                right[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobUpRight" + (i + 1) + ".png")));
-            }
-            for (int i = 0; i < 6; i++)
-                die[i] = ImageIO.read(Objects.requireNonNull(getClass()
-                        .getResourceAsStream("/Mob/MobDie" + (i + 1) + ".png")));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
