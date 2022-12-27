@@ -147,7 +147,7 @@ public class Player extends Entity {
                         TileManager.getInstance().clearMap();
                     }
                 }
-                case "BlastRadius" -> {
+                case "BlastRadius" ->{
                     //Bomb.blastRadius += 1;
                     GameScene.Object[i] = null;
                 }

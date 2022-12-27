@@ -52,6 +52,7 @@ public class Window extends JFrame implements Runnable {
             case 0 -> currentScene = new MenuScene();
             case 1 -> currentScene = new GameScene(1);
             case 2 -> currentScene = new GameScene(2);
+
             default -> {
                 System.out.println("Error: Invalid state");
                 currentScene = null;
