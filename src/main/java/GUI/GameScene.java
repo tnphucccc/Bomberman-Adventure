@@ -14,7 +14,8 @@ public class GameScene extends Scene {
     KeyHandler keyH = Window.getKeyH();
     boolean isPaused; //true = paused, false = not paused
     static int mapID;
-    Player player;
+    static Player player;
+
     TileManager tileM;
     AssetSetter aSetter;
 
@@ -39,6 +40,7 @@ public class GameScene extends Scene {
 
     public GameScene(int mapID) {
         GameScene.mapID = mapID;
+        player = new Player();
         player = Player.getInstance();
         tileM = TileManager.getInstance();
         aSetter = new AssetSetter(this);
@@ -130,10 +132,17 @@ public class GameScene extends Scene {
             GameOver.getInstance().draw(g2);
         }
     }
+    public void reset(){
+        player = null;
+        mobList.clear();
+    }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
-    public Player getPlayer(){
+//    public static Player getPlayer(){
+//        return player;
+//    }
+    public static Player getPlayer(){
         return player;
     }
     public static ArrayList<Mob> getMobList(){
