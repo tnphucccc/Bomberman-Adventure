@@ -53,16 +53,13 @@ public class Bomb extends Entity {
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-        if (bombList != null) {
-            //Image img = null;
             if (key.equals("space")) {
                 long timeElapsed = 2000000000L;
                 long timeDuration = 4000000000L;
 
                 if (timeElapsed > System.nanoTime() - timeStart) {//planting
                     update();
-                    g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                            Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+                    g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
                 } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
                     state = 2;
@@ -77,7 +74,6 @@ public class Bomb extends Entity {
                     BombExplodeMap.getInstance().update();
                 }
             }
-        }
     }
 
 
