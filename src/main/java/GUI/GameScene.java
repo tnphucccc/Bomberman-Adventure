@@ -19,7 +19,7 @@ public class GameScene extends Scene {
     AssetSetter aSetter;
 
     public static CollisionCheck cCheck;
-    public static SuperObject[] Object = new SuperObject[10];
+    public static SuperObject[] Object = new SuperObject[100];
 
     static Player player;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
