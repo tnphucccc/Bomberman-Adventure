@@ -22,7 +22,7 @@ public class Bomb extends Entity {
     private String key = "";
 
     private int bombCounter = 0;
-    public static int bombRadius;
+    public int bombRadius;
 
 
     public Bomb(int x,int y,int radius) {

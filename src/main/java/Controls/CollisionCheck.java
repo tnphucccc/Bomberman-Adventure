@@ -181,6 +181,16 @@ public class CollisionCheck {
         }
         return index;
     }
+    public boolean singleTile(int x,int y,int width,int height,Entity entity){
+        entity.setEntityInteractionBox(entity);
+        Rectangle entitySolidBox = new Rectangle(entity.InteractionBox.get(3),
+                entity.InteractionBox.get(0),
+                entity.solidArea.width,
+                entity.solidArea.height);
+        Rectangle tileSolidBox = new Rectangle(x,y,width,height);
+        boolean intersects = entitySolidBox.intersects(tileSolidBox);
+        return intersects;
+    }
     public Rectangle check(int x, int y, int width, int height) {
         return new Rectangle(x,y,width,height);
     }

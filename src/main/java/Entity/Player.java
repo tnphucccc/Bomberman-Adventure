@@ -151,7 +151,8 @@ public class Player extends Entity {
                     //}
                 }
                 case "BlastRadius" ->{
-                    bomb.setBombRadius(1);
+                    Notification.setBombRadius(2);
+                    System.out.println(Notification.getBombRadius());
                     GameScene.Object[i] = null;
                 }
             }
