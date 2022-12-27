@@ -23,7 +23,7 @@ public class Bomb extends Entity {
     private String key = "";
 
     private int bombCounter = 0;
-    public int bombRadius;
+    public static int bombRadius;
 
     public Bomb(int x,int y,int radius) {
         this.x = x;
@@ -41,6 +41,7 @@ public class Bomb extends Entity {
         setDefault();
         update(x,y);
     }
+    public Bomb (){};
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
@@ -132,8 +133,8 @@ public class Bomb extends Entity {
     }
 
     //get radius
-    public void setBombRadius(int bombRadius) {
-        this.bombRadius = bombRadius;
+    public void setBombRadius(int radius) {
+        this.bombRadius += radius;
     }
     public int getBombRadius() {
         return bombRadius;

@@ -113,6 +113,7 @@ public class Boss extends Entity {
             g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE * 2, Constant.TILE_SIZE * 2, null);
             speed = 0;
             collision=false;
+
         } else {
             //Mob is alive
             g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE * 2, Constant.TILE_SIZE * 2, null);        }
