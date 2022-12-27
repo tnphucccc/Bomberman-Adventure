@@ -45,7 +45,7 @@ public class GameOver {
             currentGameOver = playAgainPressed;
             if (mouseH.isPressed) {
                 Window.getWindow().changeState(2); // For debugging purposes
-//                Window.getWindow().changeState(GameScene.getMapID());
+               // Window.getWindow().changeState(GameScene.getMapID());
                 TileManager.getInstance().clearMap(); //Return map to default map
             }
         } else if (mouseH.checkInteractWithRect(mouseH, exitRect)) {
