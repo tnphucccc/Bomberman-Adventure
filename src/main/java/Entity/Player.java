@@ -15,6 +15,7 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
+    Bomb bomb = new Bomb();
 
     public static Player getInstance(){
         if (Player.instance == null){
@@ -144,13 +145,13 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    if(GameScene.getMobList() == null) {
+                    //if(GameScene.getMobList() == null) {
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
-                    }
+                    //}
                 }
                 case "BlastRadius" ->{
-                    //Bomb.blastRadius += 1;
+                    bomb.setBombRadius(1);
                     GameScene.Object[i] = null;
                 }
             }
