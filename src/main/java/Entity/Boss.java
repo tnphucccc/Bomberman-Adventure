@@ -14,12 +14,11 @@ import java.util.Random;
 public class Boss extends Entity {
     private final Random rand = new Random();
     CollisionCheck cCheck = new CollisionCheck();
+
     String[] dir = {"down", "up", "right", "left"};
     public boolean collision;
 
-    public Boss(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Boss() {
 
         solidArea = new Rectangle();
         solidArea.x = 4;
@@ -32,22 +31,26 @@ public class Boss extends Entity {
     }
 
     public void setDefault() {
+        x = Constant.TILE_SIZE * 8; //Boss cord
+        y = Constant.TILE_SIZE * 5;
         speed = 1;
-        collision =true;
+        collision = true;
         this.direction = "down";
-        this.state =1;
+        this.state = 1;
     }
 
     @Override
     public void update() {
         collisionOn = false;
-        cCheck.checkTile(this);
+
+        CollisionCheck.getInstance().checkTile(this);
+
         if(GameScene.getBombList() != null){
             for(int i = 0; i < GameScene.getBombList().size(); i++)
-                cCheck.checkBomb(GameScene.getBombList().get(i), this);
+                CollisionCheck.getInstance().checkBomb(GameScene.getBombList().get(i), this);
         }
 
-        cCheck.checkMob(GameScene.getInstance().getPlayer(), GameScene.getMobList());
+        CollisionCheck.getInstance().checkMob(GameScene.getPlayer(), GameScene.getMobList());
 
         if (!collisionOn) {
             switch (direction) {
@@ -107,14 +110,11 @@ public class Boss extends Entity {
         if (state == 0) {
             //Mob die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
+            g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE * 2, Constant.TILE_SIZE * 2, null);
             speed = 0;
             collision=false;
         } else {
             //Mob is alive
-            g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.ORIGINAL_TILE_SIZE * Constant.SCALE,
-                    Constant.ORIGINAL_TILE_SIZE * Constant.SCALE, null);
-        }
+            g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE * 2, Constant.TILE_SIZE * 2, null);        }
     }
 }
