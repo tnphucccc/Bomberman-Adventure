@@ -11,7 +11,6 @@ import Objects.SuperObject;
 import java.awt.*;
 import java.util.ArrayList;
 public class GameScene extends Scene {
-    KeyHandler keyH = Window.getKeyH();
     boolean isPaused; //true = paused, false = not paused
 
     static int mapID;
@@ -29,9 +28,6 @@ public class GameScene extends Scene {
     static ArrayList<Bomb> bombList;
     public static int bombSize = 2;
     public static int bombCounter = 0;
-
-    boolean spacePressed = false;
-
 
     public static GameScene instance = null;
     public static GameScene getInstance(){
@@ -55,8 +51,6 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 2;
-        bombCounter = 0;
     }
 
     @Override
@@ -77,22 +71,9 @@ public class GameScene extends Scene {
             if(mapID == 2){
                 boss.update();
             }
-
-//            System.out.println("Bomb: "+(bombCounter));
-            // bomb.update(player.x, player.y);
-            // bombList = bomb.getBombList();
-            if (bombCounter < bombSize) {
-                if (keyH.spacePressed) {
-                    spacePressed = true;
-                }
-                if (!keyH.spacePressed && spacePressed ) {
-                    spacePressed = false;
-                    if (CheckAvailable.checkAvailable(player.x, player.y)) {
-                        bombList.add(new Bomb(player.x, player.y,1));
-                        //bombList.get(bombCounter).update(player.x, player.y);
-                        bombCounter++;
-                    }
-                }
+            if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
+                bombList.add(new Bomb(player.getX(), player.getY(), 1));
+                bombCounter++;
             }
         }
         
