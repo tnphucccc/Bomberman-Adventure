@@ -21,17 +21,17 @@ public class Boss extends Entity {
     public Boss() {
 
         solidArea = new Rectangle();
-        solidArea.x = 4;
-        solidArea.y = 16;
-        solidArea.width = 36;
-        solidArea.height = 32;
+        solidArea.x = 4 * 2;
+        solidArea.y = 16 * 2;
+        solidArea.width = 36 * 2;
+        solidArea.height = 32 * 2;
 
         setDefault();
         getMobImage();
     }
 
     public void setDefault() {
-        x = Constant.TILE_SIZE * 8; //Boss cord
+        x = Constant.TILE_SIZE * 12; //Boss cord
         y = Constant.TILE_SIZE * 5;
         speed = 1;
         collision = true;
@@ -43,14 +43,14 @@ public class Boss extends Entity {
     public void update() {
         collisionOn = false;
 
-        CollisionCheck.getInstance().checkTile(this);
+        cCheck.checkTile(this);
 
         if(GameScene.getBombList() != null){
             for(int i = 0; i < GameScene.getBombList().size(); i++)
-                CollisionCheck.getInstance().checkBomb(GameScene.getBombList().get(i), this);
+                cCheck.checkBomb(GameScene.getBombList().get(i), this);
         }
 
-        CollisionCheck.getInstance().checkMob(GameScene.getPlayer(), GameScene.getMobList());
+        cCheck.checkBoss(GameScene.getPlayer(), this);
 
         if (!collisionOn) {
             switch (direction) {

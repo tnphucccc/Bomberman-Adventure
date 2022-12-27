@@ -78,7 +78,7 @@ public class GameScene extends Scene {
                 boss.update();
             }
 
-            System.out.println("Bomb: "+(bombCounter));
+//            System.out.println("Bomb: "+(bombCounter));
             // bomb.update(player.x, player.y);
             // bombList = bomb.getBombList();
             if (bombCounter < bombSize) {
@@ -133,7 +133,7 @@ public class GameScene extends Scene {
                 b.draw(g2);
             }
         }
-        System.out.println(bombList);
+//        System.out.println(bombList);
 
         //Draw mob
         for (Mob value : mobList) {
@@ -157,7 +157,6 @@ public class GameScene extends Scene {
     public static ArrayList<Mob> getMobList(){
         return mobList;
     }
-
     public static int getMapID(){
         return mapID;
     }
