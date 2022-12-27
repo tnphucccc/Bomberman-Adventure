@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-
     private final int bombSize = GameScene.bombSize;
 
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
@@ -63,9 +62,9 @@ public class Bomb extends Entity {
                     g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
                 } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
+                    GameScene.bombCounter--;
                     state = 2;
                     update();
-                    GameScene.bombCounter--;
 
                 } else {//exploding
                     state = 1;

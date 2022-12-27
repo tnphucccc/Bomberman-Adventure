@@ -11,7 +11,6 @@ import Objects.SuperObject;
 import java.awt.*;
 import java.util.ArrayList;
 public class GameScene extends Scene {
-    KeyHandler keyH = Window.getKeyH();
     boolean isPaused; //true = paused, false = not paused
 
     static int mapID;
@@ -52,8 +51,6 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombSize = 2;
-        bombCounter = 0;
     }
 
     @Override

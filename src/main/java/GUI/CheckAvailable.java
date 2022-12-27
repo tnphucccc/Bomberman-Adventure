@@ -22,9 +22,7 @@ public class CheckAvailable {
             }
             if (!keyH.spacePressed && spacePressed) {
                 spacePressed = false;
-                if (CheckAvailable.checkAvailable(x, y)) {
-                    return true;
-                }
+                return CheckAvailable.checkAvailable(x, y);
             }
         }
         return false;
