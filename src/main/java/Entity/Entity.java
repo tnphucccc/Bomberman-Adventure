@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public abstract class Entity {
-    public int x, y, speed, state;
+    public int x, y, speed, state, hitPoint;
     public BufferedImage[] up = new BufferedImage[4], down = new BufferedImage[4],
             left = new BufferedImage[4], right = new BufferedImage[4],bomb=new BufferedImage[4],
             die = new BufferedImage[6];

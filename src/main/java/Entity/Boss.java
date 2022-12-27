@@ -14,7 +14,6 @@ import java.util.Random;
 public class Boss extends Entity {
     private final Random rand = new Random();
     CollisionCheck cCheck = new CollisionCheck();
-
     String[] dir = {"down", "up", "right", "left"};
     public boolean collision;
 
@@ -25,7 +24,6 @@ public class Boss extends Entity {
         solidArea.y = 16 * 2;
         solidArea.width = 36 * 2;
         solidArea.height = 32 * 2;
-
         setDefault();
         getMobImage();
     }
@@ -37,6 +35,7 @@ public class Boss extends Entity {
         collision = true;
         this.direction = "down";
         this.state = 1;
+        this.hitPoint = 200;
     }
 
     public void getMobImage() {
@@ -61,6 +60,7 @@ public class Boss extends Entity {
 
     @Override
     public void update() {
+        checkState(hitPoint);
         collisionOn = false;
 
         cCheck.checkTile(this);
@@ -103,6 +103,13 @@ public class Boss extends Entity {
             }
         }
     }
+    public void checkState(int hitPoint){
+        System.out.println(hitPoint);
+        if (hitPoint == 0){
+            state = 0;
+            System.out.println("Boss is dead");
+        }
+    }
 
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
@@ -112,8 +119,7 @@ public class Boss extends Entity {
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
             g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE * 2, Constant.TILE_SIZE * 2, null);
             speed = 0;
-            collision=false;
-
+            collision = false;
         } else {
             //Mob is alive
             g2.drawImage(img,Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE * 2, Constant.TILE_SIZE * 2, null);        }
