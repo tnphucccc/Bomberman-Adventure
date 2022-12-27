@@ -44,8 +44,8 @@ public class Camera {
     }
 
     public static boolean canDraw(int x, int y) {
-        int playerX = GameScene.getInstance().getPlayer().getX();
-        int playerY = GameScene.getInstance().getPlayer().getY();
+        int playerX = GameScene.getPlayer().getX();
+        int playerY = GameScene.getPlayer().getY();
 
         return x + Constant.TILE_SIZE > playerX - Constant.PLAYER_SCREEN_X &&
                 x - Constant.TILE_SIZE < playerX + Constant.PLAYER_SCREEN_X &&
