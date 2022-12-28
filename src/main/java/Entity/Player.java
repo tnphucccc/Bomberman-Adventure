@@ -170,6 +170,8 @@ public class Player extends Entity {
         BufferedImage img = getEntityImage();
         if (state == 0) { //Player Die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
+            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
+            sound.playSound("src/main/resources/Sound/just_died.wav");
             g2.drawImage(img, Camera.setXPlayerCord(x), Camera.setYPlayerCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             speed = 0;
         } else { // Player alive

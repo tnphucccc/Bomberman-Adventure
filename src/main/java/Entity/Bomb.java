@@ -24,11 +24,16 @@ public class Bomb extends Entity {
 
     private int bombCounter = 0;
     public static int bombRadius;
+    public BombExplodeMap bombExplodeMap;
+    public int bombExplosionTimer = 2;
+    public int bombExplosionTimerMax = 4;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
-    public Bomb(int x,int y,int radius) {
-        this.x = x;
-        this.y = y;
+
+    public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
+        this.x = ((x + 16) / 48) * 48;
+        this.y = ((y + 24) / 48) * 48;
+        this.bombExplodeMap = bombExplodeMap;
         bombRadius = radius;
 
         solidArea = new Rectangle();
@@ -47,32 +52,32 @@ public class Bomb extends Entity {
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
-        
+
         // round x and y so the bomb is placed in the middle of the tile
-        this.x = ((x + 16) / 48) * 48;
-        this.y = ((y + 24) / 48) * 48;
+
     }
 
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-            if (key.equals("space")) {
-                if ((System.nanoTime() - timeStart)/Constant.Tera < 2) {//planting for 2s
-                    update();
-                    g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+        if (key.equals("space")) {
+            if ((System.nanoTime() - timeStart)/Constant.Tera < bombExplosionTimer) {//planting for 2s
+                update();
+                g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
-                } else if ((System.nanoTime() - timeStart)/Constant.Tera > 4) { //disappeared in 4s
-                    GameScene.bombCounter--;
-                    state = 2;
-                    update();
+            } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
+                GameScene.bombCounter--;
+                state = 2;
+                update();
+                bombExplodeMap.resetExplosion();
 
-                } else {//exploding
-                    state = 1;
-                    //draw explosion
-                    BombExplodeMap.getInstance().drawExplosion(g2,this);
-                    BombExplodeMap.getInstance().update();
-                }
+            } else {//exploding
+                state = 1;
+                //draw explosion
+                bombExplodeMap.drawExplosion(g2,this);
+                bombExplodeMap.update();
             }
+        }
     }
 
     public void getBombImage() {

@@ -1,6 +1,7 @@
 package GUI;
 
 import Controls.CollisionCheck;
+import Controls.KeyHandler;
 import Entity.Bomb;
 import Entity.Boss;
 import Entity.Mob;
@@ -9,6 +10,7 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
@@ -31,6 +33,7 @@ public class GameScene extends Scene {
     public static int bombSize;
     public static int bombCounter;
     public static int bombRadius;
+    public BombExplodeMap bombExplodeMap;
 
     public static GameScene instance = null;
     public static GameScene getInstance(){
@@ -55,6 +58,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
+        bombExplodeMap = new BombExplodeMap();
         bombCounter = 0;
         bombSize = 2;
         bombRadius = 1;
@@ -76,10 +80,12 @@ public class GameScene extends Scene {
             }
 
             if(mapID == 2){
+                if(boss.state == 1){
                     boss.update();
+                }
             }
             if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
-                bombList.add(new Bomb(player.getX(), player.getY(), bombRadius));
+                bombList.add(new Bomb(player.getX(), player.getY(), bombRadius, bombExplodeMap));
                 bombCounter++;
             }
         }
@@ -123,7 +129,6 @@ public class GameScene extends Scene {
                 b.draw(g2);
             }
         }
-//        System.out.println(bombList);
 
         //Draw mob
         for (Mob value : mobList) {
@@ -153,5 +158,4 @@ public class GameScene extends Scene {
     public static int getMapID(){
         return mapID;
     }
-
 }
