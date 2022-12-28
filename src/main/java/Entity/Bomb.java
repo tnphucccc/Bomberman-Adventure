@@ -23,13 +23,9 @@ public class Bomb extends Entity {
     private String key = "";
 
     private int bombCounter = 0;
-<<<<<<< HEAD
-    public int bombRadius;
+    public  int bombRadius;
     public int up, down, left, right;
-=======
-    public static int bombRadius;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
->>>>>>> master
 
     public Bomb(int x,int y,int radius) {
         this.x = x;
@@ -174,5 +170,5 @@ public class Bomb extends Entity {
     public int getRightRadius() {
         return right;
     }
-    
+
 }
