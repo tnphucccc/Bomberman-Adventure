@@ -85,6 +85,10 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 
 ### About The Game
 
+<div align="center">
+<img src="src/main/resources/Screenshots/Map1.png" alt="">
+</div>
+
 - Language: [Java](https://www.java.com/en/)
 - IDEs: [IntelliJ IDEA](https://www.jetbrains.com/idea/), [VSCode](https://code.visualstudio.com/)
 - Library: [JavaSwing](https://docs.oracle.com/javase/tutorial/uiswing/)
