@@ -33,6 +33,8 @@
 </ol>
 </details -->
 
+<!-- ABOUT THE PROJECT -->
+
 ## Introduction <a name="Introduction"></a>
 
 <div style = "text-align: justify">
@@ -72,6 +74,8 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 |   4   | Nguyen Manh Viet Khoi |        GUI, Entities, Objects, Debugger        |      20      |
 |   5   |     Pham Vu Quang     |                   GUI, Maps                    |      20      |
 
+<!-- Game -->
+
 ## Game <a name="Game"></a>
 
 ### About The Game
@@ -100,8 +104,8 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
 
 ### Items
 
-|    Item    |              Effect               |
-|:----------:|:---------------------------------:|
-| Bomb Item  |   Increase the number of bombs    |
-| Flame Item |    Increase the range of bombs    |
-| Speed Item | Increase the speed of the player  |
+|    Item    |              Effect              |
+|:----------:|:--------------------------------:|
+| Bomb Item  |   Increase the number of bombs   |
+| Flame Item |   Increase the range of bombs    |
+| Speed Item | Increase the speed of the player |
