@@ -13,7 +13,7 @@ import java.util.Objects;
 public class BombExplodeMap extends Entity {
     public static BombExplodeMap instance;
     private final int[][] map;
-    BufferedImage[][] mid = new BufferedImage[4][8], end = new BufferedImage[4][8];
+    BufferedImage[][] end = new BufferedImage[9][8];
     BufferedImage[] explode= new BufferedImage[8];
 
     public BombExplodeMap() {
@@ -22,7 +22,10 @@ public class BombExplodeMap extends Entity {
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 8; j++)
                     end[i][j] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/end" + (i) + (j + 1) + ".png")));
-                    //mid[i][j] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/mid" + (i) + (j + 1) + ".png")));
+            }
+            for (int i = 4; i < 8; i++){
+                for (int j = 0; j < 8; j++)
+                    end[i][j] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/mid" + (i-4) + (j + 1) + ".png")));
             }
             for (int i = 0; i < 8; i++){
                 explode[i] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bomb/start" + (i + 1) + ".png")));
@@ -47,12 +50,19 @@ public class BombExplodeMap extends Entity {
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y + i][x] == 0 || map[y + i][x] == 3) {
-                draw(g2, x, y, 4);
-                draw(g2, x, y + i, 2);
-            } else if (map[y + i][x] == 1 || map[y + i][x] == 4) {
+                draw(g2, x, y, 8);
+                if (map[y + (i+1)][x] == 1 || map[y + (i+1)][x] == 4){
+                    draw(g2, x, y + i, 2);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x, y + i, 6);
+                }
+                else draw(g2, x, y + i, 2);
+            } else if (map[y + i][x] == 1 || map[y + i][x] == 4){
                 break;
             } else if (map[y + i][x] == 2) {
-                draw(g2, x, y, 4);
+                draw(g2, x, y, 8);
+                draw(g2, x, y + i, 6);
                 draw(g2, x, y + i, 2);
                 breakBrick(x, y + i);
                 break;
@@ -62,12 +72,19 @@ public class BombExplodeMap extends Entity {
         //check upward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y - i][x] == 0 || map[y - i][x] == 3) {
-                draw(g2, x, y, 4);
-                draw(g2, x, y - i, 0);
-            } else if (map[y - i][x] == 1 || map[y - i][x] == 4) {
+                draw(g2, x, y, 8);
+                if (map[y - (i+1)][x] == 1 || map[y - (i+1)][x] == 4){
+                    draw(g2, x, y - i, 0);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x, y - i, 4);
+                }
+                else draw(g2, x, y - i, 0);
+            } else if (map[y - i][x] == 1 || map[y - i][x] == 4){
                 break;
             } else if (map[y - i][x] == 2) {
-                draw(g2, x, y, 4);
+                draw(g2, x, y, 8);
+                draw(g2, x, y - i, 4);
                 draw(g2, x, y - i, 0);
                 breakBrick(x, y - i);
                 break;
@@ -77,12 +94,19 @@ public class BombExplodeMap extends Entity {
         //check right
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y][x + i] == 0 || map[y][x + i] == 3) {
-                draw(g2, x, y, 4);
-                draw(g2, x + i, y, 1);
-            } else if (map[y][x + i] == 1 || map[y][x + i] == 4) {
+                draw(g2, x, y, 8);
+                if (map[y][x + (i+1)] == 1 || map[y][x + (i+1)] == 4){
+                    draw(g2, x + i, y, 1);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x + i, y, 5);
+                }
+                else draw(g2, x + i, y, 1);
+            } else if (map[y][x + i] == 1 || map[y][x + i] == 4){
                 break;
             } else if (map[y][x + i] == 2) {
-                draw(g2, x, y, 4);
+                draw(g2, x, y, 8);
+                draw(g2, x + i, y, 5);
                 draw(g2, x + i, y, 1);
                 breakBrick(x + i, y);
                 break;
@@ -92,12 +116,19 @@ public class BombExplodeMap extends Entity {
         //check left
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y][x - i] == 0 || map[y][x - i] == 3) {
-                draw(g2, x, y, 4);
-                draw(g2, x - i, y, 3);
-            } else if (map[y][x - i] == 1 || map[y][x - i] == 4) {
+                draw(g2, x, y, 8);
+                if (map[y][x - (i+1)] == 1 || map[y][x - (i+1)] == 4){
+                    draw(g2, x - i, y, 3);
+                }
+                else if(i!= bomb.getBombRadius()){
+                    draw(g2, x - i, y, 7);
+                }
+                else draw(g2, x - i, y, 3);
+            } else if (map[y][x - i] == 1 || map[y][x - i] == 4){
                 break;
             } else if (map[y][x - i] == 2) {
-                draw(g2, x, y, 4);
+                draw(g2, x, y, 8);
+                draw(g2, x - i, y, 7);
                 draw(g2, x - i, y, 3);
                 breakBrick(x - i, y);
                 break;
@@ -118,8 +149,7 @@ public class BombExplodeMap extends Entity {
     public void draw(Graphics2D g2, int x, int y, int i) {
         int drawX = Camera.setXCord(x * Constant.TILE_SIZE);
         int drawY = Camera.setYCord(y * Constant.TILE_SIZE);
-
-        g2.drawImage(getImage(i), drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+        g2.drawImage(getBossImage(i), drawX, drawY, Constant.TILE_SIZE, Constant.TILE_SIZE, null);
     }
 
     public int[][] getMap() {
@@ -142,13 +172,10 @@ public class BombExplodeMap extends Entity {
     public void draw(Graphics2D g2) {
 
     }
-    public BufferedImage getImage(int i){
-        if (i == 4){
+    public BufferedImage getBossImage(int i){
+        if (i == 8) {
             return getBufferedImage(explode[0], explode[1], explode[2], explode[3],
                     explode[4], explode[5], explode[6], explode[7]);
-        } else if(i==5){
-            return getBufferedImage(mid[i][0], mid[i][1], mid[i][2], mid[i][3],
-                    mid[i][4], mid[i][5], mid[i][6], mid[i][7]);
         }
         else{
             return getBufferedImage(end[i][0], end[i][1], end[i][2], end[i][3],
