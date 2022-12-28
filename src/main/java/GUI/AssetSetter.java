@@ -32,6 +32,7 @@ public class AssetSetter {
             GameScene.mobList.add(5, new Mob(37 * Constant.TILE_SIZE, 7 * Constant.TILE_SIZE));
             GameScene.mobList.add(6, new Mob(38 * Constant.TILE_SIZE, 8 * Constant.TILE_SIZE));
         }
+
     }
 
     public void setItems() {
