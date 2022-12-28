@@ -1,6 +1,7 @@
 package GUI;
 
 import Controls.CollisionCheck;
+import Controls.KeyHandler;
 import Entity.Bomb;
 import Entity.Boss;
 import Entity.Mob;
@@ -9,6 +10,7 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
@@ -143,8 +145,7 @@ public class GameScene extends Scene {
         }
     }
     public static boolean isGameOver(){
-        return mobList.size() == 0 && player.state == 1 && mapID == 2;
-    }
+        return finishLevel(getMobList().size()) && player.state == 1 && mapID == 2;}
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
@@ -157,7 +158,7 @@ public class GameScene extends Scene {
     public static int getMapID(){
         return mapID;
     }
-    public boolean finishLevel(int i) {
+    public static boolean finishLevel(int i) {
         mobCounter = i;
         for (Mob mob : mobList) {
             if (mob.state == 0) {

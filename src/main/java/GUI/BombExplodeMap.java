@@ -52,6 +52,7 @@ public class BombExplodeMap extends Entity {
     public void drawExplosion(Graphics2D g2, Bomb bomb) {
         int x = bomb.getX() / Constant.TILE_SIZE;
         int y = bomb.getY() / Constant.TILE_SIZE;
+
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y + i][x] == 0 || map[y + i][x] == 3) { //Draw explosion if ground or shadow
