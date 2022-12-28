@@ -97,22 +97,22 @@ public class CollisionCheck {
             }
         }
     }
-    public void checkBoss(Entity entity1, Entity entity2){
-        entity1.setEntityInteractionBox(entity1);
-        entity2.setEntityInteractionBox(entity2);
-        Rectangle entity1SolidBox = new Rectangle(entity1.InteractionBox.get(3),
-                entity1.InteractionBox.get(0),
-                entity1.solidArea.width,
-                entity1.solidArea.height);
-        Rectangle entity2SolidBox = new Rectangle(entity2.InteractionBox.get(3),
-                entity2.InteractionBox.get(0),
-                entity2.solidArea.width,
-                entity2.solidArea.height);
-        boolean intersects = entity1SolidBox.intersects(entity2SolidBox);
+    public void checkBoss(Entity entity, Boss boss){
+        entity.setEntityInteractionBox(entity);
+        boss.setEntityInteractionBox(boss);
+        Rectangle entitySolidBox = new Rectangle(entity.InteractionBox.get(3),
+                entity.InteractionBox.get(0),
+                entity.solidArea.width,
+                entity.solidArea.height);
+        Rectangle bossSolidBox = new Rectangle(boss.InteractionBox.get(3),
+                boss.InteractionBox.get(0),
+                boss.solidArea.width,
+                boss.solidArea.height);
+        boolean intersects = entitySolidBox.intersects(bossSolidBox);
         if (intersects) {
-            entity1.collisionOn = true;
-            entity1.state = 0;
-            entity1.speed = 0;
+            entity.collisionOn = true;
+            entity.state = 0;
+            entity.speed = 0;
         }
     }
 
