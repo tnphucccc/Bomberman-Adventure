@@ -19,9 +19,9 @@ public class AssetSetter {
         if(GameScene.getMapID() == 1) { // Mob Cord at Map 01
             GameScene.mobList.clear();
             GameScene.mobList.add(0, new Mob(4*Constant.TILE_SIZE, 5* Constant.TILE_SIZE));
-//            GameScene.mobList.add(1, new Mob(14*Constant.TILE_SIZE, 5*Constant.TILE_SIZE));
-//            GameScene.mobList.add(2, new Mob(14*Constant.TILE_SIZE, 8*Constant.TILE_SIZE));
-//            GameScene.mobList.add(3, new Mob(5*Constant.TILE_SIZE, 8*Constant.TILE_SIZE));
+            GameScene.mobList.add(1, new Mob(14*Constant.TILE_SIZE, 5*Constant.TILE_SIZE));
+            GameScene.mobList.add(2, new Mob(14*Constant.TILE_SIZE, 8*Constant.TILE_SIZE));
+            GameScene.mobList.add(3, new Mob(5*Constant.TILE_SIZE, 8*Constant.TILE_SIZE));
         } else if (GameScene.getMapID() == 2) { // Mob Cord at Map 02
             GameScene.mobList.clear();
             GameScene.mobList.add(0, new Mob(16 * Constant.TILE_SIZE, 7 * Constant.TILE_SIZE));
