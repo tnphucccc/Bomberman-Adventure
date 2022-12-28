@@ -23,7 +23,7 @@ public class Player extends Entity {
         return Player.instance;
     }
     public Player() {
-
+        this.name ="player";
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;

@@ -9,7 +9,6 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
@@ -76,9 +75,7 @@ public class GameScene extends Scene {
             }
 
             if(mapID == 2){
-                if(boss.state == 1){
                     boss.update();
-                }
             }
             if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
                 bombList.add(new Bomb(player.getX(), player.getY(), bombRadius));
@@ -141,10 +138,7 @@ public class GameScene extends Scene {
         }
     }
     public static boolean isGameOver(){
-        if(mobList.size() == 0 && player.state == 1 && mapID == 2){
-            return true;
-        }
-        return false;
+        return mobList.size() == 0 && player.state == 1 && mapID == 2;
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;

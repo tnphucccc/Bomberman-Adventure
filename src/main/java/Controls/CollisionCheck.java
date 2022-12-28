@@ -109,7 +109,7 @@ public class CollisionCheck {
                 boss.solidArea.width,
                 boss.solidArea.height);
         boolean intersects = entitySolidBox.intersects(bossSolidBox);
-        if (intersects) {
+        if (intersects&&boss.collision) {
             entity.collisionOn = true;
             entity.state = 0;
             entity.speed = 0;
@@ -206,7 +206,10 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     if (bomb.state == 1) {
-                                        entity.state = 0;
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
                                     }
                                 }
                             }
@@ -215,7 +218,10 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     if (bomb.state == 1) {
-                                        entity.state = 0;
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
                                     }
                                 }
 
@@ -225,7 +231,10 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     if (bomb.state == 1) {
-                                        entity.state = 0;
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
                                     }
                                 }
 
@@ -235,7 +244,10 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                     if (bomb.state == 1) {
-                                        entity.state = 0;
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
                                     }
                                 }
                             }
