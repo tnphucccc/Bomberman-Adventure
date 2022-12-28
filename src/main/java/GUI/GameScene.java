@@ -129,7 +129,6 @@ public class GameScene extends Scene {
                 b.draw(g2);
             }
         }
-//        System.out.println(bombList);
 
         //Draw mob
         for (Mob value : mobList) {
