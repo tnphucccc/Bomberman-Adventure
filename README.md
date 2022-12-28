@@ -31,6 +31,7 @@
         </ul>
     </li>
 </ol>
+</details -->
 
 ## Introduction <a name="Introduction"></a>
 
@@ -71,7 +72,7 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 |   4   | Nguyen Manh Viet Khoi |        GUI, Entities, Objects, Debugger        |      20      |
 |   5   |     Pham Vu Quang     |                   GUI, Maps                    |      20      |
 
-## Game
+## Game <a name="Game"></a>
 
 ### About The Game
 
