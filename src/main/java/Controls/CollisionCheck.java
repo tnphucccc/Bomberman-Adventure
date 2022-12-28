@@ -235,15 +235,15 @@ public class CollisionCheck {
                             entity.solidArea.width - r,
                             entity.solidArea.height - r);
                         Rectangle vertical = new Rectangle( //Rectangle for vertical explosion
-                                bomb.getX(),
-                                bomb.getY() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength)),
-                                Constant.TILE_SIZE,
-                                Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1));
+                                bomb.getX()+r,
+                                bomb.getY() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength))+r,
+                                Constant.TILE_SIZE-r,
+                                Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1)-r);
                         Rectangle horizontal = new Rectangle( //Rectangle for horizontal explosion
-                                bomb.getX() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength)),
-                                bomb.getY(),
-                                Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1),
-                                Constant.TILE_SIZE);
+                                bomb.getX() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength))+r,
+                                bomb.getY()+r,
+                                Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1)-r,
+                                Constant.TILE_SIZE-r);
 
 //                    System.out.println("Vertical: " + vertical.x + " " + vertical.y + " " + vertical.width + " " + vertical.height);
 //                    System.out.println("Horizontal: " + horizontal.x + " " + horizontal.y + " " + horizontal.width + " " + horizontal.height);
