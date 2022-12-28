@@ -151,10 +151,10 @@ public class Player extends Entity {
                         if (value.state==0)
                             GameScene.mobCounter++;
                     }
-
                     if(GameScene.getMobList().size()==GameScene.mobCounter) {
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
+                        GameScene.mobCounter=0;
                     }
                 }
                 case "BlastRadius" ->{
