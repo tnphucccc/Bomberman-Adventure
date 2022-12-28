@@ -238,13 +238,13 @@ public class CollisionCheck {
                             entity.solidArea.width,
                             entity.solidArea.height);
                         Rectangle vertical = new Rectangle( //Rectangle for vertical explosion
-                                bomb.getY() - (Constant.TILE_SIZE * bomb.bombExplodeMap.upLength),
                                 bomb.getX(),
+                                bomb.getY() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength)),
                                 Constant.TILE_SIZE,
                                 Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1));
                         Rectangle horizontal = new Rectangle( //Rectangle for horizontal explosion
+                                bomb.getX() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength)),
                                 bomb.getY(),
-                                bomb.getX() - (Constant.TILE_SIZE * bomb.bombExplodeMap.leftLength),
                                 Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1),
                                 Constant.TILE_SIZE);
                                
