@@ -147,10 +147,15 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    //if(GameScene.getMobCounter()==0) {
+                    for (Mob value : GameScene.getMobList()) {
+                        if (value.state==0)
+                            GameScene.mobCounter++;
+                    }
+
+                    if(GameScene.getMobList().size()==GameScene.mobCounter) {
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
-                    //}
+                    }
                 }
                 case "BlastRadius" ->{
                     GameScene.bombRadius++;
