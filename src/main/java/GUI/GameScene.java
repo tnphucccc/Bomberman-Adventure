@@ -10,18 +10,15 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.PropertyPermission;
-
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
-    Pause pause;
+
     static int mapID;
 
     TileManager tileM;
     AssetSetter aSetter;
 
     public static CollisionCheck cCheck;
-
     public static SuperObject[] Object = new SuperObject[100];
 
     static Player player;
@@ -29,9 +26,8 @@ public class GameScene extends Scene {
     public Boss boss;
 
     static ArrayList<Bomb> bombList;
-    public static int bombSize;
-    public static int bombCounter;
-    public static int bombRadius;
+    public static int bombSize = 2;
+    public static int bombCounter = 0;
 
     public static GameScene instance = null;
     public static GameScene getInstance(){
@@ -48,7 +44,6 @@ public class GameScene extends Scene {
 
         tileM = TileManager.getInstance();
         aSetter = new AssetSetter(this);
-        pause = Pause.getInstance(this);
 
         cCheck = new CollisionCheck();
 
@@ -56,14 +51,11 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
-        bombCounter = 0;
-        bombSize = 2;
-        bombRadius = 1;
     }
 
     @Override
     public void update() {
-        pause.pauseGame();
+        Pause.getInstance(this).pauseGame();
         //update when not pause
         if (!isPaused) {
             player.update();
@@ -77,12 +69,10 @@ public class GameScene extends Scene {
             }
 
             if(mapID == 2){
-                if(boss.state == 1){
-                    boss.update();
-                }
+                boss.update();
             }
             if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
-                bombList.add(new Bomb(player.getX(), player.getY(), bombRadius));
+                bombList.add(new Bomb(player.getX(), player.getY(), 1));
                 bombCounter++;
             }
         }
@@ -107,9 +97,7 @@ public class GameScene extends Scene {
         player.draw(g2);
 
         if (mapID == 2){
-            if(boss != null){
-                boss.draw(g2);
-            }
+            boss.draw(g2);
         }
 
         //Draw Items
@@ -135,7 +123,7 @@ public class GameScene extends Scene {
 
         //Draw pause menu
         if (isPaused) {
-            pause.draw(g2);
+            Pause.getInstance(this).draw(g2);
         }
         if (player.state == 0) {
             GameOver.getInstance().draw(g2);
