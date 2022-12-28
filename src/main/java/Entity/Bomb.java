@@ -24,6 +24,7 @@ public class Bomb extends Entity {
 
     private int bombCounter = 0;
     public static int bombRadius;
+    SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
     public Bomb(int x,int y,int radius) {
         this.x = x;
@@ -40,6 +41,7 @@ public class Bomb extends Entity {
         getBombImage();
         setDefault();
         update(x,y);
+        sound.playSound("src/main/resources/Sound/put_bombs.wav");
     }
     public Bomb (){}
     public void update(int x, int y) {
