@@ -25,6 +25,8 @@ public class Bomb extends Entity {
     private int bombCounter = 0;
     public static int bombRadius;
     public BombExplodeMap bombExplodeMap;
+    public int bombExplosionTimer = 2;
+    public int bombExplosionTimerMax = 4;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
 
@@ -61,11 +63,11 @@ public class Bomb extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
         if (key.equals("space")) {
-            if ((System.nanoTime() - timeStart)/Constant.Tera < 2) {//planting for 2s
+            if ((System.nanoTime() - timeStart)/Constant.Tera < bombExplosionTimer) {//planting for 2s
                 update();
                 g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
-            } else if ((System.nanoTime() - timeStart)/Constant.Tera > 4) { //disappeared in 4s
+            } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
                 GameScene.bombCounter--;
                 state = 2;
                 update();
