@@ -1,5 +1,6 @@
 package Entity;
 
+import Controls.SoundManager;
 import GUI.BombExplodeMap;
 import GUI.Camera;
 import GUI.GameScene;
@@ -24,6 +25,7 @@ public class Bomb extends Entity {
     private int bombCounter = 0;
     public static int bombRadius;
     public BombExplodeMap bombExplodeMap;
+    SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
 
     public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
@@ -43,12 +45,13 @@ public class Bomb extends Entity {
         getBombImage();
         setDefault();
         update(x,y);
+        sound.playSound("src/main/resources/Sound/put_bombs.wav");
     }
     public Bomb (){}
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
-        
+
         // round x and y so the bomb is placed in the middle of the tile
         this.x = ((x + 16) / 48) * 48;
         this.y = ((y + 24) / 48) * 48;
@@ -57,25 +60,24 @@ public class Bomb extends Entity {
     //draw bomb on the map with gif
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
-            if (key.equals("space")) {
-                if ((System.nanoTime() - timeStart)/Constant.T < 2) {//planting for 2s
-                    update();
-                    g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+        if (key.equals("space")) {
+            if ((System.nanoTime() - timeStart)/Constant.Tera < 2) {//planting for 2s
+                update();
+                g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
-                } else if ((System.nanoTime() - timeStart)/Constant.T > 4) { //disappeared in 4s
-                    GameScene.bombCounter--;
-                    state = 2;
-                    update();
-                    bombExplodeMap.resetExplosion();
+            } else if ((System.nanoTime() - timeStart)/Constant.Tera > 4) { //disappeared in 4s
+                GameScene.bombCounter--;
+                state = 2;
+                update();
+                bombExplodeMap.resetExplosion();
 
-                } else {//exploding
-                    state = 1;
-                    //draw explosion
-                    bombExplodeMap.drawExplosion(g2,this);
-                    bombExplodeMap.update();
-                    bombExplodeMap.print();
-                }
+            } else {//exploding
+                state = 1;
+                //draw explosion
+                bombExplodeMap.drawExplosion(g2,this);
+                bombExplodeMap.update();
             }
+        }
     }
 
     public void getBombImage() {

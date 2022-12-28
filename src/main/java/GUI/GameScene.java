@@ -24,7 +24,9 @@ public class GameScene extends Scene {
     public static SuperObject[] Object = new SuperObject[100];
 
     static Player player;
-    static ArrayList<Mob> mobList = new ArrayList<>(3);
+    static ArrayList<Mob> mobList = new ArrayList<>();
+    public static int mobCounter;
+
     public Boss boss;
 
     public static ArrayList<Bomb> bombList;
@@ -143,10 +145,7 @@ public class GameScene extends Scene {
         }
     }
     public static boolean isGameOver(){
-        if(mobList.size() == 0 && player.state == 1 && mapID == 2){
-            return true;
-        }
-        return false;
+        return mobList.size() == 0 && player.state == 1 && mapID == 2;
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;

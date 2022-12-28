@@ -1,5 +1,40 @@
 # Bomberman
 
+<div align="center">
+<img src="src/main/resources/Screenshots/Menu.png" alt="">
+</div>
+
+<!-- TABLE OF CONTENTS -->
+
+# Table of contents
+
+1. [Introduction](#Introduction)
+2. [Game](#Game)
+
+<!-- details>
+<summary>Table of Contents</summary>
+<ol>
+    <li>
+        <a href="#Introduction">Introduction</a>
+        <ul>
+            <li><a href="#Team-Members">Team Members</a></li>
+            <li><a href="#How-to-Run">How to Run</a></li>
+            <li><a href="#Task-Allocation">Task Allocation</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#Game">Game</a>
+        <ul>
+            <li><a href="#About-the-Game">About the Game</a></li>
+            <li><a href="#Controls">Controls</a></li>
+            <li><a href="#Items">Items</a></li>
+        </ul>
+    </li>
+</ol>
+</details -->
+
+## Introduction <a name="Introduction"></a>
+
 <div style = "text-align: justify">
 This is our Bomberman project for the Object-Oriented Programming course at HCMIU in semester 1 (2022-2023). We all knew that the game is a classic, but we wanted to make it more interesting and challenging. So we decided to add some new features to the game. We hope you enjoy it!
 </div>
@@ -34,10 +69,10 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 |   1   |   Tran Nguyen Phuc    | Controls, GUI, Maps, Entities, Sound, UML, git |      20      |
 |   2   | Nguyen Mach Khang Huy |               Objects, Controls                |      20      |
 |   3   |   Nguyen Tuan Khoa    |               Entities, Controls               |      20      |
-|   4   | Nguyen Manh Viet Khoi |          GUI, Entities, Objects, Debugger      |      20      |
+|   4   | Nguyen Manh Viet Khoi |        GUI, Entities, Objects, Debugger        |      20      |
 |   5   |     Pham Vu Quang     |                   GUI, Maps                    |      20      |
 
-## Game
+## Game <a name="Game"></a>
 
 ### About The Game
 

@@ -19,6 +19,7 @@ public class Boss extends Entity {
     public boolean collision;
 
     public Boss() {
+        this.name ="boss";
         solidArea = new Rectangle();
         solidArea.x = 4 * 2;
         solidArea.y = 16 * 2;
@@ -30,14 +31,14 @@ public class Boss extends Entity {
     }
 
     public void setDefault() {
-        x = Constant.TILE_SIZE * 12; //Boss cord
-        y = Constant.TILE_SIZE * 5;
+        x = Constant.TILE_SIZE * 21; //Boss cord
+        y = Constant.TILE_SIZE * 36;
         speed = 1;
         collision = true;
         this.direction = "down";
         this.state = 1;
-        this.hitPoint = 500;
 
+        this.hitPoint = 200;
     }
 
     public void getMobImage() {
@@ -70,7 +71,7 @@ public class Boss extends Entity {
             for(int i = 0; i < GameScene.getBombList().size(); i++)
                 cCheck.checkBomb(GameScene.getBombList().get(i), this);
         }
-
+        checkState(hitPoint);
         cCheck.checkBoss(GameScene.getPlayer(), this);
 
         if (!collisionOn) {
@@ -108,7 +109,7 @@ public class Boss extends Entity {
     public void checkState(int hitPoint){
         if (hitPoint == 0){
             state = 0;
-        }
+        } else state =1;
     }
 
 

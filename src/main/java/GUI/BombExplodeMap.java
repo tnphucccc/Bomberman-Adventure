@@ -1,5 +1,6 @@
 package GUI;
 
+import Controls.SoundManager;
 import Entity.Bomb;
 import Entity.Entity;
 import Variables.Constant;
@@ -16,7 +17,7 @@ public class BombExplodeMap extends Entity {
     BufferedImage[][] end = new BufferedImage[9][8];
     BufferedImage[] explode= new BufferedImage[8];
     public int downLength, upLength, rightLength, leftLength;
-
+    SoundManager sound = new SoundManager("src/main/resources/Sound/bomb_explosion.wav");
     public BombExplodeMap() {
         map = TileManager.getInstance().mapTileNum; //get map from TileManager
         try {
@@ -51,7 +52,7 @@ public class BombExplodeMap extends Entity {
     public void drawExplosion(Graphics2D g2, Bomb bomb) {
         int x = bomb.getX() / Constant.TILE_SIZE;
         int y = bomb.getY() / Constant.TILE_SIZE;
-
+        sound.playSound("src/main/resources/Sound/bomb_explosion.wav");
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y + i][x] == 0 || map[y + i][x] == 3) { //Draw explosion if ground or shadow
@@ -158,12 +159,6 @@ public class BombExplodeMap extends Entity {
         upLength = 0;
         rightLength = 0;
         leftLength = 0;
-    }
-    public void print(){
-        System.out.println("up: " + upLength);
-        System.out.println("down: " + downLength);
-        System.out.println("left: " + leftLength);
-        System.out.println("right: " + rightLength);
     }
 
     public void draw(Graphics2D g2, int x, int y, int i) {

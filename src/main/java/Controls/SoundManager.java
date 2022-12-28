@@ -1,35 +1,72 @@
 package Controls;
 
+
 import javax.sound.sampled.*;
-import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
-public class SoundManager extends JFrame {
-    private String soundPath;
-    private Clip just_died, put_bomb, bomb_explode, get_item;
+public class SoundManager {
+    private String file_path, sound_path;
+    private int state;
+    Thread thread;
+    public SoundManager(String file_path) {
+        this.file_path = file_path;
+        this.sound_path = file_path;
+        this.state = 1;
+    }
 
-    public SoundManager(String name, String sound) {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        try {
-            URL url = this.getClass().getClassLoader().getResource(name);
-            assert url != null;
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(url);
-            if (sound.equals("just_died")) {
-                just_died = AudioSystem.getClip();
-                just_died.open(audioInputStream);
-            } else if (sound.equals("put_bomb")) {
-                put_bomb = AudioSystem.getClip();
-                put_bomb.open(audioInputStream);
-            } else if (sound.equals("bomb_explode")) {
-                bomb_explode = AudioSystem.getClip();
-                bomb_explode.open(audioInputStream);
-            } else if (sound.equals("get_item")) {
-                get_item = AudioSystem.getClip();
-                get_item.open(audioInputStream);
+    public void playSound(String sound_path) {
+        this.sound_path = sound_path;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    File file = new File(sound_path);
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+                    AudioFormat format = audioStream.getFormat();
+                    DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
+                    SourceDataLine audioLine = (SourceDataLine) AudioSystem.getLine(info);
+                    byte[] data = new byte[512 * 1024];
+                    audioLine.open();
+                    audioLine.start();
+                    int bytesRead = 0;
+                    while (bytesRead != -1) {
+                        if (state == 3) break;
+                        bytesRead = audioStream.read(data, 0, data.length);
+                        if (bytesRead >= 0) {
+                            audioLine.write(data, 0, bytesRead);
+                        }
+                    }
+                    audioLine.drain();
+                    audioLine.close();
+                } catch (UnsupportedAudioFileException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (LineUnavailableException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
+        }).start();
+    }
+
+    public void start_BGM() {
+        if (state != 1) return;
+        state = 2;
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (state == 2) {
+                    playSound(sound_path);
+                    if (state == 3) break;
+                }
+            }
+        });
+        thread.start();
+    }
+
+    public void stop_BGM() {
+        state = 3;
+        thread.stop();
     }
 }
