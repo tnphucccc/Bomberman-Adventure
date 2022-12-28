@@ -1,3 +1,8 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
 # Bomberman
 
 <div align="center">
@@ -109,3 +114,15 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
 | Bomb Item  |   Increase the number of bombs   |
 | Flame Item |   Increase the range of bombs    |
 | Speed Item | Increase the speed of the player |
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/tnphucccc/Bomberman.svg?style=for-the-badge
+[contributors-url]: https://github.com/tnphucccc/Bomberman-Adventure/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/tnphucccc/Bomberman.svg?style=for-the-badge
+[forks-url]: https://github.com/tnphucccc/Bomberman-Adventure/network/members
+[stars-shield]: https://img.shields.io/github/stars/tnphucccc/Bomberman.svg?style=for-the-badge
+[stars-url]: https://github.com/tnphucccc/Bomberman-Adventure/stargazers
+[issues-shield]: https://img.shields.io/github/issues/tnphucccc/Bomberman.svg?style=for-the-badge
+[issues-url]: https://github.com/tnphucccc/Bomberman-Adventure/issues
