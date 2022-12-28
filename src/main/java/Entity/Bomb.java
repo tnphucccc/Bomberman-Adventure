@@ -28,7 +28,7 @@ public class Bomb extends Entity {
     public Bomb(int x,int y,int radius) {
         this.x = x;
         this.y = y;
-        this.bombRadius = radius;
+        bombRadius = radius;
 
         solidArea = new Rectangle();
         solidArea.x = 0;
@@ -41,7 +41,7 @@ public class Bomb extends Entity {
         setDefault();
         update(x,y);
     }
-    public Bomb (){};
+    public Bomb (){}
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
@@ -55,14 +55,11 @@ public class Bomb extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
             if (key.equals("space")) {
-                long timeElapsed = 2000000000L;
-                long timeDuration = 4000000000L;
-
-                if (timeElapsed > System.nanoTime() - timeStart) {//planting
+                if ((System.nanoTime() - timeStart)/Constant.T < 2) {//planting for 2s
                     update();
                     g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
-                } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
+                } else if ((System.nanoTime() - timeStart)/Constant.T > 4) { //disappeared in 4s
                     GameScene.bombCounter--;
                     state = 2;
                     update();
@@ -134,7 +131,7 @@ public class Bomb extends Entity {
 
     //get radius
     public void setBombRadius(int radius) {
-        this.bombRadius += radius;
+        bombRadius += radius;
     }
     public int getBombRadius() {
         return bombRadius;
