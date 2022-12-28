@@ -11,7 +11,7 @@
 1. [Introduction](#Introduction)
 2. [Game](#Game)
 
-<!-- details>
+<!-- <details>
 <summary>Table of Contents</summary>
 <ol>
     <li>
@@ -31,7 +31,7 @@
         </ul>
     </li>
 </ol>
-</details -->
+</details> -->
 
 <!-- ABOUT THE PROJECT -->
 
