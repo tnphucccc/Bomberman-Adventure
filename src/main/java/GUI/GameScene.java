@@ -23,6 +23,7 @@ public class GameScene extends Scene {
 
     static Player player;
     static ArrayList<Mob> mobList = new ArrayList<>();
+    public static int mobCounter;
 
     public Boss boss;
 
