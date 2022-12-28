@@ -123,8 +123,8 @@ public class CollisionCheck {
                 entity.solidArea.x = entity.x + entity.solidArea.x;
                 entity.solidArea.y = entity.y + entity.solidArea.y;
                 //get object's solid area position
-                GameScene.Object[i].solidArea.x = GameScene.Object[i].x + GameScene.Object[i].solidArea.x+10;
-                GameScene.Object[i].solidArea.y = GameScene.Object[i].y + GameScene.Object[i].solidArea.y+10;
+                GameScene.Object[i].solidArea.x = GameScene.Object[i].x + GameScene.Object[i].solidArea.x+20;
+                GameScene.Object[i].solidArea.y = GameScene.Object[i].y + GameScene.Object[i].solidArea.y+20;
 
                 switch (entity.direction) {
                     case "up" -> {
