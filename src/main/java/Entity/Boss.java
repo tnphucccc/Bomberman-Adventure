@@ -37,7 +37,7 @@ public class Boss extends Entity {
         collision = true;
         this.direction = "down";
         this.state = 1;
-        this.hitPoint = 500;
+        this.hitPoint = 200;
     }
 
     public void getMobImage() {
