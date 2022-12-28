@@ -2,6 +2,7 @@ package Entity;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
+import Controls.SoundManager;
 import GUI.*;
 import GUI.Window;
 import Variables.Constant;
@@ -15,6 +16,7 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
+    SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
     public static Player getInstance(){
         if (Player.instance == null){
@@ -134,6 +136,7 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         if (i != 999) {
             String objName = GameScene.Object[i].name;
+            sound.playSound("src/main/resources/Sound/put_bombs.wav");
             switch (objName) {
                 case "ExtraBomb" -> {
                     GameScene.bombSize += 1;
