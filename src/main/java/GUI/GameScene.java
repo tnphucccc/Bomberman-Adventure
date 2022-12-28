@@ -31,6 +31,7 @@ public class GameScene extends Scene {
     public static int bombSize;
     public static int bombCounter;
     public static int bombRadius;
+    public BombExplodeMap bombExplodeMap;
 
     public static GameScene instance = null;
     public static GameScene getInstance(){
@@ -55,6 +56,7 @@ public class GameScene extends Scene {
         aSetter.setItems();
 
         bombList = new ArrayList<>();
+        bombExplodeMap = new BombExplodeMap();
         bombCounter = 0;
         bombSize = 2;
         bombRadius = 1;
@@ -81,7 +83,7 @@ public class GameScene extends Scene {
                 }
             }
             if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
-                bombList.add(new Bomb(player.getX(), player.getY(), bombRadius));
+                bombList.add(new Bomb(player.getX(), player.getY(), bombRadius, bombExplodeMap));
                 bombCounter++;
             }
         }

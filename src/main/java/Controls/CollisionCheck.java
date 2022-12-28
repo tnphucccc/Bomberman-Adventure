@@ -246,12 +246,14 @@ public class CollisionCheck {
                             entity.y+r,
                             entity.solidArea.width-r,
                             entity.solidArea.height-r);
-                        Rectangle vertical = new Rectangle(bomb.getX()-bomb.getBombRadius()*Constant.TILE_SIZE+r,
+                        Rectangle vertical = new Rectangle(
+                                bomb.getX()-bomb.getBombRadius()*Constant.TILE_SIZE+r,
                                 bomb.getY()+r,
                                 bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r,
                                 Constant.TILE_SIZE-r);
                         //create a rectangle for bomb range horizontal 
-                        Rectangle horizontal = new Rectangle(bomb.getX()+r,
+                        Rectangle horizontal = new Rectangle(
+                                bomb.getX()+r,
                                 bomb.getY()-bomb.getBombRadius()*Constant.TILE_SIZE+r,
                                 Constant.TILE_SIZE-20,
                                 bomb.getBombRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-20);

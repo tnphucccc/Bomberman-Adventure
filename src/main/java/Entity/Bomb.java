@@ -23,12 +23,15 @@ public class Bomb extends Entity {
 
     private int bombCounter = 0;
     public static int bombRadius;
+    public BombExplodeMap bombExplodeMap;
 
 
-    public Bomb(int x,int y,int radius) {
+    public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
         this.x = x;
         this.y = y;
+        this.bombExplodeMap = bombExplodeMap;
         bombRadius = radius;
+
 
         solidArea = new Rectangle();
         solidArea.x = 0;
@@ -63,12 +66,14 @@ public class Bomb extends Entity {
                     GameScene.bombCounter--;
                     state = 2;
                     update();
+                    bombExplodeMap.resetExplosion();
 
                 } else {//exploding
                     state = 1;
                     //draw explosion
-                    BombExplodeMap.getInstance().drawExplosion(g2,this);
-                    BombExplodeMap.getInstance().update();
+                    bombExplodeMap.drawExplosion(g2,this);
+                    bombExplodeMap.update();
+                    bombExplodeMap.print();
                 }
             }
     }
