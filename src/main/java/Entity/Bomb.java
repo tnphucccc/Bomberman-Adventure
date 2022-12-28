@@ -55,11 +55,11 @@ public class Bomb extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
             if (key.equals("space")) {
-                if ((System.nanoTime() - timeStart)/Constant.T < 2) {//planting for 2s
+                if ((System.nanoTime() - timeStart)/Constant.Tera < 2) {//planting for 2s
                     update();
                     g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
-                } else if ((System.nanoTime() - timeStart)/Constant.T > 4) { //disappeared in 4s
+                } else if ((System.nanoTime() - timeStart)/Constant.Tera > 4) { //disappeared in 4s
                     GameScene.bombCounter--;
                     state = 2;
                     update();

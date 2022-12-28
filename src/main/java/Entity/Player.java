@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
-    Bomb bomb = new Bomb();
 
     public static Player getInstance(){
         if (Player.instance == null){
@@ -24,7 +23,7 @@ public class Player extends Entity {
         return Player.instance;
     }
     public Player() {
-
+        this.name ="player";
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
@@ -151,7 +150,7 @@ public class Player extends Entity {
                     //}
                 }
                 case "BlastRadius" ->{
-                    bomb.setBombRadius(1);
+                    GameScene.bombRadius++;
                     GameScene.Object[i] = null;
                 }
             }

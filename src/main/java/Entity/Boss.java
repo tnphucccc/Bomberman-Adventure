@@ -19,6 +19,7 @@ public class Boss extends Entity {
     public boolean collision;
 
     public Boss() {
+        this.name ="boss";
         solidArea = new Rectangle();
         solidArea.x = 4 * 2;
         solidArea.y = 16 * 2;
