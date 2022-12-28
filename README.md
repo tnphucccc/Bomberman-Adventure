@@ -34,12 +34,16 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 |   1   |   Tran Nguyen Phuc    | Controls, GUI, Maps, Entities, Sound, UML, git |      20      |
 |   2   | Nguyen Mach Khang Huy |               Objects, Controls                |      20      |
 |   3   |   Nguyen Tuan Khoa    |               Entities, Controls               |      20      |
-|   4   | Nguyen Manh Viet Khoi |          GUI, Entities, Objects, Debugger      |      20      |
+|   4   | Nguyen Manh Viet Khoi |        GUI, Entities, Objects, Debugger        |      20      |
 |   5   |     Pham Vu Quang     |                   GUI, Maps                    |      20      |
 
 ## Game
 
 ### About The Game
+
+<div align="center">
+<img src="src/main/resources/Screenshots/Menu.png" alt="">
+</div>
 
 - Language: [Java](https://www.java.com/en/)
 - IDEs: [IntelliJ IDEA](https://www.jetbrains.com/idea/), [VSCode](https://code.visualstudio.com/)
