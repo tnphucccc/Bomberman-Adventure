@@ -1,7 +1,6 @@
 package GUI;
 
 import Controls.CollisionCheck;
-import Controls.KeyHandler;
 import Entity.Bomb;
 import Entity.Boss;
 import Entity.Mob;
@@ -22,7 +21,8 @@ public class GameScene extends Scene {
     public static SuperObject[] Object = new SuperObject[100];
 
     static Player player;
-    static ArrayList<Mob> mobList = new ArrayList<>(3);
+    static ArrayList<Mob> mobList = new ArrayList<>();
+
     public Boss boss;
 
     static ArrayList<Bomb> bombList;
@@ -141,4 +141,5 @@ public class GameScene extends Scene {
     public static int getMapID(){
         return mapID;
     }
+
 }
