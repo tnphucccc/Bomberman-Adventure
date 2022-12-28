@@ -59,6 +59,7 @@ public class BombExplodeMap extends Entity {
                 }
                 else draw(g2, x, y + i, 2);
             } else if (map[y + i][x] == 1 || map[y + i][x] == 4){
+                bomb.setDownRadius(bomb.bombRadius - i);
                 break;
             } else if (map[y + i][x] == 2) {
                 draw(g2, x, y, 8);
@@ -71,6 +72,7 @@ public class BombExplodeMap extends Entity {
 
         //check upward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
+            bomb.setUpRadius(i);
             if (map[y - i][x] == 0 || map[y - i][x] == 3) {
                 draw(g2, x, y, 8);
                 if (map[y - (i+1)][x] == 1 || map[y - (i+1)][x] == 4){
@@ -81,6 +83,7 @@ public class BombExplodeMap extends Entity {
                 }
                 else draw(g2, x, y - i, 0);
             } else if (map[y - i][x] == 1 || map[y - i][x] == 4){
+                bomb.setUpRadius(i);
                 break;
             } else if (map[y - i][x] == 2) {
                 draw(g2, x, y, 8);
@@ -93,6 +96,7 @@ public class BombExplodeMap extends Entity {
 
         //check right
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
+            bomb.setRightRadius(i);
             if (map[y][x + i] == 0 || map[y][x + i] == 3) {
                 draw(g2, x, y, 8);
                 if (map[y][x + (i+1)] == 1 || map[y][x + (i+1)] == 4){
@@ -115,6 +119,7 @@ public class BombExplodeMap extends Entity {
 
         //check left
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
+            bomb.setLeftRadius(i);
             if (map[y][x - i] == 0 || map[y][x - i] == 3) {
                 draw(g2, x, y, 8);
                 if (map[y][x - (i+1)] == 1 || map[y][x - (i+1)] == 4){

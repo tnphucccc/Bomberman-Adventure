@@ -23,7 +23,7 @@ public class Bomb extends Entity {
 
     private int bombCounter = 0;
     public int bombRadius;
-
+    public int up, down, left, right;
 
     public Bomb(int x,int y,int radius) {
         this.x = x;
@@ -141,4 +141,31 @@ public class Bomb extends Entity {
     public int getState(){
         return state;
     }
+    //set direction radius
+    public void setUpRadius(int up) {
+        this.up = up;
+    }
+    public void setDownRadius(int down) {
+        this.down = down;
+    }
+    public void setLeftRadius(int left) {
+        this.left = left;
+    }
+    public void setRightRadius(int right) {
+        this.right = right;
+    }
+    //get direction radius
+    public int getUpRadius() {
+        return up;
+    }
+    public int getDownRadius() {
+        return down;
+    }
+    public int getLeftRadius() {
+        return left;
+    }
+    public int getRightRadius() {
+        return right;
+    }
+    
 }
