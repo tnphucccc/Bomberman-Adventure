@@ -19,7 +19,6 @@ public class Boss extends Entity {
     public boolean collision;
 
     public Boss() {
-
         solidArea = new Rectangle();
         solidArea.x = 4 * 2;
         solidArea.y = 16 * 2;
@@ -37,6 +36,8 @@ public class Boss extends Entity {
         collision = true;
         this.direction = "down";
         this.state = 1;
+        this.hitPoint = 500;
+
     }
 
     public void getMobImage() {
@@ -103,6 +104,13 @@ public class Boss extends Entity {
             }
         }
     }
+
+    public void checkState(int hitPoint){
+        if (hitPoint == 0){
+            state = 0;
+        }
+    }
+
 
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
