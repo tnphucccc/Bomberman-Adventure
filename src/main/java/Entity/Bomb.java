@@ -22,7 +22,7 @@ public class Bomb extends Entity {
     private String key = "";
 
     private int bombCounter = 0;
-    public static int bombRadius;
+    public int bombRadius;
 
 
     public Bomb(int x,int y,int radius) {
@@ -41,7 +41,6 @@ public class Bomb extends Entity {
         setDefault();
         update(x,y);
     }
-    public Bomb (){};
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
@@ -55,21 +54,17 @@ public class Bomb extends Entity {
     public void draw(Graphics2D g2) {
         BufferedImage img = getEntityImage();
             if (key.equals("space")) {
-                long timeElapsed = 2000000000L;
-                long timeDuration = 4000000000L;
-
-                if (timeElapsed > System.nanoTime() - timeStart) {//planting
+                if ((System.nanoTime() - timeStart)/Constant.T < 2) {//planting for 2s
                     update();
                     g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
 
-                } else if (timeDuration < System.nanoTime() - timeStart) { //disappeared
+                } else if ((System.nanoTime() - timeStart)/Constant.T > 4) { //disappeared in 4s
                     GameScene.bombCounter--;
                     state = 2;
                     update();
 
                 } else {//exploding
                     state = 1;
-                    //draw explosion
                     BombExplodeMap.getInstance().drawExplosion(g2,this);
                     BombExplodeMap.getInstance().update();
                 }

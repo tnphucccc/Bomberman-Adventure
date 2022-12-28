@@ -21,14 +21,13 @@ public class GameScene extends Scene {
     AssetSetter aSetter;
 
     public static CollisionCheck cCheck;
-
     public static SuperObject[] Object = new SuperObject[100];
 
     static Player player;
     static ArrayList<Mob> mobList = new ArrayList<>(3);
     public Boss boss;
 
-    static ArrayList<Bomb> bombList;
+    public static ArrayList<Bomb> bombList;
     public static int bombSize;
     public static int bombCounter;
     public static int bombRadius;
@@ -140,6 +139,12 @@ public class GameScene extends Scene {
         if (player.state == 0) {
             GameOver.getInstance().draw(g2);
         }
+    }
+    public static boolean isGameOver(){
+        if(mobList.size() == 0 && player.state == 1 && mapID == 2){
+            return true;
+        }
+        return false;
     }
     public static ArrayList<Bomb> getBombList() {
         return bombList;

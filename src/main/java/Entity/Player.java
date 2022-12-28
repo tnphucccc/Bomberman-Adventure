@@ -15,7 +15,6 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
-    Bomb bomb = new Bomb();
 
     public static Player getInstance(){
         if (Player.instance == null){

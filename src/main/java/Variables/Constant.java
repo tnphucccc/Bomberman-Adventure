@@ -23,4 +23,5 @@ public class Constant {
 
     public static final String TITLE = "Bomberman Adventure";
     public static final int FPS = 60;
+    public static final int T= 1_000_000_000;
 }
