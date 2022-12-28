@@ -31,11 +31,10 @@ public class Bomb extends Entity {
 
 
     public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
-        this.x = x;
-        this.y = y;
+        this.x = ((x + 16) / 48) * 48;
+        this.y = ((y + 24) / 48) * 48;
         this.bombExplodeMap = bombExplodeMap;
         bombRadius = radius;
-
 
         solidArea = new Rectangle();
         solidArea.x = 0;
@@ -55,8 +54,7 @@ public class Bomb extends Entity {
         timeStart = System.nanoTime();
 
         // round x and y so the bomb is placed in the middle of the tile
-        this.x = ((x + 16) / 48) * 48;
-        this.y = ((y + 24) / 48) * 48;
+
     }
 
     //draw bomb on the map with gif
