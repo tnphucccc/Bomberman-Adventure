@@ -16,6 +16,7 @@ public class BombExplodeMap extends Entity {
     private final int[][] map;
     BufferedImage[][] end = new BufferedImage[9][8];
     BufferedImage[] explode= new BufferedImage[8];
+    public int downLength, upLength, rightLength, leftLength;
     SoundManager sound = new SoundManager("src/main/resources/Sound/bomb_explosion.wav");
     public BombExplodeMap() {
         map = TileManager.getInstance().mapTileNum; //get map from TileManager
@@ -34,6 +35,10 @@ public class BombExplodeMap extends Entity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.downLength = 0;
+        this.upLength = 0;
+        this.rightLength = 0;
+        this.leftLength = 0;
     }
 
     public static BombExplodeMap getInstance() {
@@ -50,7 +55,7 @@ public class BombExplodeMap extends Entity {
         sound.playSound("src/main/resources/Sound/bomb_explosion.wav");
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
-            if (map[y + i][x] == 0 || map[y + i][x] == 3) {
+            if (map[y + i][x] == 0 || map[y + i][x] == 3) { //Draw explosion if ground or shadow
                 draw(g2, x, y, 8);
                 if (map[y + (i+1)][x] == 1 || map[y + (i+1)][x] == 4){
                     draw(g2, x, y + i, 2);
@@ -59,15 +64,16 @@ public class BombExplodeMap extends Entity {
                     draw(g2, x, y + i, 6);
                 }
                 else draw(g2, x, y + i, 2);
-            } else if (map[y + i][x] == 1 || map[y + i][x] == 4){
+            } else if (map[y + i][x] == 1 || map[y + i][x] == 4){ //Explosion not drawn if wall
                 break;
-            } else if (map[y + i][x] == 2) {
+            } else if (map[y + i][x] == 2) { //Break Brick
                 draw(g2, x, y, 8);
                 draw(g2, x, y + i, 6);
                 draw(g2, x, y + i, 2);
                 breakBrick(x, y + i);
                 break;
             }
+            downLength = i;;
         }
 
         //check upward
@@ -90,6 +96,7 @@ public class BombExplodeMap extends Entity {
                 breakBrick(x, y - i);
                 break;
             }
+            upLength = i;
         }
 
         //check right
@@ -112,6 +119,7 @@ public class BombExplodeMap extends Entity {
                 breakBrick(x + i, y);
                 break;
             }
+            rightLength = i;
         }
 
         //check left
@@ -134,6 +142,7 @@ public class BombExplodeMap extends Entity {
                 breakBrick(x - i, y);
                 break;
             }
+            leftLength = i;
         }
     }
 
@@ -145,7 +154,12 @@ public class BombExplodeMap extends Entity {
             map[y + 1][x] = 0;//check if under brick is shadow, if shadow draw ground
         }
     }
-
+    public void resetExplosion(){
+        downLength = 0;
+        upLength = 0;
+        rightLength = 0;
+        leftLength = 0;
+    }
 
     public void draw(Graphics2D g2, int x, int y, int i) {
         int drawX = Camera.setXCord(x * Constant.TILE_SIZE);
