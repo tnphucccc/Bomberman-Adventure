@@ -28,6 +28,7 @@ public class Bomb extends Entity {
     public int bombExplosionTimer = 2;
     public int bombExplosionTimerMax = 4;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
+    SoundManager sound1 = new SoundManager("src/main/resources/Sound/bomb_explosion.wav");
 
 
     public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
@@ -68,6 +69,7 @@ public class Bomb extends Entity {
             } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
                 GameScene.bombCounter--;
                 state = 2;
+                sound1.playSound("src/main/resources/Sound/bomb_explosion.wav");
                 update();
                 bombExplodeMap.resetExplosion();
 
