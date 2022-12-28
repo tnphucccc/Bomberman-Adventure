@@ -17,7 +17,7 @@ public class BombExplodeMap extends Entity {
     BufferedImage[][] end = new BufferedImage[9][8];
     BufferedImage[] explode= new BufferedImage[8];
     public int downLength, upLength, rightLength, leftLength;
-
+    SoundManager sound = new SoundManager("src/main/resources/Sound/bomb_explosion.wav");
     public BombExplodeMap() {
         map = TileManager.getInstance().mapTileNum; //get map from TileManager
         try {
