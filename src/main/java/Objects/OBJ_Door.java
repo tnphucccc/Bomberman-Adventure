@@ -1,5 +1,6 @@
 package Objects;
 
+import GUI.GameScene;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;

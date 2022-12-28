@@ -21,6 +21,7 @@ public class Mob extends Entity {
         this.x = x;
         this.y = y;
 
+        this.name ="mob";
         solidArea = new Rectangle();
         solidArea.x = 4;
         solidArea.y = 16;

@@ -1,7 +1,6 @@
 package GUI;
 
 import Controls.CollisionCheck;
-import Controls.KeyHandler;
 import Entity.Bomb;
 import Entity.Boss;
 import Entity.Mob;
@@ -10,7 +9,6 @@ import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
@@ -24,13 +22,15 @@ public class GameScene extends Scene {
     public static SuperObject[] Object = new SuperObject[100];
 
     static Player player;
-    static ArrayList<Mob> mobList = new ArrayList<>(3);
+    static ArrayList<Mob> mobList = new ArrayList<>();
+
     public Boss boss;
 
-    static ArrayList<Bomb> bombList;
+    public static ArrayList<Bomb> bombList;
     public static int bombSize;
     public static int bombCounter;
-    public Notification notification;
+    public static int bombRadius;
+
     public static GameScene instance = null;
     public static GameScene getInstance(){
         if(GameScene.instance == null){
@@ -52,10 +52,11 @@ public class GameScene extends Scene {
 
         aSetter.setMob();
         aSetter.setItems();
-        notification = new Notification(1);
+
         bombList = new ArrayList<>();
         bombCounter = 0;
         bombSize = 2;
+        bombRadius = 1;
     }
 
     @Override
@@ -74,13 +75,10 @@ public class GameScene extends Scene {
             }
 
             if(mapID == 2){
-                if(boss.state == 1){
                     boss.update();
-                }
             }
             if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
-                bombList.add(new Bomb(player.getX(), player.getY(), Notification.getBombRadius()));
-               // Notification.setBombRadius(1);
+                bombList.add(new Bomb(player.getX(), player.getY(), bombRadius));
                 bombCounter++;
             }
         }
@@ -139,6 +137,9 @@ public class GameScene extends Scene {
             GameOver.getInstance().draw(g2);
         }
     }
+    public static boolean isGameOver(){
+        return mobList.size() == 0 && player.state == 1 && mapID == 2;
+    }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
@@ -151,4 +152,5 @@ public class GameScene extends Scene {
     public static int getMapID(){
         return mapID;
     }
+
 }
