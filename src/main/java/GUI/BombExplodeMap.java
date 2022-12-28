@@ -50,6 +50,7 @@ public class BombExplodeMap extends Entity {
         sound.playSound("src/main/resources/Sound/bomb_explosion.wav");
         //check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
+            bomb.setDownRadius(i);
             if (map[y + i][x] == 0 || map[y + i][x] == 3) {
                 draw(g2, x, y, 8);
                 if (map[y + (i+1)][x] == 1 || map[y + (i+1)][x] == 4){
@@ -60,7 +61,7 @@ public class BombExplodeMap extends Entity {
                 }
                 else draw(g2, x, y + i, 2);
             } else if (map[y + i][x] == 1 || map[y + i][x] == 4){
-                bomb.setDownRadius(bomb.bombRadius - i);
+                
                 break;
             } else if (map[y + i][x] == 2) {
                 draw(g2, x, y, 8);

@@ -31,7 +31,10 @@ public class Bomb extends Entity {
         this.x = x;
         this.y = y;
         bombRadius = radius;
-
+        up = 1;
+        down = 1;
+        left = 1;
+        right = 1;
         solidArea = new Rectangle();
         solidArea.x = 0;
         solidArea.y = 0;

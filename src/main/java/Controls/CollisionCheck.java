@@ -6,7 +6,6 @@ import Entity.*;
 import Variables.Constant;
 import java.awt.*;
 import java.util.ArrayList;
-
 public class CollisionCheck {
     public static CollisionCheck instance;
 
@@ -272,14 +271,14 @@ public class CollisionCheck {
                                 bomb.getY()+r,
                                 bomb.getDownRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r,
                                 Constant.TILE_SIZE-r);
-                        //create a rectangle for bomb range horizontal 
                         Rectangle horizontal = new Rectangle(bomb.getX()+r,
                                 bomb.getY()-bomb.getLeftRadius()*Constant.TILE_SIZE+r,
-                                Constant.TILE_SIZE-20,
-                                bomb.getRightRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-20);
-                               
+                                Constant.TILE_SIZE-r,
+                                bomb.getRightRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r);       
                         if(vertical.intersects(playerSolidBox2) || horizontal.intersects(playerSolidBox2)){
                             entity.state = 0;
+                            System.out.println(horizontal.intersects(playerSolidBox2)+" "+vertical.intersects(playerSolidBox2));
+
                         }
                     }
                 }

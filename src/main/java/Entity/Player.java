@@ -2,7 +2,6 @@ package Entity;
 
 import Controls.CollisionCheck;
 import Controls.KeyHandler;
-import Controls.SoundManager;
 import GUI.*;
 import GUI.Window;
 import Variables.Constant;
@@ -16,7 +15,6 @@ import java.util.Objects;
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     public static Player instance;
-    SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
     public static Player getInstance(){
         if (Player.instance == null){
@@ -136,7 +134,6 @@ public class Player extends Entity {
     public void pickUpObject(int i) {
         if (i != 999) {
             String objName = GameScene.Object[i].name;
-            sound.playSound("src/main/resources/Sound/put_bombs.wav");
             switch (objName) {
                 case "ExtraBomb" -> {
                     GameScene.bombSize += 1;
@@ -147,15 +144,10 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    for (Mob value : GameScene.getMobList()) {
-                        if (value.state==0)
-                            GameScene.mobCounter++;
-                    }
-                    if(GameScene.getMobList().size()==GameScene.mobCounter) {
+                    //if(GameScene.getMobCounter()==0) {
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
-                        GameScene.mobCounter=0;
-                    }
+                    //}
                 }
                 case "BlastRadius" ->{
                     GameScene.bombRadius++;
