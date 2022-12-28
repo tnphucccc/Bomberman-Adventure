@@ -267,17 +267,27 @@ public class CollisionCheck {
                             entity.y+r,
                             entity.solidArea.width-r,
                             entity.solidArea.height-r);
+                        // Rectangle vertical = new Rectangle(bomb.getX()-bomb.getUpRadius()*Constant.TILE_SIZE+r,
+                        //         bomb.getY()+r,
+                        //         Constant.TILE_SIZE-r*2,
+                        //         Constant.TILE_SIZE*bomb.getDownRadius()*2 +Constant.TILE_SIZE-r);
+                        // Rectangle horizontal = new Rectangle(bomb.getX()+r,
+                        //         bomb.getY()-bomb.getLeftRadius()*Constant.TILE_SIZE+r,
+                        //         Constant.TILE_SIZE-r*2,
+                        //         bomb.getRightRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r);       
+                        //Create Rectangle for bomb vertically and horiontally
                         Rectangle vertical = new Rectangle(bomb.getX()-bomb.getUpRadius()*Constant.TILE_SIZE+r,
-                                bomb.getY()+r,
-                                bomb.getDownRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r,
-                                Constant.TILE_SIZE-r);
+                                Constant.TILE_SIZE-r,
+                                Constant.TILE_SIZE-r,
+                                Constant.TILE_SIZE*bomb.getDownRadius()*2 +Constant.TILE_SIZE-r);
                         Rectangle horizontal = new Rectangle(bomb.getX()+r,
                                 bomb.getY()-bomb.getLeftRadius()*Constant.TILE_SIZE+r,
                                 Constant.TILE_SIZE-r,
-                                bomb.getRightRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r);       
-                        if(vertical.intersects(playerSolidBox2) || horizontal.intersects(playerSolidBox2)){
+                                bomb.getRightRadius()*Constant.TILE_SIZE*2+Constant.TILE_SIZE-r);
+                        if(vertical.intersects(playerSolidBox) || horizontal.intersects(playerSolidBox)){
                             entity.state = 0;
-                            System.out.println(horizontal.intersects(playerSolidBox2)+" "+vertical.intersects(playerSolidBox2));
+                            System.out.println(vertical.intersects(playerSolidBox2));
+                            
 
                         }
                     }
