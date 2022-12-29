@@ -147,7 +147,7 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    if(GameScene.instance.finishLevel(GameScene.getMobList().size())) {
+                    if(GameScene.mobClear(GameScene.getMobList().size())) {
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
                         GameScene.mobCounter = 0;

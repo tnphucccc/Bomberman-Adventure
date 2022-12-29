@@ -8,7 +8,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.Objects;
 
-public class GameDone {
+public class GameDone extends Scene {
     Image gameDone;
     static GameDone instance;
 
@@ -23,8 +23,19 @@ public class GameDone {
         URL url = Objects.requireNonNull(getClass().getResource("/Menu/GameDone.gif"));
         ImageIcon icon = new ImageIcon(url);
         gameDone = icon.getImage();
+
     }
     public void draw(Graphics2D g2) {
         g2.drawImage(gameDone, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void draw(Graphics g) {
+
     }
 }
