@@ -6,7 +6,7 @@ public class Camera {
     public int x, y;
 
     public static int setXCord(int x) {
-        int playerX = GameScene.getInstance().getPlayer().getX();
+        int playerX = GameScene.getPlayer().getX();
         if (GameScene.getMapID() == 2) {
             return x - playerX + Constant.PLAYER_SCREEN_X;
         } else if (GameScene.getMapID() == 1) {
@@ -16,7 +16,7 @@ public class Camera {
     }
 
     public static int setYCord(int y) {
-        int playerY = GameScene.getInstance().getPlayer().getY();
+        int playerY = GameScene.getPlayer().getY();
         if (GameScene.getMapID() == 2) {
             return y - playerY + Constant.PLAYER_SCREEN_Y;
         } else if (GameScene.getMapID() == 1) {
@@ -43,7 +43,7 @@ public class Camera {
         return y;
     }
 
-    public static boolean canDraw(int x, int y) {
+    public static boolean canDraw(int x, int y) { //Check if the tile is in the screen
         int playerX = GameScene.getPlayer().getX();
         int playerY = GameScene.getPlayer().getY();
 

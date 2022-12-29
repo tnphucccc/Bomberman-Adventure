@@ -15,20 +15,18 @@ import java.util.Objects;
 
 public class Bomb extends Entity {
     private final int bombSize = GameScene.bombSize;
-
+    public static int bombRadius;
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
+    public int bombExplosionTimer = 2;
+    public int bombExplosionTimerMax = 4;
+
     private int x, y;
     private String key = "";
 
-    private int bombCounter = 0;
-    public static int bombRadius;
     public BombExplodeMap bombExplodeMap;
-    public int bombExplosionTimer = 2;
-    public int bombExplosionTimerMax = 4;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
-
 
     public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
         this.x = ((x + 16) / 48) * 48;
@@ -48,13 +46,9 @@ public class Bomb extends Entity {
         update(x,y);
         sound.playSound("src/main/resources/Sound/put_bombs.wav");
     }
-    public Bomb (){}
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
-
-        // round x and y so the bomb is placed in the middle of the tile
-
     }
 
     //draw bomb on the map with gif
@@ -74,8 +68,7 @@ public class Bomb extends Entity {
 
             } else {//exploding
                 state = 1;
-                //draw explosion
-                bombExplodeMap.drawExplosion(g2,this);
+                bombExplodeMap.drawExplosion(g2,this); //draw explosion
                 bombExplodeMap.update();
             }
         }
@@ -126,21 +119,6 @@ public class Bomb extends Entity {
         this.y = y;
     }
 
-    public ArrayList<Bomb> getBombList() {
-        return bombList;
-    }
-
-    public int getBombCounter() {
-        return bombCounter;
-    }
-    public void setBombCounter(int bombCounter) {
-        this.bombCounter = bombCounter;
-    }
-
-    //get radius
-    public void setBombRadius(int radius) {
-        bombRadius += radius;
-    }
     public int getBombRadius() {
         return bombRadius;
     }

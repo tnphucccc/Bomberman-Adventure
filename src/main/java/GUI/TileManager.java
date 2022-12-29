@@ -132,15 +132,12 @@ public class TileManager {
         }
     }
 
-    public void clearMap(){
+    public void clearMap(){ //Reset map
         if (GameScene.getMapID() == 1){
             loadMap("/Maps/Map01.txt");
         }
         if (GameScene.getMapID() == 2){
             loadMap("/Maps/Map02.txt");
         }
-    }
-    public void loadAsset(){
-
     }
 }

@@ -16,7 +16,6 @@ public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
     Pause pause;
     static int mapID;
-
     TileManager tileM;
     AssetSetter aSetter;
 
@@ -34,14 +33,6 @@ public class GameScene extends Scene {
     public static int bombCounter;
     public static int bombRadius;
     public BombExplodeMap bombExplodeMap;
-
-    public static GameScene instance = null;
-    public static GameScene getInstance(){
-        if(GameScene.instance == null){
-            GameScene.instance = new GameScene(mapID);
-        }
-        return GameScene.instance;
-    }
 
     public GameScene(int mapID) {
         GameScene.mapID = mapID;

@@ -10,14 +10,6 @@ import java.util.Objects;
 
 public class GameDone extends Scene {
     Image gameDone;
-    static GameDone instance;
-
-    public static GameDone getInstance(){
-        if(GameDone.instance == null){
-            GameDone.instance = new GameDone();
-        }
-        return GameDone.instance;
-    }
 
     GameDone() {
         URL url = Objects.requireNonNull(getClass().getResource("/Menu/GameDone.gif"));
@@ -25,17 +17,14 @@ public class GameDone extends Scene {
         gameDone = icon.getImage();
 
     }
-    public void draw(Graphics2D g2) {
-        g2.drawImage(gameDone, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
+
+    @Override
+    public void draw(Graphics g) {
+        g.drawImage(gameDone, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
     }
 
     @Override
     public void update() {
-
-    }
-
-    @Override
-    public void draw(Graphics g) {
 
     }
 }

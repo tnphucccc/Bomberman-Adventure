@@ -15,15 +15,8 @@ import java.util.Objects;
 
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
-    public static Player instance;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
-    public static Player getInstance(){
-        if (Player.instance == null){
-            Player.instance = new Player();
-        }
-        return Player.instance;
-    }
     public Player() {
         this.name ="player";
         solidArea = new Rectangle();
@@ -54,7 +47,7 @@ public class Player extends Entity {
         direction = "down";
     }
 
-    public void getPlayerImage() {
+    public void getPlayerImage() { //Load asset
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()
@@ -77,13 +70,9 @@ public class Player extends Entity {
     @Override
     public void update() {
         collisionOn = false;
-        if(GameScene.getBombList() != null){
-            for(Bomb b : GameScene.getBombList()){
-                CollisionCheck.getInstance().checkBomb(b,this);
-            }
-        }
+
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
-            if (keyH.upPressed) {
+            if (keyH.upPressed) { //Character Movement
                 direction = "up";
             } else if (keyH.downPressed) {
                 direction = "down";
@@ -92,19 +81,21 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
-            //check collision with tile, mob,object,bomb
 
+            //check collision with Bomb
+            if(GameScene.getBombList() != null){
+                for(Bomb b : GameScene.getBombList()){
+                    CollisionCheck.getInstance().checkBomb(b,this);
+                }
+            }
 
-            //Check collision with Tiles
-            CollisionCheck.getInstance().checkTile(this);
+            CollisionCheck.getInstance().checkTile(this); //Check collision with Tiles
 
             //Check collision with Items
             int objIndex = GameScene.cCheck.checkObject(this, true);
             pickUpObject(objIndex);
 
-            //Check Collision with Bomb
-
-
+            //Animation
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;
@@ -113,8 +104,7 @@ public class Player extends Entity {
                     case "right" -> x += speed;
                 }
             }
-
-            spriteCounter++;
+            spriteCounter++; //Animation
             if (spriteCounter > 8) {
                 if (spriteNum != 4) {
                     spriteNum++;
@@ -133,7 +123,7 @@ public class Player extends Entity {
         }
     }
 
-    public void pickUpObject(int i) {
+    public void pickUpObject(int i) { //Pick up items
         if (i != 999) {
             String objName = GameScene.Object[i].name;
             sound.playSound("src/main/resources/Sound/put_bombs.wav");

@@ -54,11 +54,12 @@ public class BombExplodeMap extends Entity {
         int x = bomb.getX() / Constant.TILE_SIZE;
         int y = bomb.getY() / Constant.TILE_SIZE;
 
-        if (explosionSoundQueue == 0) {
+        if (explosionSoundQueue == 0) { //Sound Queue
             sound.playSound("src/main/resources/Sound/bomb_explosion.wav");
             explosionSoundQueue++;
         }
-        //check downward
+
+        //Check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y + i][x] == 0 || map[y + i][x] == 3) { //Draw explosion if ground or shadow
                 draw(g2, x, y, 8);
@@ -159,7 +160,7 @@ public class BombExplodeMap extends Entity {
             map[y + 1][x] = 0;//check if under brick is shadow, if shadow draw ground
         }
     }
-    public void resetExplosion(){
+    public void resetExplosion(){ //Reset explosion
         downLength = 0;
         upLength = 0;
         rightLength = 0;
