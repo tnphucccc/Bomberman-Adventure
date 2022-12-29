@@ -185,7 +185,7 @@ public class CollisionCheck {
     }
    //check if player hit bomb
    public void checkBomb(Bomb bomb,Entity entity) {
-        int r = 15;
+        int r = 25;
         if(bomb != null) {
                 if (bomb.state != 2) {
                     bomb.setEntityInteractionBox(bomb);
@@ -218,7 +218,6 @@ public class CollisionCheck {
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
                                 }
-
                             }
                             case "right" -> {
                                 Rectangle playerNextMove = check(entity.x + entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
@@ -238,19 +237,12 @@ public class CollisionCheck {
                                 bomb.getX(),
                                 bomb.getY() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength)),
                                 Constant.TILE_SIZE,
-                                Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1));
+                                Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1) - 20);
                         Rectangle horizontal = new Rectangle( //Rectangle for horizontal explosion
                                 bomb.getX() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength)),
                                 bomb.getY(),
-                                Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1),
+                                Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1 - 20),
                                 Constant.TILE_SIZE);
-
-//                    System.out.println("Vertical: " + vertical.x + " " + vertical.y + " " + vertical.width + " " + vertical.height);
-//                    System.out.println("Horizontal: " + horizontal.x + " " + horizontal.y + " " + horizontal.width + " " + horizontal.height);
-//                    System.out.println("Player: " + playerSolidBox2.x + " " + playerSolidBox2.y + " " + playerSolidBox2.width + " " + playerSolidBox2.height);
-//                    System.out.println("Bomb: " + bomb.getX() + " " + bomb.getY());
-//                    System.out.println();
-
                         if(vertical.intersects(playerSolidBox2)) {
                             if (entity instanceof Boss) {
                                 entity.hitPoint--;

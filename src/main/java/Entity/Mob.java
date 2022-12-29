@@ -25,7 +25,7 @@ public class Mob extends Entity {
         solidArea = new Rectangle();
         solidArea.x = 4;
         solidArea.y = 16;
-        solidArea.width = 36;
+        solidArea.width = 32;
         solidArea.height = 32;
 
         setDefault();
@@ -59,10 +59,12 @@ public class Mob extends Entity {
         }
     }
 
+
     @Override
     public void update() {
         collisionOn = false;
         cCheck.checkTile(this);
+
         if(GameScene.getBombList() != null){
             for(int i = 0; i < GameScene.getBombList().size(); i++)
                 cCheck.checkBomb(GameScene.getBombList().get(i), this);
