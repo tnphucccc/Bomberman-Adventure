@@ -15,7 +15,6 @@ public class GameDone extends Scene {
         URL url = Objects.requireNonNull(getClass().getResource("/Menu/GameDone.gif"));
         ImageIcon icon = new ImageIcon(url);
         gameDone = icon.getImage();
-
     }
 
     @Override

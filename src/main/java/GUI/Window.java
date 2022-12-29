@@ -17,6 +17,8 @@ public class Window extends JFrame implements Runnable {
     static KeyHandler keyH = new KeyHandler();
     static MouseHandler mouseH = new MouseHandler();
 
+    public int currentMapID;
+
     public Window(int width, int height, String TITLE) {
         //Window handler
         setSize(width, height);
@@ -32,8 +34,8 @@ public class Window extends JFrame implements Runnable {
         addMouseListener(mouseH);
         addMouseMotionListener(mouseH);
 
-        //0 is original, 1 is game,
-        changeState(0);
+        changeState(0); // starts at State 0 (Menu)
+        changeMap(1); // Map starts out at map 1
 
         isRunning = true;
     }
@@ -53,6 +55,18 @@ public class Window extends JFrame implements Runnable {
             case 1 -> currentScene = new GameScene(1);
             case 2 -> currentScene = new GameScene(2);
             case 3 -> currentScene = new GameDone();
+            default -> {
+                System.out.println("Error: Invalid state");
+                currentScene = null;
+            }
+        }
+    }
+
+    public void changeMap(int newMapID) {
+        currentMapID = newMapID;
+        switch (currentMapID) {
+            case 1 -> currentScene = new GameScene(1);
+            case 2 -> currentScene = new GameScene(2);
             default -> {
                 System.out.println("Error: Invalid state");
                 currentScene = null;
