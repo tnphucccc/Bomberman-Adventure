@@ -93,7 +93,7 @@ public class Player extends Entity {
                 direction = "right";
             }
             //check collision with tile, mob,object,bomb
-            
+
 
             //Check collision with Tiles
             CollisionCheck.getInstance().checkTile(this);
@@ -103,7 +103,7 @@ public class Player extends Entity {
             pickUpObject(objIndex);
 
             //Check Collision with Bomb
-            
+
 
             if (!collisionOn) {
                 switch (direction) {
