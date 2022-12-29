@@ -64,6 +64,7 @@ public class Bomb extends Entity {
             if ((System.nanoTime() - timeStart)/Constant.Tera < bombExplosionTimer) {//planting for 2s
                 update();
                 g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+                bombExplodeMap.explosionSoundQueue = 0;
 
             } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
                 GameScene.bombCounter--;

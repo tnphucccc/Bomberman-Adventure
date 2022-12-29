@@ -62,7 +62,6 @@ public class GameScene extends Scene {
         bombCounter = 0;
         bombSize = 2;
         bombRadius = 1;
-        finishLevel(getMobList().size());
     }
 
     @Override
@@ -98,11 +97,15 @@ public class GameScene extends Scene {
             bombCounter = 0;
             bombSize = 2;
         }
+//        if (isGameDone()){
+//            // Do Nothing
+//        }
     }
 
     @Override
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        GameDone.getInstance().draw(g2);
 
         //Draw Map
         tileM.draw(g2);
@@ -122,7 +125,7 @@ public class GameScene extends Scene {
                 superObject.draw(g2);
             }
         }
-        
+
         //Draw Bomb
         bombList.removeIf(b -> b.getState() == 2);
         if(bombList != null){
@@ -140,12 +143,20 @@ public class GameScene extends Scene {
         if (isPaused) {
             pause.draw(g2);
         }
+
+        //Draw Game Over
         if (player.state == 0) {
             GameOver.getInstance().draw(g2);
         }
+
+//        Draw Game Done
+        if (isGameDone()){
+            GameDone.getInstance().draw(g2);
+        }
     }
-    public static boolean isGameOver(){
-        return finishLevel(getMobList().size()) && player.state == 1 && mapID == 2;}
+    public boolean isGameDone(){
+        return GameScene.mobCounter == GameScene.getMobList().size();
+    }
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
@@ -157,14 +168,5 @@ public class GameScene extends Scene {
     }
     public static int getMapID(){
         return mapID;
-    }
-    public static boolean finishLevel(int i) {
-        mobCounter = i;
-        for (Mob mob : mobList) {
-            if (mob.state == 0) {
-                mobCounter--;
-            }
-        }
-        return mobCounter==0;
     }
 }
