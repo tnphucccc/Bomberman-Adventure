@@ -13,16 +13,16 @@ import java.util.ArrayList;
 import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
+    static int mapID;
+
     boolean isPaused; //true = paused, false = not paused
     Pause pause;
-    static int mapID;
     TileManager tileM;
     AssetSetter aSetter;
 
-    public static CollisionCheck cCheck;
     public static SuperObject[] Object = new SuperObject[100];
-
     static Player player;
+
     static ArrayList<Mob> mobList = new ArrayList<>();
     public static int mobCounter;
 
@@ -42,8 +42,6 @@ public class GameScene extends Scene {
         tileM = TileManager.getInstance();
         aSetter = new AssetSetter(this);
         pause = new Pause(this);
-
-        cCheck = new CollisionCheck();
 
         aSetter.setMob();
         aSetter.setItems();
@@ -125,12 +123,12 @@ public class GameScene extends Scene {
         if (player.state == 0) {
             GameOver.getInstance().draw(g2); //Draw Game Over Menu
         }
-        if (isGameOver()){
+        if (isGameDone()){
             Window.getWindow().changeState(3); //Change to Game Done Menu
         }
     }
 
-    public static boolean mobClear(int mobSize) {
+    public static boolean mobClear(int mobSize) { // Check if all mobs are dead
         mobCounter = mobSize;
         for (Mob mob : mobList) {
             if (mob.state == 0) {
@@ -140,9 +138,11 @@ public class GameScene extends Scene {
         return mobCounter==0;
     }
 
-    public static boolean isGameOver() {
+    public boolean isGameDone() { //Check if Game is Finished
         return mapID == 2 && mobClear(mobList.size()) && boss.state == 0;
     }
+
+    //getter
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }

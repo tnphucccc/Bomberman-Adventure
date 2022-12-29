@@ -92,7 +92,7 @@ public class Player extends Entity {
             CollisionCheck.getInstance().checkTile(this); //Check collision with Tiles
 
             //Check collision with Items
-            int objIndex = GameScene.cCheck.checkObject(this, true);
+            int objIndex = CollisionCheck.getInstance().checkObject(this, true);
             pickUpObject(objIndex);
 
             //Animation
@@ -129,22 +129,22 @@ public class Player extends Entity {
             sound.playSound("src/main/resources/Sound/put_bombs.wav");
             switch (objName) {
                 case "ExtraBomb" -> {
-                    GameScene.bombSize += 1;
+                    GameScene.bombSize += 1; // Increase bomb size
                     GameScene.Object[i] = null;
                 }
                 case "SpeedIncrease" -> {
-                    speed += 1;
+                    speed += 1; // Increase player speed
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    if(GameScene.mobClear(GameScene.getMobList().size())) {
+                    if(GameScene.mobClear(GameScene.getMobList().size())) { //Check if all mobs are dead
                         Window.getWindow().changeState(2); //Change to next map
-                        TileManager.getInstance().clearMap();
-                        GameScene.mobCounter = 0;
+                        TileManager.getInstance().clearMap(); //Clear map
+                        GameScene.mobCounter = 0; //Reset mob counter
                     }
                 }
                 case "BlastRadius" ->{
-                    GameScene.bombRadius++;
+                    GameScene.bombRadius++; //Increase bomb blast radius
                     GameScene.Object[i] = null;
                 }
             }

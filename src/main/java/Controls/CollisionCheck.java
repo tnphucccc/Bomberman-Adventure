@@ -183,7 +183,6 @@ public class CollisionCheck {
     public Rectangle check(int x, int y, int width, int height) {
         return new Rectangle(x,y,width,height);
     }
-   //check if player hit bomb
    public void checkBomb(Bomb bomb,Entity entity) {
         int r = 15;
         if(bomb != null) {
