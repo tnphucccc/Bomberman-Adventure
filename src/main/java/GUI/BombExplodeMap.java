@@ -14,8 +14,10 @@ import java.util.Objects;
 public class BombExplodeMap extends Entity {
     public static BombExplodeMap instance;
     private final int[][] map;
+
     BufferedImage[][] end = new BufferedImage[9][8];
     BufferedImage[] explode= new BufferedImage[8];
+
     public int downLength, upLength, rightLength, leftLength;
     public int explosionSoundQueue = 0;
     SoundManager sound = new SoundManager("src/main/resources/Sound/bomb_explosion.wav");
