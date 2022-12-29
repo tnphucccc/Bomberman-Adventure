@@ -109,7 +109,7 @@ public class CollisionCheck {
                 boss.solidArea.width,
                 boss.solidArea.height);
         boolean intersects = entitySolidBox.intersects(bossSolidBox);
-        if (intersects) {
+        if (intersects&&boss.collision) {
             entity.collisionOn = true;
             entity.state = 0;
             entity.speed = 0;
@@ -123,8 +123,8 @@ public class CollisionCheck {
                 entity.solidArea.x = entity.x + entity.solidArea.x;
                 entity.solidArea.y = entity.y + entity.solidArea.y;
                 //get object's solid area position
-                GameScene.Object[i].solidArea.x = GameScene.Object[i].x + GameScene.Object[i].solidArea.x+20;
-                GameScene.Object[i].solidArea.y = GameScene.Object[i].y + GameScene.Object[i].solidArea.y+20;
+                GameScene.Object[i].solidArea.x = GameScene.Object[i].x + GameScene.Object[i].solidArea.x+10;
+                GameScene.Object[i].solidArea.y = GameScene.Object[i].y + GameScene.Object[i].solidArea.y+10;
 
                 switch (entity.direction) {
                     case "up" -> {
@@ -199,24 +199,43 @@ public class CollisionCheck {
                             entity.solidArea.width,
                             entity.solidArea.height);
                     boolean inter = bombSolidBox.intersects(playerSolidBox);
-                    if (!inter) {  //Check collision with bomb
+                    if (!inter) {
                         switch (entity.direction) {
                             case "up" -> {
                                 Rectangle playerNextMove = check(entity.x, entity.y - entity.speed, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
                             }
                             case "down" -> {
                                 Rectangle playerNextMove = check(entity.x, entity.y + entity.speed, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
+
                             }
                             case "left" -> {
                                 Rectangle playerNextMove = check(entity.x - entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
 
                             }
@@ -224,6 +243,12 @@ public class CollisionCheck {
                                 Rectangle playerNextMove = check(entity.x + entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
                             }
                         }
