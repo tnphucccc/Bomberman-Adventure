@@ -109,7 +109,7 @@ public class CollisionCheck {
                 boss.solidArea.width,
                 boss.solidArea.height);
         boolean intersects = entitySolidBox.intersects(bossSolidBox);
-        if (intersects) {
+        if (intersects&&boss.collision) {
             entity.collisionOn = true;
             entity.state = 0;
             entity.speed = 0;
@@ -185,7 +185,7 @@ public class CollisionCheck {
     }
    //check if player hit bomb
    public void checkBomb(Bomb bomb,Entity entity) {
-        int r = 10;
+        int r = 15;
         if(bomb != null) {
                 if (bomb.state != 2) {
                     bomb.setEntityInteractionBox(bomb);
@@ -199,30 +199,55 @@ public class CollisionCheck {
                             entity.solidArea.width,
                             entity.solidArea.height);
                     boolean inter = bombSolidBox.intersects(playerSolidBox);
-                    if (!inter) {  //Check collision with bomb
+                    if (!inter) {
                         switch (entity.direction) {
                             case "up" -> {
                                 Rectangle playerNextMove = check(entity.x, entity.y - entity.speed, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
                             }
                             case "down" -> {
                                 Rectangle playerNextMove = check(entity.x, entity.y + entity.speed, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
+
                             }
                             case "left" -> {
                                 Rectangle playerNextMove = check(entity.x - entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
                             }
                             case "right" -> {
                                 Rectangle playerNextMove = check(entity.x + entity.speed, entity.y, entity.solidArea.width, entity.solidArea.height);
                                 if (playerNextMove.intersects(bombSolidBox)) {
                                     entity.collisionOn = true;
+                                    if (bomb.state == 1) {
+                                        if(entity.name.equals("boss")){
+                                            entity.hitPoint--;
+                                        }
+                                        else entity.state = 0;
+                                    }
                                 }
                             }
                         }
@@ -237,12 +262,12 @@ public class CollisionCheck {
                                 bomb.getX() + r,
                                 bomb.getY() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength)) - r,
                                 Constant.TILE_SIZE - r,
-                                Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1) - r);
+                                Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1) - r * 2);
                         Rectangle horizontal = new Rectangle( //Rectangle for horizontal explosion
                                 bomb.getX() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength)) - r,
                                 bomb.getY() + r,
-                                Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1) - r,
-                                Constant.TILE_SIZE - r);
+                                Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1) - r * 2,
+                                Constant.TILE_SIZE - r * 2);
                         if(vertical.intersects(playerSolidBox2)) {
                             if (entity instanceof Boss) {
                                 entity.hitPoint--;

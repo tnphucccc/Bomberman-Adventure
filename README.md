@@ -1,3 +1,8 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
 # Bomberman
 
 <div align="center">
@@ -11,7 +16,7 @@
 1. [Introduction](#Introduction)
 2. [Game](#Game)
 
-<!-- details>
+<!-- <details>
 <summary>Table of Contents</summary>
 <ol>
     <li>
@@ -80,6 +85,10 @@ This is our Bomberman project for the Object-Oriented Programming course at HCMI
 
 ### About The Game
 
+<div align="center">
+<img src="src/main/resources/Screenshots/Map1.png" alt="">
+</div>
+
 - Language: [Java](https://www.java.com/en/)
 - IDEs: [IntelliJ IDEA](https://www.jetbrains.com/idea/), [VSCode](https://code.visualstudio.com/)
 - Library: [JavaSwing](https://docs.oracle.com/javase/tutorial/uiswing/)
@@ -109,3 +118,24 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
 | Bomb Item  |   Increase the number of bombs   |
 | Flame Item |   Increase the range of bombs    |
 | Speed Item | Increase the speed of the player |
+
+<p align="right">(<a href="#top">Back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/tnphucccc/Bomberman.svg?style=for-the-badge
+
+[contributors-url]: https://github.com/tnphucccc/Bomberman-Adventure/graphs/contributors
+
+[forks-shield]: https://img.shields.io/github/forks/tnphucccc/Bomberman.svg?style=for-the-badge
+
+[forks-url]: https://github.com/tnphucccc/Bomberman-Adventure/network/members
+
+[stars-shield]: https://img.shields.io/github/stars/tnphucccc/Bomberman.svg?style=for-the-badge
+
+[stars-url]: https://github.com/tnphucccc/Bomberman-Adventure/stargazers
+
+[issues-shield]: https://img.shields.io/github/issues/tnphucccc/Bomberman.svg?style=for-the-badge
+
+[issues-url]: https://github.com/tnphucccc/Bomberman-Adventure/issues

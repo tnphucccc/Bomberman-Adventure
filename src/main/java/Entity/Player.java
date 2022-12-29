@@ -147,11 +147,7 @@ public class Player extends Entity {
                     GameScene.Object[i] = null;
                 }
                 case "Door" ->{
-                    for (Mob value : GameScene.getMobList()) {
-                        if (value.state==0)
-                            GameScene.mobCounter++;
-                    }
-                    if(GameScene.getMobList().size()==GameScene.mobCounter) {
+                    if(GameScene.instance.finishLevel(GameScene.getMobList().size())) {
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap();
                         GameScene.mobCounter = 0;
@@ -170,6 +166,8 @@ public class Player extends Entity {
         BufferedImage img = getEntityImage();
         if (state == 0) { //Player Die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
+            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
+            sound.playSound("src/main/resources/Sound/just_died.wav");
             g2.drawImage(img, Camera.setXPlayerCord(x), Camera.setYPlayerCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             speed = 0;
         } else { // Player alive
