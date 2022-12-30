@@ -1,16 +1,11 @@
 package GUI;
 
-import Controls.CollisionCheck;
-import Controls.KeyHandler;
-import Entity.Bomb;
-import Entity.Boss;
-import Entity.Mob;
-import Entity.Player;
+import Controls.CheckAvailable;
+import Entity.*;
 import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
@@ -19,18 +14,18 @@ public class GameScene extends Scene {
     AssetSetter assetSetter;
 
     public static SuperObject[] Object = new SuperObject[100];
-    public static Player player;
+    static Player player;
 
     public static ArrayList<Mob> mobList = new ArrayList<>();
     public static int mobCounter;
 
     public static Boss boss;
 
-    public static ArrayList<Bomb> bombList;
-    public static int bombSize;
-    public static int bombCounter;
-    public static int bombRadius;
-    public BombExplodeMap bombExplodeMap;
+    static ArrayList<Bomb> bombList;
+    static int bombSize;
+    static int bombCounter;
+    static int bombRadius;
+    BombExplodeMap bombExplodeMap;
 
     public static GameScene instance;
 
@@ -153,8 +148,26 @@ public class GameScene extends Scene {
     public static Player getPlayer(){
         return player;
     }
-
     public static ArrayList<Mob> getMobList(){
         return mobList;
+    }
+
+    public static int getBombCounter() {
+        return bombCounter;
+    }
+    public static int getBombSize() {
+        return bombSize;
+    }
+    public static void setBombSize(int bombSize) {
+        GameScene.bombSize = bombSize;
+    }
+    public static int getBombRadius() {
+        return bombRadius;
+    }
+    public static void setBombRadius(int bombRadius) {
+        GameScene.bombRadius = bombRadius;
+    }
+    public static void setBombCounter(int bombCounter) {
+        GameScene.bombCounter = bombCounter;
     }
 }

@@ -1,8 +1,8 @@
-package GUI;
+package Entity;
 
 import Controls.SoundManager;
-import Entity.Bomb;
-import Entity.Entity;
+import GUI.Camera;
+import GUI.TileManager;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;

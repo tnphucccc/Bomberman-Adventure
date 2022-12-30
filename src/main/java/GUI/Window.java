@@ -58,14 +58,14 @@ public class Window extends JFrame implements Runnable {
                 currentMapID = 2;
                 currentScene = new GameScene();
             }
-            case 3 -> currentScene = new GameDone();
+            case 3 -> currentScene = new GameDone(); //Finish Game
+            case 4 -> currentScene = new Credit(); // Credit
             default -> {
                 System.out.println("Error: Invalid state");
                 currentScene = null;
             }
         }
     }
-
 
     public int getCurrentMapID() {
         return currentMapID;
