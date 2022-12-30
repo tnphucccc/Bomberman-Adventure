@@ -117,6 +117,9 @@ public class Window extends JFrame implements Runnable {
         }
         this.dispose();
     }
+    public int getCurrentState() {
+        return currentState;
+    }
     public static KeyHandler getKeyH() {
         return keyH;
     }

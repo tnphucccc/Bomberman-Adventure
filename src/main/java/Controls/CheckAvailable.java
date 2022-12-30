@@ -6,7 +6,7 @@ import GUI.Window;
 public class CheckAvailable {
     static KeyHandler keyH = Window.getKeyH();
     static boolean spacePressed;
-    //private static int x, y;
+
     public static boolean checkAvailable(int x, int y) {
         x = ((x + 16) / 48) * 48;
         y = ((y + 16) / 48) * 48;
