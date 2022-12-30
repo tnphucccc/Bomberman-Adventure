@@ -19,9 +19,9 @@ public class GameScene extends Scene {
     AssetSetter assetSetter;
 
     public static SuperObject[] Object = new SuperObject[100];
-    static Player player;
+    public static Player player;
 
-    static ArrayList<Mob> mobList = new ArrayList<>();
+    public static ArrayList<Mob> mobList = new ArrayList<>();
     public static int mobCounter;
 
     public static Boss boss;
@@ -42,7 +42,7 @@ public class GameScene extends Scene {
     }
 
     public GameScene() {
-        player = new Player();
+        player = new Player(Window.getWindow().getCurrentMapID());
         boss = new Boss();
 
         tileM = TileManager.getInstance();
@@ -149,9 +149,11 @@ public class GameScene extends Scene {
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
+
     public static Player getPlayer(){
         return player;
     }
+
     public static ArrayList<Mob> getMobList(){
         return mobList;
     }

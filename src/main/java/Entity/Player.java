@@ -17,8 +17,21 @@ public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
-    public Player() {
+    public int currentMap;
+
+    public static Player instance;
+
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player(Window.getWindow().getCurrentMapID());
+        }
+        return instance;
+    }
+
+    public Player(int currentMap) {
         this.name ="player";
+        this.currentMap = currentMap;
+
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
@@ -27,19 +40,23 @@ public class Player extends Entity {
 
         solidArea.width = 32;
         solidArea.height = 32;
+
+
         setDefault();
         getPlayerImage();
         state = 1;
     }
 
     public void setDefault() {
-        if(Window.getWindow().getCurrentMapID() == 2) { //Player cord at Map 02
+        if(currentMap == 2) { //Player cord at Map 02
+//            System.out.println("Map 2");
             x = Constant.TILE_SIZE * 8;
             y = Constant.TILE_SIZE * 5;
             speed = 4;
         }
 
-        if(Window.getWindow().getCurrentMapID() == 1) { //Player cord at Map01
+        if(currentMap == 1) { //Player cord at Map01
+//            System.out.println("Map 1");
             x = Constant.TILE_SIZE * 2;
             y = Constant.TILE_SIZE * 2;
             speed = 2;
