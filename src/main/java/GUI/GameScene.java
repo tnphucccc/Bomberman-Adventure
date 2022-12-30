@@ -32,6 +32,15 @@ public class GameScene extends Scene {
     public static int bombRadius;
     public BombExplodeMap bombExplodeMap;
 
+    public static GameScene instance;
+
+    public static GameScene getInstance() {
+        if (instance == null) {
+            instance = new GameScene();
+        }
+        return instance;
+    }
+
     public GameScene() {
         player = new Player();
         boss = new Boss();
