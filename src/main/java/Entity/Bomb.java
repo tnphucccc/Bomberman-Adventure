@@ -42,38 +42,10 @@ public class Bomb extends Entity {
         solidArea.height = 32;
         getBombImage();
         setDefault();
-        update(x,y);
+        update();
         sound.playSound("src/main/resources/Sound/put_bombs.wav");
     }
-    public void update(int x, int y) {
-        key = "space";
-        timeStart = System.nanoTime();
-    }
-
-    //draw bomb on the map with gif
-    public void draw(Graphics2D g2) {
-        BufferedImage img = getEntityImage();
-        if (key.equals("space")) {
-            if ((System.nanoTime() - timeStart)/Constant.Tera < bombExplosionTimer) {//planting for 2s
-                update();
-                g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
-                bombExplodeMap.explosionSoundQueue = 0;
-
-            } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
-                GameScene.setBombCounter(GameScene.getBombCounter() - 1);
-                state = 2;
-                update();
-                bombExplodeMap.resetExplosion();
-
-            } else {//exploding
-                state = 1;
-                bombExplodeMap.drawExplosion(g2,this); //draw explosion
-                bombExplodeMap.update();
-            }
-        }
-    }
-
-    public void getBombImage() {
+    public void getBombImage() {//Load asset
         try {
             for (int i = 0; i < 4; i++) {
                 bomb[i] = ImageIO.read(Objects.requireNonNull(getClass()
@@ -89,7 +61,7 @@ public class Bomb extends Entity {
         this.state = 0; //0 is not explode, 1 is exploded, 2 is disappeared
     }
 
-    public void update() {//count sprite
+    public void spriteCounter() {//count sprite
         spriteCounter++;
         if (spriteCounter > 8) {
             if (spriteNum != 4) {
@@ -99,6 +71,33 @@ public class Bomb extends Entity {
             spriteCounter = 0;
         }
         bombList.removeIf(bomb -> bomb.state == 2);
+    }
+
+    public void update() {
+        key = "space";
+        timeStart = System.nanoTime();
+    }
+
+    public void draw(Graphics2D g2) {
+        BufferedImage img = getEntityImage();
+        if (key.equals("space")) {
+            if ((System.nanoTime() - timeStart)/Constant.Tera < bombExplosionTimer) {//planting for 2s
+                spriteCounter();
+                g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
+                bombExplodeMap.explosionSoundQueue = 0;
+
+            } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
+                GameScene.setBombCounter(GameScene.getBombCounter() - 1);
+                state = 2;
+                spriteCounter();
+                bombExplodeMap.resetExplosion();
+
+            } else {//exploding
+                state = 1;
+                bombExplodeMap.drawExplosion(g2,this); //draw explosion
+                bombExplodeMap.update();
+            }
+        }
     }
     // getter && setter
 
