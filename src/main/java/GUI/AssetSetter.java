@@ -11,6 +11,8 @@ public class AssetSetter {
     GameScene gameScene;
 
     public AssetSetter(GameScene gameScene) {
+        setItems();
+        setMob();
         this.gameScene = gameScene;
     }
 

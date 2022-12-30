@@ -16,7 +16,7 @@ public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
     Pause pause;
     TileManager tileM;
-    AssetSetter aSetter;
+    AssetSetter assetSetter;
 
     public static SuperObject[] Object = new SuperObject[100];
     static Player player;
@@ -37,11 +37,8 @@ public class GameScene extends Scene {
         boss = new Boss();
 
         tileM = TileManager.getInstance();
-        aSetter = new AssetSetter(this);
+        assetSetter = new AssetSetter(this);
         pause = new Pause(this);
-
-        aSetter.setMob();
-        aSetter.setItems();
 
         bombList = new ArrayList<>();
         bombExplodeMap = new BombExplodeMap();
@@ -64,7 +61,7 @@ public class GameScene extends Scene {
                 }
             }
 
-            if(getMapID() == 2){
+            if(Window.getWindow().getCurrentMapID() == 2){
                 if(boss.state == 1){
                     boss.update(); //update Boss
                 }
@@ -91,7 +88,7 @@ public class GameScene extends Scene {
 
         player.draw(g2); //draw Player
 
-        if (getMapID() == 2){
+        if (Window.getWindow().currentMapID == 2){
             if(boss != null){
                 boss.draw(g2); //draw Boss
             }
@@ -125,9 +122,6 @@ public class GameScene extends Scene {
         }
     }
 
-    public int getMapID() {
-        return mapID;
-    }
     public static boolean mobClear(int mobSize) { // Check if all mobs are dead
         mobCounter = mobSize;
         for (Mob mob : mobList) {
@@ -139,7 +133,7 @@ public class GameScene extends Scene {
     }
 
     public boolean isGameDone() { //Check if Game is Finished
-        return mapID == 2 && mobClear(mobList.size()) && boss.state == 0;
+        return Window.getWindow().getCurrentMapID() == 2 && mobClear(mobList.size()) && boss.state == 0;
     }
 
     //getter
