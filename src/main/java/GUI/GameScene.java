@@ -13,13 +13,13 @@ public class GameScene extends Scene {
     TileManager tileM;
     AssetSetter assetSetter;
 
-    public static SuperObject[] Object = new SuperObject[100];
+    static SuperObject[] Object = new SuperObject[100];
     static Player player;
 
-    public static ArrayList<Mob> mobList = new ArrayList<>();
-    public static int mobCounter;
+    static ArrayList<Mob> mobList = new ArrayList<>();
+    static int mobCounter;
 
-    public static Boss boss;
+    static Boss boss;
 
     static ArrayList<Bomb> bombList;
     static int bombSize;
@@ -27,14 +27,6 @@ public class GameScene extends Scene {
     static int bombRadius;
     BombExplodeMap bombExplodeMap;
 
-    public static GameScene instance;
-
-    public static GameScene getInstance() {
-        if (instance == null) {
-            instance = new GameScene();
-        }
-        return instance;
-    }
 
     public GameScene() {
         player = new Player(Window.getWindow().getCurrentMapID());
@@ -140,7 +132,7 @@ public class GameScene extends Scene {
         return Window.getWindow().getCurrentMapID() == 2 && mobClear(mobList.size()) && boss.state == 0;
     }
 
-    //getter
+    //getter and setter
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
@@ -169,5 +161,11 @@ public class GameScene extends Scene {
     }
     public static void setBombCounter(int bombCounter) {
         GameScene.bombCounter = bombCounter;
+    }
+    public static void setMobCounter(int mobCounter) {
+        GameScene.mobCounter = mobCounter;
+    }
+    public static SuperObject[] getObject() {
+        return Object;
     }
 }

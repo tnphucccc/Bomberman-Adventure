@@ -117,20 +117,20 @@ public class CollisionCheck {
     }
     public int checkObject(Entity entity, Boolean player) {
         int index = 999;
-        for (int i = 0; i < GameScene.Object.length; i++) {
-            if (GameScene.Object[i] != null) {
+        for (int i = 0; i < GameScene.getObject().length; i++) {
+            if (GameScene.getObject()[i] != null) {
                 //get entity's solid area position
                 entity.solidArea.x = entity.x + entity.solidArea.x;
                 entity.solidArea.y = entity.y + entity.solidArea.y;
                 //get object's solid area position
-                GameScene.Object[i].solidArea.x = GameScene.Object[i].x + GameScene.Object[i].solidArea.x+10;
-                GameScene.Object[i].solidArea.y = GameScene.Object[i].y + GameScene.Object[i].solidArea.y+10;
+                GameScene.getObject()[i].solidArea.x = GameScene.getObject()[i].x + GameScene.getObject()[i].solidArea.x+10;
+                GameScene.getObject()[i].solidArea.y = GameScene.getObject()[i].y + GameScene.getObject()[i].solidArea.y+10;
 
                 switch (entity.direction) {
                     case "up" -> {
                         entity.solidArea.y -= entity.speed;
-                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)) {
-                            if (GameScene.Object[i].collision) {
+                        if (entity.solidArea.intersects(GameScene.getObject()[i].solidArea)) {
+                            if (GameScene.getObject()[i].collision) {
                                 entity.collisionOn = true;
                             }
                             if (player) {
@@ -140,8 +140,8 @@ public class CollisionCheck {
                     }
                     case "down" -> {
                         entity.solidArea.y += entity.speed;
-                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)) {
-                            if (GameScene.Object[i].collision) {
+                        if (entity.solidArea.intersects(GameScene.getObject()[i].solidArea)) {
+                            if (GameScene.getObject()[i].collision) {
                                 entity.collisionOn = true;
                             }
                             if (player) {
@@ -151,8 +151,8 @@ public class CollisionCheck {
                     }
                     case "left" -> {
                         entity.solidArea.x -= entity.speed;
-                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)) {
-                            if (GameScene.Object[i].collision) {
+                        if (entity.solidArea.intersects(GameScene.getObject()[i].solidArea)) {
+                            if (GameScene.getObject()[i].collision) {
                                 entity.collisionOn = true;
                             }
                             if (player) {
@@ -162,8 +162,8 @@ public class CollisionCheck {
                     }
                     case "right" -> {
                         entity.solidArea.x += entity.speed;
-                        if (entity.solidArea.intersects(GameScene.Object[i].solidArea)) {
-                            if (GameScene.Object[i].collision) {
+                        if (entity.solidArea.intersects(GameScene.getObject()[i].solidArea)) {
+                            if (GameScene.getObject()[i].collision) {
                                 entity.collisionOn = true;
                             }
                             if (player) {
@@ -174,8 +174,8 @@ public class CollisionCheck {
                 }
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
-                GameScene.Object[i].solidArea.x = GameScene.Object[i].solidAreaDefaultX;
-                GameScene.Object[i].solidArea.y = GameScene.Object[i].solidAreaDefaultY;
+                GameScene.getObject()[i].solidArea.x = GameScene.getObject()[i].solidAreaDefaultX;
+                GameScene.getObject()[i].solidArea.y = GameScene.getObject()[i].solidAreaDefaultY;
             }
         }
         return index;

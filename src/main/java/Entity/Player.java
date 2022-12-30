@@ -140,27 +140,27 @@ public class Player extends Entity {
 
     public void pickUpObject(int i) { //Pick up items
         if (i != 999) {
-            String objName = GameScene.Object[i].name;
+            String objName = GameScene.getObject()[i].name;
             sound.playSound("src/main/resources/Sound/put_bombs.wav");
             switch (objName) {
                 case "ExtraBomb" -> {
                     GameScene.setBombSize(GameScene.getBombSize() + 1); // Increase bomb size
-                    GameScene.Object[i] = null;
+                    GameScene.getObject()[i] = null;
                 }
                 case "SpeedIncrease" -> {
                     speed += 1; // Increase player speed
-                    GameScene.Object[i] = null;
+                    GameScene.getObject()[i] = null;
                 }
                 case "Door" ->{
                     if(GameScene.mobClear(GameScene.getMobList().size())) { //Check if all mobs are dead
                         Window.getWindow().changeState(2); //Change to next map
                         TileManager.getInstance().clearMap(); //Clear map
-                        GameScene.mobCounter = 0; //Reset mob counter
+                        GameScene.setMobCounter(0); //Reset mob counter
                     }
                 }
                 case "BlastRadius" ->{
                     GameScene.setBombRadius(GameScene.getBombRadius() + 1); //Increase bomb blast radius
-                    GameScene.Object[i] = null;
+                    GameScene.getObject()[i] = null;
                 }
             }
         }
