@@ -17,16 +17,7 @@ public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
-    public int currentMap;
-
-    public static Player instance;
-
-    public static Player getInstance() {
-        if (instance == null) {
-            instance = new Player(Window.getWindow().getCurrentMapID());
-        }
-        return instance;
-    }
+    int currentMap;
 
     public Player(int currentMap) {
         this.name ="player";

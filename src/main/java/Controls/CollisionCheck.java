@@ -262,11 +262,13 @@ public class CollisionCheck {
                                 bomb.getY() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength)) - r,
                                 Constant.TILE_SIZE - r,
                                 Constant.TILE_SIZE * (bomb.bombExplodeMap.upLength + bomb.bombExplodeMap.downLength + 1) - r * 2);
+
                         Rectangle horizontal = new Rectangle( //Rectangle for horizontal explosion
                                 bomb.getX() - (Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength)) - r,
                                 bomb.getY() + r,
                                 Constant.TILE_SIZE * (bomb.bombExplodeMap.leftLength + bomb.bombExplodeMap.rightLength + 1) - r * 2,
                                 Constant.TILE_SIZE - r * 2);
+
                         if(vertical.intersects(playerSolidBox2)) {
                             if (entity instanceof Boss) {
                                 entity.hitPoint--;

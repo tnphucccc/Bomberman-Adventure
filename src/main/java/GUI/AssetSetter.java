@@ -37,6 +37,7 @@ public class AssetSetter {
             GameScene.mobList.add(8, new Mob(32 * Constant.TILE_SIZE, 15 * Constant.TILE_SIZE));
             GameScene.mobList.add(9, new Mob(16 * Constant.TILE_SIZE, 22 * Constant.TILE_SIZE));
             GameScene.mobList.add(10, new Mob(35 * Constant.TILE_SIZE, 22 * Constant.TILE_SIZE));
+            GameScene.mobList.add(11, new Mob(16 * Constant.TILE_SIZE, 15 * Constant.TILE_SIZE));
         }
 
     }
