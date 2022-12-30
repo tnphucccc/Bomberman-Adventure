@@ -148,7 +148,7 @@ public class GameScene extends Scene {
         }
     }
     public static boolean isGameOver(){
-        return finishLevel(getMobList().size()) && player.state == 1 && mapID == 2;}
+        return finishLevel(getMobList().size()) && player.state == 1 && mapID == 2 ;}
     public static ArrayList<Bomb> getBombList() {
         return bombList;
     }
