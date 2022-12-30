@@ -1,5 +1,6 @@
 package GUI;
 
+import Entity.BombExplodeMap;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -34,7 +35,7 @@ public class TileManager {
 
         getTileImage();
 
-        loadMap("/Maps/Map0"+ GameScene.getMapID() +".txt");
+        loadMap("/Maps/Map0"+ Window.getWindow().getCurrentMapID() +".txt");
     }
 
     public void getTileImage() {
@@ -94,7 +95,7 @@ public class TileManager {
     public void draw(Graphics2D g2) {
         int worldCol = 0;
         int worldRow = 0;
-        if(GameScene.getMapID() == 2) { // Load map 02
+        if(Window.getWindow().getCurrentMapID() == 2) { // Load map 02
             while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW) {
                 int tileNum = mapTileNum[worldRow][worldCol];
 
@@ -112,7 +113,7 @@ public class TileManager {
                 }
             }
         }
-        else if (GameScene.getMapID() == 1) { //Load map 01
+        else if (Window.getWindow().getCurrentMapID() == 1) { //Load map 01
             int x = 0, y = 0;
             while (worldCol < Constant.MAX_WORLD_COL && worldRow < Constant.MAX_WORLD_ROW) {
                 int tileNum = mapTileNum[worldRow][worldCol];
@@ -132,15 +133,12 @@ public class TileManager {
         }
     }
 
-    public void clearMap(){
-        if (GameScene.getMapID() == 1){
+    public void clearMap(){ //Reset map
+        if (Window.getWindow().getCurrentMapID() == 1){
             loadMap("/Maps/Map01.txt");
         }
-        if (GameScene.getMapID() == 2){
+        if (Window.getWindow().getCurrentMapID() == 2){
             loadMap("/Maps/Map02.txt");
         }
-    }
-    public void loadAsset(){
-
     }
 }

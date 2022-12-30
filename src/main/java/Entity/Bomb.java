@@ -1,7 +1,6 @@
 package Entity;
 
 import Controls.SoundManager;
-import GUI.BombExplodeMap;
 import GUI.Camera;
 import GUI.GameScene;
 import Variables.Constant;
@@ -14,21 +13,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    private final int bombSize = GameScene.bombSize;
-
+    private final int bombSize = GameScene.getBombSize();
+    public static int bombRadius;
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
     private long timeStart = 0L;
+    public int bombExplosionTimer = 2;
+    public int bombExplosionTimerMax = 4;
+
     private int x, y;
     private String key = "";
 
-    private int bombCounter = 0;
-    public static int bombRadius;
     public BombExplodeMap bombExplodeMap;
-    public int bombExplosionTimer = 2;
-    public int bombExplosionTimerMax = 4;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
-
 
     public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
         this.x = ((x + 16) / 48) * 48;
@@ -48,13 +45,9 @@ public class Bomb extends Entity {
         update(x,y);
         sound.playSound("src/main/resources/Sound/put_bombs.wav");
     }
-    public Bomb (){}
     public void update(int x, int y) {
         key = "space";
         timeStart = System.nanoTime();
-
-        // round x and y so the bomb is placed in the middle of the tile
-
     }
 
     //draw bomb on the map with gif
@@ -67,15 +60,14 @@ public class Bomb extends Entity {
                 bombExplodeMap.explosionSoundQueue = 0;
 
             } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
-                GameScene.bombCounter--;
+                GameScene.setBombCounter(GameScene.getBombCounter() - 1);
                 state = 2;
                 update();
                 bombExplodeMap.resetExplosion();
 
             } else {//exploding
                 state = 1;
-                //draw explosion
-                bombExplodeMap.drawExplosion(g2,this);
+                bombExplodeMap.drawExplosion(g2,this); //draw explosion
                 bombExplodeMap.update();
             }
         }
@@ -126,21 +118,6 @@ public class Bomb extends Entity {
         this.y = y;
     }
 
-    public ArrayList<Bomb> getBombList() {
-        return bombList;
-    }
-
-    public int getBombCounter() {
-        return bombCounter;
-    }
-    public void setBombCounter(int bombCounter) {
-        this.bombCounter = bombCounter;
-    }
-
-    //get radius
-    public void setBombRadius(int radius) {
-        bombRadius += radius;
-    }
     public int getBombRadius() {
         return bombRadius;
     }

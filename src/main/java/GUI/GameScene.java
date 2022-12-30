@@ -1,98 +1,74 @@
 package GUI;
 
-import Controls.CollisionCheck;
-import Controls.KeyHandler;
-import Entity.Bomb;
-import Entity.Boss;
-import Entity.Mob;
-import Entity.Player;
+import Controls.CheckAvailable;
+import Entity.*;
 import Objects.SuperObject;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
     Pause pause;
-    static int mapID;
-
     TileManager tileM;
-    AssetSetter aSetter;
+    AssetSetter assetSetter;
 
-    public static CollisionCheck cCheck;
-    public static SuperObject[] Object = new SuperObject[100];
-
+    static SuperObject[] Object = new SuperObject[100];
     static Player player;
+
     static ArrayList<Mob> mobList = new ArrayList<>();
-    public static int mobCounter;
+    static int mobCounter;
 
-    public Boss boss;
+    static Boss boss;
 
-    public static ArrayList<Bomb> bombList;
-    public static int bombSize;
-    public static int bombCounter;
-    public static int bombRadius;
-    public BombExplodeMap bombExplodeMap;
+    static ArrayList<Bomb> bombList;
+    static int bombSize;
+    static int bombCounter;
+    static int bombRadius;
+    BombExplodeMap bombExplodeMap;
 
-    public static GameScene instance = null;
-    public static GameScene getInstance(){
-        if(GameScene.instance == null){
-            GameScene.instance = new GameScene(mapID);
-        }
-        return GameScene.instance;
-    }
 
-    public GameScene(int mapID) {
-        GameScene.mapID = mapID;
-        player = new Player();
+    public GameScene() {
+        player = new Player(Window.getWindow().getCurrentMapID());
         boss = new Boss();
 
         tileM = TileManager.getInstance();
-        aSetter = new AssetSetter(this);
-        pause = Pause.getInstance(this);
-
-        cCheck = new CollisionCheck();
-
-        aSetter.setMob();
-        aSetter.setItems();
+        assetSetter = new AssetSetter(this);
+        pause = new Pause(this);
 
         bombList = new ArrayList<>();
         bombExplodeMap = new BombExplodeMap();
         bombCounter = 0;
         bombSize = 2;
         bombRadius = 1;
-        finishLevel(getMobList().size());
     }
 
     @Override
     public void update() {
-        pause.pauseGame();
-        //update when not pause
+        pause.pauseGame(); //Pause game
         if (!isPaused) {
-            player.update();
+            player.update(); //update Player
 
-            tileM.update();
+            tileM.update(); //update Tile
 
             if(mobList != null){
                 for (Mob mob : mobList) {
-                    mob.update();
+                    mob.update(); //update Mob
                 }
             }
 
-            if(mapID == 2){
+            if(Window.getWindow().getCurrentMapID() == 2){
                 if(boss.state == 1){
-                    boss.update();
+                    boss.update(); //update Boss
                 }
             }
-            if (CheckAvailable.plantBomb(player.getX(), player.getY())) {
+            if (CheckAvailable.plantBomb(player.getX(), player.getY())) { //update Bomb
                 bombList.add(new Bomb(player.getX(), player.getY(), bombRadius, bombExplodeMap));
                 bombCounter++;
             }
         }
 
-        //Game over
-        if (player.state == 0) {
+        if (player.state == 0) { //Game Over
             GameOver.getInstance().update();
             bombList.clear();
             bombCounter = 0;
@@ -104,70 +80,92 @@ public class GameScene extends Scene {
     public void draw(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
 
-        //Draw Map
-        tileM.draw(g2);
+        tileM.draw(g2); //draw Tile
 
-        //Draw player
-        player.draw(g2);
+        player.draw(g2); //draw Player
 
-        if (mapID == 2){
+        if (Window.getWindow().currentMapID == 2){
             if(boss != null){
-                boss.draw(g2);
+                boss.draw(g2); //draw Boss
             }
         }
 
-        //Draw Items
         for (SuperObject superObject : Object) {
             if (superObject != null) {
-                superObject.draw(g2);
+                superObject.draw(g2); //Draw Items
             }
         }
 
-        //Draw Bomb
         bombList.removeIf(b -> b.getState() == 2);
         if(bombList != null){
             for (Bomb b : bombList) {
-                b.draw(g2);
+                b.draw(g2); //Draw Bomb
             }
         }
 
-        //Draw mob
         for (Mob value : mobList) {
-            value.draw(g2);
+            value.draw(g2); //Draw Mob
         }
 
-        //Draw pause menu
         if (isPaused) {
-            pause.draw(g2);
+            pause.draw(g2); //Draw Pause Menu
         }
         if (player.state == 0) {
-            GameOver.getInstance().draw(g2);
+            GameOver.getInstance().draw(g2); //Draw Game Over Menu
         }
-        if (isGameOver()){
-            GameDone.getInstance().draw(g2);
+        if (isGameDone()){
+            Window.getWindow().changeState(3); //Change to Game Done Menu
         }
     }
-    public static boolean isGameOver(){
-        return finishLevel(getMobList().size()) && player.state == 1 && mapID == 2 ;}
-    public static ArrayList<Bomb> getBombList() {
-        return bombList;
-    }
-    public static Player getPlayer(){
-        return player;
-    }
-    public static ArrayList<Mob> getMobList(){
-        return mobList;
-    }
-    public static int getMapID(){
-        return mapID;
-    }
-    public static boolean finishLevel(int i) {
-        mobCounter = i;
+
+    public static boolean mobClear(int mobSize) { // Check if all mobs are dead
+        mobCounter = mobSize;
         for (Mob mob : mobList) {
             if (mob.state == 0) {
                 mobCounter--;
             }
         }
         return mobCounter==0;
+    }
+
+    public boolean isGameDone() { //Check if Game is Finished
+        return Window.getWindow().getCurrentMapID() == 2 && mobClear(mobList.size()) && boss.state == 0;
+    }
+
+    //getter and setter
+    public static ArrayList<Bomb> getBombList() {
+        return bombList;
+    }
+
+    public static Player getPlayer(){
+        return player;
+    }
+    public static ArrayList<Mob> getMobList(){
+        return mobList;
+    }
+
+    public static int getBombCounter() {
+        return bombCounter;
+    }
+    public static int getBombSize() {
+        return bombSize;
+    }
+    public static void setBombSize(int bombSize) {
+        GameScene.bombSize = bombSize;
+    }
+    public static int getBombRadius() {
+        return bombRadius;
+    }
+    public static void setBombRadius(int bombRadius) {
+        GameScene.bombRadius = bombRadius;
+    }
+    public static void setBombCounter(int bombCounter) {
+        GameScene.bombCounter = bombCounter;
+    }
+    public static void setMobCounter(int mobCounter) {
+        GameScene.mobCounter = mobCounter;
+    }
+    public static SuperObject[] getObject() {
+        return Object;
     }
 }
