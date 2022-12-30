@@ -33,6 +33,10 @@ public class Boss extends Entity {
     public void setDefault() {
         x = Constant.TILE_SIZE * 21; //Boss cord
         y = Constant.TILE_SIZE * 36;
+
+//        x = Constant.TILE_SIZE * 10; //Boss cord
+//        y = Constant.TILE_SIZE * 7;
+
         speed = 1;
         collision = true;
         this.direction = "down";

@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.PropertyPermission;
 
 public class GameScene extends Scene {
-    static int mapID;
-
     boolean isPaused; //true = paused, false = not paused
     Pause pause;
     TileManager tileM;
@@ -34,8 +32,7 @@ public class GameScene extends Scene {
     public static int bombRadius;
     public BombExplodeMap bombExplodeMap;
 
-    public GameScene(int mapID) {
-        GameScene.mapID = mapID;
+    public GameScene() {
         player = new Player();
         boss = new Boss();
 
@@ -67,7 +64,7 @@ public class GameScene extends Scene {
                 }
             }
 
-            if(mapID == 2){
+            if(getMapID() == 2){
                 if(boss.state == 1){
                     boss.update(); //update Boss
                 }
@@ -94,7 +91,7 @@ public class GameScene extends Scene {
 
         player.draw(g2); //draw Player
 
-        if (mapID == 2){
+        if (getMapID() == 2){
             if(boss != null){
                 boss.draw(g2); //draw Boss
             }
@@ -128,6 +125,9 @@ public class GameScene extends Scene {
         }
     }
 
+    public int getMapID() {
+        return mapID;
+    }
     public static boolean mobClear(int mobSize) { // Check if all mobs are dead
         mobCounter = mobSize;
         for (Mob mob : mobList) {
@@ -151,8 +151,5 @@ public class GameScene extends Scene {
     }
     public static ArrayList<Mob> getMobList(){
         return mobList;
-    }
-    public static int getMapID(){
-        return mapID;
     }
 }
