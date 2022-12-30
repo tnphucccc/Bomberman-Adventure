@@ -25,7 +25,9 @@ public class Bomb extends Entity {
     private String key = "";
 
     public BombExplodeMap bombExplodeMap;
-    SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
+    SoundManager sound1 = new SoundManager("src/main/resources/Sound/put_bombs.wav");
+    SoundManager sound2 = new SoundManager("src/main/resources/Sound/bomb_explosion.wav");
+    int explosionQueue, plantSoundQueue;
 
     public Bomb(int x, int y, int radius, BombExplodeMap bombExplodeMap) {
         this.x = ((x + 16) / 48) * 48;
@@ -43,7 +45,7 @@ public class Bomb extends Entity {
         getBombImage();
         setDefault();
         update();
-        sound.playSound("src/main/resources/Sound/put_bombs.wav");
+
     }
     public void getBombImage() {//Load asset
         try {
@@ -59,6 +61,8 @@ public class Bomb extends Entity {
     public void setDefault() {
         this.direction = "bomb";
         this.state = 0; //0 is not explode, 1 is exploded, 2 is disappeared
+        explosionQueue = 0;
+        plantSoundQueue = 0;
     }
 
     public void spriteCounter() {//count sprite
@@ -82,9 +86,13 @@ public class Bomb extends Entity {
         BufferedImage img = getEntityImage();
         if (key.equals("space")) {
             if ((System.nanoTime() - timeStart)/Constant.Tera < bombExplosionTimer) {//planting for 2s
+                if (plantSoundQueue == 0) { //Sound Queue
+                    sound1.playSound("src/main/resources/Sound/put_bombs.wav");
+                    plantSoundQueue++;
+                }
+
                 spriteCounter();
                 g2.drawImage(img, Camera.setXCord(x), Camera.setYCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
-                bombExplodeMap.explosionSoundQueue = 0;
 
             } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
                 GameScene.setBombCounter(GameScene.getBombCounter() - 1);
@@ -93,6 +101,10 @@ public class Bomb extends Entity {
                 bombExplodeMap.resetExplosion();
 
             } else {//exploding
+                if (explosionQueue == 0) { //Sound Queue
+                    sound2.playSound("src/main/resources/Sound/bomb_explosion.wav");
+                    explosionQueue++;
+                }
                 state = 1;
                 bombExplodeMap.drawExplosion(g2,this); //draw explosion
                 bombExplodeMap.update();
