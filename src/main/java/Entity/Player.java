@@ -33,13 +33,13 @@ public class Player extends Entity {
     }
 
     public void setDefault() {
-        if(GameScene.getMapID() == 2) { //Player cord at Map 02
+        if(Window.getWindow().getCurrentMapID() == 2) { //Player cord at Map 02
             x = Constant.TILE_SIZE * 8;
             y = Constant.TILE_SIZE * 5;
             speed = 4;
         }
 
-        if(GameScene.getMapID() == 1) { //Player cord at Map01
+        if(Window.getWindow().getCurrentMapID() == 1) { //Player cord at Map01
             x = Constant.TILE_SIZE * 2;
             y = Constant.TILE_SIZE * 2;
             speed = 2;
@@ -156,8 +156,10 @@ public class Player extends Entity {
         BufferedImage img = getEntityImage();
         if (state == 0) { //Player Die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
-            sound.playSound("src/main/resources/Sound/just_died.wav");
+
+//            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
+//            sound.playSound("src/main/resources/Sound/just_died.wav");
+
             g2.drawImage(img, Camera.setXPlayerCord(x), Camera.setYPlayerCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             speed = 0;
         } else { // Player alive

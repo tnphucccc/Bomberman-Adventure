@@ -7,9 +7,9 @@ public class Camera {
 
     public static int setXCord(int x) {
         int playerX = GameScene.getPlayer().getX();
-        if (GameScene.getMapID() == 2) {
+        if (Window.getWindow().getCurrentMapID() == 2) {
             return x - playerX + Constant.PLAYER_SCREEN_X;
-        } else if (GameScene.getMapID() == 1) {
+        } else if (Window.getWindow().getCurrentMapID() == 1) {
             return x;
         }
         return x;
@@ -17,27 +17,27 @@ public class Camera {
 
     public static int setYCord(int y) {
         int playerY = GameScene.getPlayer().getY();
-        if (GameScene.getMapID() == 2) {
+        if (Window.getWindow().getCurrentMapID() == 2) {
             return y - playerY + Constant.PLAYER_SCREEN_Y;
-        } else if (GameScene.getMapID() == 1) {
+        } else if (Window.getWindow().getCurrentMapID() == 1) {
             return y;
         }
         return y;
     }
 
     public static int setXPlayerCord(int x){
-        if (GameScene.getMapID() == 2){
+        if (Window.getWindow().getCurrentMapID() == 2){
             return Constant.PLAYER_SCREEN_X;
-        } else if (GameScene.getMapID() == 1){
+        } else if (Window.getWindow().getCurrentMapID() == 1){
             return x;
         }
         return x;
     }
 
     public static int setYPlayerCord(int y){
-        if (GameScene.getMapID() == 2){
+        if (Window.getWindow().getCurrentMapID() == 2){
             return Constant.PLAYER_SCREEN_Y;
-        } else if (GameScene.getMapID() == 1){
+        } else if (Window.getWindow().getCurrentMapID() == 1){
             return y;
         }
         return y;
