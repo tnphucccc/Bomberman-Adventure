@@ -1,8 +1,8 @@
-package GUI;
+package Entity;
 
 import Controls.SoundManager;
-import Entity.Bomb;
-import Entity.Entity;
+import GUI.Camera;
+import GUI.TileManager;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;
@@ -14,8 +14,10 @@ import java.util.Objects;
 public class BombExplodeMap extends Entity {
     public static BombExplodeMap instance;
     private final int[][] map;
+
     BufferedImage[][] end = new BufferedImage[9][8];
     BufferedImage[] explode= new BufferedImage[8];
+
     public int downLength, upLength, rightLength, leftLength;
     public int explosionSoundQueue = 0;
     SoundManager sound = new SoundManager("src/main/resources/Sound/bomb_explosion.wav");
@@ -54,11 +56,12 @@ public class BombExplodeMap extends Entity {
         int x = bomb.getX() / Constant.TILE_SIZE;
         int y = bomb.getY() / Constant.TILE_SIZE;
 
-        if (explosionSoundQueue == 0) {
+        if (explosionSoundQueue == 0) { //Sound Queue
             sound.playSound("src/main/resources/Sound/bomb_explosion.wav");
             explosionSoundQueue++;
         }
-        //check downward
+
+        //Check downward
         for (int i = 1; i <= bomb.getBombRadius(); i++) {
             if (map[y + i][x] == 0 || map[y + i][x] == 3) { //Draw explosion if ground or shadow
                 draw(g2, x, y, 8);
@@ -159,7 +162,7 @@ public class BombExplodeMap extends Entity {
             map[y + 1][x] = 0;//check if under brick is shadow, if shadow draw ground
         }
     }
-    public void resetExplosion(){
+    public void resetExplosion(){ //Reset explosion
         downLength = 0;
         upLength = 0;
         rightLength = 0;

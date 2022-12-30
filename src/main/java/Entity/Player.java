@@ -15,17 +15,23 @@ import java.util.Objects;
 
 public class Player extends Entity {
     KeyHandler keyH = Window.getKeyH();
-    public static Player instance;
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
-    public static Player getInstance(){
-        if (Player.instance == null){
-            Player.instance = new Player();
+    public int currentMap;
+
+    public static Player instance;
+
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player(Window.getWindow().getCurrentMapID());
         }
-        return Player.instance;
+        return instance;
     }
-    public Player() {
+
+    public Player(int currentMap) {
         this.name ="player";
+        this.currentMap = currentMap;
+
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
@@ -34,19 +40,21 @@ public class Player extends Entity {
 
         solidArea.width = 32;
         solidArea.height = 32;
+
+
         setDefault();
         getPlayerImage();
         state = 1;
     }
 
     public void setDefault() {
-        if(GameScene.getMapID() == 2) { //Player cord at Map 02
+        if(currentMap == 2) { //Player cord at Map 02
             x = Constant.TILE_SIZE * 8;
             y = Constant.TILE_SIZE * 5;
             speed = 4;
         }
 
-        if(GameScene.getMapID() == 1) { //Player cord at Map01
+        if(currentMap == 1) { //Player cord at Map01
             x = Constant.TILE_SIZE * 2;
             y = Constant.TILE_SIZE * 2;
             speed = 2;
@@ -54,7 +62,7 @@ public class Player extends Entity {
         direction = "down";
     }
 
-    public void getPlayerImage() {
+    public void getPlayerImage() { //Load asset
         try {
             for (int i = 0; i < 4; i++) {
                 up[i] = ImageIO.read(Objects.requireNonNull(getClass()
@@ -77,13 +85,9 @@ public class Player extends Entity {
     @Override
     public void update() {
         collisionOn = false;
-        if(GameScene.getBombList() != null){
-            for(Bomb b : GameScene.getBombList()){
-                CollisionCheck.getInstance().checkBomb(b,this);
-            }
-        }
+
         if ((keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) && state == 1) {
-            if (keyH.upPressed) {
+            if (keyH.upPressed) { //Character Movement
                 direction = "up";
             } else if (keyH.downPressed) {
                 direction = "down";
@@ -92,19 +96,21 @@ public class Player extends Entity {
             } else {
                 direction = "right";
             }
-            //check collision with tile, mob,object,bomb
 
+            //check collision with Bomb
+            if(GameScene.getBombList() != null){
+                for(Bomb b : GameScene.getBombList()){
+                    CollisionCheck.getInstance().checkBomb(b,this);
+                }
+            }
 
-            //Check collision with Tiles
-            CollisionCheck.getInstance().checkTile(this);
+            CollisionCheck.getInstance().checkTile(this); //Check collision with Tiles
 
             //Check collision with Items
-            int objIndex = GameScene.cCheck.checkObject(this, true);
+            int objIndex = CollisionCheck.getInstance().checkObject(this, true);
             pickUpObject(objIndex);
 
-            //Check Collision with Bomb
-
-
+            //Animation
             if (!collisionOn) {
                 switch (direction) {
                     case "up" -> y -= speed;
@@ -113,8 +119,7 @@ public class Player extends Entity {
                     case "right" -> x += speed;
                 }
             }
-
-            spriteCounter++;
+            spriteCounter++; //Animation
             if (spriteCounter > 8) {
                 if (spriteNum != 4) {
                     spriteNum++;
@@ -133,29 +138,29 @@ public class Player extends Entity {
         }
     }
 
-    public void pickUpObject(int i) {
+    public void pickUpObject(int i) { //Pick up items
         if (i != 999) {
-            String objName = GameScene.Object[i].name;
+            String objName = GameScene.getObject()[i].name;
             sound.playSound("src/main/resources/Sound/put_bombs.wav");
             switch (objName) {
                 case "ExtraBomb" -> {
-                    GameScene.bombSize += 1;
-                    GameScene.Object[i] = null;
+                    GameScene.setBombSize(GameScene.getBombSize() + 1); // Increase bomb size
+                    GameScene.getObject()[i] = null;
                 }
                 case "SpeedIncrease" -> {
-                    speed += 1;
-                    GameScene.Object[i] = null;
+                    speed += 1; // Increase player speed
+                    GameScene.getObject()[i] = null;
                 }
                 case "Door" ->{
-                    if(GameScene.instance.finishLevel(GameScene.getMobList().size())) {
+                    if(GameScene.mobClear(GameScene.getMobList().size())) { //Check if all mobs are dead
                         Window.getWindow().changeState(2); //Change to next map
-                        TileManager.getInstance().clearMap();
-                        GameScene.mobCounter = 0;
+                        TileManager.getInstance().clearMap(); //Clear map
+                        GameScene.setMobCounter(0); //Reset mob counter
                     }
                 }
                 case "BlastRadius" ->{
-                    GameScene.bombRadius++;
-                    GameScene.Object[i] = null;
+                    GameScene.setBombRadius(GameScene.getBombRadius() + 1); //Increase bomb blast radius
+                    GameScene.getObject()[i] = null;
                 }
             }
         }
@@ -166,8 +171,10 @@ public class Player extends Entity {
         BufferedImage img = getEntityImage();
         if (state == 0) { //Player Die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
-            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
-            sound.playSound("src/main/resources/Sound/just_died.wav");
+
+//            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
+//            sound.playSound("src/main/resources/Sound/just_died.wav");
+
             g2.drawImage(img, Camera.setXPlayerCord(x), Camera.setYPlayerCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             speed = 0;
         } else { // Player alive
