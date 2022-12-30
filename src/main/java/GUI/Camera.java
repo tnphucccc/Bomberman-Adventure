@@ -27,10 +27,8 @@ public class Camera {
 
     public static int setXPlayerCord(int x){
         if (Window.getWindow().getCurrentMapID() == 2){
-            System.out.println("Map 2");
             return Constant.PLAYER_SCREEN_X;
         } else if (Window.getWindow().getCurrentMapID() == 1){
-            System.out.println("Map 1");
             return x;
         }
         return x;

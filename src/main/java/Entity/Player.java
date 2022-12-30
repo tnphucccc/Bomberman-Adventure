@@ -49,14 +49,12 @@ public class Player extends Entity {
 
     public void setDefault() {
         if(currentMap == 2) { //Player cord at Map 02
-//            System.out.println("Map 2");
             x = Constant.TILE_SIZE * 8;
             y = Constant.TILE_SIZE * 5;
             speed = 4;
         }
 
         if(currentMap == 1) { //Player cord at Map01
-//            System.out.println("Map 1");
             x = Constant.TILE_SIZE * 2;
             y = Constant.TILE_SIZE * 2;
             speed = 2;
@@ -146,7 +144,7 @@ public class Player extends Entity {
             sound.playSound("src/main/resources/Sound/put_bombs.wav");
             switch (objName) {
                 case "ExtraBomb" -> {
-                    GameScene.bombSize += 1; // Increase bomb size
+                    GameScene.setBombSize(GameScene.getBombSize() + 1); // Increase bomb size
                     GameScene.Object[i] = null;
                 }
                 case "SpeedIncrease" -> {
@@ -161,7 +159,7 @@ public class Player extends Entity {
                     }
                 }
                 case "BlastRadius" ->{
-                    GameScene.bombRadius++; //Increase bomb blast radius
+                    GameScene.setBombRadius(GameScene.getBombRadius() + 1); //Increase bomb blast radius
                     GameScene.Object[i] = null;
                 }
             }

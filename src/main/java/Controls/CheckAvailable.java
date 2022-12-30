@@ -1,6 +1,8 @@
-package GUI;
-import Controls.KeyHandler;
+package Controls;
 import Entity.Bomb;
+import GUI.GameScene;
+import GUI.Window;
+
 public class CheckAvailable {
     static KeyHandler keyH = Window.getKeyH();
     static boolean spacePressed;
@@ -16,7 +18,7 @@ public class CheckAvailable {
         return true;
     }
     public static boolean plantBomb(int x, int y){
-        if (GameScene.bombCounter < GameScene.bombSize) {
+        if (GameScene.getBombCounter() < GameScene.getBombSize()) {
             if (keyH.spacePressed) {
                 spacePressed = true;
             }

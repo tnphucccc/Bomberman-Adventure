@@ -1,5 +1,6 @@
 package GUI;
 
+import Entity.BombExplodeMap;
 import Variables.Constant;
 
 import javax.imageio.ImageIO;

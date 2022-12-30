@@ -1,7 +1,6 @@
 package Entity;
 
 import Controls.SoundManager;
-import GUI.BombExplodeMap;
 import GUI.Camera;
 import GUI.GameScene;
 import Variables.Constant;
@@ -14,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Bomb extends Entity {
-    private final int bombSize = GameScene.bombSize;
+    private final int bombSize = GameScene.getBombSize();
     public static int bombRadius;
     private final ArrayList<Bomb> bombList = new ArrayList<>(bombSize);
 
@@ -61,7 +60,7 @@ public class Bomb extends Entity {
                 bombExplodeMap.explosionSoundQueue = 0;
 
             } else if ((System.nanoTime() - timeStart)/Constant.Tera > bombExplosionTimerMax) { //disappeared in 4s
-                GameScene.bombCounter--;
+                GameScene.setBombCounter(GameScene.getBombCounter() - 1);
                 state = 2;
                 update();
                 bombExplodeMap.resetExplosion();
