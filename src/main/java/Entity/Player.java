@@ -18,6 +18,7 @@ public class Player extends Entity {
     SoundManager sound = new SoundManager("src/main/resources/Sound/put_bombs.wav");
 
     int currentMap;
+    int soundQueue;
 
     public Player(int currentMap) {
         this.name ="player";
@@ -36,6 +37,7 @@ public class Player extends Entity {
         setDefault();
         getPlayerImage();
         state = 1;
+        soundQueue = 0;
     }
 
     public void setDefault() {
@@ -163,8 +165,11 @@ public class Player extends Entity {
         if (state == 0) { //Player Die
             img = getBufferedImage(die[0], die[1], die[2], die[3], die[4], die[5]);
 
-//            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
-//            sound.playSound("src/main/resources/Sound/just_died.wav");
+            SoundManager sound = new SoundManager("src/main/resources/Sound/just_died.wav");
+            if (soundQueue == 0) {
+                sound.playSound("src/main/resources/Sound/just_died.wav");
+                soundQueue++;
+            }
 
             g2.drawImage(img, Camera.setXPlayerCord(x), Camera.setYPlayerCord(y), Constant.TILE_SIZE, Constant.TILE_SIZE, null);
             speed = 0;
