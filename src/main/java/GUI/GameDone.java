@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class GameDone extends Scene {
     Image gameDone;
-    BufferedImage nextButton, nextButtonPressed, currentNextButton, credit;
+    BufferedImage nextButton, nextButtonPressed, currentNextButton, finishMenu;
     Rectangle nextButtonRect;
     MouseHandler mouseH = Window.getMouseH();
 
@@ -26,6 +26,8 @@ public class GameDone extends Scene {
         try {
             nextButton = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Menu/Next.png")));
             nextButtonPressed = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Menu/NextPressed.png")));
+
+            finishMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Menu/FinishMenu.png")));
 
             currentNextButton = nextButton;
 
@@ -49,7 +51,13 @@ public class GameDone extends Scene {
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(gameDone, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
-        g.drawImage(currentNextButton, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
+        if (Window.getWindow().getCurrentState() == 3) {
+            g.drawImage(gameDone, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
+            g.drawImage(currentNextButton, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
+        }   else {
+            g.setColor(new Color(0, 0, 0, 150));
+            g.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
+            g.drawImage(finishMenu, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
+        }
     }
 }

@@ -7,6 +7,7 @@ import Objects.SuperObject;
 import java.awt.*;
 import java.util.ArrayList;
 
+
 public class GameScene extends Scene {
     boolean isPaused; //true = paused, false = not paused
     Pause pause;
@@ -114,7 +115,12 @@ public class GameScene extends Scene {
             GameOver.getInstance().draw(g2); //Draw Game Over Menu
         }
         if (isGameDone()){
-            Window.getWindow().changeState(3); //Change to Game Done Menu
+            try {
+                Thread.sleep(1000 * 10);
+                Window.getWindow().changeState(3); //Change to Game Done Menu
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
