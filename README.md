@@ -144,7 +144,7 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
    <br />
     <h3>Entities Diagram</h3>
     <div align="center">
-          <img src="src/main/resources/Screenshots/Entities_UML.png" alt="">
+          <img src="src/main/resources/Screenshots/Entity_UML.png" alt="">
    </div>
     <br />
      <h3>Objects Diagram</h3>
