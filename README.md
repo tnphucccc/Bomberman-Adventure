@@ -20,7 +20,7 @@
 <summary>Table of Contents</summary>
 <ol>
     <li>
-        <a href="#Introduction">Introduction</a>
+        <a href="##Introduction">Introduction</a>
         <ul>
             <li><a href="#Team-Members">Team Members</a></li>
             <li><a href="#How-to-Run">How to Run</a></li>
@@ -28,7 +28,7 @@
         </ul>
     </li>
     <li>
-        <a href="#Game">Game</a>
+        <a href="##Game">Game</a>
         <ul>
             <li><a href="#About-the-Game">About the Game</a></li>
             <li><a href="#Controls">Controls</a></li>
@@ -113,11 +113,11 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
 
 ### Items
 
-|    Item    |              Effect              |
-|:----------:|:--------------------------------:|
-| Bomb Item  |   Increase the number of bombs   |
-| Flame Item |   Increase the range of bombs    |
-| Speed Item | Increase the speed of the player |
+|      Item       |              Effect              |
+|:---------------:|:--------------------------------:|
+|   Extra Bomb    |   Increase the number of bombs   |
+|  Blast Radius   |   Increase the range of bombs    |
+| Boots of Hermes | Increase the speed of the player |
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 

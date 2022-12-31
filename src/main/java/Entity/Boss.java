@@ -42,7 +42,7 @@ public class Boss extends Entity {
         this.direction = "down";
         this.state = 1;
 
-        this.hitPoint = 200;
+        this.hitPoint = 2;
     }
 
     public void getMobImage() {
