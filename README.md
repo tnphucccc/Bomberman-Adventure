@@ -5,6 +5,7 @@
 
 # Bomberman
 
+<!--suppress ALL -->
 <div align="center">
 <img src="src/main/resources/Screenshots/Menu.png" alt="">
 </div>
@@ -15,12 +16,15 @@
 
 1. [Introduction](#Introduction)
 2. [Game](#Game)
+3. [UML-diagram](#UML-diagram)
+4. [Features](#Features)
+5. [Challenges](#Challenges)
 
 <!-- <details>
 <summary>Table of Contents</summary>
 <ol>
     <li>
-        <a href="##Introduction">Introduction</a>
+        <a href="#Introduction">Introduction</a>
         <ul>
             <li><a href="#Team-Members">Team Members</a></li>
             <li><a href="#How-to-Run">How to Run</a></li>
@@ -28,11 +32,20 @@
         </ul>
     </li>
     <li>
-        <a href="##Game">Game</a>
+        <a href="#Game">Game</a>
         <ul>
             <li><a href="#About-the-Game">About the Game</a></li>
             <li><a href="#Controls">Controls</a></li>
             <li><a href="#Items">Items</a></li>
+        </ul>
+    </li>
+    <li><a href="#UML-diagram">UML-diagram</a></li>
+    <li><a href="#Features">Features</a></li>
+    <li>
+        <a href="#Challenges">Challenges</a>
+        <ul>
+            <li><a href="#Game-Design">Game Design</a></li>
+            <li><a href="#Technical-Design">Technical Design</a></li>
         </ul>
     </li>
 </ol>
@@ -118,6 +131,39 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
 |   Extra Bomb    |   Increase the number of bombs   |
 |  Blast Radius   |   Increase the range of bombs    |
 | Boots of Hermes | Increase the speed of the player |
+
+<!-- UML-diagram -->
+
+## UML-diagram <a name="UML-diagram"></a>
+
+<div>
+   <h3>Controls Diagram</h3>
+   <div align="center">
+        <img src="src/main/resources/Screenshots/Controls_UML.png" alt="">
+   </div>
+   <br />
+    <h3>Entities Diagram</h3>
+    <div align="center">
+          <img src="src/main/resources/Screenshots/Entities_UML.png" alt="">
+   </div>
+    <br />
+     <h3>Objects Diagram</h3>
+     <div align="center">
+             <img src="src/main/resources/Screenshots/Objects_UML.png" alt="">
+   </div>
+   <h3>GUI Diagram</h3>
+    <div align="center">
+          <img src="src/main/resources/Screenshots/GUI_UML.png" alt="">
+   </div>
+   <h3>Constant</h3>
+    <div align="center">
+          <img src="src/main/resources/Screenshots/Constant_UML.png" alt="">
+   </div>
+</div>
+
+<!-- Features -->
+
+## Features <a name="Features"></a>
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
