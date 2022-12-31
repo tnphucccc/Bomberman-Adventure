@@ -137,28 +137,30 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
 ## UML-diagram <a name="UML-diagram"></a>
 
 <div>
-   <h3>Controls Diagram</h3>
-   <div align="center">
-        <img src="src/main/resources/Screenshots/Controls_UML.png" alt="">
-   </div>
-   <br />
-    <h3>Entities Diagram</h3>
-    <div align="center">
-          <img src="src/main/resources/Screenshots/Entity_UML.png" alt="">
-   </div>
+    <h3>Controls Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Controls_UML.png" alt="">
+        </div>
     <br />
-     <h3>Objects Diagram</h3>
-     <div align="center">
-             <img src="src/main/resources/Screenshots/Objects_UML.png" alt="">
-   </div>
-   <h3>GUI Diagram</h3>
-    <div align="center">
-          <img src="src/main/resources/Screenshots/GUI_UML.png" alt="">
-   </div>
-   <h3>Constant</h3>
-    <div align="center">
-          <img src="src/main/resources/Screenshots/Constant_UML.png" alt="">
-   </div>
+    <h3>Entities Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Entity_UML.png" alt="">
+        </div>
+    <br />
+    <h3>Objects Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Objects_UML.png" alt="">
+        </div>
+    <br />
+    <h3>GUI Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/GUI_UML.png" alt="">
+        </div>
+    <br />
+    <h3>Constant</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Constant_UML.png" alt="">
+        </div>
 </div>
 
 <!-- Features -->
