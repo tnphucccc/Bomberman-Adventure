@@ -121,7 +121,6 @@ public class GameScene extends Scene {
             GameOver.getInstance().draw(g2); //Draw Game Over Menu
         }
         if (isGameDone()) {
-//            Window.getWindow().changeState(3); //Change to Game Done Menu
             FinishMenu.getInstance().draw(g2); //Draw Game Done Menu
         }
     }

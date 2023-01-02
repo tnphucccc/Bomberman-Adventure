@@ -29,7 +29,7 @@ public class FinishMenu {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        nextButtonRect = new Rectangle(337, 434, 141, 30);
+        nextButtonRect = new Rectangle(149, 440, (686 - 149), (462 - 440));
     }
 
     public void update() {
