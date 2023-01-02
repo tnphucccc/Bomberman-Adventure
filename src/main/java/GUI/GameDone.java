@@ -13,9 +13,18 @@ import java.util.Objects;
 
 public class GameDone extends Scene {
     Image gameDone;
-    BufferedImage nextButton, nextButtonPressed, currentNextButton, finishMenu;
+    BufferedImage nextButton, nextButtonPressed, currentNextButton, finishMenu, finishMenuPressed, currentFinishMenu;
     Rectangle nextButtonRect;
     MouseHandler mouseH = Window.getMouseH();
+
+    public static GameDone instance = null;
+
+    public static GameDone getInstance() {
+        if (GameDone.instance == null) {
+            GameDone.instance = new GameDone();
+        }
+        return GameDone.instance;
+    }
 
     GameDone() {
 
@@ -26,9 +35,6 @@ public class GameDone extends Scene {
         try {
             nextButton = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Menu/Next.png")));
             nextButtonPressed = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Menu/NextPressed.png")));
-
-            finishMenu = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Menu/FinishMenu.png")));
-
             currentNextButton = nextButton;
 
         } catch (Exception e) {
@@ -39,25 +45,20 @@ public class GameDone extends Scene {
 
     @Override
     public void update() {
-        if (mouseH.checkInteractWithRect(mouseH, nextButtonRect)) {
-            currentNextButton = nextButtonPressed;
-            if (mouseH.isPressed) {
-                Window.getWindow().changeState(4);
+            if (mouseH.checkInteractWithRect(mouseH, nextButtonRect)) {
+                currentNextButton = nextButtonPressed;
+                if (mouseH.isPressed) {
+                    Window.getWindow().changeState(4); //From Congratulation to Credit
+                }
+            } else {
+                    currentNextButton = nextButton;
             }
-        } else {
-            currentNextButton = nextButton;
         }
-    }
+
 
     @Override
     public void draw(Graphics g) {
-        if (Window.getWindow().getCurrentState() == 3) {
-            g.drawImage(gameDone, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
-            g.drawImage(currentNextButton, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
-        }   else {
-            g.setColor(new Color(0, 0, 0, 150));
-            g.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
-            g.drawImage(finishMenu, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
-        }
+        g.drawImage(gameDone, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
+        g.drawImage(currentNextButton, 0, 0, Constant.WIDTH, Constant.HEIGHT, null);
     }
 }
