@@ -42,7 +42,7 @@ public class Boss extends Entity {
         this.direction = "down";
         this.state = 1;
 
-        this.hitPoint = 200;
+        this.hitPoint = 100;
     }
 
     public void getMobImage() {
@@ -111,9 +111,9 @@ public class Boss extends Entity {
     }
 
     public void checkState(int hitPoint){
-        if (hitPoint == 0){
+        if (hitPoint <= 0){
             state = 0;
-        } else state =1;
+        } else state = 1;
     }
 
 

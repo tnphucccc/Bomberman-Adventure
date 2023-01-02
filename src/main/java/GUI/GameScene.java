@@ -75,6 +75,12 @@ public class GameScene extends Scene {
             bombCounter = 0;
             bombSize = 2;
         }
+        if (isGameDone()){
+            FinishMenu.getInstance().update();
+            bombList.clear();
+            bombCounter = 0;
+            bombSize = 2;
+        }
     }
 
     @Override
@@ -85,8 +91,8 @@ public class GameScene extends Scene {
 
         player.draw(g2); //draw Player
 
-        if (Window.getWindow().currentMapID == 2){
-            if(boss != null){
+        if (Window.getWindow().currentMapID == 2) {
+            if (boss != null) {
                 boss.draw(g2); //draw Boss
             }
         }
@@ -98,7 +104,7 @@ public class GameScene extends Scene {
         }
 
         bombList.removeIf(b -> b.getState() == 2);
-        if(bombList != null){
+        if (bombList != null) {
             for (Bomb b : bombList) {
                 b.draw(g2); //Draw Bomb
             }
@@ -114,13 +120,9 @@ public class GameScene extends Scene {
         if (player.state == 0) {
             GameOver.getInstance().draw(g2); //Draw Game Over Menu
         }
-        if (isGameDone()){
-            try {
-                Thread.sleep(1000 * 10);
-                Window.getWindow().changeState(3); //Change to Game Done Menu
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        if (isGameDone()) {
+//            Window.getWindow().changeState(3); //Change to Game Done Menu
+            FinishMenu.getInstance().draw(g2); //Draw Game Done Menu
         }
     }
 
