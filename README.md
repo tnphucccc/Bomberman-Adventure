@@ -5,6 +5,7 @@
 
 # Bomberman
 
+<!--suppress ALL -->
 <div align="center">
 <img src="src/main/resources/Screenshots/Menu.png" alt="">
 </div>
@@ -15,6 +16,9 @@
 
 1. [Introduction](#Introduction)
 2. [Game](#Game)
+3. [UML-diagram](#UML-diagram)
+4. [Features](#Features)
+5. [Challenges](#Challenges)
 
 <!-- <details>
 <summary>Table of Contents</summary>
@@ -35,6 +39,9 @@
             <li><a href="#Items">Items</a></li>
         </ul>
     </li>
+    <li><a href="#UML-diagram">UML-diagram</a></li>
+    <li><a href="#Features">Features</a></li>
+    <li><a href="#Challenges">Challenges</a></li>
 </ol>
 </details> -->
 
@@ -113,11 +120,72 @@ keys. The player can place a bomb by pressing the space bar. The player can paus
 
 ### Items
 
-|    Item    |              Effect              |
-|:----------:|:--------------------------------:|
-| Bomb Item  |   Increase the number of bombs   |
-| Flame Item |   Increase the range of bombs    |
-| Speed Item | Increase the speed of the player |
+|      Item       |              Effect              |
+|:---------------:|:--------------------------------:|
+|   Extra Bomb    |   Increase the number of bombs   |
+|  Blast Radius   |   Increase the range of bombs    |
+| Boots of Hermes | Increase the speed of the player |
+
+<!-- UML-diagram -->
+
+## UML-diagram <a name="UML-diagram"></a>
+
+<div>
+    <h3>Controls Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Controls_UML.png" alt="">
+        </div>
+    <br />
+    <h3>Entities Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Entity_UML.png" alt="">
+        </div>
+    <br />
+    <h3>Objects Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Objects_UML.png" alt="">
+        </div>
+    <br />
+    <h3>GUI Diagram</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/GUI_UML.png" alt="">
+        </div>
+    <br />
+    <h3>Constant</h3>
+        <div align="center">
+            <img src="src/main/resources/Screenshots/Constant_UML.png" alt="">
+        </div>
+</div>
+
+<!-- Features -->
+
+## Features <a name="Features"></a>
+
+<div style = "text-align: justify">
+   Unlike the original game, in this version, we decided to change something in the gameplay to make it a bit differ. We added some new features to the game, such as: <br/>
+- The player can move faster by picking up the Boots of Hermes item. <br/>
+- The player can place more bombs at the same time by picking up the Extra Bomb item. <br/>
+- The player can increase the range of bombs by picking up the Blast Radius item. <br/>
+- The player can pause the game by pressing the P key. <br/>
+- There 2 maps currently in the game, with different obstacles and enemies. <br/>
+- The boss will appear in map 2, with a lot of health and will track the player. To kill the boss, you have to be patient and wait for the right time to attack. <br/>
+- After defeating the boss, you will win the game and become the "Hero of the BomberLand". <br/>
+</div>
+
+<!-- Challenge -->
+
+## Challenge <a name="Challenge"></a>
+
+<div style = "text-align: justify">
+   The most challenging part of this project is the collision detection. We had to make sure that the player can't go through the walls, the enemies can't go through the walls and the bombs can't go through the walls. We also had to make sure that the player can't place a bomb on the wall. <br/>
+   Another challenging part is the boss. We had to make sure that the boss can track the player and attack the player. We also had to make sure that the boss can't go through the walls. <br/>
+   During the process, there were some bugs like: <br/>
+- The player can place a bomb on the wall. <br/>
+- Player and enemies can go through the walls. <br/>
+- Bomb explode through the walls. <br/>
+- Collision detection is not working properly. <br/>
+   Fixing these bugs took us a lot of time, but it help us learn a lot of things about the game. <br/>
+</div>
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
